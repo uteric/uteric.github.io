@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/08/01/%E4%B8%8A%E5%8E%95%E6%89%80%E6%96%87%E8%BE%9E%E5%A9%89%E7%BA%A6%E7%9A%84%E8%AF%B4%E6%B3%95/</loc>
+    
+    <lastmod>2017-08-05T01:42:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/index.html</loc>
+    
+    <lastmod>2017-08-05T01:40:54.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/08/01/%E6%96%87%E4%BA%BA%E4%B9%8B%E6%AD%BB/</loc>
     
     <lastmod>2017-08-05T01:33:52.000Z</lastmod>
@@ -26,13 +40,6 @@
     <loc>http://yoursite.com/2017/08/01/%E8%91%97%E5%90%8D%E9%AA%82%E4%BA%BA%E7%9A%84%E8%AF%9D/</loc>
     
     <lastmod>2017-08-05T01:33:06.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/08/01/%E4%B8%8A%E5%8E%95%E6%89%80%E6%96%87%E8%BE%9E%E5%A9%89%E7%BA%A6%E7%9A%84%E8%AF%B4%E6%B3%95/</loc>
-    
-    <lastmod>2017-08-05T01:32:52.000Z</lastmod>
     
   </url>
   
@@ -75,13 +82,6 @@
     <loc>http://yoursite.com/categories/index.html</loc>
     
     <lastmod>2017-08-05T01:22:48.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/tags/index.html</loc>
-    
-    <lastmod>2017-08-04T03:51:19.000Z</lastmod>
     
   </url>
   
