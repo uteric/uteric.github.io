@@ -121,8 +121,8 @@
     },
     algolia: {
       applicationID: '',
-      apiKey: '',
-      indexName: '',
+      apiKey: '9e233f3fa2f200ca831529de7ba10253',
+      indexName: 'uteric',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -277,22 +277,27 @@ ga('send', 'pageview');
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-<div class="local-search-header clearfix">
-<span class="search-icon">
-<i class="fa fa-search"></i>
-</span>
-<span class="popup-btn-close">
-<i class="fa fa-times-circle"></i>
-</span>
-<div class="local-search-input-wrapper">
-<input autocomplete="off"
-placeholder="搜索..." spellcheck="false"
-type="text" id="local-search-input">
-</div>
-</div>
-<div id="local-search-result"></div>
-</div>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
 
 
     </div>
@@ -347,6 +352,43 @@ type="text" id="local-search-input">
 
       <h2 class="post-title">
         
+            <a class="post-title-link" href="/2017/08/01/上厕所文辞婉约的说法/" itemprop="url">
+              
+                <span itemprop="name">古人上厕所都有哪些文辞婉约的说法？</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-08-01T23:12:33-05:00"
+              content="2017-08-01" >
+          08-01
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
             <a class="post-title-link" href="/2017/08/01/人如其名/" itemprop="url">
               
                 <span itemprop="name">人如其名-曹操小名叫阿瞒</span>
@@ -384,9 +426,9 @@ type="text" id="local-search-input">
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2017/08/01/上厕所文辞婉约的说法/" itemprop="url">
+            <a class="post-title-link" href="/2017/08/01/名字中的学问/" itemprop="url">
               
-                <span itemprop="name">古人上厕所都有哪些文辞婉约的说法？</span>
+                <span itemprop="name">如何取名-名字中的学问</span>
               
             </a>
         
@@ -461,43 +503,6 @@ type="text" id="local-search-input">
             <a class="post-title-link" href="/2017/08/01/姓与氏的学问/" itemprop="url">
               
                 <span itemprop="name">姓与氏的学问-如何读懂古人的姓名</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-01T23:12:33-05:00"
-              content="2017-08-01" >
-          08-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/01/名字中的学问/" itemprop="url">
-              
-                <span itemprop="name">如何取名-名字中的学问</span>
               
             </a>
         
@@ -1319,6 +1324,19 @@ type="text" id="local-search-input">
   </script>
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
 
 
 
