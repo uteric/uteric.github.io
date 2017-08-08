@@ -16,3 +16,4 @@ Disallow: /vendors/
 Disallow: /fancybox/
 
 Sitemap: https://uteric.github.io/sitemap.xml
+Sitemap: https://uteric.github.io/baidusitemap.xml
