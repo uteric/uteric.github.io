@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2017-08-11T03:00:26.000Z</updated>
+  <updated>2017-08-13T20:47:53.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,75 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>什么是“外汇储备”？</title>
+    <link href="http://uteric.github.io/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%96%E6%B1%87%E5%82%A8%E5%A4%87/"/>
+    <id>http://uteric.github.io/什么是外汇储备/</id>
+    <published>2017-08-13T20:47:53.000Z</published>
+    <updated>2017-08-13T20:47:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>什么是“外汇储备”？“外汇储备”又是从何而来的呢？</p>
+<p>以中国的外汇储备为例，主要来自两个方面：</p>
+<ul>
+<li><p>企业外贸所得</p>
+</li>
+<li><p>境外投资</p>
+</li>
+</ul>
+<h2 id="一、外贸所得产生的外汇储备"><a href="#一、外贸所得产生的外汇储备" class="headerlink" title="一、外贸所得产生的外汇储备"></a>一、外贸所得产生的外汇储备</h2><blockquote>
+<p>H公司是手机出口企业，每年向国外出口1亿美元的手机，H公司通过出口手机所获得的1亿美元，从国外汇入中国银行；</p>
+</blockquote>
+<p>PS：中国实施国家外汇管制，即<strong>强制结汇</strong>制度：外贸企业在国际贸易中所取得的收入，都需要在外汇指定银行强制兑换成人民币，换句话说，外贸企业在国际贸易中获得的美元等外币不允许保留，必须强制兑换。</p>
+<blockquote>
+<p>根据强制结汇制度，中国银行留下这1亿美元外汇，同时按照当前美元兑换人民币汇率（假定1：7），向H企业支付7亿元人民币；</p>
+</blockquote>
+<p>换句话说，中国银行通过向国内市场增发7亿元人民币的方式，换取了1亿美元的外汇，这1亿美元的外汇便是新增的<strong>外汇储备</strong>，同时，也是增发7亿元人民币而维持人民币不贬值的<strong>外币担保物</strong>。</p>
+<p>需要指出的是，这1亿美元的外汇储备，既不属于中国政府，也不属于中国银行，而是外贸企业获得7亿元人民币而抵押在中国银行的<strong>抵押物</strong>，外贸企业随时可以用7亿元人民币从中国银行将这1亿美元赎回，而只有当外贸企业放弃赎回时，这些外汇才转变成为国家的资产。</p>
+<blockquote>
+<p>现在，H企业需要从国外进口手机配件，于是，H企业通过向中国银行支付7亿元人民币的方式，换回抵押在中国银行的1亿美元外汇，那么，国家需要从外汇储备中取出1亿美元支付给H企业，同时回笼增发的7亿元人民币，以维持人民币不贬值。</p>
+</blockquote>
+<p>可见，只要外贸企业持续出口产品到国外，其通过外贸所获得的美元便会持续进入国家的外汇储备，同时，国家需要增发相应的人民币投入国内市场进行流通。</p>
+<h2 id="二、境外投资产生的外汇储备"><a href="#二、境外投资产生的外汇储备" class="headerlink" title="二、境外投资产生的外汇储备"></a>二、境外投资产生的外汇储备</h2><p>同样的，当外资进入中国市场时，也要通过中国银行，中国银行需要增发相应的人民币投入国内市场进行流通，在这种情况下，境外投资者将美元抵押在中国银行，以换取相应数量的人民币，相当于通过抵押美元的方式从中国银行获得无息的人民币贷款，境外投资者便是中国银行的债权人，将来，他们可以通过向中国银行支付人民币的方式，随时将外汇赎回。</p>
+<hr>
+<p>在上述两种情况中，我们为了方便理解，假定汇率不变，外贸所得或外资流入时，外贸企业或境外投资者将美元抵押在中国银行，以换取人民币，抵押在中国银行的美元就是新增的外汇储备，而增发的人民币则进入国内市场进行流通；将来，外贸企业或境外投资者可以通过向中国银行支付人民币的方式随时将抵押的美元赎回，相应地，外汇储备总量减少，而中国银行则将赎回的人民币回笼，以维持人民币币值稳定。</p>
+<h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><ul>
+<li>为什么人民币升值必然导致通货膨胀？ <a href="http://w.baike.com/ea961d3133e64c58aa4f20cb7d7a1b01.html" target="_blank" rel="external">http://w.baike.com/ea961d3133e64c58aa4f20cb7d7a1b01.html</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;什么是“外汇储备”？“外汇储备”又是从何而来的呢？&lt;/p&gt;
+&lt;p&gt;以中国的外汇储备为例，主要来自两个方面：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;企业外贸所得&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;境外投资&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;一、外贸所得产生的外汇储备&quot;
+    
+    </summary>
+    
+      <category term="纵横捭阖" scheme="http://uteric.github.io/categories/%E7%BA%B5%E6%A8%AA%E6%8D%AD%E9%98%96/"/>
+    
+    
+      <category term="外汇" scheme="http://uteric.github.io/tags/%E5%A4%96%E6%B1%87/"/>
+    
+      <category term="外汇储备" scheme="http://uteric.github.io/tags/%E5%A4%96%E6%B1%87%E5%82%A8%E5%A4%87/"/>
+    
+      <category term="汇率" scheme="http://uteric.github.io/tags/%E6%B1%87%E7%8E%87/"/>
+    
+      <category term="外贸" scheme="http://uteric.github.io/tags/%E5%A4%96%E8%B4%B8/"/>
+    
+      <category term="境外投资" scheme="http://uteric.github.io/tags/%E5%A2%83%E5%A4%96%E6%8A%95%E8%B5%84/"/>
+    
+      <category term="人民币" scheme="http://uteric.github.io/tags/%E4%BA%BA%E6%B0%91%E5%B8%81/"/>
+    
+      <category term="美元" scheme="http://uteric.github.io/tags/%E7%BE%8E%E5%85%83/"/>
+    
+  </entry>
   
   <entry>
     <title>2017｜中印军力对比</title>
@@ -1205,9 +1274,9 @@
     
       <category term="彗星" scheme="http://uteric.github.io/tags/%E5%BD%97%E6%98%9F/"/>
     
-      <category term="春秋" scheme="http://uteric.github.io/tags/%E6%98%A5%E7%A7%8B/"/>
-    
       <category term="哈雷彗星" scheme="http://uteric.github.io/tags/%E5%93%88%E9%9B%B7%E5%BD%97%E6%98%9F/"/>
+    
+      <category term="春秋" scheme="http://uteric.github.io/tags/%E6%98%A5%E7%A7%8B/"/>
     
       <category term="星孛" scheme="http://uteric.github.io/tags/%E6%98%9F%E5%AD%9B/"/>
     
@@ -1572,65 +1641,6 @@
       <category term="礼拜" scheme="http://uteric.github.io/tags/%E7%A4%BC%E6%8B%9C/"/>
     
       <category term="曜日" scheme="http://uteric.github.io/tags/%E6%9B%9C%E6%97%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>历朝历代的正月是哪个月？</title>
-    <link href="http://uteric.github.io/%E5%8E%86%E6%9C%9D%E5%8E%86%E4%BB%A3%E7%9A%84%E6%AD%A3%E6%9C%88%E6%98%AF%E5%93%AA%E4%B8%AA%E6%9C%88/"/>
-    <id>http://uteric.github.io/历朝历代的正月是哪个月/</id>
-    <published>2017-08-06T02:26:57.000Z</published>
-    <updated>2017-08-06T02:30:52.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>春节，又称岁首，是每年的正月初一。可是，在中国古代，正月初一是哪一天，在汉武帝之前是不固定的。</p>
-<p>根据《礼记·大传》的记载，古时改朝换代，新建立的王朝要“改正朔”。</p>
-<blockquote>
-<p>「立权度量，考文章，改正朔，易服色，殊徽号，异器械，别衣服，此其所得与民变革者也。」——《礼记·大传》</p>
-</blockquote>
-<p>何为“改正朔”呢？“正”是指一年的第一个月，“朔”是指月初的第一天，“正朔”是指农历正月初一，又可以引申理解为改朝换代时颁行的新历法。因此，“改正朔”就是更改正月初一，或者说使用新的历法。</p>
-<blockquote>
-<p>「朔，月一日始苏也。」——《说文解字》</p>
-</blockquote>
-<p>也就是说，在中国古代，正月并不是固定的，而是可以随着改朝换代而改变的。那么，历朝历代的正月都是哪个月呢？总结如下：</p>
-<h2 id="夏朝建寅，商朝建丑，周朝建子，秦朝建亥。"><a href="#夏朝建寅，商朝建丑，周朝建子，秦朝建亥。" class="headerlink" title="夏朝建寅，商朝建丑，周朝建子，秦朝建亥。"></a>夏朝建寅，商朝建丑，周朝建子，秦朝建亥。</h2><blockquote>
-<p>「夏正以正月，殷正以十二月，周正以十一月，盖三王之正若循环然，穷则反本。」——《史记·历书》</p>
-</blockquote>
-<p>1、夏朝，正月建寅，正月是寅月，即夏历的一月。</p>
-<p>2、商朝，正月建丑，正月是丑月，即夏历的十二月。</p>
-<p>3、周朝，正月建子，正月是子月，即夏历的十一月。</p>
-<p>4、秦朝，正月建亥，正月是亥月，即夏历的十月。</p>
-<blockquote>
-<p>「方今水德之始,改年始,朝贺皆自十月朔。」——《史记·秦始皇本纪》</p>
-</blockquote>
-<p>5、西汉（武帝前），延续秦朝的历法，正月建亥，即正月是夏历的十月。</p>
-<p>6、西汉（武帝后），改用夏朝的历法，正月建寅，即正月是夏历的一月。</p>
-<p>前104年，汉武帝下令颁布施行新的历法，即《汉历》，又称为《太初历》，以夏正月为岁首。</p>
-<blockquote>
-<p>「汉兴五世，隆在建元，外攘夷狄，内脩法度，封禅，改正朔，易服色。」——《史记》</p>
-</blockquote>
-<p>7、西汉改用夏历之后，后面的朝代尽皆采用，一直延续至今。</p>
-<p>虽然历朝历代对历法皆有所修补，但都是基于夏历（武则天建立的大周除外，采用周历，以十一月为正月）。我们现在使用的太阴历法便是基于夏历，也叫农历。现在的正月与夏朝的正月是相同的，即夏历一月。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;春节，又称岁首，是每年的正月初一。可是，在中国古代，正月初一是哪一天，在汉武帝之前是不固定的。&lt;/p&gt;
-&lt;p&gt;根据《礼记·大传》的记载，古时改朝换代，新建立的王朝要“改正朔”。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;「立权度量，考文章，改正朔，易服色，殊徽号，异器械，别衣
-    
-    </summary>
-    
-      <category term="文化溯源" scheme="http://uteric.github.io/categories/%E6%96%87%E5%8C%96%E6%BA%AF%E6%BA%90/"/>
-    
-    
-      <category term="正月" scheme="http://uteric.github.io/tags/%E6%AD%A3%E6%9C%88/"/>
-    
-      <category term="礼记" scheme="http://uteric.github.io/tags/%E7%A4%BC%E8%AE%B0/"/>
-    
-      <category term="正朔" scheme="http://uteric.github.io/tags/%E6%AD%A3%E6%9C%94/"/>
-    
-      <category term="说文解字" scheme="http://uteric.github.io/tags/%E8%AF%B4%E6%96%87%E8%A7%A3%E5%AD%97/"/>
     
   </entry>
   
