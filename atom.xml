@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2017-08-13T21:26:18.000Z</updated>
+  <updated>2017-08-13T20:47:53.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,31 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>markvis</title>
-    <link href="http://uteric.github.io/markvis/"/>
-    <id>http://uteric.github.io/markvis/</id>
-    <published>2017-08-13T21:26:18.000Z</published>
-    <updated>2017-08-13T21:26:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>import d3node from ‘d3-node’<br>import bar from ‘../src/index’</p>
-<p>const data = [<br>{ key: 1, value: 1 },<br>{ key: 2, value: 2 },<br>{ key: 3, value: 3 },<br>{ key: 4, value: 4 },<br>{ key: 5, value: 5 }<br>]</p>
-<p>const result = <code>&lt;div id=\&quot;chart\&quot;&gt;&lt;svg xmlns=\&quot;http://www.w3.org/2000/svg\&quot; width=\&quot;960\&quot; height=\&quot;500\&quot;&gt;&lt;defs&gt;&lt;style type=\&quot;text/css\&quot;&gt;&lt;![CDATA[
-.bar { fill: steelblue; }
-.bar:hover { fill: brown; }
-]]&gt;&lt;/style&gt;&lt;/defs&gt;&lt;g transform=\&quot;translate(20, 20)\&quot;&gt;&lt;rect class=\&quot;bar\&quot; x=\&quot;18.03921568627453\&quot; width=\&quot;162.35294117647058\&quot; y=\&quot;368\&quot; height=\&quot;92\&quot;&gt;&lt;/rect&gt;&lt;rect class=\&quot;bar\&quot; x=\&quot;198.4313725490196\&quot; width=\&quot;162.35294117647058\&quot; y=\&quot;276\&quot; height=\&quot;184\&quot;&gt;&lt;/rect&gt;&lt;rect class=\&quot;bar\&quot; x=\&quot;378.8235294117647\&quot; width=\&quot;162.35294117647058\&quot; y=\&quot;184\&quot; height=\&quot;276\&quot;&gt;&lt;/rect&gt;&lt;rect class=\&quot;bar\&quot; x=\&quot;559.2156862745098\&quot; width=\&quot;162.35294117647058\&quot; y=\&quot;92\&quot; height=\&quot;368\&quot;&gt;&lt;/rect&gt;&lt;rect class=\&quot;bar\&quot; x=\&quot;739.6078431372548\&quot; width=\&quot;162.35294117647058\&quot; y=\&quot;0\&quot; height=\&quot;460\&quot;&gt;&lt;/rect&gt;&lt;g transform=\&quot;translate(0,460)\&quot; fill=\&quot;none\&quot; font-size=\&quot;10\&quot; font-family=\&quot;sans-serif\&quot; text-anchor=\&quot;middle\&quot;&gt;&lt;path class=\&quot;domain\&quot; stroke=\&quot;#000\&quot; d=\&quot;M0.5,6V0.5H920.5V6\&quot;&gt;&lt;/path&gt;&lt;g class=\&quot;tick\&quot; opacity=\&quot;1\&quot; transform=\&quot;translate(99.21568627450982,0)\&quot;&gt;&lt;line stroke=\&quot;#000\&quot; y2=\&quot;6\&quot; x1=\&quot;0.5\&quot; x2=\&quot;0.5\&quot;&gt;&lt;/line&gt;&lt;text fill=\&quot;#000\&quot; y=\&quot;9\&quot; x=\&quot;0.5\&quot; dy=\&quot;0.71em\&quot;&gt;1&lt;/text&gt;&lt;/g&gt;&lt;g class=\&quot;tick\&quot; opacity=\&quot;1\&quot; transform=\&quot;translate(279.6078431372549,0)\&quot;&gt;&lt;line stroke=\&quot;#000\&quot; y2=\&quot;6\&quot; x1=\&quot;0.5\&quot; x2=\&quot;0.5\&quot;&gt;&lt;/line&gt;&lt;text fill=\&quot;#000\&quot; y=\&quot;9\&quot; x=\&quot;0.5\&quot; dy=\&quot;0.71em\&quot;&gt;2&lt;/text&gt;&lt;/g&gt;&lt;g class=\&quot;tick\&quot; opacity=\&quot;1\&quot; transform=\&quot;translate(460,0)\&quot;&gt;&lt;line stroke=\&quot;#000\&quot; y2=\&quot;6\&quot; x1=\&quot;0.5\&quot; x2=\&quot;0.5\&quot;&gt;&lt;/line&gt;&lt;text fill=\&quot;#000\&quot; y=\&quot;9\&quot; x=\&quot;0.5\&quot; dy=\&quot;0.71em\&quot;&gt;3&lt;/text&gt;&lt;/g&gt;&lt;g class=\&quot;tick\&quot; opacity=\&quot;1\&quot; transform=\&quot;translate(640.3921568627451,0)\&quot;&gt;&lt;line stroke=\&quot;#000\&quot; y2=\&quot;6\&quot; x1=\&quot;0.5\&quot; x2=\&quot;0.5\&quot;&gt;&lt;/line&gt;&lt;text fill=\&quot;#000\&quot; y=\&quot;9\&quot; x=\&quot;0.5\&quot; dy=\&quot;0.71em\&quot;&gt;4&lt;/text&gt;&lt;/g&gt;&lt;g class=\&quot;tick\&quot; opacity=\&quot;1\&quot; transform=\&quot;translate(820.78431372549,0)\&quot;&gt;&lt;line stroke=\&quot;#000\&quot; y2=\&quot;6\&quot; x1=\&quot;0.5\&quot; x2=\&quot;0.5\&quot;&gt;&lt;/line&gt;&lt;text fill=\&quot;#000\&quot; y=\&quot;9\&quot; x=\&quot;0.5\&quot; dy=\&quot;0.71em\&quot;&gt;5&lt;/text&gt;&lt;/g&gt;&lt;/g&gt;&lt;g fill=\&quot;none\&quot; font-size=\&quot;10\&quot; font-family=\&quot;sans-serif\&quot; text-anchor=\&quot;end\&quot;&gt;&lt;path class=\&quot;domain\&quot; stroke=\&quot;#000\&quot; d=\&quot;M-6,460.5H0.5V0.5H-6\&quot;&gt;&lt;/path&gt;&lt;g class=\&quot;tick\&quot; opacity=\&quot;1\&quot; transform=\&quot;translate(0,460)\&quot;&gt;&lt;line stroke=\&quot;#000\&quot; x2=\&quot;-6\&quot; y1=\&quot;0.5\&quot; y2=\&quot;0.5\&quot;&gt;&lt;/line&gt;&lt;text fill=\&quot;#000\&quot; x=\&quot;-9\&quot; y=\&quot;0.5\&quot; dy=\&quot;0.32em\&quot;&gt;0.0&lt;/text&gt;&lt;/g&gt;&lt;g class=\&quot;tick\&quot; opacity=\&quot;1\&quot; transform=\&quot;translate(0,414)\&quot;&gt;&lt;line stroke=\&quot;#000\&quot; x2=\&quot;-6\&quot; y1=\&quot;0.5\&quot; y2=\&quot;0.5\&quot;&gt;&lt;/line&gt;&lt;text fill=\&quot;#000\&quot; x=\&quot;-9\&quot; y=\&quot;0.5\&quot; dy=\&quot;0.32em\&quot;&gt;0.5&lt;/text&gt;&lt;/g&gt;&lt;g class=\&quot;tick\&quot; opacity=\&quot;1\&quot; transform=\&quot;translate(0,368)\&quot;&gt;&lt;line stroke=\&quot;#000\&quot; x2=\&quot;-6\&quot; y1=\&quot;0.5\&quot; y2=\&quot;0.5\&quot;&gt;&lt;/line&gt;&lt;text fill=\&quot;#000\&quot; x=\&quot;-9\&quot; y=\&quot;0.5\&quot; dy=\&quot;0.32em\&quot;&gt;1.0&lt;/text&gt;&lt;/g&gt;&lt;g class=\&quot;tick\&quot; opacity=\&quot;1\&quot; transform=\&quot;translate(0,322)\&quot;&gt;&lt;line stroke=\&quot;#000\&quot; x2=\&quot;-6\&quot; y1=\&quot;0.5\&quot; y2=\&quot;0.5\&quot;&gt;&lt;/line&gt;&lt;text fill=\&quot;#000\&quot; x=\&quot;-9\&quot; y=\&quot;0.5\&quot; dy=\&quot;0.32em\&quot;&gt;1.5&lt;/text&gt;&lt;/g&gt;&lt;g class=\&quot;tick\&quot; opacity=\&quot;1\&quot; transform=\&quot;translate(0,276)\&quot;&gt;&lt;line stroke=\&quot;#000\&quot; x2=\&quot;-6\&quot; y1=\&quot;0.5\&quot; y2=\&quot;0.5\&quot;&gt;&lt;/line&gt;&lt;text fill=\&quot;#000\&quot; x=\&quot;-9\&quot; y=\&quot;0.5\&quot; dy=\&quot;0.32em\&quot;&gt;2.0&lt;/text&gt;&lt;/g&gt;&lt;g class=\&quot;tick\&quot; opacity=\&quot;1\&quot; transform=\&quot;translate(0,230)\&quot;&gt;&lt;line stroke=\&quot;#000\&quot; x2=\&quot;-6\&quot; y1=\&quot;0.5\&quot; y2=\&quot;0.5\&quot;&gt;&lt;/line&gt;&lt;text fill=\&quot;#000\&quot; x=\&quot;-9\&quot; y=\&quot;0.5\&quot; dy=\&quot;0.32em\&quot;&gt;2.5&lt;/text&gt;&lt;/g&gt;&lt;g class=\&quot;tick\&quot; opacity=\&quot;1\&quot; transform=\&quot;translate(0,184)\&quot;&gt;&lt;line stroke=\&quot;#000\&quot; x2=\&quot;-6\&quot; y1=\&quot;0.5\&quot; y2=\&quot;0.5\&quot;&gt;&lt;/line&gt;&lt;text fill=\&quot;#000\&quot; x=\&quot;-9\&quot; y=\&quot;0.5\&quot; dy=\&quot;0.32em\&quot;&gt;3.0&lt;/text&gt;&lt;/g&gt;&lt;g class=\&quot;tick\&quot; opacity=\&quot;1\&quot; transform=\&quot;translate(0,138)\&quot;&gt;&lt;line stroke=\&quot;#000\&quot; x2=\&quot;-6\&quot; y1=\&quot;0.5\&quot; y2=\&quot;0.5\&quot;&gt;&lt;/line&gt;&lt;text fill=\&quot;#000\&quot; x=\&quot;-9\&quot; y=\&quot;0.5\&quot; dy=\&quot;0.32em\&quot;&gt;3.5&lt;/text&gt;&lt;/g&gt;&lt;g class=\&quot;tick\&quot; opacity=\&quot;1\&quot; transform=\&quot;translate(0,92)\&quot;&gt;&lt;line stroke=\&quot;#000\&quot; x2=\&quot;-6\&quot; y1=\&quot;0.5\&quot; y2=\&quot;0.5\&quot;&gt;&lt;/line&gt;&lt;text fill=\&quot;#000\&quot; x=\&quot;-9\&quot; y=\&quot;0.5\&quot; dy=\&quot;0.32em\&quot;&gt;4.0&lt;/text&gt;&lt;/g&gt;&lt;g class=\&quot;tick\&quot; opacity=\&quot;1\&quot; transform=\&quot;translate(0,46)\&quot;&gt;&lt;line stroke=\&quot;#000\&quot; x2=\&quot;-6\&quot; y1=\&quot;0.5\&quot; y2=\&quot;0.5\&quot;&gt;&lt;/line&gt;&lt;text fill=\&quot;#000\&quot; x=\&quot;-9\&quot; y=\&quot;0.5\&quot; dy=\&quot;0.32em\&quot;&gt;4.5&lt;/text&gt;&lt;/g&gt;&lt;g class=\&quot;tick\&quot; opacity=\&quot;1\&quot; transform=\&quot;translate(0,0)\&quot;&gt;&lt;line stroke=\&quot;#000\&quot; x2=\&quot;-6\&quot; y1=\&quot;0.5\&quot; y2=\&quot;0.5\&quot;&gt;&lt;/line&gt;&lt;text fill=\&quot;#000\&quot; x=\&quot;-9\&quot; y=\&quot;0.5\&quot; dy=\&quot;0.32em\&quot;&gt;5.0&lt;/text&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/div&gt;</code><br>function removeAllSpace (str) {<br>return str.replace(/\s+/g, ‘’)<br>}<br>test(‘bar chart generator’, () =&gt; {<br>expect(bar).toBeDefined()<br>expect(removeAllSpace(bar({ data, d3node }))).toBe(removeAllSpace(result))<br>})</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;import d3node from ‘d3-node’&lt;br&gt;import bar from ‘../src/index’&lt;/p&gt;
-&lt;p&gt;const data = [&lt;br&gt;{ key: 1, value: 1 },&lt;br&gt;{ key: 2, value: 2 },&lt;br
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>什么是“外汇储备”？</title>
@@ -1610,6 +1585,62 @@
       <category term="阳爻" scheme="http://uteric.github.io/tags/%E9%98%B3%E7%88%BB/"/>
     
       <category term="乾卦" scheme="http://uteric.github.io/tags/%E4%B9%BE%E5%8D%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>星期和礼拜是怎么来的？有什么区别？</title>
+    <link href="http://uteric.github.io/%E6%98%9F%E6%9C%9F%E5%92%8C%E7%A4%BC%E6%8B%9C%E6%98%AF%E6%80%8E%E4%B9%88%E6%9D%A5%E7%9A%84/"/>
+    <id>http://uteric.github.io/星期和礼拜是怎么来的/</id>
+    <published>2017-08-06T02:35:02.000Z</published>
+    <updated>2017-08-06T02:39:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>星期，又称礼拜，是一个时间单位，七天为一周期，周而复始。星期和礼拜这两个概念都是来源于西方，然而其来源却不相同。</p>
+<h2 id="星期的来历"><a href="#星期的来历" class="headerlink" title="星期的来历"></a>星期的来历</h2><h3 id="曜日"><a href="#曜日" class="headerlink" title="曜日"></a>曜日</h3><p>星期，意为以星宿的运行为周期来计日，这种计日方法来源于古巴比伦。古巴比伦人首先使用七日为一周的时间单位，后来传播至世界各地；而我国最早关于星宿计日的概念来源于“曜日”。</p>
+<p>早在《诗经》当中，便有「日出有曜」的诗句。”曜“，是「光明照耀」之意，故发光的天体都被称作为曜，如太阳称为日曜，月亮称为月曜，星宿称为星曜。在中国古代，将日、月、以及火、水、木、金、土五星统称为七曜。</p>
+<blockquote>
+<p>曜，耀也，光明照耀也。——《释名·释天》 </p>
+<p>日出有曜。——《诗·桧风·羔裘》</p>
+</blockquote>
+<p>从唐代开始，七天为一周期的计时单位由西方传入我国，与我国的“七曜”的概念相结合，从此时起，我国开始采用“曜日”来记录时间，曜日以七天为一周期，分别与七曜对应，即日曜日，月曜日，火曜日，水曜日，木曜日，金曜日，土曜日，分别对应现在的星期日，星期一，星期二，星期三，星期四，星期五，星期六。</p>
+<blockquote>
+<p>太阳直日（日曜日也），月与尾合。太阴直日（月曜日也），月与心合。火曜直日，月与壁合。水曜直日，月与昴合。木曜直日，月与井合。金曜直日，月与张合。土曜直日，月与亢合。——《宿曜经》，唐朝初年从印度传入中国的一部佛经。</p>
+</blockquote>
+<p>曜日的计时方法从唐朝一直沿用到民国，并传入日本、朝鲜。</p>
+<h3 id="星期"><a href="#星期" class="headerlink" title="星期"></a>星期</h3><p>“星期”一词，最早是指农历七月初七牛郎织女相会之日，即七夕。王勃的《七夕赋》中就写道：「伫灵匹于星期，眷神姿于月夕」；后来也指婚期，如《幼学琼林》中记载：「成婚之日曰星期，传命之人曰月老」。曜日在清末明初废止后，星期便成为通行的计时方式，可见于民国时期的文学作品。</p>
+<blockquote>
+<p>伫灵匹于星期，眷神姿于月夕。——《七夕赋》</p>
+<p>成婚之日曰星期，传命之人曰月老。——《幼学琼林》</p>
+</blockquote>
+<h3 id="周"><a href="#周" class="headerlink" title="周"></a>周</h3><p>“星期”也可以称为“周”，是典型的中国文化产物，源出于《周易》中的「反复其道，七日来复」，表示阴气消尽阳气复生，周而复始之象。</p>
+<blockquote>
+<p>反复其道，七日来复。——《复卦》</p>
+<p>反复其道，七日来复，天行也。——《彖》</p>
+</blockquote>
+<h2 id="礼拜的来历"><a href="#礼拜的来历" class="headerlink" title="礼拜的来历"></a>礼拜的来历</h2><p>“礼拜”一词，则来源于基督教，根据《圣经》记载，神用六天创造天地，在第七日安息，并赐福给第七日，定为圣日，这一天不可做一切的工，要崇拜上帝，故这一天也称为礼拜日，或礼拜天。每逢礼拜天，基督徒在教会中聚会，崇拜上帝。</p>
+<blockquote>
+<p>天地万物都造齐了。到第七日，神造物的工已经完毕，就在第七日歇了他一切的工，安息了。神赐福给第七日，定为圣日，因为在这日，神歇了他一切创造的工，就安息了。——《圣经·创世纪》</p>
+</blockquote>
+<h2 id="星期和礼拜的关系"><a href="#星期和礼拜的关系" class="headerlink" title="星期和礼拜的关系"></a>星期和礼拜的关系</h2><p>1、星期和礼拜都是由西方传入我国。星期来源于曜日，后者是由古巴比伦传入；礼拜来源于基督教，由基督徒传入我国。</p>
+<p>2、尽管来源不同，但是，一周的第一天却是相同的，即礼拜天或星期日，而不是礼拜一或星期一；</p>
+<p>3、第一天习惯称作是礼拜天、礼拜日或者星期天、星期日，而不称作礼拜七或者星期七。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;星期，又称礼拜，是一个时间单位，七天为一周期，周而复始。星期和礼拜这两个概念都是来源于西方，然而其来源却不相同。&lt;/p&gt;
+&lt;h2 id=&quot;星期的来历&quot;&gt;&lt;a href=&quot;#星期的来历&quot; class=&quot;headerlink&quot; title=&quot;星期的来历&quot;&gt;&lt;/a&gt;星期的来历&lt;/
+    
+    </summary>
+    
+      <category term="文化溯源" scheme="http://uteric.github.io/categories/%E6%96%87%E5%8C%96%E6%BA%AF%E6%BA%90/"/>
+    
+    
+      <category term="星期" scheme="http://uteric.github.io/tags/%E6%98%9F%E6%9C%9F/"/>
+    
+      <category term="礼拜" scheme="http://uteric.github.io/tags/%E7%A4%BC%E6%8B%9C/"/>
+    
+      <category term="曜日" scheme="http://uteric.github.io/tags/%E6%9B%9C%E6%97%A5/"/>
     
   </entry>
   
