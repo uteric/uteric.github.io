@@ -393,7 +393,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   border: 1px solid #ddd;
-  font-size: 10px;
+  font-size: 12px;
   table-layout: fixed;
   word-wrap: break-all;
 }
@@ -406,7 +406,7 @@ table>tbody>tr:hover {
 caption,
 th,
 td {
-  padding: 2px;
+  padding: 1px;
   text-align: left;
   vertical-align: middle;
   font-weight: normal;
@@ -1928,7 +1928,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d7d6d7;
+  background: #fffaff;
 }
 .links-of-blogroll {
   font-size: 13px;
