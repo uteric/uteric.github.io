@@ -389,7 +389,7 @@ dd {
 }
 table {
   margin: 20px 0;
-  width: 100%;
+  width: 120%;
   border-collapse: collapse;
   border-spacing: 0;
   border: 1px solid #ddd;
@@ -1928,7 +1928,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fffaff;
+  background: #d4f1ff;
 }
 .links-of-blogroll {
   font-size: 13px;
