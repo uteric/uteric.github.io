@@ -22,24 +22,20 @@
     <published>2017-08-18T04:16:00.000Z</published>
     <updated>2017-08-18T04:16:00.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="查看MacBook当前使用的Shell"><a href="#查看MacBook当前使用的Shell" class="headerlink" title="查看MacBook当前使用的Shell"></a>查看MacBook当前使用的Shell</h2><p><code>`bash
-echo $SHELL</code></p>
+    <content type="html"><![CDATA[<h2 id="查看MacBook当前使用的Shell"><a href="#查看MacBook当前使用的Shell" class="headerlink" title="查看MacBook当前使用的Shell"></a>查看MacBook当前使用的Shell</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="variable">$SHELL</span></div></pre></td></tr></table></figure>
 <p>默认情况下，MacBook使用bash作为Shell，通过上面的命令即可查看，如返回结果为：/bin/bash，则说明MacBook正在使用bash作为默认Shell；</p>
-<h2 id="查看zsh的安装路径"><a href="#查看zsh的安装路径" class="headerlink" title="查看zsh的安装路径"></a>查看zsh的安装路径</h2><p><code>`bash
-which zsh</code></p>
+<h2 id="查看zsh的安装路径"><a href="#查看zsh的安装路径" class="headerlink" title="查看zsh的安装路径"></a>查看zsh的安装路径</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">which</span> zsh</div></pre></td></tr></table></figure>
 <p>MacBook自带zsh，通过which zsh命令可以查看zsh的安装路径，不同的操作系统版本可能不同，如返回结果为：/bin/zsh，则代表zsh的安装路径，记住这个路径，下面需要用到；</p>
 <p>MacBook默认支持多种shells，因此，你也可以通过执行 more /etc/shells命令来查看当前系统支持哪些Shell，并列出所有Shell的安装路径；</p>
-<p><code>`bash
-more /etc/shells</code></p>
-<h2 id="设置zsh为默认的shell"><a href="#设置zsh为默认的shell" class="headerlink" title="设置zsh为默认的shell"></a>设置zsh为默认的shell</h2><p><code>`bash
-chsh -s /bin/zsh</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">more /etc/shells</div></pre></td></tr></table></figure>
+<h2 id="设置zsh为默认的shell"><a href="#设置zsh为默认的shell" class="headerlink" title="设置zsh为默认的shell"></a>设置zsh为默认的shell</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chsh -s /bin/zsh</div></pre></td></tr></table></figure>
 <p>获得zsh的安装路径之后，即可执行如上命令，将默认的shell从bash切换为zsh，<strong>注意</strong>：请根据你的zsh路径替换/bin/zsh；</p>
 <p>执行上述命令之后，系统回提示你输入密码，密码为暗码，屏幕上不可见，输入完后直接按Enter，重启Terminal，就从bash切换到zsh，<strong>Cheers</strong>!</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;查看MacBook当前使用的Shell&quot;&gt;&lt;a href=&quot;#查看MacBook当前使用的Shell&quot; class=&quot;headerlink&quot; title=&quot;查看MacBook当前使用的Shell&quot;&gt;&lt;/a&gt;查看MacBook当前使用的Shell&lt;/h2&gt;&lt;p&gt;&lt;c
+      &lt;h2 id=&quot;查看MacBook当前使用的Shell&quot;&gt;&lt;a href=&quot;#查看MacBook当前使用的Shell&quot; class=&quot;headerlink&quot; title=&quot;查看MacBook当前使用的Shell&quot;&gt;&lt;/a&gt;查看MacBook当前使用的Shell&lt;/h2&gt;&lt;figu
     
     </summary>
     
@@ -269,13 +265,13 @@ chsh -s /bin/zsh</code></p>
       <category term="纵横捭阖" scheme="http://uteric.github.io/categories/%E7%BA%B5%E6%A8%AA%E6%8D%AD%E9%98%96/"/>
     
     
+      <category term="中国" scheme="http://uteric.github.io/tags/%E4%B8%AD%E5%9B%BD/"/>
+    
       <category term="外汇储备" scheme="http://uteric.github.io/tags/%E5%A4%96%E6%B1%87%E5%82%A8%E5%A4%87/"/>
     
       <category term="美元" scheme="http://uteric.github.io/tags/%E7%BE%8E%E5%85%83/"/>
     
       <category term="人民币" scheme="http://uteric.github.io/tags/%E4%BA%BA%E6%B0%91%E5%B8%81/"/>
-    
-      <category term="中国" scheme="http://uteric.github.io/tags/%E4%B8%AD%E5%9B%BD/"/>
     
   </entry>
   

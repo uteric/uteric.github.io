@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="查看MacBook当前使用的Shell`bash echo $SHELL 默认情况下，MacBook使用bash作为Shell，通过上面的命令即可查看，如返回结果为：/bin/bash，则说明MacBook正在使用bash作为默认Shell； 查看zsh的安装路径`bash which zsh MacBook自带zsh，通过which zsh命令可以查看zsh的安装路径，不同的操作系统版本可能不同">
+<meta name="description" content="查看MacBook当前使用的Shell1echo $SHELL 默认情况下，MacBook使用bash作为Shell，通过上面的命令即可查看，如返回结果为：/bin/bash，则说明MacBook正在使用bash作为默认Shell； 查看zsh的安装路径1which zsh MacBook自带zsh，通过which zsh命令可以查看zsh的安装路径，不同的操作系统版本可能不同，如返回结果为：/b">
 <meta name="keywords" content="MacBook,bash,zsh,shell">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MacBook设置zsh为默认Shell">
 <meta property="og:url" content="http://uteric.github.io/MacBook设置zsh为默认Shell/index.html">
 <meta property="og:site_name" content="诸子百家">
-<meta property="og:description" content="查看MacBook当前使用的Shell`bash echo $SHELL 默认情况下，MacBook使用bash作为Shell，通过上面的命令即可查看，如返回结果为：/bin/bash，则说明MacBook正在使用bash作为默认Shell； 查看zsh的安装路径`bash which zsh MacBook自带zsh，通过which zsh命令可以查看zsh的安装路径，不同的操作系统版本可能不同">
+<meta property="og:description" content="查看MacBook当前使用的Shell1echo $SHELL 默认情况下，MacBook使用bash作为Shell，通过上面的命令即可查看，如返回结果为：/bin/bash，则说明MacBook正在使用bash作为默认Shell； 查看zsh的安装路径1which zsh MacBook自带zsh，通过which zsh命令可以查看zsh的安装路径，不同的操作系统版本可能不同，如返回结果为：/b">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-08-18T04:16:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MacBook设置zsh为默认Shell">
-<meta name="twitter:description" content="查看MacBook当前使用的Shell`bash echo $SHELL 默认情况下，MacBook使用bash作为Shell，通过上面的命令即可查看，如返回结果为：/bin/bash，则说明MacBook正在使用bash作为默认Shell； 查看zsh的安装路径`bash which zsh MacBook自带zsh，通过which zsh命令可以查看zsh的安装路径，不同的操作系统版本可能不同">
+<meta name="twitter:description" content="查看MacBook当前使用的Shell1echo $SHELL 默认情况下，MacBook使用bash作为Shell，通过上面的命令即可查看，如返回结果为：/bin/bash，则说明MacBook正在使用bash作为默认Shell； 查看zsh的安装路径1which zsh MacBook自带zsh，通过which zsh命令可以查看zsh的安装路径，不同的操作系统版本可能不同，如返回结果为：/b">
 
 
 
@@ -441,17 +441,13 @@ ga('send', 'pageview');
       
 
       
-        <h2 id="查看MacBook当前使用的Shell"><a href="#查看MacBook当前使用的Shell" class="headerlink" title="查看MacBook当前使用的Shell"></a>查看MacBook当前使用的Shell</h2><p><code>`bash
-echo $SHELL</code></p>
+        <h2 id="查看MacBook当前使用的Shell"><a href="#查看MacBook当前使用的Shell" class="headerlink" title="查看MacBook当前使用的Shell"></a>查看MacBook当前使用的Shell</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="variable">$SHELL</span></div></pre></td></tr></table></figure>
 <p>默认情况下，MacBook使用bash作为Shell，通过上面的命令即可查看，如返回结果为：/bin/bash，则说明MacBook正在使用bash作为默认Shell；</p>
-<h2 id="查看zsh的安装路径"><a href="#查看zsh的安装路径" class="headerlink" title="查看zsh的安装路径"></a>查看zsh的安装路径</h2><p><code>`bash
-which zsh</code></p>
+<h2 id="查看zsh的安装路径"><a href="#查看zsh的安装路径" class="headerlink" title="查看zsh的安装路径"></a>查看zsh的安装路径</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">which</span> zsh</div></pre></td></tr></table></figure>
 <p>MacBook自带zsh，通过which zsh命令可以查看zsh的安装路径，不同的操作系统版本可能不同，如返回结果为：/bin/zsh，则代表zsh的安装路径，记住这个路径，下面需要用到；</p>
 <p>MacBook默认支持多种shells，因此，你也可以通过执行 more /etc/shells命令来查看当前系统支持哪些Shell，并列出所有Shell的安装路径；</p>
-<p><code>`bash
-more /etc/shells</code></p>
-<h2 id="设置zsh为默认的shell"><a href="#设置zsh为默认的shell" class="headerlink" title="设置zsh为默认的shell"></a>设置zsh为默认的shell</h2><p><code>`bash
-chsh -s /bin/zsh</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">more /etc/shells</div></pre></td></tr></table></figure>
+<h2 id="设置zsh为默认的shell"><a href="#设置zsh为默认的shell" class="headerlink" title="设置zsh为默认的shell"></a>设置zsh为默认的shell</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chsh -s /bin/zsh</div></pre></td></tr></table></figure>
 <p>获得zsh的安装路径之后，即可执行如上命令，将默认的shell从bash切换为zsh，<strong>注意</strong>：请根据你的zsh路径替换/bin/zsh；</p>
 <p>执行上述命令之后，系统回提示你输入密码，密码为暗码，屏幕上不可见，输入完后直接按Enter，重启Terminal，就从bash切换到zsh，<strong>Cheers</strong>!</p>
 
