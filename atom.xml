@@ -23,11 +23,11 @@
     <updated>2017-08-19T01:54:58.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="判断Git是否安装成功"><a href="#判断Git是否安装成功" class="headerlink" title="判断Git是否安装成功"></a>判断Git是否安装成功</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git</div></pre></td></tr></table></figure>
-<h2 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir *dirname*</div></pre></td></tr></table></figure>
+<h2 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir &lt;dirname&gt;</div></pre></td></tr></table></figure>
 <p>mkdir是make directory的缩写，意为“创建目录”；比如，<del>mkdir test</del>命令将在当前目录下创建一个名为test的新目录；</p>
-<h2 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> *dirname*</div></pre></td></tr></table></figure>
+<h2 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> &lt;dirname&gt;</div></pre></td></tr></table></figure>
 <p>cd是change directory的缩写，意为“切换目录”；比如，<del>cd test</del>命令将从当前目录切换到刚刚创建的test目录；</p>
-<h2 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch *filename*</div></pre></td></tr></table></figure>
+<h2 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch &lt;filename&gt;</div></pre></td></tr></table></figure>
 <p>touch命令的作用是change file access and modification times，即创建空文件或者修改文件的时间特性；比如，<del>touch test.md</del>命令可在当前目录中创建名为test.md的空白文件；</p>
 <h2 id="查看Git仓库状态"><a href="#查看Git仓库状态" class="headerlink" title="查看Git仓库状态"></a>查看Git仓库状态</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure>
 <p><strong>git status</strong>命令用于查看Git仓库的状态，如果当前目录还不是Git仓库，则会报错：<del>fatal: Not a git repository (or any of the parent directories): .git</del>; 这时，需要用到<strong>git init</strong>命令来初始化Git仓库；</p>
