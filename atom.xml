@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2017-08-18T04:16:00.000Z</updated>
+  <updated>2017-08-19T01:32:08.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MacBook如何显示隐藏文件和文件夹</title>
+    <link href="http://uteric.github.io/MacBook%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%A4%B9/"/>
+    <id>http://uteric.github.io/MacBook如何显示隐藏文件和文件夹/</id>
+    <published>2017-08-19T01:32:08.000Z</published>
+    <updated>2017-08-19T01:32:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>默认情况下，MacBook的系统配置文件是隐藏的，但是有些时候我们又需要对这些配置文件进行操作，这时，就需要将隐藏的文件和文件夹显示出来，方法如下：</p>
+<h2 id="第一步，打开终端「Terminal」；"><a href="#第一步，打开终端「Terminal」；" class="headerlink" title="第一步，打开终端「Terminal」；"></a>第一步，打开终端「Terminal」；</h2><h2 id="第二步，输入如下命令，按「Return」键执行；"><a href="#第二步，输入如下命令，按「Return」键执行；" class="headerlink" title="第二步，输入如下命令，按「Return」键执行；"></a>第二步，输入如下命令，按「Return」键执行；</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">defaults write com.apple.finder AppleShowAllFiles -boolean <span class="literal">true</span></div></pre></td></tr></table></figure>
+<h2 id="第三步，重启Finder，即可看到隐藏的文件和文件夹了；"><a href="#第三步，重启Finder，即可看到隐藏的文件和文件夹了；" class="headerlink" title="第三步，重启Finder，即可看到隐藏的文件和文件夹了；"></a>第三步，重启Finder，即可看到隐藏的文件和文件夹了；</h2><p>如果需要再次隐藏文件和文件夹怎么办呢？只需要将上述命令中得布尔值改为false即可；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">defaults write com.apple.finder AppleShowAllFiles -boolean <span class="literal">false</span></div></pre></td></tr></table></figure>
+<p>同样，重启Finder后，相应的文件和文件夹就被再次隐藏起来。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;默认情况下，MacBook的系统配置文件是隐藏的，但是有些时候我们又需要对这些配置文件进行操作，这时，就需要将隐藏的文件和文件夹显示出来，方法如下：&lt;/p&gt;
+&lt;h2 id=&quot;第一步，打开终端「Terminal」；&quot;&gt;&lt;a href=&quot;#第一步，打开终端「Terminal」；
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="MacBook" scheme="http://uteric.github.io/tags/MacBook/"/>
+    
+      <category term="Finder" scheme="http://uteric.github.io/tags/Finder/"/>
+    
+      <category term="终端" scheme="http://uteric.github.io/tags/%E7%BB%88%E7%AB%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>MacBook设置zsh为默认Shell</title>
@@ -265,13 +297,13 @@
       <category term="纵横捭阖" scheme="http://uteric.github.io/categories/%E7%BA%B5%E6%A8%AA%E6%8D%AD%E9%98%96/"/>
     
     
-      <category term="中国" scheme="http://uteric.github.io/tags/%E4%B8%AD%E5%9B%BD/"/>
-    
       <category term="外汇储备" scheme="http://uteric.github.io/tags/%E5%A4%96%E6%B1%87%E5%82%A8%E5%A4%87/"/>
     
       <category term="美元" scheme="http://uteric.github.io/tags/%E7%BE%8E%E5%85%83/"/>
     
       <category term="人民币" scheme="http://uteric.github.io/tags/%E4%BA%BA%E6%B0%91%E5%B8%81/"/>
+    
+      <category term="中国" scheme="http://uteric.github.io/tags/%E4%B8%AD%E5%9B%BD/"/>
     
   </entry>
   
@@ -1534,9 +1566,9 @@
     
       <category term="彗星" scheme="http://uteric.github.io/tags/%E5%BD%97%E6%98%9F/"/>
     
-      <category term="哈雷彗星" scheme="http://uteric.github.io/tags/%E5%93%88%E9%9B%B7%E5%BD%97%E6%98%9F/"/>
-    
       <category term="春秋" scheme="http://uteric.github.io/tags/%E6%98%A5%E7%A7%8B/"/>
+    
+      <category term="哈雷彗星" scheme="http://uteric.github.io/tags/%E5%93%88%E9%9B%B7%E5%BD%97%E6%98%9F/"/>
     
       <category term="星孛" scheme="http://uteric.github.io/tags/%E6%98%9F%E5%AD%9B/"/>
     
@@ -1732,62 +1764,6 @@
       <category term="关公" scheme="http://uteric.github.io/tags/%E5%85%B3%E5%85%AC/"/>
     
       <category term="蚩尤" scheme="http://uteric.github.io/tags/%E8%9A%A9%E5%B0%A4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>什么是女墙？</title>
-    <link href="http://uteric.github.io/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A5%B3%E5%A2%99/"/>
-    <id>http://uteric.github.io/什么是女墙/</id>
-    <published>2017-08-06T20:23:42.000Z</published>
-    <updated>2017-08-06T20:23:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>“山围故国周遭在，潮打空城寂寞回。淮水东边旧时月，夜深还过女墙来”——《石头城》</p>
-</blockquote>
-<p>遥想昔日之金陵，六朝金粉繁华地，如今物换星移，沦为古城芳草，刘禹锡这一首诗，写尽了苍莽与悲凉，无怪白居易赞云：<strong>“我知后之诗人无复措词矣！”</strong></p>
-<p>发完感慨，回归正题，女墙一词，经常出现在文学作品中，那么，什么是女墙呢？</p>
-<h2 id="什么是女墙？"><a href="#什么是女墙？" class="headerlink" title="什么是女墙？"></a>什么是女墙？</h2><h3 id="女墙，指城墙上呈凹凸形状的矮墙"><a href="#女墙，指城墙上呈凹凸形状的矮墙" class="headerlink" title="女墙，指城墙上呈凹凸形状的矮墙"></a>女墙，指城墙上呈凹凸形状的矮墙</h3><p>由于在中国古代，女子地位低下，丈夫为尊，女子为卑，“言其卑小，比之于城，若女子之于丈夫也”，故称“女墙”，或“女儿墙”。</p>
-<blockquote>
-<p>女墙，言其卑小，比之于城，若女子之于丈夫也。——《释名》</p>
-</blockquote>
-<p>在《三国演义》第五十一回中，赤壁鏊战之后，周瑜陈兵于南郡城外，欲取南郡，“（周瑜）见曹兵分三门而出，瑜上将台观看。只见女墙边虚搠旌旗，无人守护；又见军士腰下各束缚包裹”，以为曹兵欲弃城而走，谁知却中了曹操之计；此处的女墙，便是指城墙上的矮墙。</p>
-<h3 id="女墙，也指庭院四周的短墙"><a href="#女墙，也指庭院四周的短墙" class="headerlink" title="女墙，也指庭院四周的短墙"></a>女墙，也指庭院四周的短墙</h3><p>在中国古代，女子锁于深闺之中，足难出户，只能庭院中的矮墙下睥睨墙外风光，同时也免于被人耻笑，故庭院四周的短墙也被称作“女儿墙”，或“女墙”。</p>
-<p>在文学作品中，“女墙”经常出现，比如《初刻拍案惊奇》中写道：“何道就乘此机会，走到女墙边，月亮去处，假意解手”；</p>
-<p>又如，《红楼梦》一百零二回，“尤氏过来送探春起身，因天晚省得套车，便从前年在园里开通宁府的那个便门里走过去了。觉得凄凉满目，台榭依然，女墙一带都种作园地一般，心中怅然如有所失”。</p>
-<h2 id="女墙的别名"><a href="#女墙的别名" class="headerlink" title="女墙的别名"></a>女墙的别名</h2><p>1、女墙上的缺孔可以用于窥视敌方行动，有窥伺之意，故“女墙”也被称作“睥睨”「pìnì」；《古今论》云：“女墙者，城上小墙也，一名睥睨，言于城上窥人也。”</p>
-<blockquote>
-<p>城上垣曰“睥睨”，言于其孔中睥睨，非常也。——《释名》</p>
-</blockquote>
-<p>2、女墙上的缺孔多作射孔，故“女墙”也被称作“箭垛”；</p>
-<p>3、垣，是墙的雅称，故“女墙”也被称作“女垣”；</p>
-<blockquote>
-<p>其城，周回八里，城及女垣合高十仞，上布甲兵，立仗建旗。——《北史》</p>
-<p>月落大堤上，女垣栖乌起。——《石城晓》</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;“山围故国周遭在，潮打空城寂寞回。淮水东边旧时月，夜深还过女墙来”——《石头城》&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;遥想昔日之金陵，六朝金粉繁华地，如今物换星移，沦为古城芳草，刘禹锡这一首诗，写尽了苍莽与悲凉，无怪白居易赞云：&lt;strong
-    
-    </summary>
-    
-      <category term="文化溯源" scheme="http://uteric.github.io/categories/%E6%96%87%E5%8C%96%E6%BA%AF%E6%BA%90/"/>
-    
-    
-      <category term="女墙" scheme="http://uteric.github.io/tags/%E5%A5%B3%E5%A2%99/"/>
-    
-      <category term="红楼梦" scheme="http://uteric.github.io/tags/%E7%BA%A2%E6%A5%BC%E6%A2%A6/"/>
-    
-      <category term="三国演义" scheme="http://uteric.github.io/tags/%E4%B8%89%E5%9B%BD%E6%BC%94%E4%B9%89/"/>
-    
-      <category term="释名" scheme="http://uteric.github.io/tags/%E9%87%8A%E5%90%8D/"/>
-    
-      <category term="睥睨" scheme="http://uteric.github.io/tags/%E7%9D%A5%E7%9D%A8/"/>
     
   </entry>
   
