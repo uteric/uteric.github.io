@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2017-08-19T01:32:08.000Z</updated>
+  <updated>2017-08-19T01:54:58.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git基础命令</title>
+    <link href="http://uteric.github.io/Git%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/"/>
+    <id>http://uteric.github.io/Git基础命令/</id>
+    <published>2017-08-19T01:54:58.000Z</published>
+    <updated>2017-08-19T01:54:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="判断Git是否安装成功"><a href="#判断Git是否安装成功" class="headerlink" title="判断Git是否安装成功"></a>判断Git是否安装成功</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git</div></pre></td></tr></table></figure>
+<h2 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir *dirname*</div></pre></td></tr></table></figure>
+<p>mkdir是make directory的缩写，意为“创建目录”；比如，<del>mkdir test</del>命令将在当前目录下创建一个名为test的新目录；</p>
+<h2 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> *dirname*</div></pre></td></tr></table></figure>
+<p>cd是change directory的缩写，意为“切换目录”；比如，<del>cd test</del>命令将从当前目录切换到刚刚创建的test目录；</p>
+<h2 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch *filename*</div></pre></td></tr></table></figure>
+<p>touch命令的作用是change file access and modification times，即创建空文件或者修改文件的时间特性；比如，<del>touch test.md</del>命令可在当前目录中创建名为test.md的空白文件；</p>
+<h2 id="查看Git仓库状态"><a href="#查看Git仓库状态" class="headerlink" title="查看Git仓库状态"></a>查看Git仓库状态</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure>
+<p><strong>git status</strong>命令用于查看Git仓库的状态，如果当前目录还不是Git仓库，则会报错：<del>fatal: Not a git repository (or any of the parent directories): .git</del>; 这时，需要用到<strong>git init</strong>命令来初始化Git仓库；</p>
+<h2 id="初始化Git仓库"><a href="#初始化Git仓库" class="headerlink" title="初始化Git仓库"></a>初始化Git仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init</div></pre></td></tr></table></figure>
+<p><strong>git init</strong>命令用于初始化Git仓库，将当前目录初始化为Git仓库；初始化Git仓库后，如果再次输入<strong>git status</strong>命令，则会提示<del>on branch master, initial commit, untracked files: (use “git add <file>…” to include in what will be commited), mothing added to commit but untracked files present (use “git add” to track)</file></del>，意思是说，新生成的Git仓库默认在主分支（master branch），而且，当前Git仓库中有未被跟踪（待提交）的文件，即刚刚使用<strong>touch</strong>命令新建的test.md文件，如果需要提交此文件，则可以用<strong>git add</strong>命令进行操作；</p>
+<h2 id="提交文件等待提交"><a href="#提交文件等待提交" class="headerlink" title="提交文件等待提交"></a>提交文件等待提交</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git add</div></pre></td></tr></table></figure>
+<p>刚刚谈到，新建的test.md尚未提交到Git仓库，如要提交，可以使用<strong>git add test.md</strong>命令；完成之后，我们再使用<strong>git status</strong>命令来检查一下Git仓库的状态，显示<del>On branch master, initial commit, Changes to be commited: (use “git reset HEAD <file>…” to unstage)</file></del>，意思是说，test.md文件已被写入缓存，等待提交，这个时候，你可以使用<strong>git reset HEAD test.md</strong>命令来移除这个缓存，回滚到未被跟踪的状态；</p>
+<h2 id="提交文件至Git仓库"><a href="#提交文件至Git仓库" class="headerlink" title="提交文件至Git仓库"></a>提交文件至Git仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m</div></pre></td></tr></table></figure>
+<p><strong>git commit -m</strong>命令用于将文件提交至Git仓库，比如，<strong>git commit -m ‘This is my first commit’</strong>，执行后提示test.md文件已被创建，同时显示提交时的附带信息“This is my first commit”；此时，如果执行<strong>git status</strong>，则会显示<del>nothing to commit, working directory clean</del>;</p>
+<h2 id="查看提交记录"><a href="#查看提交记录" class="headerlink" title="查看提交记录"></a>查看提交记录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">log</span></div></pre></td></tr></table></figure>
+<p><strong>git log</strong>命令可以查看commit记录，包括作者，时间，以及提交时的附加信息，如”This is my first commit”; 如要退出git log，输入q即可；</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;判断Git是否安装成功&quot;&gt;&lt;a href=&quot;#判断Git是否安装成功&quot; class=&quot;headerlink&quot; title=&quot;判断Git是否安装成功&quot;&gt;&lt;/a&gt;判断Git是否安装成功&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="Git" scheme="http://uteric.github.io/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title>MacBook如何显示隐藏文件和文件夹</title>
@@ -297,13 +336,13 @@
       <category term="纵横捭阖" scheme="http://uteric.github.io/categories/%E7%BA%B5%E6%A8%AA%E6%8D%AD%E9%98%96/"/>
     
     
+      <category term="中国" scheme="http://uteric.github.io/tags/%E4%B8%AD%E5%9B%BD/"/>
+    
       <category term="外汇储备" scheme="http://uteric.github.io/tags/%E5%A4%96%E6%B1%87%E5%82%A8%E5%A4%87/"/>
     
       <category term="美元" scheme="http://uteric.github.io/tags/%E7%BE%8E%E5%85%83/"/>
     
       <category term="人民币" scheme="http://uteric.github.io/tags/%E4%BA%BA%E6%B0%91%E5%B8%81/"/>
-    
-      <category term="中国" scheme="http://uteric.github.io/tags/%E4%B8%AD%E5%9B%BD/"/>
     
   </entry>
   
@@ -1720,50 +1759,6 @@
       <category term="渠" scheme="http://uteric.github.io/tags/%E6%B8%A0/"/>
     
       <category term="渠侬" scheme="http://uteric.github.io/tags/%E6%B8%A0%E4%BE%AC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>“盐枭”一词的来历</title>
-    <link href="http://uteric.github.io/%E7%9B%90%E6%9E%AD%E4%B8%80%E8%AF%8D%E7%9A%84%E6%9D%A5%E5%8E%86/"/>
-    <id>http://uteric.github.io/盐枭一词的来历/</id>
-    <published>2017-08-06T20:34:29.000Z</published>
-    <updated>2017-08-06T20:34:29.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>从古至今，食盐都是每一个人三餐都离不开的佐料。因为耗量巨大，故自古食盐便由国家专营，私人不得贩卖。然而，盐可经由烧煮咸水获得，因成本低廉，故总有人结伙私贩食盐，以谋暴利，这些人被称作为“盐枭”。</p>
-<p>可是，结伙私贩食盐的人为何被称作“盐枭”呢？袁枚在《子不语》中讲述了岳水轩亲身经历的一件事，或可说明盐枭的来历。</p>
-<p>岳水轩，姓岳，名萝渊，字水轩，是清代的著名文人，有一次，他路过山西蒲州的盐池（今山西运城市南）。在关帝庙中，他发现关帝身旁有张桓侯（张飞)的塑像，与关帝共同面南而坐。旁有周将军（周仓）塑像，怒目圆睁，狰狞可怖，更加奇怪的是，周将军手拖铁练，铁练末端锁着一段朽木。</p>
-<p>通常情况下，在关帝庙中，正面塑关公像，左右两侧是周仓和关平之象，因此，岳水轩感到非常奇怪，于是便问当地的村民。村民说：“这是盐枭”，岳水轩不解，忙问缘故。</p>
-<p>村民说：“俗话说得好，‘煮海为盐’，然而在宋末元初之间，当地村民取盐池中的水，放在锅中熬煮，数日之后，竟都得不到盐，村民们感到非常疑惑，于是来到关帝庙中祷告。当天夜晚，村民梦见关帝召集众人，说：这个盐池之所以煮不到盐，是因为盐池被蚩尤所霸占。我接受百姓的香火，自当料理此事。然而，虽然我能制服蚩尤之魄，但无法制服蚩尤的妻子，其妻非常凶悍，必须我弟张翼德来此方能擒服。我已经遣人去益州召他来这里了”。众人听后，方才明白缘由。到了第二天早晨，村民便在关帝身旁塑了张飞之像。当天夜晚，雷鸣电闪，风雨大作。风雨过后，村民们发现，一根朽木已经被锁在了铁练之上。第二天，村民们取盐池中的水煮盐，获得的盐居然是以前的十倍”。</p>
-<p>听了村民的讲述，岳水轩方才明白，原来“盐枭”一词，便是来源于此。</p>
-<blockquote>
-<p>岳水轩过山西蒲州盐池，见关神祠内塑张桓侯像，与关面南坐。旁有周将军像，怒目狰狞，手拖铁练，锁朽木一枝，不解何故。土人指而言曰：“此盐枭也。”问其故，曰：“宋元间，取盐池之水，熬煎数日，而盐不成。商民惶惑，祷于庙。梦关神召众人谓曰：‘汝盐池为蚩尤所据，故烧不成盐。我享血食，自宜料理。但蚩尤之魄，吾能制之；其妻名枭者，悍恶尤甚，我不能制，须吾弟张翼德来，始能擒服。吾已遣人自益州召之矣。’众人惊寤。旦，即在庙中添塑桓侯像。其夕风雷大作，朽木一根，已在铁练之上。次日，取水煮盐，成者十倍。”始悟今所称“盐枭”，实始于此。——《子不语》</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;从古至今，食盐都是每一个人三餐都离不开的佐料。因为耗量巨大，故自古食盐便由国家专营，私人不得贩卖。然而，盐可经由烧煮咸水获得，因成本低廉，故总有人结伙私贩食盐，以谋暴利，这些人被称作为“盐枭”。&lt;/p&gt;
-&lt;p&gt;可是，结伙私贩食盐的人为何被称作“盐枭”呢？袁枚在《子不语》中讲
-    
-    </summary>
-    
-      <category term="文化溯源" scheme="http://uteric.github.io/categories/%E6%96%87%E5%8C%96%E6%BA%AF%E6%BA%90/"/>
-    
-    
-      <category term="盐枭" scheme="http://uteric.github.io/tags/%E7%9B%90%E6%9E%AD/"/>
-    
-      <category term="子不语" scheme="http://uteric.github.io/tags/%E5%AD%90%E4%B8%8D%E8%AF%AD/"/>
-    
-      <category term="岳水轩" scheme="http://uteric.github.io/tags/%E5%B2%B3%E6%B0%B4%E8%BD%A9/"/>
-    
-      <category term="张飞" scheme="http://uteric.github.io/tags/%E5%BC%A0%E9%A3%9E/"/>
-    
-      <category term="周仓" scheme="http://uteric.github.io/tags/%E5%91%A8%E4%BB%93/"/>
-    
-      <category term="关公" scheme="http://uteric.github.io/tags/%E5%85%B3%E5%85%AC/"/>
-    
-      <category term="蚩尤" scheme="http://uteric.github.io/tags/%E8%9A%A9%E5%B0%A4/"/>
     
   </entry>
   
