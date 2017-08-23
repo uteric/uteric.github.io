@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2017-08-19T01:54:58.000Z</updated>
+  <updated>2017-08-23T02:39:27.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,506 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac键盘快捷键</title>
+    <link href="http://uteric.github.io/Mac%E9%94%AE%E7%9B%98%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    <id>http://uteric.github.io/Mac键盘快捷键/</id>
+    <published>2017-08-23T02:39:27.000Z</published>
+    <updated>2017-08-23T02:39:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Mac键盘符号"><a href="#Mac键盘符号" class="headerlink" title="Mac键盘符号"></a>Mac键盘符号</h2><ul>
+<li>Command ⌘</li>
+<li>Shift ⇧</li>
+<li>Option ⌥</li>
+<li>Control ⌃</li>
+<li>Caps Lock ⇪</li>
+<li>Fn</li>
+</ul>
+<h2 id="睡眠、注销和关机快捷键"><a href="#睡眠、注销和关机快捷键" class="headerlink" title="睡眠、注销和关机快捷键"></a>睡眠、注销和关机快捷键</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control–Command–电源按钮</td>
+<td>强制 Mac 重新启动</td>
+</tr>
+<tr>
+<td>Control–Shift–电源按钮</td>
+<td>将显示器置于睡眠状态</td>
+</tr>
+<tr>
+<td>Control–Option–Command–电源按钮</td>
+<td>退出所有应用，然后关闭 Mac</td>
+</tr>
+<tr>
+<td>Shift-Command-Q</td>
+<td>注销您的 macOS 用户帐户，系统将提示您确认</td>
+</tr>
+<tr>
+<td>Option-Shift-Command-Q</td>
+<td>立即注销您的 macOS 用户帐户，且系统不提示您确认</td>
+</tr>
+</tbody>
+</table>
+<h2 id="文稿快捷键"><a href="#文稿快捷键" class="headerlink" title="文稿快捷键"></a>文稿快捷键</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control-Command-D</td>
+<td>显示或隐藏所选字词的定义</td>
+</tr>
+<tr>
+<td>Fn-Delete</td>
+<td>删除插入点右边的字符</td>
+</tr>
+<tr>
+<td>Fn–上箭头</td>
+<td>向上翻页：向上滚动一页</td>
+</tr>
+<tr>
+<td>Fn–下箭头</td>
+<td>向下翻页：向下滚动一页</td>
+</tr>
+<tr>
+<td>Fn–左箭头</td>
+<td>开头：滚动到文稿开头</td>
+</tr>
+<tr>
+<td>Fn–右箭头</td>
+<td>结尾：滚动到文稿末尾</td>
+</tr>
+<tr>
+<td>Command–上箭头</td>
+<td>将插入点移至文稿开头</td>
+</tr>
+<tr>
+<td>Command–下箭头</td>
+<td>将插入点移至文稿末尾</td>
+</tr>
+<tr>
+<td>Command–左箭头</td>
+<td>将插入点移至当前行的行首</td>
+</tr>
+<tr>
+<td>Command–右箭头</td>
+<td>将插入点移至当前行的行尾</td>
+</tr>
+<tr>
+<td>Option–左箭头</td>
+<td>将插入点移至上一字词的词首</td>
+</tr>
+<tr>
+<td>Option–右箭头</td>
+<td>将插入点移至下一字词的词尾</td>
+</tr>
+<tr>
+<td>Shift–Command–上箭头</td>
+<td>选中插入点与文稿开头之间的文本</td>
+</tr>
+<tr>
+<td>Shift–Command–下箭头</td>
+<td>选中插入点与文稿末尾之间的文本</td>
+</tr>
+<tr>
+<td>Shift–Command–左箭头</td>
+<td>选中插入点与当前行行首之间的文本</td>
+</tr>
+<tr>
+<td>Shift–Command–右箭头</td>
+<td>选中插入点与当前行行尾之间的文本</td>
+</tr>
+<tr>
+<td>Shift–上箭头</td>
+<td>将文本选择范围扩展到上一行相同水平位置的最近字符处</td>
+</tr>
+<tr>
+<td>Shift–下箭头</td>
+<td>将文本选择范围扩展到下一行相同水平位置的最近字符处</td>
+</tr>
+<tr>
+<td>Shift–左箭头</td>
+<td>将文本选择范围向左扩展一个字符</td>
+</tr>
+<tr>
+<td>Shift–右箭头</td>
+<td>将文本选择范围向右扩展一个字符</td>
+</tr>
+<tr>
+<td>Option–Shift–上箭头</td>
+<td>将文本选择范围扩展到当前段落的段首，再按一次则扩展到下一段落的段首</td>
+</tr>
+<tr>
+<td>Option–Shift–下箭头</td>
+<td>将文本选择范围扩展到当前段落的段尾，再按一次则扩展到下一段落的段尾</td>
+</tr>
+<tr>
+<td>Option–Shift–左箭头</td>
+<td>将文本选择范围扩展到当前字词的词首，再按一次则扩展到后一字词的词首</td>
+</tr>
+<tr>
+<td>Option–Shift–右箭头</td>
+<td>将文本选择范围扩展到当前字词的词尾，再按一次则扩展到后一字词的词尾</td>
+</tr>
+<tr>
+<td>Control-A</td>
+<td>移至行或段落的开头</td>
+</tr>
+<tr>
+<td>Control-E</td>
+<td>移至行或段落的末尾</td>
+</tr>
+<tr>
+<td>Control-F</td>
+<td>向前移动一个字符</td>
+</tr>
+<tr>
+<td>Control-B</td>
+<td>向后移动一个字符</td>
+</tr>
+<tr>
+<td>Control-L</td>
+<td>将光标或所选内容置于可见区域中央</td>
+</tr>
+<tr>
+<td>Control-P</td>
+<td>上移一行</td>
+</tr>
+<tr>
+<td>Control-N</td>
+<td>下移一行</td>
+</tr>
+<tr>
+<td>Control-O</td>
+<td>在插入点后插入一行</td>
+</tr>
+<tr>
+<td>Control-T</td>
+<td>将插入点后面的字符与插入点前面的字符交换</td>
+</tr>
+<tr>
+<td>Shift–Command–问号</td>
+<td>打开“帮助”菜单</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Finder快捷键"><a href="#Finder快捷键" class="headerlink" title="Finder快捷键"></a>Finder快捷键</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command-D</td>
+<td>复制所选文件</td>
+</tr>
+<tr>
+<td>Command-E</td>
+<td>推出所选磁盘或宗卷</td>
+</tr>
+<tr>
+<td>Command-F</td>
+<td>在 Finder 窗口中开始 Spotlight 搜索</td>
+</tr>
+<tr>
+<td>Command-I</td>
+<td>显示所选文件的“显示简介”窗口</td>
+</tr>
+<tr>
+<td>Shift-Command-C</td>
+<td>打开“电脑”窗口</td>
+</tr>
+<tr>
+<td>Shift-Command-D</td>
+<td>打开“桌面”文件夹</td>
+</tr>
+<tr>
+<td>Shift-Command-F</td>
+<td>打开“我的所有文件”窗口</td>
+</tr>
+<tr>
+<td>Shift-Command-G</td>
+<td>打开“前往文件夹”窗口</td>
+</tr>
+<tr>
+<td>Shift-Command-H</td>
+<td>打开当前 macOS 用户帐户的个人文件夹</td>
+</tr>
+<tr>
+<td>Shift-Command-I</td>
+<td>打开 iCloud Drive</td>
+</tr>
+<tr>
+<td>Shift-Command-K</td>
+<td>打开“网络”窗口</td>
+</tr>
+<tr>
+<td>Option-Command-L</td>
+<td>打开“下载”文件夹</td>
+</tr>
+<tr>
+<td>Shift-Command-O</td>
+<td>打开“文稿”文件夹</td>
+</tr>
+<tr>
+<td>Shift-Command-R</td>
+<td>打开“AirDrop”窗口</td>
+</tr>
+<tr>
+<td>Shift-Command-U</td>
+<td>打开“实用工具”文件夹</td>
+</tr>
+<tr>
+<td>Option-Command-D</td>
+<td>显示或隐藏 Dock，即使您未在 Finder 中，这个快捷键通常也有效</td>
+</tr>
+<tr>
+<td>Option-Command-P</td>
+<td>隐藏或显示 Finder 窗口中的路径栏</td>
+</tr>
+<tr>
+<td>Option-Command-S</td>
+<td>隐藏或显示 Finder 窗口中的边栏</td>
+</tr>
+<tr>
+<td>Command–斜线 (/)</td>
+<td>隐藏或显示 Finder 窗口中的状态栏</td>
+</tr>
+<tr>
+<td>Command-J</td>
+<td>显示“显示”选项</td>
+</tr>
+<tr>
+<td>Command-K</td>
+<td>打开“连接服务器”窗口</td>
+</tr>
+<tr>
+<td>Command-L</td>
+<td>为所选项制作替身</td>
+</tr>
+<tr>
+<td>Command-N</td>
+<td>打开一个新的 Finder 窗口</td>
+</tr>
+<tr>
+<td>Shift-Command-N</td>
+<td>新建文件夹</td>
+</tr>
+<tr>
+<td>Option-Command-N</td>
+<td>新建智能文件夹</td>
+</tr>
+<tr>
+<td>Command-R</td>
+<td>显示所选替身的原始文件</td>
+</tr>
+<tr>
+<td>Command-T</td>
+<td>在当前 Finder 窗口中有单个标签页开着的状态下显示或隐藏标签页栏</td>
+</tr>
+<tr>
+<td>Shift-Command-T</td>
+<td>显示或隐藏 Finder 标签页</td>
+</tr>
+<tr>
+<td>Option-Command-T</td>
+<td>在当前 Finder 窗口中有单个标签页开着的状态下显示或隐藏工具栏</td>
+</tr>
+<tr>
+<td>Option-Command-Y</td>
+<td>显示所选文件的快速查看幻灯片显示</td>
+</tr>
+<tr>
+<td>Command-Y</td>
+<td>使用“快速查看”预览所选文件</td>
+</tr>
+<tr>
+<td>Command-1</td>
+<td>以图标方式显示 Finder 窗口中的项目</td>
+</tr>
+<tr>
+<td>Command-2</td>
+<td>以列表方式显示 Finder 窗口中的项目</td>
+</tr>
+<tr>
+<td>Command-3</td>
+<td>以分栏方式显示 Finder 窗口中的项目</td>
+</tr>
+<tr>
+<td>Command-4</td>
+<td>以 Cover Flow 方式显示 Finder 窗口中的项目</td>
+</tr>
+<tr>
+<td>Command–左中括号</td>
+<td>前往上一文件夹</td>
+</tr>
+<tr>
+<td>Command–右中括号</td>
+<td>前往下一文件夹</td>
+</tr>
+<tr>
+<td>Command–上箭头</td>
+<td>打开包含当前文件夹的文件夹</td>
+</tr>
+<tr>
+<td>Command–Control–上箭头</td>
+<td>新窗口中打开包含当前文件夹的文件夹</td>
+</tr>
+<tr>
+<td>Command–下箭头</td>
+<td>打开所选项</td>
+</tr>
+<tr>
+<td>Command–Mission Control</td>
+<td>显示桌面</td>
+</tr>
+<tr>
+<td>Command–调高亮度</td>
+<td>开启或关闭目标显示器模式</td>
+</tr>
+<tr>
+<td>Command–调低亮度</td>
+<td>当 Mac 连接到多个显示器时打开或关闭显示器镜像功能</td>
+</tr>
+<tr>
+<td>右箭头</td>
+<td>打开所选文件夹。这个快捷键仅在列表视图中有效</td>
+</tr>
+<tr>
+<td>左箭头</td>
+<td>关闭所选文件夹。这个快捷键仅在列表视图中有效</td>
+</tr>
+<tr>
+<td>Option-连按</td>
+<td>在单独的窗口中打开文件夹，并关闭当前窗口</td>
+</tr>
+<tr>
+<td>Command-连按</td>
+<td>在单独的标签页或窗口中打开文件夹</td>
+</tr>
+<tr>
+<td>Command-Delete</td>
+<td>将所选项移到废纸篓</td>
+</tr>
+<tr>
+<td>Shift-Command-Delete</td>
+<td>清倒废纸篓</td>
+</tr>
+<tr>
+<td>Option-Shift-Command-Delete</td>
+<td>清倒废纸篓而不显示确认对话框</td>
+</tr>
+<tr>
+<td>Command-Y</td>
+<td>使用“快速查看”预览文件</td>
+</tr>
+<tr>
+<td>Option–调高亮度</td>
+<td>打开“显示器”偏好设置，这个快捷键可与任一亮度键搭配使用</td>
+</tr>
+<tr>
+<td>Option–Mission Control</td>
+<td>打开“Mission Control”偏好设置</td>
+</tr>
+<tr>
+<td>Option–调高音量</td>
+<td>打开“声音”偏好设置。这个快捷键可与任一音量键搭配使用</td>
+</tr>
+<tr>
+<td>拖移时按 Command 键</td>
+<td>将拖移的项目移到其他宗卷或位置。拖移项目时指针会随之变化</td>
+</tr>
+<tr>
+<td>拖移时按住 Option 键</td>
+<td>拷贝拖移的项目。拖移项目时指针会随之变化</td>
+</tr>
+<tr>
+<td>拖移时按住 Option-Command</td>
+<td>为拖移的项目制作替身。拖移项目时指针会随之变化</td>
+</tr>
+</tbody>
+</table>
+<h2 id="剪切、拷贝、粘贴和其他常用快捷键"><a href="#剪切、拷贝、粘贴和其他常用快捷键" class="headerlink" title="剪切、拷贝、粘贴和其他常用快捷键"></a>剪切、拷贝、粘贴和其他常用快捷键</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command-H</td>
+<td>隐藏最前面的应用的窗口。要查看最前面的应用但隐藏所有其他应用，请按 Command-Option-H</td>
+</tr>
+<tr>
+<td>Command-M</td>
+<td>将最前面的窗口最小化至 Dock。要最小化最前面的应用的所有窗口，请按 Command-Option-M</td>
+</tr>
+<tr>
+<td>Command-W</td>
+<td>关闭最前面的窗口。要关闭应用的所有窗口，请按 Command-Option-W</td>
+</tr>
+<tr>
+<td>Command-Q</td>
+<td>退出应用</td>
+</tr>
+<tr>
+<td>Option-Command-Esc</td>
+<td>强制退出：选择要强制退出的应用。或者，按住 Command-Shift-Option-Esc 3 秒钟来仅强制最前面的应用退出</td>
+</tr>
+<tr>
+<td>Command–空格键</td>
+<td>Spotlight：显示或隐藏 Spotlight 搜索栏</td>
+</tr>
+<tr>
+<td>空格键</td>
+<td>快速查看：使用快速查看来预览所选项</td>
+</tr>
+<tr>
+<td>Shift-Command-波浪号 (~)</td>
+<td>切换窗口：切换到最前端应用中下一个最近使用的窗口</td>
+</tr>
+<tr>
+<td>Shift-Command-3</td>
+<td>屏幕快照：拍摄整个屏幕的屏幕快照</td>
+</tr>
+<tr>
+<td>Command-逗号 (,)</td>
+<td>偏好设置：打开最前面的应用的偏好设置</td>
+</tr>
+</tbody>
+</table>
+<p>参考文献：<a href="https://support.apple.com/zh-cn/HT201236" target="_blank" rel="external">Mac 键盘快捷键</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Mac键盘符号&quot;&gt;&lt;a href=&quot;#Mac键盘符号&quot; class=&quot;headerlink&quot; title=&quot;Mac键盘符号&quot;&gt;&lt;/a&gt;Mac键盘符号&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Command ⌘&lt;/li&gt;
+&lt;li&gt;Shift ⇧&lt;/li&gt;
+&lt;li&gt;Option ⌥
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="MacBook" scheme="http://uteric.github.io/tags/MacBook/"/>
+    
+      <category term="快捷键" scheme="http://uteric.github.io/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    
+  </entry>
   
   <entry>
     <title>Git基础命令</title>
@@ -33,7 +533,7 @@
 <p><strong>git status</strong>命令用于查看Git仓库的状态，如果当前目录还不是Git仓库，则会报错：<del>fatal: Not a git repository (or any of the parent directories): .git</del>; 这时，需要用到<strong>git init</strong>命令来初始化Git仓库；</p>
 <h2 id="初始化Git仓库"><a href="#初始化Git仓库" class="headerlink" title="初始化Git仓库"></a>初始化Git仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init</div></pre></td></tr></table></figure>
 <p><strong>git init</strong>命令用于初始化Git仓库，将当前目录初始化为Git仓库；初始化Git仓库后，如果再次输入<strong>git status</strong>命令，则会提示<del>on branch master, initial commit, untracked files: (use “git add <file>…” to include in what will be commited), mothing added to commit but untracked files present (use “git add” to track)</file></del>，意思是说，新生成的Git仓库默认在主分支（master branch），而且，当前Git仓库中有未被跟踪（待提交）的文件，即刚刚使用<strong>touch</strong>命令新建的test.md文件，如果需要提交此文件，则可以用<strong>git add</strong>命令进行操作；</p>
-<h2 id="提交文件等待提交"><a href="#提交文件等待提交" class="headerlink" title="提交文件等待提交"></a>提交文件等待提交</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git add</div></pre></td></tr></table></figure>
+<h2 id="文件等待提交"><a href="#文件等待提交" class="headerlink" title="文件等待提交"></a>文件等待提交</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git add</div></pre></td></tr></table></figure>
 <p>刚刚谈到，新建的test.md尚未提交到Git仓库，如要提交，可以使用<strong>git add test.md</strong>命令；完成之后，我们再使用<strong>git status</strong>命令来检查一下Git仓库的状态，显示<del>On branch master, initial commit, Changes to be commited: (use “git reset HEAD <file>…” to unstage)</file></del>，意思是说，test.md文件已被写入缓存，等待提交，这个时候，你可以使用<strong>git reset HEAD test.md</strong>命令来移除这个缓存，回滚到未被跟踪的状态；</p>
 <h2 id="提交文件至Git仓库"><a href="#提交文件至Git仓库" class="headerlink" title="提交文件至Git仓库"></a>提交文件至Git仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m</div></pre></td></tr></table></figure>
 <p><strong>git commit -m</strong>命令用于将文件提交至Git仓库，比如，<strong>git commit -m ‘This is my first commit’</strong>，执行后提示test.md文件已被创建，同时显示提交时的附带信息“This is my first commit”；此时，如果执行<strong>git status</strong>，则会显示<del>nothing to commit, working directory clean</del>;</p>
@@ -1605,9 +2105,9 @@
     
       <category term="彗星" scheme="http://uteric.github.io/tags/%E5%BD%97%E6%98%9F/"/>
     
-      <category term="春秋" scheme="http://uteric.github.io/tags/%E6%98%A5%E7%A7%8B/"/>
-    
       <category term="哈雷彗星" scheme="http://uteric.github.io/tags/%E5%93%88%E9%9B%B7%E5%BD%97%E6%98%9F/"/>
+    
+      <category term="春秋" scheme="http://uteric.github.io/tags/%E6%98%A5%E7%A7%8B/"/>
     
       <category term="星孛" scheme="http://uteric.github.io/tags/%E6%98%9F%E5%AD%9B/"/>
     
@@ -1698,67 +2198,6 @@
       <category term="客星" scheme="http://uteric.github.io/tags/%E5%AE%A2%E6%98%9F/"/>
     
       <category term="仙剑" scheme="http://uteric.github.io/tags/%E4%BB%99%E5%89%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>问渠那得清如许｜古代汉语之中的“渠”字是什么意思？</title>
-    <link href="http://uteric.github.io/%E9%97%AE%E6%B8%A0%E9%82%A3%E5%BE%97%E6%B8%85%E5%A6%82%E8%AE%B8/"/>
-    <id>http://uteric.github.io/问渠那得清如许/</id>
-    <published>2017-08-06T20:38:07.000Z</published>
-    <updated>2017-08-06T20:38:07.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在阅读古汉语的时候，我们可能会经常遇到“渠”这个字，“渠”字除了作水渠之外，经常还作为人称代词，如果不明白这一点，恐怕很难理解文意，今天我们就来分析一下。</p>
-<h2 id="渠，第三人称代词“它”"><a href="#渠，第三人称代词“它”" class="headerlink" title="渠，第三人称代词“它”"></a>渠，第三人称代词“它”</h2><p>先来看看朱熹的名句：“问渠那得清如许，为有源头活水来”。</p>
-<p>很多朋友对这里的“渠”字有误解，认为这个“渠”是指某条“水渠”，其实不然，这里的“渠”字是第三人称代词“它”的意思，指的是本诗第一句中的“半亩方塘”。</p>
-<blockquote>
-<p>半亩方塘一鉴开，天光云影共徘徊。问渠那得清如许？为有源头活水来。——《观书有感》</p>
-</blockquote>
-<p>又如，寒山的诗：“蚊子叮铁牛，无渠下觜处”，意思是说，蚊子叮咬铁牛，没有它的下嘴之处。</p>
-<blockquote>
-<p>烧香请佛力，礼拜求僧助。蚊子叮铁牛，无渠下觜处。——《诗三百三首》</p>
-</blockquote>
-<h2 id="渠，第三人称代词“他”"><a href="#渠，第三人称代词“他”" class="headerlink" title="渠，第三人称代词“他”"></a>渠，第三人称代词“他”</h2><p>著名的汉乐府《孔雀东南飞》中写道：“虽与府吏要，渠会永无缘”。说话的主体是刘兰芝，话中的“府吏”是庐江府小吏焦仲卿，意思是说，“虽然和府吏（焦仲卿）已有约定，但是永远没有缘分和他（焦仲卿）再相会了”，这里的“渠”是第三人称代词“他”，指焦仲卿。</p>
-<blockquote>
-<p>兰芝仰头答：“理实如兄言。谢家事夫婿，中道还兄门。处分适兄意，那得自任专！虽与府吏要，渠会永无缘。登即相许和，便可作婚姻”。——《孔雀东南飞》</p>
-</blockquote>
-<p>“渠”字作为人称代词“他”，也经常出现在古诗当中，比如唐代杜甫的《遭田父泥饮美严中丞》中写道：“回头指大男，渠是弓弩手”。</p>
-<blockquote>
-<p>步屟随春风，村村自花柳。田翁逼社日，邀我尝春酒。酒酣夸新尹，畜眼未见有。回头指大男，渠是弓弩手。名在飞骑籍，长番岁时久。前日放营农，辛苦救衰朽。差科死则已，誓不举家走。——《遭田父泥饮美严中丞》</p>
-</blockquote>
-<p>在清代至民国的文献中，“渠”字出现的频率尤高，比如，在袁枚的《子不语》中，“渠”字作为第三人称代词，可谓俯拾皆是，随便举个例子：</p>
-<p>陈秀才夜宿肃愍（于谦谥号）庙中，梦见肃愍告知说，将来他会是肃愍的门生，此时，恰巧城隍来求见。肃愍命陈秀才与城隍抗礼，说：“渠属吏，汝门生，汝宜上”，意思是说：“他（城隍）是我的下属，你是我的门生，你应当坐在上座”。</p>
-<blockquote>
-<p>海昌陈秀才某，祷梦于肃愍庙。梦肃愍开正门延之，秀才逡巡。肃愍曰：“汝异日我门生也，礼应正门入。”坐未定，侍者启：“汤溪县城隍禀见。”随见一神峨冠来。肃愍命陈与抗礼，曰：“渠属吏，汝门生，汝宜上”。——《南山顽石》</p>
-</blockquote>
-<h2 id="渠侬，指“他们”"><a href="#渠侬，指“他们”" class="headerlink" title="渠侬，指“他们”"></a>渠侬，指“他们”</h2><p>吴语素称“吴侬软语”，保留了许多古汉语的用词和发音，比如，吴语中自称乃是“吾侬我侬”，称他人便说“渠侬你侬”；“渠侬”的“渠”字，便是“他”的意思，“渠侬”，便是“他们”之意。</p>
-<blockquote>
-<p>其并海去处，号三侬之地，盖以乡人自称曰吾侬我侬，称他人曰渠侬你侬，问人曰谁侬。夜晚之间闭门之后，有人叩门，主人问曰：“谁侬？外面答曰：我侬。主人不知何人，开门视之，认其人矣，乃曰：却是你侬。——《平江记事》</p>
-</blockquote>
-<p>“渠侬”也常出现在诗词当中，比如辛弃疾的词《贺新郎·老大犹堪说》中写道：“问渠侬，神州毕竟，几番离合”。</p>
-<blockquote>
-<p>老大犹堪说。似而今，元龙臭味，孟公瓜葛。我病君来高歌饮，惊散楼头飞雪。笑富贵，千钧如发。硬语盘空谁来听，记当时，只有西窗月。重进酒，唤呜瑟。事无两样人心别。问渠侬，神州毕竟，几番离合。汗血盐车无人顾，千里空收骏骨。正目断，关河路绝。我最怜君中宵舞，道男儿，到死心如铁。看试手，补天裂。——《贺新郎·老大犹堪说》</p>
-</blockquote>
-<p>又如，龚定庵的《已亥杂诗》中写道，“卿家沧桑卿命短，渠侬不关关我侬”。</p>
-<blockquote>
-<p>一十三度溪花红，一百八下西溪钟。卿家沧桑卿命短，渠侬不关关我侬。——《已亥杂诗》</p>
-</blockquote>
-<p>如此可见，在古代汉语中，“渠”常常作为第三人称代词出现，指“它”，或“他”，而“渠侬”则是指“他们”。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在阅读古汉语的时候，我们可能会经常遇到“渠”这个字，“渠”字除了作水渠之外，经常还作为人称代词，如果不明白这一点，恐怕很难理解文意，今天我们就来分析一下。&lt;/p&gt;
-&lt;h2 id=&quot;渠，第三人称代词“它”&quot;&gt;&lt;a href=&quot;#渠，第三人称代词“它”&quot; class=&quot;head
-    
-    </summary>
-    
-      <category term="文化溯源" scheme="http://uteric.github.io/categories/%E6%96%87%E5%8C%96%E6%BA%AF%E6%BA%90/"/>
-    
-    
-      <category term="渠" scheme="http://uteric.github.io/tags/%E6%B8%A0/"/>
-    
-      <category term="渠侬" scheme="http://uteric.github.io/tags/%E6%B8%A0%E4%BE%AC/"/>
     
   </entry>
   
