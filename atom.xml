@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2017-11-03T02:54:02.000Z</updated>
+  <updated>2017-11-03T03:01:55.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,65 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>英语笔记20：Janitor</title>
+    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B020/"/>
+    <id>http://uteric.github.io/英语笔记20/</id>
+    <published>2017-11-03T03:01:55.000Z</published>
+    <updated>2017-11-03T03:01:55.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Janitor，门警，<em>a person employed as a caretaker of a building</em>，翻译为看门人或门卫或许更为合适；</p>
+<ul>
+<li><em>The janitor comes round to turn the lights out.</em></li>
+</ul>
+<p>相应地，School Janitor，指学校门卫；Janitor Room，指传达室；</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Janitor，门警，&lt;em&gt;a person employed as a caretaker of a building&lt;/em&gt;，翻译为看门人或门卫或许更为合适；&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;The janitor comes round to turn the 
+    
+    </summary>
+    
+      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>英语笔记19：After All</title>
+    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B019/"/>
+    <id>http://uteric.github.io/英语笔记19/</id>
+    <published>2017-11-03T03:00:08.000Z</published>
+    <updated>2017-11-03T03:00:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天面试博士后，中午这个侯选博士后将会有一个lab presentation，本来实验室要给大家买Pizza，结果昨晚收到邮件又说不买了；</p>
+<p>今天早晨，收到这封邮件：</p>
+<hr>
+<p>Hi all,</p>
+<p>I will <strong>be bringing in</strong> pizza today <strong>after all</strong> for the lab presentation.</p>
+<hr>
+<p>邮件中说，最终还是要带Pizza，此处用了<strong>after all</strong>这个短语，类似于eventually；</p>
+<p><strong>Bring in</strong>，是典型的美国人的用法，后面这个in表示方向，如果是中国人，一般会说 <em>I will bring pizza today</em>；</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天面试博士后，中午这个侯选博士后将会有一个lab presentation，本来实验室要给大家买Pizza，结果昨晚收到邮件又说不买了；&lt;/p&gt;
+&lt;p&gt;今天早晨，收到这封邮件：&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Hi all,&lt;/p&gt;
+&lt;p&gt;I will &lt;strong&gt;be br
+    
+    </summary>
+    
+      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>英语笔记18：Coffees</title>
@@ -693,84 +752,6 @@
     
       <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
     
-    
-      <category term="英语" scheme="http://uteric.github.io/tags/%E8%8B%B1%E8%AF%AD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>英语笔记1：like/as though/as if 区别</title>
-    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B01/"/>
-    <id>http://uteric.github.io/英语笔记1/</id>
-    <published>2017-09-07T03:08:39.000Z</published>
-    <updated>2017-09-07T03:08:39.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="look-like-as-though-as-if"><a href="#look-like-as-though-as-if" class="headerlink" title="look like/as though/as if"></a>look <em>like/as though/as if</em></h2><blockquote>
-<p><em>It <strong>looks as though</strong> there is some DNA contamination in your samples</em></p>
-<p><em>It <strong>looks as if</strong> it will rain</em></p>
-<p><em>The girl <strong>looks like</strong> her mother</em></p>
-</blockquote>
-<p><strong>POINT:</strong> <strong> Like</strong> should be used before a noun only, whenever a subject and verb follow, remember to substitute <strong>like</strong> with either <strong>as though</strong> or <strong>as if</strong>.</p>
-<p><strong>like</strong>后面只能跟名词，如果后面是从句，则要将<strong>like</strong>换成<strong>as thouth</strong>或者<strong>as if</strong>。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;look-like-as-though-as-if&quot;&gt;&lt;a href=&quot;#look-like-as-though-as-if&quot; class=&quot;headerlink&quot; title=&quot;look like/as though/as if&quot;&gt;&lt;/a&gt;look &lt;em&gt;li
-    
-    </summary>
-    
-      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
-    
-    
-      <category term="英语" scheme="http://uteric.github.io/tags/%E8%8B%B1%E8%AF%AD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>英文告别邮件</title>
-    <link href="http://uteric.github.io/%E8%8B%B1%E6%96%87%E5%91%8A%E5%88%AB%E9%82%AE%E4%BB%B6/"/>
-    <id>http://uteric.github.io/英文告别邮件/</id>
-    <published>2017-09-01T03:21:51.000Z</published>
-    <updated>2017-09-01T03:21:51.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>离开单位时要写告别邮件，如何得体大方而又煽情？看看EW的临别邮件：</p>
-<hr>
-<blockquote>
-<p><strong>FAREWELL TO ALL</strong></p>
-<p>Dear Group,</p>
-<p><strong>As you may know</strong>, Thursday is my last day with UTS after 35 years of service and I am grateful for the opportunity to work with you all. I would like to take this opportunity to <strong>THANK</strong> my colleagues and let you all know how <strong>I’ve ENJOYED</strong> working with you and wish you all success in the future. Please direct all my e-mail to ××××××@×××.com that is my personally e-mail. I am <strong>SAD</strong>, but <strong>HAPPY</strong>.</p>
-<p>Thanks again for everything</p>
-<p>Sincerely,<br>EW</p>
-</blockquote>
-<hr>
-<p>EW是中心的服务人员，平时的工作就是刷洗瓶瓶罐罐、消毒灭菌、配制溶液，工作内容虽然简单，但是却至关重要，她为中心工作了长达35年之久，亦可谓劳苦功高，现在将要退休，中心为了表示感激，为她举办欢送会（Farewell），因此，她写了这封邮件给中心的所有工作人员，标题是 <strong>FAREWELL TO ALL</strong> 。</p>
-<p><em>As you may know</em>，是美国人常用的发语词，用在句首，语气轻松毫无压力；</p>
-<p>接着是系列感谢用语和祝福语：</p>
-<p><em>I am grateful for the opportunity to work with you all</em>（感谢这个工作机会）</p>
-<p><em>I would like to take this opportunity to THANK my colleagues</em>（对所有同事说谢谢）</p>
-<p><em>let you all know how I’ve ENJOYED working with you</em>（在这份工作中非常快乐）</p>
-<p><em>wish you all success in the future</em>（临别祝愿）</p>
-<p>并且，留了自己的私人邮箱，如果有事可以联系：</p>
-<p><em>Please direct all my e-mail to ××××××@×××.com that is my personally e-mail</em></p>
-<p>最后，画龙点睛，表明我现在的心情，悲伤并快乐着， <em>I am <strong>SAD</strong>, but <strong>HAPPY</strong></em>，悲伤是因为离别，快乐是因为退休，世界这么大，终于可以出去走走了！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;离开单位时要写告别邮件，如何得体大方而又煽情？看看EW的临别邮件：&lt;/p&gt;
-&lt;hr&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;FAREWELL TO ALL&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Dear Group,&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;As you may 
-    
-    </summary>
-    
-      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
-    
-    
-      <category term="邮件" scheme="http://uteric.github.io/tags/%E9%82%AE%E4%BB%B6/"/>
     
       <category term="英语" scheme="http://uteric.github.io/tags/%E8%8B%B1%E8%AF%AD/"/>
     
