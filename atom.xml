@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2017-11-03T03:01:55.000Z</updated>
+  <updated>2017-12-29T04:05:46.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>英语笔记22：Calibrate</title>
+    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B022/"/>
+    <id>http://uteric.github.io/英语笔记22/</id>
+    <published>2017-12-29T04:05:46.000Z</published>
+    <updated>2017-12-29T04:05:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近，实验室的PH Meter测定结果不够准确，需要校准；Calibrate，即校准之意；</p>
+<ul>
+<li><em>This is the instruction on how to calibrate a thermometer</em></li>
+<li><em>The thermometer needs calibration</em></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近，实验室的PH Meter测定结果不够准确，需要校准；Calibrate，即校准之意；&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;This is the instruction on how to calibrate a thermometer&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;e
+    
+    </summary>
+    
+      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>英语笔记21：Accept, Tentative, Decline</title>
+    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B021/"/>
+    <id>http://uteric.github.io/英语笔记21/</id>
+    <published>2017-11-03T03:05:55.000Z</published>
+    <updated>2017-11-03T03:05:55.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>受到邮件邀请时，通常会有如下三个选项：<strong>Accept</strong>，<strong>Tentative</strong>，<strong>Decline</strong>， 分别代表接受，暂定，拒绝；</p>
+<p><strong>Tentative</strong>，不确定的，临时的，或作暂定；</p>
+<ul>
+<li><em>We made a tentative arrangement to meet on Friday.</em> 我们暂定星期五见面。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;受到邮件邀请时，通常会有如下三个选项：&lt;strong&gt;Accept&lt;/strong&gt;，&lt;strong&gt;Tentative&lt;/strong&gt;，&lt;strong&gt;Decline&lt;/strong&gt;， 分别代表接受，暂定，拒绝；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tentative&lt;/s
+    
+    </summary>
+    
+      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>英语笔记20：Janitor</title>
@@ -676,84 +730,6 @@
     
       <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>英文邮件：求助试剂</title>
-    <link href="http://uteric.github.io/%E8%8B%B1%E6%96%87%E9%82%AE%E4%BB%B6%E6%B1%82%E5%8A%A9%E8%AF%95%E5%89%82/"/>
-    <id>http://uteric.github.io/英文邮件求助试剂/</id>
-    <published>2017-09-07T03:25:33.000Z</published>
-    <updated>2017-09-07T03:25:33.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>作为一名实验工作者，有时难免会遇到急需某种试剂的情况，但又不清楚哪个LAB可能有这种试剂，这时，群发个邮件就是最好的选择，碰到热心人的概率还是很大的。怎么写邮件呢？怎样表述方能得体大方不卑不亢呢？先看看下面这几个例子。</p>
-<p>例一：</p>
-<blockquote>
-<p>Hi all,<br><em>Sorry for the spam.</em><br>We were looking for some puromycin powder for our experiments in the lab. I would really appreciate it if anybody could help me with some. I would return the same amount back as soon as our order arrives.<br>Thanks</p>
-</blockquote>
-<p>例二：</p>
-<blockquote>
-<p>Hi all<br><em>Sorry for the SPAM</em>.<br>Does anyone have a ××× antibody in the lab that works well for western from human samples? I just need a few uls for one experiment.<br><em>Please let me know and thanks in advance.</em><br>Thanks</p>
-</blockquote>
-<p>例三：</p>
-<blockquote>
-<p>Hi All,<br><em>Sorry for the Email.</em><br>I need this chemical ××× for a study. If someone can spare either few grams or as solution, I would really appreciate it. We have it ordered and can replace.<br>Thanks</p>
-</blockquote>
-<p>例四：</p>
-<blockquote>
-<p>Hello all,<br>Due to Harvey disrupting our deliveries, I find my self in desperate need of a decent amount of ×××.  Should you be so kind as to help me here, I will be able to return this to you around 9/7.<br><em>Please let me know if you can help me out here.</em></p>
-</blockquote>
-<p>例五：</p>
-<blockquote>
-<p>Hello, would anyone mind sharing about 20 µL of the restriction enzyme ×××?<br>Once we receive our order, I can replace what I’ve borrowed. Thanks!</p>
-</blockquote>
-<p>综合以上几个例子，我们可以总结出来一个套路，首先打个招呼，<em>Hi all或者Hello</em>；接着，表明这是一封垃圾邮件，<em>Sorry for the spam</em>，免得引起不满；下面，直陈其事，简单明了地说清楚你的目的，比如<em>Does anyone have ×××? / I need ×××.</em> 最后，表示感谢，<em>Please let me know and thanks in advance. / I would really appreciate it.</em> 当然，结尾处不要忘记再次感谢，<em>Thanks!</em></p>
-<p>根据这个套路，我们来总结一个求助试剂的万能公式：</p>
-<blockquote>
-<p>Dear All,<br><em>Sorry for the spam!</em><br>I am looking for ×××. If you happen have it and would like to share few grams, I would really appreciate it!<br><em>Please let me know and <strong>THANKS</strong> in advance!</em><br>Best Wishes</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;作为一名实验工作者，有时难免会遇到急需某种试剂的情况，但又不清楚哪个LAB可能有这种试剂，这时，群发个邮件就是最好的选择，碰到热心人的概率还是很大的。怎么写邮件呢？怎样表述方能得体大方不卑不亢呢？先看看下面这几个例子。&lt;/p&gt;
-&lt;p&gt;例一：&lt;/p&gt;
-&lt;blockquote&gt;
-    
-    </summary>
-    
-      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
-    
-    
-      <category term="英语" scheme="http://uteric.github.io/tags/%E8%8B%B1%E8%AF%AD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>英语笔记2：Impending</title>
-    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B02/"/>
-    <id>http://uteric.github.io/英语笔记2/</id>
-    <published>2017-09-07T03:20:54.000Z</published>
-    <updated>2017-09-07T03:20:54.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Impending"><a href="#Impending" class="headerlink" title="Impending"></a>Impending</h2><p><strong>Impending</strong>，指即将发生的事件，但通常是不愉快的或不愿看到的，英文定义：<em>used to refer an event, usually something unpleasant or unwanted, that is going to happen soon</em>。</p>
-<p>常用搭配：<strong>impending disaster/ impending doom</strong></p>
-<p>举个例子，老大的邮件：</p>
-<blockquote>
-<p>Dear all,<br>My flight to ××× has been cancelled due to <strong>impending hurricane</strong> and I attach an updated meeting schedule.</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Impending&quot;&gt;&lt;a href=&quot;#Impending&quot; class=&quot;headerlink&quot; title=&quot;Impending&quot;&gt;&lt;/a&gt;Impending&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Impending&lt;/strong&gt;，指即将发生的事件，但通常是不愉
-    
-    </summary>
-    
-      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
-    
-    
-      <category term="英语" scheme="http://uteric.github.io/tags/%E8%8B%B1%E8%AF%AD/"/>
     
   </entry>
   
