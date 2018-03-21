@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2017-12-29T04:12:22.000Z</updated>
+  <updated>2018-03-21T03:46:13.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RNASEQ分析笔记：参考基因组下载</title>
+    <link href="http://uteric.github.io/RNASEQ%E5%8F%82%E8%80%83%E5%9F%BA%E5%9B%A0%E7%BB%84%E4%B8%8B%E8%BD%BD/"/>
+    <id>http://uteric.github.io/RNASEQ参考基因组下载/</id>
+    <published>2018-03-21T03:46:13.000Z</published>
+    <updated>2018-03-21T03:46:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>进入<strong>UCSC</strong>网站（<a href="http://genome.ucsc.edu/" target="_blank" rel="external">http://genome.ucsc.edu/</a>  ），Downloads&gt;&gt;Genome Data&gt;&gt;Human&gt;&gt;Feb. 2009 (GRCh37/hg19)&gt;&gt;full data set&gt;&gt;chromFa.tar.gz，右键复制链接地址如下：<br><a href="http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz" target="_blank" rel="external">http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz</a></p>
+<p>下载参考基因组的代码如下：</p>
+<p>1/ mkdir hg19 #在ncbi目录下新建hg19文件夹<br>2/ cd hg19 #切换到ncbi/hg19目录<br>3/ wget <a href="http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz" target="_blank" rel="external">http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz</a> #下载GRCh37/hg19，文件大约905M<br>4/ tar -zxvf  chromFa.tar.gz #解压文件<br>解压后出现一大堆文件：</p>
+<blockquote>
+<p>chr1.fa                  chr5.fa                  chrUn_gl000223.fa<br>chr10.fa                 chr6.fa                  chrUn_gl000224.fa<br>chr11.fa                 chr6_apd_hap1.fa         chrUn_gl000225.fa<br>chr11_gl000202_random.fa chr6_cox_hap2.fa         chrUn_gl000226.fa<br>chr12.fa                 chr6_dbb_hap3.fa         chrUn_gl000227.fa<br>chr13.fa                 chr6_mann_hap4.fa        chrUn_gl000228.fa<br>chr14.fa                 chr6_mcf_hap5.fa         chrUn_gl000229.fa<br>chr15.fa                 chr6_qbl_hap6.fa         chrUn_gl000230.fa<br>chr16.fa                 chr6_ssto_hap7.fa        chrUn_gl000231.fa<br>chr17.fa                 chr7.fa                  chrUn_gl000232.fa<br>chr17_ctg5_hap1.fa       chr7_gl000195_random.fa  chrUn_gl000233.fa<br>chr17_gl000203_random.fa chr8.fa                  chrUn_gl000234.fa<br>chr17_gl000204_random.fa chr8_gl000196_random.fa  chrUn_gl000235.fa<br>chr17_gl000205_random.fa chr8_gl000197_random.fa  chrUn_gl000236.fa<br>chr17_gl000206_random.fa chr9.fa                  chrUn_gl000237.fa<br>chr18.fa                 chr9_gl000198_random.fa  chrUn_gl000238.fa<br>chr18_gl000207_random.fa chr9_gl000199_random.fa  chrUn_gl000239.fa<br>chr19.fa                 chr9_gl000200_random.fa  chrUn_gl000240.fa<br>chr19_gl000208_random.fa chr9_gl000201_random.fa  chrUn_gl000241.fa<br>chr19_gl000209_random.fa chrM.fa                  chrUn_gl000242.fa<br>chr1_gl000191_random.fa  chrUn_gl000211.fa        chrUn_gl000243.fa<br>chr1_gl000192_random.fa  chrUn_gl000212.fa        chrUn_gl000244.fa<br>chr2.fa                  chrUn_gl000213.fa        chrUn_gl000245.fa<br>chr20.fa                 chrUn_gl000214.fa        chrUn_gl000246.fa<br>chr21.fa                 chrUn_gl000215.fa        chrUn_gl000247.fa<br>chr21_gl000210_random.fa chrUn_gl000216.fa        chrUn_gl000248.fa<br>chr22.fa                 chrUn_gl000217.fa        chrUn_gl000249.fa<br>chr3.fa                  chrUn_gl000218.fa        chrX.fa<br>chr4.fa                  chrUn_gl000219.fa        chrY.fa<br>chr4_ctg9_hap1.fa        chrUn_gl000220.fa        chromFa.tar.gz<br>chr4_gl000193_random.fa  chrUn_gl000221.fa<br>chr4_gl000194_random.fa  chrUn_gl000222.fa</p>
+</blockquote>
+<p>仔细观察这些解压出来的新文件，就会发现全部都是同一类型，chr*.fa，这为我们合并文件提供了极大的方便，代码如下：</p>
+<p>cat *.fa&gt;hg19.fa #将当前文件夹下所有.fa结尾的文件合并为一个文件，即hg19.fa</p>
+<p>删除其他无关的解压文件，以及参考基因组压缩文件，以节省空间，</p>
+<p>rm chr<em>.fa #删除chr</em>.fa格式的所有文件<br>rm chromFa.tar.gz #删除下载的参考基因组压缩文件<br>ls -l #显示当前目录下得文件以及属性</p>
+<p>结果如下，只有一个文件，即hg19.fa，</p>
+<blockquote>
+<p>-rw-r–r–  1 Administrator  staff  3199905909 Mar 16 23:07 hg19.fa</p>
+</blockquote>
+<p>到此为止，参考基因组就准备好了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;进入&lt;strong&gt;UCSC&lt;/strong&gt;网站（&lt;a href=&quot;http://genome.ucsc.edu/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://genome.ucsc.edu/&lt;/a&gt;  ），Downloads&amp;gt;&amp;g
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="RNASEQ" scheme="http://uteric.github.io/tags/RNASEQ/"/>
+    
+  </entry>
   
   <entry>
     <title>英语笔记24：Purchase ticket/pass from a ticket vending machine</title>
@@ -722,28 +759,6 @@
       &lt;hr&gt;
 &lt;p&gt;Good morning. &lt;strong&gt;Just a reminder that&lt;/strong&gt; paper &amp;amp; Styrofoam &lt;strong&gt;are not allowed&lt;/strong&gt; in the cold room. &lt;/p&gt;
 &lt;p
-    
-    </summary>
-    
-      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>英语笔记5：That&#39;s Much Better</title>
-    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B05/"/>
-    <id>http://uteric.github.io/英语笔记5/</id>
-    <published>2017-09-12T02:55:47.000Z</published>
-    <updated>2017-09-12T02:55:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天去公寓附近的Kroger买水果，黄桃$0.98/Lb，但是在自助结账时输错了code，单价变成$8.99/Lb，只好找工作人员帮忙取消，工作人员帮忙输入正确的code，回复正常的价格，这时，她说<strong>That’s much better!</strong></p>
-<p><strong>That’s much better</strong>，口语中常用，意为“那好多了”。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今天去公寓附近的Kroger买水果，黄桃$0.98/Lb，但是在自助结账时输错了code，单价变成$8.99/Lb，只好找工作人员帮忙取消，工作人员帮忙输入正确的code，回复正常的价格，这时，她说&lt;strong&gt;That’s much better!&lt;/strong&gt;&lt;/
     
     </summary>
     
