@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2018-03-21T21:41:13.000Z</updated>
+  <updated>2018-03-22T04:39:36.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RNASEQ分析入门笔记1-软件安装</title>
+    <link href="http://uteric.github.io/RNASEQ%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"/>
+    <id>http://uteric.github.io/RNASEQ软件安装/</id>
+    <published>2018-03-22T04:39:36.000Z</published>
+    <updated>2018-03-22T04:39:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>RNASEQ的基本软件包括：<em>sra-tools, fastqc, hisat2, samtools, htseq, r, rstudio</em>，建议使用conda命令安装软件，降低出错概率，<em>conda is a tool for managing and deploying applications, environments and packages.</em></p>
+<h2 id="miniconda3"><a href="#miniconda3" class="headerlink" title="miniconda3"></a>miniconda3</h2><p>在官网下载相应的版本，安装即可，<a href="https://conda.io/miniconda.html" target="_blank" rel="external">https://conda.io/miniconda.html</a></p>
+<p>安装完成后，需要创建频道，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">conda config --add channels conda-forge</div><div class="line">conda config --add channels defaults</div><div class="line">conda config --add channels r</div><div class="line">conda config --add channels bioconda</div></pre></td></tr></table></figure>
+<p>如果使用iTerm2作为终端，conda可能无法执行：<em>command not found: conda</em></p>
+<p>原因：终端是 iTerm2，安装了 zsh 和 oh-my-zsh，因此，打开终端时不再执行~/.bash_profile。</p>
+<p>若使该文件有效，需要修改 zsh 的配置文件，方法如下：</p>
+<p>编辑~/.zshrc，在文件末尾加入一行：</p>
+<blockquote>
+<p>source ~/.bash_profile</p>
+</blockquote>
+<p><strong>注意：</strong> .zshrc是一个位于根目录下的隐藏文件，如果要显示隐藏文件，请在终端中输入：</p>
+<p>defaults write com.apple.finder AppleShowAllFiles -bool true;<br>KillAll Finder</p>
+<h2 id="sra-tools"><a href="#sra-tools" class="headerlink" title="sra-tools"></a>sra-tools</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install -c bioconda sra-tools=2.8.1</div></pre></td></tr></table></figure>
+<h2 id="fastqc"><a href="#fastqc" class="headerlink" title="fastqc"></a>fastqc</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install fastqc</div></pre></td></tr></table></figure>
+<h2 id="hisat2"><a href="#hisat2" class="headerlink" title="hisat2"></a>hisat2</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install hisat2</div></pre></td></tr></table></figure>
+<h2 id="samtools"><a href="#samtools" class="headerlink" title="samtools"></a>samtools</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install samtools</div></pre></td></tr></table></figure>
+<h2 id="htseq"><a href="#htseq" class="headerlink" title="htseq"></a>htseq</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install -c bioconda htseq</div></pre></td></tr></table></figure>
+<h2 id="R"><a href="#R" class="headerlink" title="R"></a>R</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install r</div></pre></td></tr></table></figure>
+<h2 id="Rstudio"><a href="#Rstudio" class="headerlink" title="Rstudio"></a>Rstudio</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install rstudio</div></pre></td></tr></table></figure>
+<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p>另外，下载NCBI上的原始数据（SRA文件），还需要用到wget，安装语法为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install wget</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;RNASEQ的基本软件包括：&lt;em&gt;sra-tools, fastqc, hisat2, samtools, htseq, r, rstudio&lt;/em&gt;，建议使用conda命令安装软件，降低出错概率，&lt;em&gt;conda is a tool for managing an
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="RNASEQ" scheme="http://uteric.github.io/tags/RNASEQ/"/>
+    
+  </entry>
   
   <entry>
     <title>RNASEQ分析入门笔记2-下载原始数据</title>
@@ -736,33 +780,6 @@
       &lt;hr&gt;
 &lt;p&gt;Your roadside assistance request has been updated&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Tow Jam&lt;/em&gt; has been dispatched and is scheduled to perform the reques
-    
-    </summary>
-    
-      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>英语笔记7：What is CVV/CVC code?</title>
-    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B07/"/>
-    <id>http://uteric.github.io/英语笔记7/</id>
-    <published>2017-09-12T03:01:39.000Z</published>
-    <updated>2017-09-12T03:01:39.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>使用信用卡在线付款通常需要CVV/CVC码，那么，什么是CVV/CVC码呢？</p>
-<p><strong>CVV:</strong> Card Verification Value</p>
-<p><strong>CVC:</strong> Card Verification Code</p>
-<p>CVV，也可以称作CSC，<em>CVV numbers are also known as CSC numbers (“Card Security Code”)</em></p>
-<p>CVV位于信用卡背面白色签名条后方，一般是三个数字。<em>The CVV/CVC code is located on the back of your credit/debit card on the right side of the white signature strip; it is always the last 3 digits in case of VISA and MasterCard.</em></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;使用信用卡在线付款通常需要CVV/CVC码，那么，什么是CVV/CVC码呢？&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;CVV:&lt;/strong&gt; Card Verification Value&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;CVC:&lt;/strong&gt; Card Verificatio
     
     </summary>
     
