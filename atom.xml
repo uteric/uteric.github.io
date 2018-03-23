@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2018-03-22T04:39:36.000Z</updated>
+  <updated>2018-03-23T03:29:47.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,72 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac命令行查看硬盘状态</title>
+    <link href="http://uteric.github.io/Mac%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%9F%A5%E7%9C%8B%E7%A1%AC%E7%9B%98%E7%8A%B6%E6%80%81/"/>
+    <id>http://uteric.github.io/Mac命令行查看硬盘状态/</id>
+    <published>2018-03-23T03:29:47.000Z</published>
+    <updated>2018-03-23T03:29:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="查看整个硬盘"><a href="#查看整个硬盘" class="headerlink" title="查看整个硬盘"></a>查看整个硬盘</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df -h <span class="comment"># 查看整个硬盘的空间，h表明是人类可读的方式</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>Filesystem      Size   Used  Avail Capacity  iused    ifree %iused  Mounted on<br>/dev/disk1     233Gi  200Gi   33Gi    87% 52460543  8524799   86%   /<br>devfs          188Ki  188Ki    0Bi   100%      649        0  100%   /dev<br>map -hosts       0Bi    0Bi    0Bi   100%        0        0  100%   /net<br>map auto_home    0Bi    0Bi    0Bi   100%        0        0  100%   /home<br>/dev/disk2s1   931Gi  862Gi   70Gi    93%    97656 73042268    0%   /Volumes/TOSHIBA EXT</p>
+</blockquote>
+<h2 id="查看当前目录"><a href="#查看当前目录" class="headerlink" title="查看当前目录"></a>查看当前目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">du -d 1 -h <span class="comment"># 查看当前目录下所有文件占用的硬盘空间</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>2.9G    ./mothur #当前目录下有个mothur的文件夹，占用2.9GB<br>3.8G    . # 当前目录下其他文件占用3.8GB</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;查看整个硬盘&quot;&gt;&lt;a href=&quot;#查看整个硬盘&quot; class=&quot;headerlink&quot; title=&quot;查看整个硬盘&quot;&gt;&lt;/a&gt;查看整个硬盘&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutt
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="命令行" scheme="http://uteric.github.io/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何在命令行中运行shell文件</title>
+    <link href="http://uteric.github.io/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E8%BF%90%E8%A1%8Cshell%E6%96%87%E4%BB%B6/"/>
+    <id>http://uteric.github.io/如何在命令行中运行shell文件/</id>
+    <published>2018-03-23T03:15:47.000Z</published>
+    <updated>2018-03-23T03:15:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用VIM新建文本一个.sh，比如srawget.sh</p>
+<p>打开终端，进入当前目录，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./srawget.sh <span class="comment">#当前目录下执行srwaget.sh文件</span></div></pre></td></tr></table></figure>
+<p>执行后返回：</p>
+<blockquote>
+<p>zsh: permission denied: ./srawget.sh</p>
+</blockquote>
+<p>发现.sh文件不能执行，为什么呢？</p>
+<p>这是因为VIM新建的shell文件默认权限只有–r–w，即只能读写，不能执行，因此出现上述错误，解决办法其实非常简单，只要修改.sh文件的权限即可，在终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x srawget.sh <span class="comment">#添加执行权限</span></div></pre></td></tr></table></figure>
+<p>我们使用 ls -l 命令来查看一下，发现已经成功添加了执行权限，再次执行此命令即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./srawget.sh</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用VIM新建文本一个.sh，比如srawget.sh&lt;/p&gt;
+&lt;p&gt;打开终端，进入当前目录，输入&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="命令行" scheme="http://uteric.github.io/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/"/>
+    
+  </entry>
   
   <entry>
     <title>RNASEQ分析入门笔记1-软件安装</title>
@@ -687,99 +753,6 @@
 &lt;p&gt;&lt;strong&gt;Ingredients&lt;/strong&gt; 配料&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;1 part Te
-    
-    </summary>
-    
-      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>英语笔记9：Roadside Assistance</title>
-    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B09/"/>
-    <id>http://uteric.github.io/英语笔记9/</id>
-    <published>2017-09-21T03:12:21.000Z</published>
-    <updated>2017-09-21T03:12:21.000Z</updated>
-    
-    <content type="html"><![CDATA[<hr>
-<h2 id="道路救援-Roadside-Assistance"><a href="#道路救援-Roadside-Assistance" class="headerlink" title="道路救援 Roadside Assistance"></a>道路救援 Roadside Assistance</h2><p>Roadside Assistance Provides 24/7 Emergency Help</p>
-<p><strong>Provide help</strong>，提供帮助；<strong>Provides Emergency Help</strong>，提供紧急帮助；</p>
-<p><strong>Get help</strong> now by <strong>calling ×××</strong>.</p>
-<p><strong>get help</strong>，获取帮助；<strong>call×××</strong>或<strong>call at×××</strong>，打电话，后面跟电话号码；</p>
-<p>When your car <strong>breaks down</strong>, you <strong>run out of gas</strong> or you’re <strong>locked out</strong>, Nationwide Roadside Assistance helps make it simple and easy to <strong>get back on the road</strong> and on your way. </p>
-<p><strong>break down</strong>，汽车抛锚；<strong>run out of gas</strong>，用光汽油，gas是指汽油；<strong>locked out</strong>，是指被锁在门外，比如：I’m locked out of my car；<strong>get back on the road</strong>，回到路上；</p>
-<p>Sign up and feel more secure when you travel. </p>
-<p>Our 24-hour emergency roadside program provides towing, a jump start, gas delivery, a flat tire change, even the services of a qualified locksmith.</p>
-<h2 id="Roadside-Assistance-服务内容"><a href="#Roadside-Assistance-服务内容" class="headerlink" title="Roadside Assistance 服务内容"></a>Roadside Assistance 服务内容</h2><p>道路救援包括以下几种情况：拖车（towing），点火（jump start），加油（gas delivery），更换爆胎（flat tire change），开锁（locksmith）；</p>
-<p>Once you sign up for Roadside Assistance, you’ll have <strong>up to</strong> $100 in lock-out services in the event that:</p>
-<p>如果你被锁在车外（are locked out of your car），你可以获得最高$100的理赔， <strong>up to</strong>，高达某个数值；lock-out services包括以下情况：</p>
-<ul>
-<li>You lose your <strong>ignition key or fob</strong>，丢失点火钥匙 <strong>ignition key</strong>；</li>
-<li>Your key <strong>breaks off</strong> in the ignition, door or trunk，钥匙断裂 <strong>break off</strong>；</li>
-<li>When you’ve locked your keys in your car，钥匙锁在车内；</li>
-</ul>
-<h2 id="如何使用-Roadside-Assistance"><a href="#如何使用-Roadside-Assistance" class="headerlink" title="如何使用 Roadside Assistance?"></a>如何使用 Roadside Assistance?</h2><p>Roadside Assistance service is easy to use, We’ll confirm your location and send emergency services if you’re in any danger.</p>
-<p>第一步，确定你所在的位置，<strong>confirm location</strong>；</p>
-<p>A <strong>Roadside Assistance field representative</strong> will <strong>be dispatched to</strong> your location to help.</p>
-<p>第二步，相关服务人员<strong>representative</strong>或<strong>rep</strong>将被派遣<strong>be dispatched to</strong>；</p>
-<p>In many cases, you’ll just sign and drive. No payment is required.</p>
-<p>在许多情况下，你要做的只是签名并且开车离开，不需要付款；</p>
-<h2 id="详细服务内容"><a href="#详细服务内容" class="headerlink" title="详细服务内容"></a>详细服务内容</h2><p>We offer two levels of Roadside Assistance</p>
-<p>服务分为两种级别</p>
-<h4 id="1-Nationwide-Roadside-Assistance-Basic，基本服务"><a href="#1-Nationwide-Roadside-Assistance-Basic，基本服务" class="headerlink" title="1) Nationwide Roadside Assistance Basic，基本服务"></a>1) Nationwide Roadside Assistance Basic，基本服务</h4><p>Applies to everyone on your policy, in any car you might be in.</p>
-<ul>
-<li>Car towing service up to 15 miles，15英里之内拖车；</li>
-<li>Ditch extraction service，车滑进沟里；</li>
-<li>Delivering gas when your tank is empty，油箱空时可以加油；</li>
-<li>Jump start a dead battery，电池用尽点火起动；</li>
-<li>Lockout service up to $100，$100 Lockout service；</li>
-<li>Replace a flat tire with your spare，换备胎；</li>
-</ul>
-<h4 id="2-Nationwide-Roadside-Assistance-Plus，高级服务"><a href="#2-Nationwide-Roadside-Assistance-Plus，高级服务" class="headerlink" title="2) Nationwide Roadside Assistance Plus，高级服务"></a>2) Nationwide Roadside Assistance Plus，高级服务</h4><p>All the services above, plus:</p>
-<ul>
-<li><strong>Car towing</strong> service up to 100 miles，100英里之内拖车；</li>
-<li><strong>Trip interruption coverage</strong> that will reimburse your expenses up to $500 for alternate transportation, lodging and meals when you’re stranded 100 or more miles from home，旅行中断保险，如果你离开家100英里以上，你的旅行被打断，你需要换车、住宿、吃饭，保险公司将补偿高达$500的费用；<strong>strand</strong>，本意搁浅，<strong>be stranded</strong>被困在某处之意；<strong>reimburse expenses</strong>，补偿费用。</li>
-</ul>
-<hr>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-&lt;h2 id=&quot;道路救援-Roadside-Assistance&quot;&gt;&lt;a href=&quot;#道路救援-Roadside-Assistance&quot; class=&quot;headerlink&quot; title=&quot;道路救援 Roadside Assistance&quot;&gt;&lt;/a&gt;道路救援 Road
-    
-    </summary>
-    
-      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>英语笔记8：Roadside Assistance</title>
-    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B08/"/>
-    <id>http://uteric.github.io/英语笔记8/</id>
-    <published>2017-09-12T03:02:51.000Z</published>
-    <updated>2017-09-12T03:02:51.000Z</updated>
-    
-    <content type="html"><![CDATA[<hr>
-<p>Your roadside assistance request has been updated</p>
-<p><em>Tow Jam</em> has been dispatched and is scheduled to perform the requested service on <strong>09/09/2017 09:00 AM</strong>. If you need to contact Tow Jam, you may call them at ×××.</p>
-<p>If you no longer need roadside assistance, please contact us at ××× as soon as possible.</p>
-<p>Sincerely</p>
-<hr>
-<p>今天把修车铺的地址告诉了保险公司，保险公司发来这封邮件，通知我们，说明天早晨将有拖车出动，把我们的车拖到指定的修车铺。</p>
-<p>道路救援，称为<strong>roadside assistance</strong>，拖车也是其中的服务内容之一。</p>
-<p>Tow Jam，是一个老牌拖车公司，<strong>dispatch</strong>是派遣调度之意，<strong>is scheduled to</strong> 是预定之意，<strong>perform service</strong>是指执行某种服务，<strong>perform the requested service</strong> 即执行所请求的服务。</p>
-<p>拨打某个电话号码，句式为<strong>call somebody at ×××</strong>或者<strong>contact somebody at ×××</strong>。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-&lt;p&gt;Your roadside assistance request has been updated&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Tow Jam&lt;/em&gt; has been dispatched and is scheduled to perform the reques
     
     </summary>
     
