@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2018-03-24T03:38:56.000Z</updated>
+  <updated>2018-03-24T04:02:02.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RNASEQ分析入门笔记6-下载注释文件并导入IGV</title>
+    <link href="http://uteric.github.io/RNASEQ%E4%B8%8B%E8%BD%BD%E6%B3%A8%E9%87%8A%E6%96%87%E4%BB%B6%E5%B9%B6%E5%AF%BC%E5%85%A5IGV/"/>
+    <id>http://uteric.github.io/RNASEQ下载注释文件并导入IGV/</id>
+    <published>2018-03-24T04:02:02.000Z</published>
+    <updated>2018-03-24T04:02:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>注释文件下载流程</strong></p>
+<p>进入Gencode网站（<a href="http://www.gencodegenes.org/%EF%BC%89" target="_blank" rel="external">http://www.gencodegenes.org/）</a>，data&gt;&gt;human&gt;&gt;GRCh37-mapped releases&gt;&gt;GENCODE release 26&gt;&gt;Comprehensive genome annotation/ GTF, GFF3</p>
+<p>右键获取下载链接，使用wget命令进行下载：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ncbi/hg19 <span class="comment">#切换到hg19目录下</span></div><div class="line">wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_26/GRCh37_mapping/gencode.v26lift37.annotation.gtf.gz <span class="comment"># 下载GTF文件</span></div><div class="line">wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_26/GRCh37_mapping/gencode.v26lift37.annotation.gff3.gz <span class="comment"># 下载GFF3文件</span></div></pre></td></tr></table></figure>
+<p>文件下载完成后，使用gzip命令解压文件，同时删除压缩文件，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gzip -d gencode.v26lift37.annotation.gtf.gz <span class="comment"># 解压GTF文件</span></div><div class="line">gzip -d gencode.v26lift37.annotation.gff3.gz <span class="comment"># 解压GFF3文件</span></div></pre></td></tr></table></figure>
+<p>使用ls命令查看当前目录下得文件，</p>
+<blockquote>
+<p>gencode.v26lift37.annotation.gff3<br>gencode.v26lift37.annotation.gtf<br>hg19.fa (之前下载并合并的参考基因组文件)</p>
+</blockquote>
+<p><strong>注释文件导入IGV流程</strong></p>
+<p>IGV下载地址：<a href="http://software.broadinstitute.org/software/igv/download" target="_blank" rel="external">http://software.broadinstitute.org/software/igv/download</a></p>
+<p>加载<em>hg19.fa</em>，点击Genome/load genome from files/hg19.fa<br>加载<em>gencode.v26lift37.annotation.gtf</em>与<em>gencode.v26lift37.annotation.gff3</em>，这两个文件不能直接加载，需要index文件，创建index文件流程如下：</p>
+<ol>
+<li>点击Tools/run igvtools/command选择sort，Input File选择GTF/GFF3文件，点击run，运行完成后会产生两个文件：gencode.v26lift37.annotation.sorted.gtf<br>gencode.v26lift37.annotation.sorted.gff3</li>
+<li>点击Tools/run igvtools/command选择index，Input File选择 .sorted.gtf/ .sorted.gff3文件，点击run，运行完成后会产生另外两个文件：gencode.v26lift37.annotation.sorted.gtf.idx<br>gencode.v26lift37.annotation.sorted.gff3.idx</li>
+<li>点击Genome/load genome from files/gencode.v26lift37.annotation.sorted.gtf.idx<br>点击Genome/load genome from files/gencode.v26lift37.annotation.sorted.gff3.idx<br>加载完成。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;注释文件下载流程&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;进入Gencode网站（&lt;a href=&quot;http://www.gencodegenes.org/%EF%BC%89&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.ge
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="RNASEQ" scheme="http://uteric.github.io/tags/RNASEQ/"/>
+    
+  </entry>
   
   <entry>
     <title>RNASEQ分析入门笔记4-MAC安装RseQC</title>
@@ -597,7 +638,7 @@ done
   </entry>
   
   <entry>
-    <title>RNASEQ分析笔记：参考基因组下载</title>
+    <title>RNASEQ分析入门笔记5-参考基因组下载</title>
     <link href="http://uteric.github.io/RNASEQ%E5%8F%82%E8%80%83%E5%9F%BA%E5%9B%A0%E7%BB%84%E4%B8%8B%E8%BD%BD/"/>
     <id>http://uteric.github.io/RNASEQ参考基因组下载/</id>
     <published>2018-03-21T03:46:13.000Z</published>
@@ -1072,32 +1113,6 @@ done
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td
-    
-    </summary>
-    
-      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>英语笔记12：FedEx Tracking</title>
-    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B012/"/>
-    <id>http://uteric.github.io/英语笔记12/</id>
-    <published>2017-09-21T03:18:18.000Z</published>
-    <updated>2017-09-21T03:18:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>跟踪运单，称为Tracking，比如FedEx Tracking；</p>
-<p>运单号码称为 tracking numbers，由12位数字组成，比如877059291689；</p>
-<p>输入tracking number后，左边是发货日期（Ship Date），右边是实际到货时间（Actual Delivery），中间是Travel History，按时间先后分别是：收件（Picked up），离开仓库（Left original facility），发出（Depart），到达（Arrive），进入本地仓库（At local facility），配送中（On vehicle for delivery），送达（Delivered）。</p>
-<p>发件人称为 Sender；收件人称为 Recipient；包裹重量称为 Weight；体积称为 Dimentions；接收包裹的办公室称为Drop Office；包裹到达目的地后通常会被送至公寓或单位前台，称为 Receptionist / Front desk，如果需要签名才能收货，称为 Direct signature required。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;跟踪运单，称为Tracking，比如FedEx Tracking；&lt;/p&gt;
-&lt;p&gt;运单号码称为 tracking numbers，由12位数字组成，比如877059291689；&lt;/p&gt;
-&lt;p&gt;输入tracking number后，左边是发货日期（Ship Date），右边
     
     </summary>
     
