@@ -23,107 +23,353 @@
     <updated>2018-03-24T03:38:56.000Z</updated>
     
     <content type="html"><![CDATA[<p>RseQC是对比对结果进行质控的工具，在MAC环境下，可以优先选用conda命令进行安装，不会报错。</p>
-<pre><code>$ conda install rseqc #安装RseQC，注意都是小写
-</code></pre><p>Solving environment: /<br>Warning: 2 possible package resolutions (only showing differing packages):</p>
-<ul>
-<li>defaults::requests-2.18.4-py27h9b2b37c_1, defaults::urllib3-1.22-py27hc3787e9_0</li>
-<li>bioconda::urllib3-1.12-py27_0, defaults::requests-2.14.2-py27done<br>Package Plan<br>environment location: /Users/xiuliliu/miniconda3<br>added / updated specs:</li>
-<li><p>rseqc<br>The following packages will be downloaded:</p>
-<p>  package                    |            build<br>  —————————|—————–<br>  wheel-0.30.0               |   py27h677a027_1          66 KB<br>  jedi-0.11.1                |           py27_0         297 KB<br>  idna-2.6                   |   py27hedea723_1         122 KB<br>  python-2.7.14              |      h138c1fe_30        11.5 MB<br>  backports.shutil_get_terminal_size-1.0.0|   py27hc9115de_2           8 KB<br>  pycparser-2.18             |   py27h0d28d88_1         167 KB<br>  send2trash-1.5.0           |           py27_0          16 KB<br>  bx-python-0.7.3            |           py27_0         863 KB  bioconda<br>  ipython-5.4.1              |           py27_2        1014 KB<br>  urllib3-1.22               |   py27hc3787e9_0         153 KB<br>  configparser-3.5.0         |   py27hc7edf1b_0          35 KB<br>  python-dateutil-2.3        |           py27_0         213 KB  bioconda<br>  pygments-2.2.0             |   py27h1a556bb_0         1.3 MB<br>  terminado-0.8.1            |           py27_1          20 KB<br>  backports-1.0              |   py27hb4f9756_1           3 KB<br>  testpath-0.3.1             |   py27h72d81a5_0          89 KB<br>  notebook-5.4.0             |           py27_0         6.6 MB<br>  pyopenssl-17.5.0           |   py27hfda213f_0          77 KB<br>  decorator-4.2.1            |           py27_0          15 KB<br>  webencodings-0.5.1         |   py27h19a9f58_1          19 KB<br>  nbconvert-5.3.1            |   py27h6455e4c_0         394 KB<br>  ipykernel-4.8.2            |           py27_0         143 KB<br>  functools32-3.2.3.2        |   py27h8ceab06_1          22 KB<br>  entrypoints-0.2.3          |   py27hd680fb1_2           9 KB<br>  asn1crypto-0.24.0          |           py27_0         155 KB<br>  pip-9.0.1                  |           py27_5         2.2 MB<br>  pyzmq-17.0.0               |   py27h1de35cc_0         393 KB<br>  backports_abc-0.5          |   py27h6972548_0          12 KB<br>  ruamel_yaml-0.15.35        |   py27h1de35cc_1         228 KB<br>  backports.functools_lru_cache-1.5|           py27_1           9 KB<br>  scandir-1.7                |   py27h1de35cc_0          25 KB<br>  setuptools-38.5.1          |           py27_0         509 KB<br>  pyparsing-2.2.0            |   py27h5bb6aaf_0          94 KB<br>  tornado-5.0                |           py27_0         618 KB<br>  requests-2.18.4            |   py27h9b2b37c_1          91 KB<br>  futures-3.2.0              |   py27h1b80678_0          24 KB<br>  bleach-1.4.2               |           py27_0          31 KB  bioconda<br>  kiwisolver-1.0.1           |   py27h9856860_0          57 KB<br>  html5lib-1.0.1             |   py27h5233db4_0         188 KB<br>  cycler-0.10.0              |   py27hfc73c78_0          13 KB<br>  singledispatch-3.4.0.3     |   py27he22c18d_0          15 KB<br>  jsonschema-2.6.0           |   py27hd9b497e_0          61 KB<br>  numpy-1.14.2               |   py27ha9ae307_0         3.9 MB<br>  nbformat-4.4.0             |   py27hddc86d0_0         136 KB<br>  pandocfilters-1.4.2        |   py27hed78c4e_1          12 KB<br>  pickleshare-0.7.4          |   py27h37e3d41_0          11 KB<br>  jupyter_client-5.2.2       |           py27_0         121 KB<br>  prompt_toolkit-1.0.15      |   py27h4a7b9c2_0         333 KB<br>  jupyter_core-4.4.0         |   py27h5ea6ba4_0          60 KB<br>  cython-0.27.3              |   py27h6429b90_0         2.6 MB<br>  ipython_genutils-0.2.0     |   py27h8b9a179_0          38 KB<br>  pytz-2018.3                |           py27_0         211 KB<br>  markupsafe-1.0             |   py27hd3c86fa_1          23 KB<br>  conda-4.4.11               |           py27_0         931 KB<br>  chardet-3.0.4              |   py27h2842e91_1         180 KB<br>  appnope-0.1.0              |   py27hb466136_0           8 KB<br>  ptyprocess-0.5.2           |   py27h70f6364_0          22 KB<br>  six-1.11.0                 |   py27h7252ba3_1          21 KB<br>  pathlib2-2.3.0             |   py27he09da1e_0          31 KB<br>  pysocks-1.6.8              |           py27_0          22 KB<br>  parso-0.1.1                |   py27he57c4c6_0         115 KB<br>  ipaddress-1.0.19           |           py27_0          32 KB<br>  python.app-2               |   py27hf2d5e94_7          11 KB<br>  wcwidth-0.1.7              |   py27h817c265_0          25 KB<br>  matplotlib-2.2.0           |   py27hfa7797c_0         6.6 MB<br>  pycosat-0.6.3              |   py27h6c51c7e_0         106 KB<br>  subprocess32-3.2.7         |   py27h24b2887_0          38 KB<br>  htseq-0.9.1                |           py27_0         315 KB  bioconda<br>  rseqc-2.6.4                |           py27_0         228 KB  bioconda<br>  certifi-2018.1.18          |           py27_0         143 KB<br>  simplegeneric-0.8.1        |           py27_2           9 KB<br>  mistune-0.8.3              |           py27_0          52 KB<br>  pexpect-4.4.0              |           py27_0          70 KB<br>  pysam-0.14.0               | py27_htslib1.7_2         2.0 MB  bioconda<br>  jinja2-2.10                |   py27h70b8dc5_0         177 KB<br>  hisat2-2.1.0               |   py27pl5.22.0_0         6.9 MB  bioconda<br>  enum34-1.1.6               |   py27hf475452_1          57 KB<br>  cffi-1.11.5                |   py27h342bebf_0         201 KB<br>  traitlets-4.3.2            |   py27hcf08151_0         126 KB</p>
-<h2 id="cryptography-2-1-4-py27hdbc5e8f-0-548-KB"><a href="#cryptography-2-1-4-py27hdbc5e8f-0-548-KB" class="headerlink" title="  cryptography-2.1.4         |   py27hdbc5e8f_0         548 KB"></a>  cryptography-2.1.4         |   py27hdbc5e8f_0         548 KB</h2><pre><code>Total:        54.1 MB
-</code></pre></li>
-</ul>
-<p>The following NEW packages will be INSTALLED:</p>
-<pre><code>backports:                          1.0-py27hb4f9756_1
-backports.functools_lru_cache:      1.5-py27_1
-backports.shutil_get_terminal_size: 1.0.0-py27hc9115de_2
-backports_abc:                      0.5-py27h6972548_0
-bx-python:                          0.7.3-py27_0            bioconda
-configparser:                       3.5.0-py27hc7edf1b_0
-cython:                             0.27.3-py27h6429b90_0
-enum34:                             1.1.6-py27hf475452_1
-functools32:                        3.2.3.2-py27h8ceab06_1
-futures:                            3.2.0-py27h1b80678_0
-ipaddress:                          1.0.19-py27_0
-pathlib2:                           2.3.0-py27he09da1e_0
-rseqc:                              2.6.4-py27_0            bioconda
-scandir:                            1.7-py27h1de35cc_0
-singledispatch:                     3.4.0.3-py27he22c18d_0
-subprocess32:                       3.2.7-py27h24b2887_0
-</code></pre><p>The following packages will be UPDATED:</p>
-<pre><code>appnope:                            0.1.0-py36hf537a9a_0             --&gt; 0.1.0-py27hb466136_0
-asn1crypto:                         0.24.0-py36_0                    --&gt; 0.24.0-py27_0
-bleach:                             1.4.2-py36_0            bioconda --&gt; 1.4.2-py27_0            bioconda
-certifi:                            2018.1.18-py36_0                 --&gt; 2018.1.18-py27_0
-cffi:                               1.11.4-py36h342bebf_0            --&gt; 1.11.5-py27h342bebf_0
-chardet:                            3.0.4-py36h96c241c_1             --&gt; 3.0.4-py27h2842e91_1
-conda:                              4.4.11-py36_0                    --&gt; 4.4.11-py27_0
-cryptography:                       2.1.4-py36h842514c_0             --&gt; 2.1.4-py27hdbc5e8f_0
-cycler:                             0.10.0-py36hfc81398_0            --&gt; 0.10.0-py27hfc73c78_0
-decorator:                          4.2.1-py36_0                     --&gt; 4.2.1-py27_0
-entrypoints:                        0.2.3-py36hd81d71f_2             --&gt; 0.2.3-py27hd680fb1_2
-hisat2:                             2.1.0-py36pl5.22.0_0    bioconda --&gt; 2.1.0-py27pl5.22.0_0    bioconda
-html5lib:                           1.0.1-py36h2f9c1c0_0             --&gt; 1.0.1-py27h5233db4_0
-htseq:                              0.9.1-py36_0            bioconda --&gt; 0.9.1-py27_0            bioconda
-idna:                               2.6-py36h8628d0a_1               --&gt; 2.6-py27hedea723_1
-ipykernel:                          4.8.2-py36_0                     --&gt; 4.8.2-py27_0
-ipython_genutils:                   0.2.0-py36h241746c_0             --&gt; 0.2.0-py27h8b9a179_0
-jedi:                               0.11.1-py36_0                    --&gt; 0.11.1-py27_0
-jinja2:                             2.10-py36hd36f9c5_0              --&gt; 2.10-py27h70b8dc5_0
-jsonschema:                         2.6.0-py36hb385e00_0             --&gt; 2.6.0-py27hd9b497e_0
-jupyter_client:                     5.2.2-py36_0                     --&gt; 5.2.2-py27_0
-jupyter_core:                       4.4.0-py36h79cf704_0             --&gt; 4.4.0-py27h5ea6ba4_0
-kiwisolver:                         1.0.1-py36h792292d_0             --&gt; 1.0.1-py27h9856860_0
-markupsafe:                         1.0-py36h3a1e703_1               --&gt; 1.0-py27hd3c86fa_1
-matplotlib:                         2.2.0-py36hfa7797c_0             --&gt; 2.2.0-py27hfa7797c_0
-mistune:                            0.8.3-py36_0                     --&gt; 0.8.3-py27_0
-nbconvert:                          5.3.1-py36h810822e_0             --&gt; 5.3.1-py27h6455e4c_0
-nbformat:                           4.4.0-py36h827af21_0             --&gt; 4.4.0-py27hddc86d0_0
-notebook:                           5.4.0-py36_0                     --&gt; 5.4.0-py27_0
-numpy:                              1.14.2-py36ha9ae307_0            --&gt; 1.14.2-py27ha9ae307_0
-pandocfilters:                      1.4.2-py36h3b0b094_1             --&gt; 1.4.2-py27hed78c4e_1
-parso:                              0.1.1-py36hc90e01c_0             --&gt; 0.1.1-py27he57c4c6_0
-pexpect:                            4.4.0-py36_0                     --&gt; 4.4.0-py27_0
-pickleshare:                        0.7.4-py36hf512f8e_0             --&gt; 0.7.4-py27h37e3d41_0
-pip:                                9.0.1-py36h1555ced_4             --&gt; 9.0.1-py27_5
-prompt_toolkit:                     1.0.15-py36haeda067_0            --&gt; 1.0.15-py27h4a7b9c2_0
-ptyprocess:                         0.5.2-py36he6521c3_0             --&gt; 0.5.2-py27h70f6364_0
-pycosat:                            0.6.3-py36hee92d8f_0             --&gt; 0.6.3-py27h6c51c7e_0
-pycparser:                          2.18-py36h724b2fc_1              --&gt; 2.18-py27h0d28d88_1
-pygments:                           2.2.0-py36h240cd3f_0             --&gt; 2.2.0-py27h1a556bb_0
-pyopenssl:                          17.5.0-py36h51e4350_0            --&gt; 17.5.0-py27hfda213f_0
-pyparsing:                          2.2.0-py36hb281f35_0             --&gt; 2.2.0-py27h5bb6aaf_0
-pysam:                              0.14.0-py36_htslib1.7_2 bioconda --&gt; 0.14.0-py27_htslib1.7_2 bioconda
-pysocks:                            1.6.7-py36hfa33cec_1             --&gt; 1.6.8-py27_0
-python.app:                         2-py36h54569d5_7                 --&gt; 2-py27hf2d5e94_7
-pytz:                               2018.3-py36_0                    --&gt; 2018.3-py27_0
-pyzmq:                              17.0.0-py36h1de35cc_0            --&gt; 17.0.0-py27h1de35cc_0
-requests:                           2.18.4-py36h4516966_1            --&gt; 2.18.4-py27h9b2b37c_1
-ruamel_yaml:                        0.15.35-py36h1de35cc_1           --&gt; 0.15.35-py27h1de35cc_1
-send2trash:                         1.5.0-py36_0                     --&gt; 1.5.0-py27_0
-setuptools:                         38.4.0-py36_0                    --&gt; 38.5.1-py27_0
-simplegeneric:                      0.8.1-py36_2                     --&gt; 0.8.1-py27_2
-six:                                1.11.0-py36h0e22d5e_1            --&gt; 1.11.0-py27h7252ba3_1
-terminado:                          0.8.1-py36_1                     --&gt; 0.8.1-py27_1
-testpath:                           0.3.1-py36h625a49b_0             --&gt; 0.3.1-py27h72d81a5_0
-tornado:                            5.0-py36_0                       --&gt; 5.0-py27_0
-traitlets:                          4.3.2-py36h65bd3ce_0             --&gt; 4.3.2-py27hcf08151_0
-urllib3:                            1.22-py36h68b9469_0              --&gt; 1.22-py27hc3787e9_0
-wcwidth:                            0.1.7-py36h8c6ec74_0             --&gt; 0.1.7-py27h817c265_0
-webencodings:                       0.5.1-py36h3b9701d_1             --&gt; 0.5.1-py27h19a9f58_1
-wheel:                              0.30.0-py36h5eb2c71_1            --&gt; 0.30.0-py27h677a027_1
-</code></pre><p>The following packages will be DOWNGRADED:</p>
-<pre><code>ipython:                            6.2.1-py36h3dda519_1             --&gt; 5.4.1-py27_2
-python:                             3.6.4-hc167b69_1                 --&gt; 2.7.14-h138c1fe_30
-python-dateutil:                    2.7.0-py36_0                     --&gt; 2.3-py27_0              bioconda
-</code></pre><p>询问是否继续？ Proceed ([y]/n)? y<br>输入y以完成安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install rseqc <span class="comment">#安装RseQC，注意都是小写</span></div></pre></td></tr></table></figure>
+<p>Solving environment: /</p>
+<p><em>The following packages will be downloaded:</em></p>
+<table>
+<thead>
+<tr>
+<th>package</th>
+<th>build</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wheel-0.30.0</td>
+<td>py27h677a027_1          66 KB</td>
+</tr>
+<tr>
+<td>jedi-0.11.1</td>
+<td>py27_0         297 KB</td>
+</tr>
+<tr>
+<td>idna-2.6</td>
+<td>py27hedea723_1         122 KB</td>
+</tr>
+<tr>
+<td>python-2.7.14</td>
+<td>h138c1fe_30        11.5 MB</td>
+</tr>
+<tr>
+<td>backports.shutil_get_terminal_size-1.0.0</td>
+<td>py27hc9115de_2           8 KB</td>
+</tr>
+<tr>
+<td>pycparser-2.18</td>
+<td>py27h0d28d88_1         167 KB</td>
+</tr>
+<tr>
+<td>send2trash-1.5.0</td>
+<td>py27_0          16 KB</td>
+</tr>
+<tr>
+<td>bx-python-0.7.3</td>
+<td>py27_0         863 KB  bioconda</td>
+</tr>
+<tr>
+<td>ipython-5.4.1</td>
+<td>py27_2        1014 KB</td>
+</tr>
+<tr>
+<td>urllib3-1.22</td>
+<td>py27hc3787e9_0         153 KB</td>
+</tr>
+<tr>
+<td>configparser-3.5.0</td>
+<td>py27hc7edf1b_0          35 KB</td>
+</tr>
+<tr>
+<td>python-dateutil-2.3</td>
+<td>py27_0         213 KB  bioconda</td>
+</tr>
+<tr>
+<td>pygments-2.2.0</td>
+<td>py27h1a556bb_0         1.3 MB</td>
+</tr>
+<tr>
+<td>terminado-0.8.1</td>
+<td>py27_1          20 KB</td>
+</tr>
+<tr>
+<td>backports-1.0</td>
+<td>py27hb4f9756_1           3 KB</td>
+</tr>
+<tr>
+<td>testpath-0.3.1</td>
+<td>py27h72d81a5_0          89 KB</td>
+</tr>
+<tr>
+<td>notebook-5.4.0</td>
+<td>py27_0         6.6 MB</td>
+</tr>
+<tr>
+<td>pyopenssl-17.5.0</td>
+<td>py27hfda213f_0          77 KB</td>
+</tr>
+<tr>
+<td>decorator-4.2.1</td>
+<td>py27_0          15 KB</td>
+</tr>
+<tr>
+<td>webencodings-0.5.1</td>
+<td>py27h19a9f58_1          19 KB</td>
+</tr>
+<tr>
+<td>nbconvert-5.3.1</td>
+<td>py27h6455e4c_0         394 KB</td>
+</tr>
+<tr>
+<td>ipykernel-4.8.2</td>
+<td>py27_0         143 KB</td>
+</tr>
+<tr>
+<td>functools32-3.2.3.2</td>
+<td>py27h8ceab06_1          22 KB</td>
+</tr>
+<tr>
+<td>entrypoints-0.2.3</td>
+<td>py27hd680fb1_2           9 KB</td>
+</tr>
+<tr>
+<td>asn1crypto-0.24.0</td>
+<td>py27_0         155 KB</td>
+</tr>
+<tr>
+<td>pip-9.0.1</td>
+<td>py27_5         2.2 MB</td>
+</tr>
+<tr>
+<td>pyzmq-17.0.0</td>
+<td>py27h1de35cc_0         393 KB</td>
+</tr>
+<tr>
+<td>backports_abc-0.5</td>
+<td>py27h6972548_0          12 KB</td>
+</tr>
+<tr>
+<td>ruamel_yaml-0.15.35</td>
+<td>py27h1de35cc_1         228 KB</td>
+</tr>
+<tr>
+<td>backports.functools_lru_cache-1.5</td>
+<td>py27_1           9 KB</td>
+</tr>
+<tr>
+<td>scandir-1.7</td>
+<td>py27h1de35cc_0          25 KB</td>
+</tr>
+<tr>
+<td>setuptools-38.5.1</td>
+<td>py27_0         509 KB</td>
+</tr>
+<tr>
+<td>pyparsing-2.2.0</td>
+<td>py27h5bb6aaf_0          94 KB</td>
+</tr>
+<tr>
+<td>tornado-5.0</td>
+<td>py27_0         618 KB</td>
+</tr>
+<tr>
+<td>requests-2.18.4</td>
+<td>py27h9b2b37c_1          91 KB</td>
+</tr>
+<tr>
+<td>futures-3.2.0</td>
+<td>py27h1b80678_0          24 KB</td>
+</tr>
+<tr>
+<td>bleach-1.4.2</td>
+<td>py27_0          31 KB  bioconda</td>
+</tr>
+<tr>
+<td>kiwisolver-1.0.1</td>
+<td>py27h9856860_0          57 KB</td>
+</tr>
+<tr>
+<td>html5lib-1.0.1</td>
+<td>py27h5233db4_0         188 KB</td>
+</tr>
+<tr>
+<td>cycler-0.10.0</td>
+<td>py27hfc73c78_0          13 KB</td>
+</tr>
+<tr>
+<td>singledispatch-3.4.0.3</td>
+<td>py27he22c18d_0          15 KB</td>
+</tr>
+<tr>
+<td>jsonschema-2.6.0</td>
+<td>py27hd9b497e_0          61 KB</td>
+</tr>
+<tr>
+<td>numpy-1.14.2</td>
+<td>py27ha9ae307_0         3.9 MB</td>
+</tr>
+<tr>
+<td>nbformat-4.4.0</td>
+<td>py27hddc86d0_0         136 KB</td>
+</tr>
+<tr>
+<td>pandocfilters-1.4.2</td>
+<td>py27hed78c4e_1          12 KB</td>
+</tr>
+<tr>
+<td>pickleshare-0.7.4</td>
+<td>py27h37e3d41_0          11 KB</td>
+</tr>
+<tr>
+<td>jupyter_client-5.2.2</td>
+<td>py27_0         121 KB</td>
+</tr>
+<tr>
+<td>prompt_toolkit-1.0.15</td>
+<td>py27h4a7b9c2_0         333 KB</td>
+</tr>
+<tr>
+<td>jupyter_core-4.4.0</td>
+<td>py27h5ea6ba4_0          60 KB</td>
+</tr>
+<tr>
+<td>cython-0.27.3</td>
+<td>py27h6429b90_0         2.6 MB</td>
+</tr>
+<tr>
+<td>ipython_genutils-0.2.0</td>
+<td>py27h8b9a179_0          38 KB</td>
+</tr>
+<tr>
+<td>pytz-2018.3</td>
+<td>py27_0         211 KB</td>
+</tr>
+<tr>
+<td>markupsafe-1.0</td>
+<td>py27hd3c86fa_1          23 KB</td>
+</tr>
+<tr>
+<td>conda-4.4.11</td>
+<td>py27_0         931 KB</td>
+</tr>
+<tr>
+<td>chardet-3.0.4</td>
+<td>py27h2842e91_1         180 KB</td>
+</tr>
+<tr>
+<td>appnope-0.1.0</td>
+<td>py27hb466136_0           8 KB</td>
+</tr>
+<tr>
+<td>ptyprocess-0.5.2</td>
+<td>py27h70f6364_0          22 KB</td>
+</tr>
+<tr>
+<td>six-1.11.0</td>
+<td>py27h7252ba3_1          21 KB</td>
+</tr>
+<tr>
+<td>pathlib2-2.3.0</td>
+<td>py27he09da1e_0          31 KB</td>
+</tr>
+<tr>
+<td>pysocks-1.6.8</td>
+<td>py27_0          22 KB</td>
+</tr>
+<tr>
+<td>parso-0.1.1</td>
+<td>py27he57c4c6_0         115 KB</td>
+</tr>
+<tr>
+<td>ipaddress-1.0.19</td>
+<td>py27_0          32 KB</td>
+</tr>
+<tr>
+<td>python.app-2</td>
+<td>py27hf2d5e94_7          11 KB</td>
+</tr>
+<tr>
+<td>wcwidth-0.1.7</td>
+<td>py27h817c265_0          25 KB</td>
+</tr>
+<tr>
+<td>matplotlib-2.2.0</td>
+<td>py27hfa7797c_0         6.6 MB</td>
+</tr>
+<tr>
+<td>pycosat-0.6.3</td>
+<td>py27h6c51c7e_0         106 KB</td>
+</tr>
+<tr>
+<td>subprocess32-3.2.7</td>
+<td>py27h24b2887_0          38 KB</td>
+</tr>
+<tr>
+<td>htseq-0.9.1</td>
+<td>py27_0         315 KB  bioconda</td>
+</tr>
+<tr>
+<td>rseqc-2.6.4</td>
+<td>py27_0         228 KB  bioconda</td>
+</tr>
+<tr>
+<td>certifi-2018.1.18</td>
+<td>py27_0         143 KB</td>
+</tr>
+<tr>
+<td>simplegeneric-0.8.1</td>
+<td>py27_2           9 KB</td>
+</tr>
+<tr>
+<td>mistune-0.8.3</td>
+<td>py27_0          52 KB</td>
+</tr>
+<tr>
+<td>pexpect-4.4.0</td>
+<td>py27_0          70 KB</td>
+</tr>
+<tr>
+<td>pysam-0.14.0</td>
+<td>py27_htslib1.7_2         2.0 MB  bioconda</td>
+</tr>
+<tr>
+<td>jinja2-2.10</td>
+<td>py27h70b8dc5_0         177 KB</td>
+</tr>
+<tr>
+<td>hisat2-2.1.0</td>
+<td>py27pl5.22.0_0         6.9 MB  bioconda</td>
+</tr>
+<tr>
+<td>enum34-1.1.6</td>
+<td>py27hf475452_1          57 KB</td>
+</tr>
+<tr>
+<td>cffi-1.11.5</td>
+<td>py27h342bebf_0         201 KB</td>
+</tr>
+<tr>
+<td>traitlets-4.3.2</td>
+<td>py27hcf08151_0         126 KB</td>
+</tr>
+<tr>
+<td>cryptography-2.1.4</td>
+<td>py27hdbc5e8f_0         548 KB</td>
+</tr>
+</tbody>
+</table>
+<p>——————————————————-Total:        54.1 MB</p>
+<p><em>The following NEW packages will be INSTALLED:</em></p>
+<p>backports:                          1.0-py27hb4f9756_1<br>backports.functools_lru_cache:      1.5-py27_1<br>backports.shutil_get_terminal_size: 1.0.0-py27hc9115de_2<br>backports_abc:                      0.5-py27h6972548_0<br>bx-python:                          0.7.3-py27_0            bioconda<br>configparser:                       3.5.0-py27hc7edf1b_0<br>cython:                             0.27.3-py27h6429b90_0<br>enum34:                             1.1.6-py27hf475452_1<br>functools32:                        3.2.3.2-py27h8ceab06_1<br>futures:                            3.2.0-py27h1b80678_0<br>ipaddress:                          1.0.19-py27_0<br>pathlib2:                           2.3.0-py27he09da1e_0<br>rseqc:                              2.6.4-py27_0            bioconda<br>scandir:                            1.7-py27h1de35cc_0<br>singledispatch:                     3.4.0.3-py27he22c18d_0<br>subprocess32:                       3.2.7-py27h24b2887_0</p>
+<p><em>The following packages will be UPDATED:</em></p>
+<p>appnope:                            0.1.0-py36hf537a9a_0             –&gt; 0.1.0-py27hb466136_0<br>asn1crypto:                         0.24.0-py36_0                    –&gt; 0.24.0-py27_0<br>bleach:                             1.4.2-py36_0            bioconda –&gt; 1.4.2-py27_0            bioconda<br>certifi:                            2018.1.18-py36_0                 –&gt; 2018.1.18-py27_0<br>cffi:                               1.11.4-py36h342bebf_0            –&gt; 1.11.5-py27h342bebf_0<br>chardet:                            3.0.4-py36h96c241c_1             –&gt; 3.0.4-py27h2842e91_1<br>conda:                              4.4.11-py36_0                    –&gt; 4.4.11-py27_0<br>cryptography:                       2.1.4-py36h842514c_0             –&gt; 2.1.4-py27hdbc5e8f_0<br>cycler:                             0.10.0-py36hfc81398_0            –&gt; 0.10.0-py27hfc73c78_0<br>decorator:                          4.2.1-py36_0                     –&gt; 4.2.1-py27_0<br>entrypoints:                        0.2.3-py36hd81d71f_2             –&gt; 0.2.3-py27hd680fb1_2<br>hisat2:                             2.1.0-py36pl5.22.0_0    bioconda –&gt; 2.1.0-py27pl5.22.0_0    bioconda<br>html5lib:                           1.0.1-py36h2f9c1c0_0             –&gt; 1.0.1-py27h5233db4_0<br>htseq:                              0.9.1-py36_0            bioconda –&gt; 0.9.1-py27_0            bioconda<br>idna:                               2.6-py36h8628d0a_1               –&gt; 2.6-py27hedea723_1<br>ipykernel:                          4.8.2-py36_0                     –&gt; 4.8.2-py27_0<br>ipython_genutils:                   0.2.0-py36h241746c_0             –&gt; 0.2.0-py27h8b9a179_0<br>jedi:                               0.11.1-py36_0                    –&gt; 0.11.1-py27_0<br>jinja2:                             2.10-py36hd36f9c5_0              –&gt; 2.10-py27h70b8dc5_0<br>jsonschema:                         2.6.0-py36hb385e00_0             –&gt; 2.6.0-py27hd9b497e_0<br>jupyter_client:                     5.2.2-py36_0                     –&gt; 5.2.2-py27_0<br>jupyter_core:                       4.4.0-py36h79cf704_0             –&gt; 4.4.0-py27h5ea6ba4_0<br>kiwisolver:                         1.0.1-py36h792292d_0             –&gt; 1.0.1-py27h9856860_0<br>markupsafe:                         1.0-py36h3a1e703_1               –&gt; 1.0-py27hd3c86fa_1<br>matplotlib:                         2.2.0-py36hfa7797c_0             –&gt; 2.2.0-py27hfa7797c_0<br>mistune:                            0.8.3-py36_0                     –&gt; 0.8.3-py27_0<br>nbconvert:                          5.3.1-py36h810822e_0             –&gt; 5.3.1-py27h6455e4c_0<br>nbformat:                           4.4.0-py36h827af21_0             –&gt; 4.4.0-py27hddc86d0_0<br>notebook:                           5.4.0-py36_0                     –&gt; 5.4.0-py27_0<br>numpy:                              1.14.2-py36ha9ae307_0            –&gt; 1.14.2-py27ha9ae307_0<br>pandocfilters:                      1.4.2-py36h3b0b094_1             –&gt; 1.4.2-py27hed78c4e_1<br>parso:                              0.1.1-py36hc90e01c_0             –&gt; 0.1.1-py27he57c4c6_0<br>pexpect:                            4.4.0-py36_0                     –&gt; 4.4.0-py27_0<br>pickleshare:                        0.7.4-py36hf512f8e_0             –&gt; 0.7.4-py27h37e3d41_0<br>pip:                                9.0.1-py36h1555ced_4             –&gt; 9.0.1-py27_5<br>prompt_toolkit:                     1.0.15-py36haeda067_0            –&gt; 1.0.15-py27h4a7b9c2_0<br>ptyprocess:                         0.5.2-py36he6521c3_0             –&gt; 0.5.2-py27h70f6364_0<br>pycosat:                            0.6.3-py36hee92d8f_0             –&gt; 0.6.3-py27h6c51c7e_0<br>pycparser:                          2.18-py36h724b2fc_1              –&gt; 2.18-py27h0d28d88_1<br>pygments:                           2.2.0-py36h240cd3f_0             –&gt; 2.2.0-py27h1a556bb_0<br>pyopenssl:                          17.5.0-py36h51e4350_0            –&gt; 17.5.0-py27hfda213f_0<br>pyparsing:                          2.2.0-py36hb281f35_0             –&gt; 2.2.0-py27h5bb6aaf_0<br>pysam:                              0.14.0-py36_htslib1.7_2 bioconda –&gt; 0.14.0-py27_htslib1.7_2 bioconda<br>pysocks:                            1.6.7-py36hfa33cec_1             –&gt; 1.6.8-py27_0<br>python.app:                         2-py36h54569d5_7                 –&gt; 2-py27hf2d5e94_7<br>pytz:                               2018.3-py36_0                    –&gt; 2018.3-py27_0<br>pyzmq:                              17.0.0-py36h1de35cc_0            –&gt; 17.0.0-py27h1de35cc_0<br>requests:                           2.18.4-py36h4516966_1            –&gt; 2.18.4-py27h9b2b37c_1<br>ruamel_yaml:                        0.15.35-py36h1de35cc_1           –&gt; 0.15.35-py27h1de35cc_1<br>send2trash:                         1.5.0-py36_0                     –&gt; 1.5.0-py27_0<br>setuptools:                         38.4.0-py36_0                    –&gt; 38.5.1-py27_0<br>simplegeneric:                      0.8.1-py36_2                     –&gt; 0.8.1-py27_2<br>six:                                1.11.0-py36h0e22d5e_1            –&gt; 1.11.0-py27h7252ba3_1<br>terminado:                          0.8.1-py36_1                     –&gt; 0.8.1-py27_1<br>testpath:                           0.3.1-py36h625a49b_0             –&gt; 0.3.1-py27h72d81a5_0<br>tornado:                            5.0-py36_0                       –&gt; 5.0-py27_0<br>traitlets:                          4.3.2-py36h65bd3ce_0             –&gt; 4.3.2-py27hcf08151_0<br>urllib3:                            1.22-py36h68b9469_0              –&gt; 1.22-py27hc3787e9_0<br>wcwidth:                            0.1.7-py36h8c6ec74_0             –&gt; 0.1.7-py27h817c265_0<br>webencodings:                       0.5.1-py36h3b9701d_1             –&gt; 0.5.1-py27h19a9f58_1<br>wheel:                              0.30.0-py36h5eb2c71_1            –&gt; 0.30.0-py27h677a027_1</p>
+<p><em>The following packages will be DOWNGRADED:</em></p>
+<p>ipython:                            6.2.1-py36h3dda519_1             –&gt; 5.4.1-py27_2<br>python:                             3.6.4-hc167b69_1                 –&gt; 2.7.14-h138c1fe_30<br>python-dateutil:                    2.7.0-py36_0                     –&gt; 2.3-py27_0              bioconda</p>
+<p>询问是否继续？ Proceed ([y]/n)? y<br>输入y以完成安装。</p>
 ]]></content>
     
     <summary type="html">
     
       &lt;p&gt;RseQC是对比对结果进行质控的工具，在MAC环境下，可以优先选用conda命令进行安装，不会报错。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ conda install rseqc #安装RseQC，注意都是小写
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Solving environme
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line
     
     </summary>
     
