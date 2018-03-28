@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2018-03-24T04:02:02.000Z</updated>
+  <updated>2018-03-28T03:24:05.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,104 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RNASEQ分析入门笔记7- HTSeq定量基因表达水平</title>
+    <link href="http://uteric.github.io/RNASEQ%20HTSeq%E5%AE%9A%E9%87%8F%E5%9F%BA%E5%9B%A0%E8%A1%A8%E8%BE%BE%E6%B0%B4%E5%B9%B3/"/>
+    <id>http://uteric.github.io/RNASEQ HTSeq定量基因表达水平/</id>
+    <published>2018-03-28T03:24:05.000Z</published>
+    <updated>2018-03-28T03:24:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="HTseq统计基因reads数"><a href="#HTseq统计基因reads数" class="headerlink" title="HTseq统计基因reads数"></a>HTseq统计基因reads数</h2><p><strong>HTseq</strong>是用于分析基因表达量的软件，能够根据基因结构注释GTF文件对排序过的SAM/BAM文件进行基因reads数的统计。</p>
+<p><em>语法：htseq-count [options]</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir -p ncbi/matrix/ 在ncbi目录下创建matrix文件夹，用于存放HTseq生成的.count文件。-p (-parents)，加上此选项后，系统将自动建立那些尚不存在的目录。</div></pre></td></tr></table></figure>
+<p>运行HTseq-count命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">htseq-count ~/ncbi/aligned/SRR3589959_count.sam ~/ncbi/reference/mm10/gencode.vM10.annotation.gtf &gt; ~/ncbi/matrix/SRR3589959.count</div><div class="line">htseq-count ~/ncbi/aligned/SRR3589960_count.sam ~/ncbi/reference/mm10/gencode.vM10.annotation.gtf &gt; ~/ncbi/matrix/SRR3589960.count</div><div class="line">htseq-count ~/ncbi/aligned/SRR3589961_count.sam ~/ncbi/reference/mm10/gencode.vM10.annotation.gtf &gt; ~/ncbi/matrix/SRR3589961.count</div><div class="line">htseq-count ~/ncbi/aligned/SRR3589962_count.sam ~/ncbi/reference/mm10/gencode.vM10.annotation.gtf &gt; ~/ncbi/matrix/SRR3589962.count</div></pre></td></tr></table></figure>
+<p>上述语法是将排序过的SAM文件（count.sam）进行reads数统计，并输出为.count文件（不用担心存储空间问题，每个文件仅1M左右）。此处，使用了绝对路径，也可以根据自己的情况选择使用相对路径。</p>
+<p>为节省时间，可以将上述命令在4个终端中同时执行，大约需要2个小时左右可以完成，生成4个文件：</p>
+<blockquote>
+<p>SRR3589959.count<br>SRR3589960.count<br>SRR3589961.count<br>SRR3589962.count</p>
+</blockquote>
+<p>简单介绍一下.count文件的格式，在命令行下查看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/ncbi/matrix <span class="comment"># 切换到.count文件所在的matrix目录</span></div><div class="line">head -n 10 SRR3589959.count <span class="comment"># 使用head命令查看SRR3589959.count文件的前10行</span></div></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<blockquote>
+<p>ENSMUSG00000000001.4    1648<br>ENSMUSG00000000003.15    0<br>ENSMUSG00000000028.14    835<br>ENSMUSG00000000031.15    65<br>ENSMUSG00000000037.16    70<br>ENSMUSG00000000049.11    0<br>ENSMUSG00000000056.7 366<br>ENSMUSG00000000058.6    7<br>ENSMUSG00000000078.6    558<br>ENSMUSG00000000085.16    286</p>
+</blockquote>
+<p><strong>.count</strong>文件分为2列，第一列是基因名称（ENSMUSG00000000001.4），第二列是reads数（1648），由此可见，htseq-count命令的目的是将排序过的SAM文件（001，003，0028，0031，0037……）逐个统计reads数，但是，此时生成的.count文件只有两列。</p>
+<p>因为所有的.count文件都排过序，并且共享相同的基因名称，所以下一步是将所有的.count文件合并起来，生成一个统一的文件，需要使用R语言脚本将4个.count文件合并为一个表达矩阵。</p>
+<h2 id="R语言脚本合并表达矩阵"><a href="#R语言脚本合并表达矩阵" class="headerlink" title="R语言脚本合并表达矩阵"></a>R语言脚本合并表达矩阵</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">R <span class="comment"># 在命令行下输入R，进入R环境</span></div><div class="line">options(stringsAsFactors = FALSE) <span class="comment">#默认为TRUE，不要辨认为factors</span></div><div class="line"></div><div class="line"><span class="comment"># 59，61为对照组，60，62为处理组，首先将四个文件分别赋值为：control1，control2，rep1，rep2</span></div><div class="line">control1 &lt;- read.table(<span class="string">"/Users/Administrator/ncbi/matrix/SRR3589959.count"</span>, sep=<span class="string">"\t"</span>, col.names = c(<span class="string">"gene_id"</span>,<span class="string">"control1"</span>))</div><div class="line">control2 &lt;- read.table(<span class="string">"/Users/Administrator/ncbi/matrix/SRR3589961.count"</span>, sep=<span class="string">"\t"</span>, col.names = c(<span class="string">"gene_id"</span>,<span class="string">"control2"</span>))</div><div class="line">rep1 &lt;- read.table(<span class="string">"/Users/Administrator/ncbi/matrix/SRR3589960.count"</span>, sep=<span class="string">"\t"</span>, col.names = c(<span class="string">"gene_id"</span>,<span class="string">"rep1"</span>))</div><div class="line">rep2 &lt;- read.table(<span class="string">"/Users/Administrator/ncbi/matrix/SRR3589962.count"</span>, sep=<span class="string">"\t"</span>,col.names = c(<span class="string">"gene_id"</span>,<span class="string">"rep2"</span>))</div><div class="line"></div><div class="line"><span class="comment"># 将4个矩阵文件按照gene_id进行合并，首先组内合并，接着组间合并，并且赋值给raw_count</span></div><div class="line">raw_count &lt;- merge(merge(control1, control2, by=<span class="string">"gene_id"</span>), merge(rep1,rep2, by=<span class="string">"gene_id"</span>))</div></pre></td></tr></table></figure>
+<p>对raw_count进行赋值后，我们可以查看生成的合并矩阵：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">raw_count <span class="comment"># 查看合并矩阵</span></div></pre></td></tr></table></figure>
+<p>但是raw_count文件太长，只能输出19999行，显示达到最大输出量：</p>
+<blockquote>
+<p>[ reached getOption(“max.print”) – omitted 28826 rows ]</p>
+</blockquote>
+<p>因此，我们只显示前10行数据，来查看一下生成的矩阵的格式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">head (raw_count, n=10) <span class="comment">#查看raw_count的前10行</span></div></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<blockquote>
+<p> gene_id control1 control2 rep1 rep2<br>1   ENSMUSG00000000001.4     1648     2306 2941 2780<br>2  ENSMUSG00000000003.15        0        0    0    0<br>3  ENSMUSG00000000028.14      835      950 1366 1051<br>4  ENSMUSG00000000031.15       65       83   52   53<br>5  ENSMUSG00000000037.16       70       53   94   66<br>6  ENSMUSG00000000049.11        0        3    4    5<br>7   ENSMUSG00000000056.7      366      386  722  301<br>8   ENSMUSG00000000058.6        7       11    7    3<br>9   ENSMUSG00000000078.6      558      896 1265 1342<br>10 ENSMUSG00000000085.16      286      313  343  348</p>
+</blockquote>
+<p>合并后的矩阵共有5列，第一列是基因名称，其余四列分别是control1，control2，rep1，rep2，从上表中可以很直观地看到每个基因的表达情况。</p>
+<p>我们再来看看raw_count的最后5行，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tail (raw_count, n=5)</div></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<blockquote>
+<p>gene_id control1 control2     rep1     rep2<br>48821 <strong>alignment_not_unique 11278964 14080481 18440618 14495860<br>48822            </strong>ambiguous   295498   425708   498973   381237<br>48823           <strong>no_feature 12642161 15042888 22357626 18675857<br>48824          </strong>not_aligned  1025857  1067038  1675660  1529309<br>48825        __too_low_aQual  1107674  1303141  1799176  1542845</p>
+</blockquote>
+<p>这5行（48821， 48822， 48823， 48824， 48825）没有匹配到相应的基因，需要删除，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">raw_count_filt &lt;- raw_count[-48821:-48825, ] <span class="comment"># 删除5行，重新赋值给raw_count_filt</span></div></pre></td></tr></table></figure>
+<p>查看新矩阵raw_count_filt的最后5行，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tail (raw_count_filt, n=5)</div></pre></td></tr></table></figure>
+<p>可以看到，48821：48825已经被删除了，</p>
+<blockquote>
+<p>gene_id control1 control2 rep1 rep2<br>48816 ENSMUSG00000110420.1        0        0    0    0<br>48817 ENSMUSG00000110421.1        0        0    0    1<br>48818 ENSMUSG00000110422.1        1        0    1    2<br>48819 ENSMUSG00000110423.1        0        0    0    0<br>48820 ENSMUSG00000110424.1       26       20   48   24</p>
+</blockquote>
+<p>以行48820为例，第一列是基因名称ENSMUSG00000110424.1，但是这个名称在<a href="https://www.ebi.ac.uk/" target="_blank" rel="external">EBI</a>数据库上是不能直接检索到的，只能是整数形式的ENSMUSG00000110424，因此，需要进一步替换为整数的形式，并且赋值给ENSEMBL。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ENSEMBL &lt;- gsub(<span class="string">"\\.\\d*"</span>, <span class="string">""</span>, raw_count_filt<span class="variable">$gene_id</span>)</div><div class="line">tail (ENSEMBL, n=5) <span class="comment"># 查看ENSEMBL的最后5行</span></div></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<blockquote>
+<p>[1] “ENSMUSG00000110420” “ENSMUSG00000110421” “ENSMUSG00000110422”<br>[4] “ENSMUSG00000110423” “ENSMUSG00000110424”</p>
+</blockquote>
+<p>ENSEMBL只有一列，即修改为整数的基因名称，下一步再将ENSEMBL添加到raw_count_filt矩阵:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">row.names(raw_count_filt) &lt;- ENSEMBL <span class="comment"># 添加ENSENBL到raw_count_filt矩阵</span></div><div class="line">tail (raw_count_filt, n=5) <span class="comment"># 查看raw_count_filt的最后5行</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>gene_id control1 control2 rep1 rep2<br>ENSMUSG00000110420 ENSMUSG00000110420.1        0        0    0    0<br>ENSMUSG00000110421 ENSMUSG00000110421.1        0        0    0    1<br>ENSMUSG00000110422 ENSMUSG00000110422.1        1        0    1    2<br>ENSMUSG00000110423 ENSMUSG00000110423.1        0        0    0    0<br>ENSMUSG00000110424 ENSMUSG00000110424.1       26       20   48   24</p>
+</blockquote>
+<p>[optional] 这一步选做，即把raw_count_filt矩阵的第二列删掉，并赋值给raw_count_filt2：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">raw_count_filt2 &lt;- raw_count_filt [ ,-1] <span class="comment"># 删除raw_count_filt的第二列</span></div><div class="line">tail (raw_count_filt2, n=5) <span class="comment"># 查看raw_count_filt2最后5行</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>control1 control2 rep1 rep2<br>ENSMUSG00000110420        0        0    0    0<br>ENSMUSG00000110421        0        0    0    1<br>ENSMUSG00000110422        1        0    1    2<br>ENSMUSG00000110423        0        0    0    0<br>ENSMUSG00000110424       26       20   48   24</p>
+</blockquote>
+<p>下面，我们就可以检查一些基因的表达情况了，比如GAPDH，首先，可以在<a href="http://www.uniprot.org/" target="_blank" rel="external">uniprot</a>或者<a href="http://useast.ensembl.org/index.html" target="_blank" rel="external">Ensembl</a>数据库中找到GAPDH对应的基因编号，即ENSMUSG00000057666，并将该基因编号赋值给GAPDH：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">GAPDH &lt;- raw_count_filt2 [rownames(raw_count_filt2)==<span class="string">"ENSMUSG00000057666"</span>,] <span class="comment"># 赋值给GAPDH</span></div><div class="line">GAPDH <span class="comment"># 查看GAPDH表达情况</span></div></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<blockquote>
+<p>control1 control2 rep1 rep2<br>ENSMUSG00000057666     4136     4884 7200 4929</p>
+</blockquote>
+<p>如要查询其他基因的表达情况，以此类推！</p>
+<p>另外，我们也可以看一看所有基因的表达概况：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">summary (raw-count_filt2)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>control1           control2             rep1               rep2<br> Min.   :     0.0   Min.   :     0.0   Min.   :     0.0   Min.   :     0.0<br> 1st Qu.:     0.0   1st Qu.:     0.0   1st Qu.:     0.0   1st Qu.:     0.0<br> Median :     0.0   Median :     0.0   Median :     1.0   Median :     1.0<br> Mean   :   237.6   Mean   :   290.6   Mean   :   417.4   Mean   :   342.2<br> 3rd Qu.:    62.0   3rd Qu.:    65.0   3rd Qu.:    93.0   3rd Qu.:    71.0<br> Max.   :108056.0   Max.   :164091.0   Max.   :171319.0   Max.   :132792.0</p>
+</blockquote>
+<p>如果想要把分析结果保存下来，则存储为.csv格式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">write.csv (x=raw_count_filt2, file=<span class="string">"SRR35899.csv"</span>) <span class="comment"># 保存raw_count_filt2矩阵为SRR35899.csv文件，保存位置在当前命令行目录中</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;HTseq统计基因reads数&quot;&gt;&lt;a href=&quot;#HTseq统计基因reads数&quot; class=&quot;headerlink&quot; title=&quot;HTseq统计基因reads数&quot;&gt;&lt;/a&gt;HTseq统计基因reads数&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;HTseq&lt;/str
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="RNASEQ" scheme="http://uteric.github.io/tags/RNASEQ/"/>
+    
+  </entry>
   
   <entry>
     <title>RNASEQ分析入门笔记6-下载注释文件并导入IGV</title>
@@ -1056,63 +1154,6 @@ done
 &lt;li&gt;&lt;p&gt;Your schedule is overdue&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;An overd
-    
-    </summary>
-    
-      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>英语笔记13：Recycling</title>
-    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B013/"/>
-    <id>http://uteric.github.io/英语笔记13/</id>
-    <published>2017-09-21T03:21:44.000Z</published>
-    <updated>2017-09-21T03:21:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<table>
-<thead>
-<tr>
-<th style="text-align:center">Recycling for Dummies</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">NO TRASH</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">Cans, HARD plastic, cardboard and paper only!</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">NOTHING ELSE</td>
-</tr>
-</tbody>
-</table>
-<p>这是可回收垃圾箱上面贴的提醒：</p>
-<p>NO TRASH，不允许垃圾，只允许如下物品：罐（cans），硬塑料（hard plastic），纸箱（cardboard），纸（paper），其他一律不允许，NOTHING ELSE！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;Recycling for Dummies&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;/td
     
     </summary>
     
