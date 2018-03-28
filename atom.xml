@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2018-03-28T03:24:05.000Z</updated>
+  <updated>2018-03-28T03:50:22.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MAC命令行操作MacVim</title>
+    <link href="http://uteric.github.io/MAC%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9CMacVim/"/>
+    <id>http://uteric.github.io/MAC命令行操作MacVim/</id>
+    <published>2018-03-28T03:50:22.000Z</published>
+    <updated>2018-03-28T03:50:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>1. 打开MacVim</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim ./test.md <span class="comment"># 打开当前目录下的名位test.md的文件</span></div></pre></td></tr></table></figure></p>
+<p><strong>2. 在Vim中修改文件</strong><br>在Vim中打开的文件不能直接修改，如要插入字符，需要按下i键，进入INSERT模式，按下ESC则可退出INSERT模式。</p>
+<p><strong>3. 退出Vim</strong></p>
+<p><em>在末行模式下：</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">:qw <span class="comment"># 先保存文档，退出Vim，返回到Shell</span></div><div class="line">:q! <span class="comment">#放弃修改，直接返回到Shell</span></div></pre></td></tr></table></figure></p>
+<p><em>在命令行模式下：</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ZZ <span class="comment"># 保存修改，退出Vim，返回到Shell</span></div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;1. 打开MacVim&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="MAC" scheme="http://uteric.github.io/tags/MAC/"/>
+    
+  </entry>
   
   <entry>
     <title>RNASEQ分析入门笔记7- HTSeq定量基因表达水平</title>
@@ -1114,46 +1141,6 @@ done
 &lt;li&gt;Supermarket trolley 手推车&lt;/li&gt;
 &lt;li&gt;Bread and cakes shelves 面包蛋糕架&lt;/li&gt;
 &lt;li&gt;Small plastic bags for fruit and vegetables 盛水果和蔬菜的小塑料
-    
-    </summary>
-    
-      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>英语笔记14：Overdue</title>
-    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B014/"/>
-    <id>http://uteric.github.io/英语笔记14/</id>
-    <published>2017-09-21T03:23:00.000Z</published>
-    <updated>2017-09-21T03:23:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Overdue，是指过期的，晚点的，延误的，逾期未付的</p>
-<hr>
-<ul>
-<li><p>The plane is overdue</p>
-</li>
-<li><p>Your schedule is overdue</p>
-</li>
-<li><p>An overdue train</p>
-</li>
-<li><p>pay overdue salaries</p>
-</li>
-</ul>
-<hr>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Overdue，是指过期的，晚点的，延误的，逾期未付的&lt;/p&gt;
-&lt;hr&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;The plane is overdue&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Your schedule is overdue&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;An overd
     
     </summary>
     
