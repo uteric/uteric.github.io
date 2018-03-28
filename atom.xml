@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2018-03-28T03:50:22.000Z</updated>
+  <updated>2018-03-28T04:26:51.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,64 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>R语言学习笔记1</title>
+    <link href="http://uteric.github.io/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/"/>
+    <id>http://uteric.github.io/R语言学习笔记1/</id>
+    <published>2018-03-28T04:26:51.000Z</published>
+    <updated>2018-03-28T04:26:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="创建一个4-5的矩阵"><a href="#创建一个4-5的矩阵" class="headerlink" title="创建一个4*5的矩阵"></a>创建一个4*5的矩阵</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">x &lt;- 1:20 <span class="comment"># 创建一个包含20个值的向量x，可以输入x查看：[1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</span></div><div class="line">y &lt;- matrix (x, 4, 5) <span class="comment"># 使用向量x的值填充一个4行5列的矩阵</span></div><div class="line">y <span class="comment"># 查看y矩阵</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>[,1] [,2] [,3] [,4] [,5]<br>[1,]    1    5    9   13   17<br>[2,]    2    6   10   14   18<br>[3,]    3    7   11   15   19<br>[4,]    4    8   12   16   20</p>
+</blockquote>
+<h2 id="删除行"><a href="#删除行" class="headerlink" title="删除行"></a>删除行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">z1 &lt;- y [-2,] <span class="comment"># 删除y矩阵第2行，并赋值给z1矩阵</span></div><div class="line">z1 <span class="comment"># 查看z1矩阵</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>  [,1] [,2] [,3] [,4] [,5]<br>[1,]    1    5    9   13   17<br>[2,]    3    7   11   15   19<br>[3,]    4    8   12   16   20</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">z2 &lt;- y [-c(2,3),] <span class="comment"># 删除y矩阵第2，3行，并赋值给z2矩阵</span></div><div class="line">z2 <span class="comment"># 查看z2矩阵</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>[,1] [,2] [,3] [,4] [,5]<br>[1,]    1    5    9   13   17<br>[2,]    4    8   12   16   20</p>
+</blockquote>
+<h2 id="删除列"><a href="#删除列" class="headerlink" title="删除列"></a>删除列</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">z3 &lt;- y [, 4] <span class="comment"># 删除y矩阵第4列，并赋值给z3矩阵</span></div><div class="line">z3 <span class="comment"># 查看z3矩阵</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p> [,1] [,2] [,3] [,4]<br>[1,]    1    5    9   17<br>[2,]    2    6   10   18<br>[3,]    3    7   11   19<br>[4,]    4    8   12   20</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">z4 &lt;- y [,-c(3,4)] <span class="comment"># 删除y矩阵第3,4列，并赋值给z4矩阵</span></div><div class="line">z4 <span class="comment"># 查看z4矩阵</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p> [,1] [,2] [,3]<br>[1,]    1    5   17<br>[2,]    2    6   18<br>[3,]    3    7   19<br>[4,]    4    8   20</p>
+</blockquote>
+<h2 id="提取行"><a href="#提取行" class="headerlink" title="提取行"></a>提取行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">z5 &lt;- y [2,] <span class="comment"># 提取y矩阵第2行，并赋值给z5矩阵</span></div><div class="line">z5 <span class="comment"># 查看z5矩阵</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>[1]  2  6 10 14 18</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">z6 &lt;- y [c(2,3),] <span class="comment"># 提取y矩阵第2,3行，并赋值给z6矩阵</span></div><div class="line">z6 <span class="comment"># 查看z6矩阵</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p> [,1] [,2] [,3] [,4] [,5]<br>[1,]    2    6   10   14   18<br>[2,]    3    7   11   15   19</p>
+</blockquote>
+<h2 id="提取列"><a href="#提取列" class="headerlink" title="提取列"></a>提取列</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">z7 &lt;- y [, 3] <span class="comment"># 提取y矩阵第3列，并赋值给z7矩阵</span></div><div class="line">z7 <span class="comment"># 查看z7矩阵</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>[1]  9 10 11 12</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">z8 &lt;- y [, c(3,5)] <span class="comment"># 提取y矩阵第3,5列，并赋值给z8矩阵</span></div><div class="line">z8 <span class="comment"># 查看z8矩阵</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>[,1] [,2]<br>[1,]    9   17<br>[2,]   10   18<br>[3,]   11   19<br>[4,]   12   20</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;创建一个4-5的矩阵&quot;&gt;&lt;a href=&quot;#创建一个4-5的矩阵&quot; class=&quot;headerlink&quot; title=&quot;创建一个4*5的矩阵&quot;&gt;&lt;/a&gt;创建一个4*5的矩阵&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R语言" scheme="http://uteric.github.io/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
   
   <entry>
     <title>MAC命令行操作MacVim</title>
@@ -1089,58 +1147,6 @@ done
     
       &lt;hr&gt;
 &lt;p&gt;常见乳制品包括：milk, cheese, butter, cream, ice cream, and yogurt，即：牛奶，奶酪，黄油，奶油，冰淇淋，酸奶；另外还有：margarine（人造黄油）, sour cream（酸奶油）, cream cheese（
-    
-    </summary>
-    
-      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>英语笔记15：Supermarket &amp; Grocery vocabulary</title>
-    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B015/"/>
-    <id>http://uteric.github.io/英语笔记15/</id>
-    <published>2017-09-21T03:24:17.000Z</published>
-    <updated>2017-09-21T03:24:17.000Z</updated>
-    
-    <content type="html"><![CDATA[<hr>
-<ul>
-<li>Supermarket trolley 手推车</li>
-<li>Bread and cakes shelves 面包蛋糕架</li>
-<li>Small plastic bags for fruit and vegetables 盛水果和蔬菜的小塑料袋 </li>
-<li>Meat 肉</li>
-<li>Butcher 卖肉的人</li>
-<li>Drinks 饮品</li>
-<li>Household items 家居用品</li>
-<li>Paper towels 纸巾</li>
-<li>Grocery items in trolley  手推车中的杂货</li>
-<li>aisle 过道</li>
-<li>Stack of tinned food 一堆罐头食品</li>
-<li>Price of grocery item 价格</li>
-<li>customer buying fish 买鱼的人</li>
-<li>Fishmonger 卖鱼的人（鱼贩）</li>
-<li>Dairy products 乳制品</li>
-<li>Frozen food 冷冻食品</li>
-<li>Man in mobility scooter 移动滑板车中的人</li>
-<li>queue of people 排队的人</li>
-<li>Express checkout (basket and 10 items or less only) 快速结账（一般少于10件物品）</li>
-<li>Cash register or till 收银机</li>
-<li>Checkout assistant 结账助理</li>
-<li>Plastic carrier bags 塑料购物袋</li>
-<li>Shopping basket 购物篮</li>
-<li>Shopper 购物者</li>
-</ul>
-<hr>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-&lt;ul&gt;
-&lt;li&gt;Supermarket trolley 手推车&lt;/li&gt;
-&lt;li&gt;Bread and cakes shelves 面包蛋糕架&lt;/li&gt;
-&lt;li&gt;Small plastic bags for fruit and vegetables 盛水果和蔬菜的小塑料
     
     </summary>
     
