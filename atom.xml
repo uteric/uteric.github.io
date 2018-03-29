@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2018-03-28T04:26:51.000Z</updated>
+  <updated>2018-03-29T04:28:28.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo常用命令</title>
+    <link href="http://uteric.github.io/Hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://uteric.github.io/Hexo常用命令/</id>
+    <published>2018-03-29T04:28:28.000Z</published>
+    <updated>2018-03-29T04:28:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="hexo-clean"><a href="#hexo-clean" class="headerlink" title="hexo clean"></a>hexo clean</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo clean <span class="comment"># 清除缓存文件db.json 和已生成的静态文件public</span></div></pre></td></tr></table></figure>
+<h2 id="hexo-g"><a href="#hexo-g" class="headerlink" title="hexo g"></a>hexo g</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g <span class="comment"># 是hexo generate的简写形式，生成静态文件到public文件夹</span></div></pre></td></tr></table></figure>
+<h2 id="hexo-d"><a href="#hexo-d" class="headerlink" title="hexo d"></a>hexo d</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d <span class="comment"># 是hexo deploy的简写形式，部署静态文件到设定的仓库</span></div></pre></td></tr></table></figure>
+<h2 id="hexo-clean-amp-amp-hexo-g-amp-amp-hexo-d"><a href="#hexo-clean-amp-amp-hexo-g-amp-amp-hexo-d" class="headerlink" title="hexo clean &amp;&amp; hexo g &amp;&amp; hexo d"></a>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d <span class="comment"># 常用的组合命令，清除缓存，生成静态文件，并部署到指定仓库</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;hexo-clean&quot;&gt;&lt;a href=&quot;#hexo-clean&quot; class=&quot;headerlink&quot; title=&quot;hexo clean&quot;&gt;&lt;/a&gt;hexo clean&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="Hexo" scheme="http://uteric.github.io/tags/Hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>R语言学习笔记1</title>
@@ -1122,31 +1148,6 @@ done
       &lt;p&gt;Cream／Cheese／Butter，都属于Dairy products，都来源于Whole Milk，区别在于成分和制作工艺；&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;Evaporated-Milk&quot;&gt;&lt;a href=&quot;#Evaporated-Milk&quot; class=&quot;hea
-    
-    </summary>
-    
-      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>英语笔记16：Dairy Products Counter</title>
-    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B016/"/>
-    <id>http://uteric.github.io/英语笔记16/</id>
-    <published>2017-11-03T02:49:27.000Z</published>
-    <updated>2017-11-03T02:49:27.000Z</updated>
-    
-    <content type="html"><![CDATA[<hr>
-<p>常见乳制品包括：milk, cheese, butter, cream, ice cream, and yogurt，即：牛奶，奶酪，黄油，奶油，冰淇淋，酸奶；另外还有：margarine（人造黄油）, sour cream（酸奶油）, cream cheese（奶油干酪）, cottage cheese（酸奶酪）；</p>
-<p>牛奶种类：Whole milk（全脂牛奶）, low-fat milk（低脂牛奶）, skim milk（脱脂牛奶）, flavoured milk（调味牛奶）； </p>
-<hr>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-&lt;p&gt;常见乳制品包括：milk, cheese, butter, cream, ice cream, and yogurt，即：牛奶，奶酪，黄油，奶油，冰淇淋，酸奶；另外还有：margarine（人造黄油）, sour cream（酸奶油）, cream cheese（
     
     </summary>
     
