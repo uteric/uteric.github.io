@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2018-03-29T04:28:28.000Z</updated>
+  <updated>2018-04-05T01:43:45.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MAC安装DESeq2报错及解决方案</title>
+    <link href="http://uteric.github.io/MAC%E5%AE%89%E8%A3%85DESeq2%E6%8A%A5%E9%94%99%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>http://uteric.github.io/MAC安装DESeq2报错及解决方案/</id>
+    <published>2018-04-05T01:43:45.000Z</published>
+    <updated>2018-04-05T01:43:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="在R环境中安装DESeq2"><a href="#在R环境中安装DESeq2" class="headerlink" title="在R环境中安装DESeq2"></a>在R环境中安装DESeq2</h2><p><strong>1、安装DESeq2基本语法：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> (<span class="string">"http://bioconductor.org/biocLite.R"</span>) <span class="comment"># 调入安装工具Bioconductor</span></div><div class="line">biocLite(<span class="string">"DESeq2"</span>) <span class="comment"># 安装DESeq2</span></div><div class="line">library(<span class="string">"DESeq2"</span>) <span class="comment"># 测试是否安装成功</span></div></pre></td></tr></table></figure>
+<p><strong>2、报错信息</strong></p>
+<p>我的系统是MacOS 10.10.5，执行安装命令后各种报错：</p>
+<hr>
+<p><del>fatal error:<br>~~<strong>‘string.h’ file not found</strong></del><br>~~include <string.h>            /<em> for memcpy, memset </em>/<br>1 error generated.<br>make: <em>*</em> [000.init.o] Error 1</string.h></p>
+<h2 id="ERROR-compilation-failed-for-package-‘matrixStats’"><a href="#ERROR-compilation-failed-for-package-‘matrixStats’" class="headerlink" title="ERROR: compilation failed for package ‘matrixStats’~~"></a>ERROR: compilation failed for package ‘matrixStats’~~</h2><p>fatal error:<br>~~<strong>‘math.h’ file not found</strong><br>include_next <math.h><br>1 error generated.<br>make: <em>*</em> [DbColumn.o] Error 1</math.h></p>
+<h2 id="ERROR-compilation-failed-for-package-‘RSQLite’"><a href="#ERROR-compilation-failed-for-package-‘RSQLite’" class="headerlink" title="ERROR: compilation failed for package ‘RSQLite’~~"></a>ERROR: compilation failed for package ‘RSQLite’~~</h2><p>~~fatal error:<br><strong>‘ctype.h’ file not found</strong><br>include <ctype.h><br>1 error generated.<br>make: <em>*</em> [DocParse.o] Error 1</ctype.h></p>
+<h2 id="ERROR-compilation-failed-for-package-‘XML’"><a href="#ERROR-compilation-failed-for-package-‘XML’" class="headerlink" title="ERROR: compilation failed for package ‘XML’~~"></a>ERROR: compilation failed for package ‘XML’~~</h2><p>~~fatal error:<br><strong>‘stdlib.h’ file not found</strong><br>include <stdlib.h> /<em> Not used by R itself, but widely assumed in packages </em>/<br>1 error generated.<br>make: <em>*</em> [all_missing.o] Error 1</stdlib.h></p>
+<h2 id="ERROR-compilation-failed-for-package-‘checkmate’"><a href="#ERROR-compilation-failed-for-package-‘checkmate’" class="headerlink" title="ERROR: compilation failed for package ‘checkmate’~~"></a>ERROR: compilation failed for package ‘checkmate’~~</h2><p>~~fatal error:<br><strong>‘string.h’ file not found</strong><br>include <string.h><br>/<em> for memcpy, memset </em>/<br>1 error generated.<br>make: <em>*</em> [AEbufs.o] Error 1</string.h></p>
+<h2 id="ERROR-compilation-failed-for-package-‘S4Vectors’"><a href="#ERROR-compilation-failed-for-package-‘S4Vectors’" class="headerlink" title="ERROR: compilation failed for package ‘S4Vectors’~~"></a>ERROR: compilation failed for package ‘S4Vectors’~~</h2><p>~~fatal error:<br><strong>‘stdio.h’ file not found</strong><br>include <stdio.h><br>1 error generated.<br>make: <em>*</em> [Rinit.o] Error 1</stdio.h></p>
+<h2 id="ERROR-compilation-failed-for-package-‘Biobase’"><a href="#ERROR-compilation-failed-for-package-‘Biobase’" class="headerlink" title="ERROR: compilation failed for package ‘Biobase’~~"></a>ERROR: compilation failed for package ‘Biobase’~~</h2><p>~~fatal error:<br><strong>‘unistd.h’ file not found</strong><br>include <unistd.h><br>1 error generated.<br>make: <em>*</em> [ipcmutex.o] Error 1</unistd.h></p>
+<h2 id="ERROR-compilation-failed-for-package-‘BiocParallel’"><a href="#ERROR-compilation-failed-for-package-‘BiocParallel’" class="headerlink" title="ERROR: compilation failed for package ‘BiocParallel’~~"></a>ERROR: compilation failed for package ‘BiocParallel’~~</h2><p>~~fatal error:<br><strong>‘stdlib.h’ file not found</strong><br>include <stdlib.h><br>1 error generated.<br>make: <em>*</em> [S_enter.o] Error 1</stdlib.h></p>
+<h2 id="ERROR-compilation-failed-for-package-‘locfit’"><a href="#ERROR-compilation-failed-for-package-‘locfit’" class="headerlink" title="ERROR: compilation failed for package ‘locfit’~~"></a>ERROR: compilation failed for package ‘locfit’~~</h2><p>~~configure: error:<br><strong>cannot run C++ compiled programs.</strong><br>If you meant to cross compile, use <code>--host&#39;.
+See</code>config.log’ for more details</p>
+<h2 id="ERROR-configuration-failed-for-package-‘RcppArmadillo’"><a href="#ERROR-configuration-failed-for-package-‘RcppArmadillo’" class="headerlink" title="ERROR: configuration failed for package ‘RcppArmadillo’~~"></a>ERROR: configuration failed for package ‘RcppArmadillo’~~</h2><p><em>There were 22 warnings (use warnings() to see them)</em><br><strong>warnings()</strong><br>Warning messages:<br>1: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘matrixStats’ had non-zero exit status<br>2: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘RSQLite’ had non-zero exit status<br>3: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘XML’ had non-zero exit status<br>4: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘checkmate’ had non-zero exit status<br>5: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘S4Vectors’ had non-zero exit status<br>6: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘Biobase’ had non-zero exit status<br>7: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘BiocParallel’ had non-zero exit status<br>8: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘locfit’ had non-zero exit status<br>9: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘RcppArmadillo’ had non-zero exit status<br>10: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘htmlTable’ had non-zero exit status<br>11: In install.packages(pkgs = doing, lib = lib, …) :<br> installation of package ‘IRanges’ had non-zero exit status<br>12: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘GenomeInfoDb’ had non-zero exit status<br>13: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘XVector’ had non-zero exit status<br>14: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘DelayedArray’ had non-zero exit status<br>15: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘AnnotationDbi’ had non-zero exit status<br>16: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘Hmisc’ had non-zero exit status<br>17: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘annotate’ had non-zero exit status<br>18: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘GenomicRanges’ had non-zero exit status<br>19: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘SummarizedExperiment’ had non-zero exit status<br>20: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘genefilter’ had non-zero exit status<br>21: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘geneplotter’ had non-zero exit status<br>22: In install.packages(pkgs = doing, lib = lib, …) :</p>
+<h2 id="installation-of-package-‘DESeq2’-had-non-zero-exit-status"><a href="#installation-of-package-‘DESeq2’-had-non-zero-exit-status" class="headerlink" title="installation of package ‘DESeq2’ had non-zero exit status"></a>installation of package ‘DESeq2’ had non-zero exit status</h2><p><strong>3、报错原因</strong></p>
+<p>根据返回的报错信息，可以知道，系统中缺乏’string.h’，’math.h’，’ctype.h’，’stdlib.h’，’stdio.h’，’unistd.h’这些文件，这些文件都是C++ library中得Header files，因此，需要安装C++，或者直接安装Xcode Command Line Tools。</p>
+<hr>
+<h2 id="安装Xcode命令行工具"><a href="#安装Xcode命令行工具" class="headerlink" title="安装Xcode命令行工具"></a>安装Xcode命令行工具</h2><p>Xcode Command Line Tools，包含一些命令行开发工具，例如gcc/g++编译器、make、git、nasm等，安装命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xcode-select --install <span class="comment"># 安装Xcode命令行工具（Xcode Command Line Tools）</span></div></pre></td></tr></table></figure>
+<p>安装完成后，检查是否成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xcode-select -p <span class="comment"># 检查是否成功安装</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>/Applications/Xcode.app/Contents/Developer</p>
+</blockquote>
+<p>若看到如下信息，则表明Xcode Command Line Tools已经安装：</p>
+<blockquote>
+<p>xcode-select: error: command line tools are already installed, use “Software Update” to install update</p>
+</blockquote>
+<hr>
+<h2 id="再次安装DESeq2"><a href="#再次安装DESeq2" class="headerlink" title="再次安装DESeq2"></a>再次安装DESeq2</h2><p>此时，就可以着手安装DESeq2软件包了，执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> (<span class="string">"http://bioconductor.org/biocLite.R"</span>) <span class="comment"># 调入安装工具Bioconductor</span></div><div class="line">biocLite(<span class="string">"DESeq2"</span>) <span class="comment"># 安装DESeq2</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;在R环境中安装DESeq2&quot;&gt;&lt;a href=&quot;#在R环境中安装DESeq2&quot; class=&quot;headerlink&quot; title=&quot;在R环境中安装DESeq2&quot;&gt;&lt;/a&gt;在R环境中安装DESeq2&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;1、安装DESeq2基本语法：&lt;/s
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="MAC" scheme="http://uteric.github.io/tags/MAC/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo常用命令</title>
@@ -1113,41 +1168,6 @@ done
       &lt;p&gt;咖啡，原产于阿拉伯，但是多数现代咖啡却是意大利人的发明，除此之外，美国和澳大利亚咖啡也比较著名。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;Italian-coffees&quot;&gt;&lt;a href=&quot;#Italian-coffees&quot; class=&quot;headerlink&quot; title=&quot;I
-    
-    </summary>
-    
-      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>英语笔记17：Cream Cheese Butter</title>
-    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B017/"/>
-    <id>http://uteric.github.io/英语笔记17/</id>
-    <published>2017-11-03T02:52:18.000Z</published>
-    <updated>2017-11-03T02:52:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Cream／Cheese／Butter，都属于Dairy products，都来源于Whole Milk，区别在于成分和制作工艺；</p>
-<hr>
-<h2 id="Evaporated-Milk"><a href="#Evaporated-Milk" class="headerlink" title="Evaporated Milk"></a>Evaporated Milk</h2><p>Whole Milk中含有脂肪，蛋白，矿物质，和水，如果把水分蒸发，则得到炼乳（Evaporated Milk），再加入甜味剂，则成为甜味炼乳（Sweetened Condensed Milk）；</p>
-<hr>
-<h2 id="Skim-Milk-amp-Cream"><a href="#Skim-Milk-amp-Cream" class="headerlink" title="Skim Milk &amp; Cream"></a>Skim Milk &amp; Cream</h2><p>若将Whole Milk离心，大致得到两层，下层为脱脂牛奶（skim milk），上层为Cream（奶油），主要成分为脂肪，质轻，浮于上层；</p>
-<p>Cream进一步浓缩，可得到轻奶油（Light Cream）与重奶油（Heavy Cream），前者脂肪含量为20%，后者为38%；</p>
-<p>Light Cream与Whole Milk混合，则可得到半对半奶油（Half and Half Cream），脂肪含量为12%；</p>
-<p>Light Cream与Heavy Cream还可以通过加入稳定剂，进一步制成打发用奶油，即Light Whipping Cream与Heavy Whipping Cream，以及介于二者之间的Whipping Cream，分别在于脂肪比例，分别为30%，35%，38%；</p>
-<p>Light Cream与Heavy Cream也可以通过发酵，进一步制成酸奶油（Sour Cream）；</p>
-<hr>
-<h2 id="Butter"><a href="#Butter" class="headerlink" title="Butter"></a>Butter</h2><p>Cream经过一系列搅拌浓缩分离步骤，可以得到脂肪含量更高的黄油（Butter），约80%；</p>
-<hr>
-<h2 id="Cheese"><a href="#Cheese" class="headerlink" title="Cheese"></a>Cheese</h2><p>Cheese，是由Whole Milk/ Skim Milk/Cream通过发酵再加入凝乳酶得到，发酵过程中使用的菌种不同，风味也便不同，常见的种类有Cream Cheese/ Cottage Cheese。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Cream／Cheese／Butter，都属于Dairy products，都来源于Whole Milk，区别在于成分和制作工艺；&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;Evaporated-Milk&quot;&gt;&lt;a href=&quot;#Evaporated-Milk&quot; class=&quot;hea
     
     </summary>
     
