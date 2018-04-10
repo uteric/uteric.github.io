@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2018-04-07T23:31:44.000Z</updated>
+  <updated>2018-04-10T04:05:30.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>R语言学习笔记4-随机数的产生</title>
+    <link href="http://uteric.github.io/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04/"/>
+    <id>http://uteric.github.io/R语言学习笔记4/</id>
+    <published>2018-04-10T04:05:30.000Z</published>
+    <updated>2018-04-10T04:05:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1、均匀分布随机数"><a href="#1、均匀分布随机数" class="headerlink" title="1、均匀分布随机数"></a>1、均匀分布随机数</h2><p>在R语言中，生成均匀分布随机数的函数是：runif()</p>
+<p>基本语法：runif(n, min=0, max=1)，n表示生成的随机数的数量，min表示均匀分布的下限，max表示均匀分布的上限；在默认状态下，min=0，max=1，也可以指定。</p>
+<p>例1：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; runif(10) <span class="comment"># 生成10个[0,1]上的均匀分布随机数</span></div><div class="line">[1] 0.22640211 0.44554231 0.51034146 0.43492569 0.02381349 0.16912671 0.56014004 0.67121007 0.99790301 0.72515818</div></pre></td></tr></table></figure>
+<p>例2：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; runif(5,.5,3) <span class="comment"># 生成5个均匀分布随机数，并指定其分布区间[0.5,3]</span></div><div class="line">[1] 1.559970 2.113296 1.405775 2.280277 1.398960</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="2、正态分布随机数"><a href="#2、正态分布随机数" class="headerlink" title="2、正态分布随机数"></a>2、正态分布随机数</h2><p>在R语言中，生成正态分布随机数的函数是：rnorm()</p>
+<p>基本语法：rnorm(n,mean=0,sd=1)，其中，n表示随机数的数量，mean表示正太分布的均值，默认为0，sd表示正太分布的标准差，默认为1；</p>
+<p>例3：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; x=rnorm(100) <span class="comment"># 生成100个均值为0，标准差为1的正态分布随机数</span></div><div class="line">&gt; hist(x,prob=T,main=<span class="string">"normal mu=0,sigma=1"</span>) <span class="comment"># 作概率直方图</span></div><div class="line">&gt; curve(dnorm(x),add=T) <span class="comment"># 添加正态分布的密度函数线</span></div></pre></td></tr></table></figure>
+<hr>
+<h2 id="3、二项分布随机数"><a href="#3、二项分布随机数" class="headerlink" title="3、二项分布随机数"></a>3、二项分布随机数</h2><p>在R语言中，生成二项分布随机数的函数是：rbinom()</p>
+<p>基本语法：rbinom(n,size,prob)，n表示生成的随机数的数量（代表试验成功的次数，涵义解释参见《<a href="https://uteric.github.io/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B03/">R语言学习笔记3-生成二项分布随机数</a>》），size表示进行伯努利试验的次数，prob表示一次伯努利试验成功的概率。</p>
+<p>例4：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; rbinom(20,100,.5)</div><div class="line">[1] 52 53 45 52 43 53 56 47 53 51 53 51 50 51 48 51 48 48 51 52</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="4、指数分布随机数"><a href="#4、指数分布随机数" class="headerlink" title="4、指数分布随机数"></a>4、指数分布随机数</h2><p>在R语言中，生成指数分布随机数的函数是rexp()</p>
+<p>基本语法：rexp(n,lamda=1)，n表示生成的指数分布随机数的数量，lamda表示指数分布随机数的均值的倒数，即lamda=1/mean，默认为1，即默认生成均值为10的随机数。</p>
+<p>例5：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; x=rexp(100) <span class="comment"># 生成100个均值为1的指数分布随机数</span></div><div class="line">&gt; mean(x) <span class="comment"># 查看均值，约为1</span></div><div class="line">[1] 1.1335</div></pre></td></tr></table></figure>
+<p>例6：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt; x=rexp(100,1/10) <span class="comment"># 生成100个均值为10的指数分布随机数</span></div><div class="line">&gt; mean(x)</div><div class="line">[1] 10.50919</div><div class="line">&gt; x=rexp(100,.1) <span class="comment"># .1同1/10</span></div><div class="line">&gt; mean(x)</div><div class="line">[1] 9.366332</div><div class="line">&gt; hist(x,prob=T,col=gray(.9),main=<span class="string">"mean=10"</span>) <span class="comment"># 作直方图</span></div><div class="line">&gt; curve(dexp(x,1/10),add=T) <span class="comment"># 添加指数分布密度线</span></div></pre></td></tr></table></figure>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1、均匀分布随机数&quot;&gt;&lt;a href=&quot;#1、均匀分布随机数&quot; class=&quot;headerlink&quot; title=&quot;1、均匀分布随机数&quot;&gt;&lt;/a&gt;1、均匀分布随机数&lt;/h2&gt;&lt;p&gt;在R语言中，生成均匀分布随机数的函数是：runif()&lt;/p&gt;
+&lt;p&gt;基本语法：ru
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R语言" scheme="http://uteric.github.io/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
   
   <entry>
     <title>R语言学习笔记3-生成二项分布随机数</title>
@@ -1556,32 +1603,6 @@ done
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;This is the instruction on how to calibrate a thermometer&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;&lt;e
-    
-    </summary>
-    
-      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>英语笔记21：Accept, Tentative, Decline</title>
-    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B021/"/>
-    <id>http://uteric.github.io/英语笔记21/</id>
-    <published>2017-11-03T03:05:55.000Z</published>
-    <updated>2017-11-03T03:05:55.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>受到邮件邀请时，通常会有如下三个选项：<strong>Accept</strong>，<strong>Tentative</strong>，<strong>Decline</strong>， 分别代表接受，暂定，拒绝；</p>
-<p><strong>Tentative</strong>，不确定的，临时的，或作暂定；</p>
-<ul>
-<li><em>We made a tentative arrangement to meet on Friday.</em> 我们暂定星期五见面。</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;受到邮件邀请时，通常会有如下三个选项：&lt;strong&gt;Accept&lt;/strong&gt;，&lt;strong&gt;Tentative&lt;/strong&gt;，&lt;strong&gt;Decline&lt;/strong&gt;， 分别代表接受，暂定，拒绝；&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Tentative&lt;/s
     
     </summary>
     
