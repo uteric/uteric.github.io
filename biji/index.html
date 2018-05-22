@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="RNASEQ," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="诸子百家" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="参考文献：Transcript-level expression analysis of RNA-seq experiments with HISAT, StringTie and Ballgown  一、下载数据并解压12wget ftp://ftp.ccb.jhu.edu/pub/RNAseq_protocol/chrX_data.tar.gz # 下载原始数据tar zxvf chrX_da">
+<meta name="keywords" content="RNASEQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RNASEQ学习流程">
+<meta property="og:url" content="http://uteric.github.io/biji/index.html">
+<meta property="og:site_name" content="诸子百家">
+<meta property="og:description" content="参考文献：Transcript-level expression analysis of RNA-seq experiments with HISAT, StringTie and Ballgown  一、下载数据并解压12wget ftp://ftp.ccb.jhu.edu/pub/RNAseq_protocol/chrX_data.tar.gz # 下载原始数据tar zxvf chrX_da">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4189810-c5ff5c5b0ea9d2c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4189810-b64fa21011cd51e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4189810-17b30d74aeb41597.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4189810-db5a8b809b1ef072.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-22T04:33:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RNASEQ学习流程">
+<meta name="twitter:description" content="参考文献：Transcript-level expression analysis of RNA-seq experiments with HISAT, StringTie and Ballgown  一、下载数据并解压12wget ftp://ftp.ccb.jhu.edu/pub/RNAseq_protocol/chrX_data.tar.gz # 下载原始数据tar zxvf chrX_da">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/4189810-c5ff5c5b0ea9d2c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '9e233f3fa2f200ca831529de7ba10253',
+      indexName: 'uteric',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://uteric.github.io/biji/"/>
+
+
+
+
+
+  <title>RNASEQ学习流程 | 诸子百家</title>
+  
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104081724-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <meta name="baidu-site-verification" content="bfQpbnNmEL" />
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诸子百家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/biji/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="括囊无誉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸子百家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RNASEQ学习流程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-21T23:33:04-05:00">
+                2018-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程语言/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/biji/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="biji/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>°C
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考文献：<a href="https://link.jianshu.com/?t=http://www.nature.com/nprot/journal/v11/n9/full/nprot.2016.095.html" target="_blank" rel="external">Transcript-level expression analysis of RNA-seq experiments with HISAT, StringTie and Ballgown</a></p>
+<hr>
+<h2 id="一、下载数据并解压"><a href="#一、下载数据并解压" class="headerlink" title="一、下载数据并解压"></a>一、下载数据并解压</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget ftp://ftp.ccb.jhu.edu/pub/RNAseq_protocol/chrX_data.tar.gz <span class="comment"># 下载原始数据</span></div><div class="line">tar zxvf chrX_data.tar.gz <span class="comment"># 解压</span></div></pre></td></tr></table></figure>
+<p>解压后在当前目录下生成新文件夹chrX_data，里面包含如下文件：</p>
+<p>drwxr-xr-x   3 xiuliliu  staff  102 Jul 12  2016 genes<br>drwxr-xr-x   3 xiuliliu  staff  102 Jan 14  2016 genome<br>-rw-r–r–   1 xiuliliu  staff  337 Jan 14  2016 geuvadis_phenodata.csv<br>drwxr-xr-x  10 xiuliliu  staff  340 Jan 14  2016 indexes<br>-rw-r–r–   1 xiuliliu  staff  228 Jan 14  2016 mergelist.txt<br>drwxr-xr-x  26 xiuliliu  staff  884 Jan 14  2016 samples</p>
+<p>其中，samples中包含24个.fastq.gz文件，分为12对，从GBR和YRI两地各取6个样，男女各3个，构成基本的生物学重复。</p>
+<p>-rw-r–r–  1 xiuliliu  staff   91425269 Jan 14  2016 ERR188044_chrX_1.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   91314392 Jan 14  2016 ERR188044_chrX_2.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   87664981 Jan 14  2016 ERR188104_chrX_1.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   88268450 Jan 14  2016 ERR188104_chrX_2.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff  112984506 Jan 14  2016 ERR188234_chrX_1.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff  114271070 Jan 14  2016 ERR188234_chrX_2.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   61157734 Jan 14  2016 ERR188245_chrX_1.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   62378428 Jan 14  2016 ERR188245_chrX_2.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   67433106 Jan 14  2016 ERR188257_chrX_1.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   68213815 Jan 14  2016 ERR188257_chrX_2.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   39876761 Jan 14  2016 ERR188273_chrX_1.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   40639110 Jan 14  2016 ERR188273_chrX_2.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   91600737 Jan 14  2016 ERR188337_chrX_1.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   92210453 Jan 14  2016 ERR188337_chrX_2.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   66033878 Jan 14  2016 ERR188383_chrX_1.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   65623043 Jan 14  2016 ERR188383_chrX_2.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   90165491 Jan 14  2016 ERR188401_chrX_1.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   90548373 Jan 14  2016 ERR188401_chrX_2.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   57960187 Jan 14  2016 ERR188428_chrX_1.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   58159176 Jan 14  2016 ERR188428_chrX_2.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   73187016 Jan 14  2016 ERR188454_chrX_1.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   72904430 Jan 14  2016 ERR188454_chrX_2.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   77647967 Jan 14  2016 ERR204916_chrX_1.fastq.gz<br>-rw-r–r–  1 xiuliliu  staff   78167352 Jan 14  2016 ERR204916_chrX_2.fastq.gz</p>
+<hr>
+<h2 id="二、比对读段到基因组上-Align-the-RNA-seq-reads-to-the-genome"><a href="#二、比对读段到基因组上-Align-the-RNA-seq-reads-to-the-genome" class="headerlink" title="二、比对读段到基因组上 (Align the RNA-seq reads to the genome)"></a>二、比对读段到基因组上 (Align the RNA-seq reads to the genome)</h2><h3 id="1-Map-the-reads-for-each-sample-to-the-reference-genome"><a href="#1-Map-the-reads-for-each-sample-to-the-reference-genome" class="headerlink" title="1 | Map the reads for each sample to the reference genome"></a>1 | Map the reads for each sample to the reference genome</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt; hisat2 -p 8 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR204916_chrX_1.fastq.gz -2 chrX_data/samples/ERR204916_chrX_2.fastq.gz -S ERR204916_chrX.sam</div><div class="line">&gt; hisat2 -p 8 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR188454_chrX_1.fastq.gz -2 chrX_data/samples/ERR188454_chrX_2.fastq.gz -S ERR188454_chrX.sam</div><div class="line">&gt; hisat2 -p 8 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR188428_chrX_1.fastq.gz -2 chrX_data/samples/ERR188428_chrX_2.fastq.gz -S ERR188428_chrX.sam</div><div class="line">&gt; hisat2 -p 8 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR188401_chrX_1.fastq.gz -2 chrX_data/samples/ERR188401_chrX_2.fastq.gz -S ERR188401_chrX.sam</div><div class="line">&gt; hisat2 -p 8 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR188383_chrX_1.fastq.gz -2 chrX_data/samples/ERR188383_chrX_2.fastq.gz -S ERR188383_chrX.sam</div><div class="line">&gt; hisat2 -p 8 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR188337_chrX_1.fastq.gz -2 chrX_data/samples/ERR188337_chrX_2.fastq.gz -S ERR188337_chrX.sam</div><div class="line">&gt; hisat2 -p 8 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR188273_chrX_1.fastq.gz -2 chrX_data/samples/ERR188273_chrX_2.fastq.gz -S ERR188273_chrX.sam</div><div class="line">&gt; hisat2 -p 8 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR188257_chrX_1.fastq.gz -2 chrX_data/samples/ERR188257_chrX_2.fastq.gz -S ERR188257_chrX.sam</div><div class="line">&gt; hisat2 -p 8 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR188245_chrX_1.fastq.gz -2 chrX_data/samples/ERR188245_chrX_2.fastq.gz -S ERR188245_chrX.sam</div><div class="line">&gt; hisat2 -p 8 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR188234_chrX_1.fastq.gz -2 chrX_data/samples/ERR188234_chrX_2.fastq.gz -S ERR188234_chrX.sam</div><div class="line">&gt; hisat2 -p 8 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR188104_chrX_1.fastq.gz -2 chrX_data/samples/ERR188104_chrX_2.fastq.gz -S ERR188104_chrX.sam</div><div class="line">&gt; hisat2 -p 8 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR188044_chrX_1.fastq.gz -2 chrX_data/samples/ERR188044_chrX_2.fastq.gz -S ERR188044_chrX.sam</div></pre></td></tr></table></figure>
+<p>以ERR188044为例，比对结果如下：</p>
+<p>1321477 reads; of these:<br>1321477 (100.00%) were paired; of these:<br>121769 (9.21%) aligned concordantly 0 times<br>1183443 (89.55%) aligned concordantly exactly 1 time</p>
+<h2 id="16265-1-23-aligned-concordantly-gt-1-times"><a href="#16265-1-23-aligned-concordantly-gt-1-times" class="headerlink" title="16265 (1.23%) aligned concordantly &gt;1 times"></a>16265 (1.23%) aligned concordantly &gt;1 times</h2><p>121769 pairs aligned concordantly 0 times; of these:</p>
+<h2 id="4200-3-45-aligned-discordantly-1-time"><a href="#4200-3-45-aligned-discordantly-1-time" class="headerlink" title="4200 (3.45%) aligned discordantly 1 time"></a>4200 (3.45%) aligned discordantly 1 time</h2><p>117569 pairs aligned 0 times concordantly or discordantly; of these:<br>235138 mates make up the pairs; of these:<br>119859 (50.97%) aligned 0 times<br>112782 (47.96%) aligned exactly 1 time<br>2497 (1.06%) aligned &gt;1 times<br>95.46% overall alignment rate</p>
+<p>比对完成后生成如下SAM文件：</p>
+<p>-rw-r–r–  1 xiuliliu  staff   774297504 May  1 22:25 ERR188044_chrX.sam<br>-rw-r–r–  1 xiuliliu  staff   751836403 May  1 22:33 ERR188104_chrX.sam<br>-rw-r–r–  1 xiuliliu  staff   917023342 May  1 22:36 ERR188234_chrX.sam<br>-rw-r–r–  1 xiuliliu  staff   502043631 May  1 22:37 ERR188245_chrX.sam<br>-rw-r–r–  1 xiuliliu  staff   558972026 May  1 22:39 ERR188257_chrX.sam<br>-rw-r–r–  1 xiuliliu  staff   335808493 May  1 22:41 ERR188273_chrX.sam<br>-rw-r–r–  1 xiuliliu  staff   748130535 May  1 22:43 ERR188337_chrX.sam<br>-rw-r–r–  1 xiuliliu  staff   561738897 May  1 22:44 ERR188383_chrX.sam<br>-rw-r–r–  1 xiuliliu  staff   769125833 May  1 22:46 ERR188401_chrX.sam<br>-rw-r–r–  1 xiuliliu  staff   490343972 May  1 22:47 ERR188428_chrX.sam<br>-rw-r–r–  1 xiuliliu  staff   611111154 May  1 22:49 ERR188454_chrX.sam<br>-rw-r–r–  1 xiuliliu  staff   640234529 May  1 22:50 ERR204916_chrX.sam</p>
+<hr>
+<h3 id="2-Sort-and-convert-the-SAM-files-to-BAM"><a href="#2-Sort-and-convert-the-SAM-files-to-BAM" class="headerlink" title="2 | Sort and convert the SAM files to BAM"></a>2 | Sort and convert the SAM files to BAM</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">samtools sort -@ 8 -o ERR188104_chrX.bam ERR188104_chrX.sam</div><div class="line">samtools sort -@ 8 -o ERR188234_chrX.bam ERR188234_chrX.sam</div><div class="line">samtools sort -@ 8 -o ERR188245_chrX.bam ERR188245_chrX.sam</div><div class="line">samtools sort -@ 8 -o ERR188257_chrX.bam ERR188257_chrX.sam</div><div class="line">samtools sort -@ 8 -o ERR188273_chrX.bam ERR188273_chrX.sam</div><div class="line">samtools sort -@ 8 -o ERR188337_chrX.bam ERR188337_chrX.sam</div><div class="line">samtools sort -@ 8 -o ERR188383_chrX.bam ERR188383_chrX.sam</div><div class="line">samtools sort -@ 8 -o ERR188401_chrX.bam ERR188401_chrX.sam</div><div class="line">samtools sort -@ 8 -o ERR188428_chrX.bam ERR188428_chrX.sam</div><div class="line">samtools sort -@ 8 -o ERR188454_chrX.bam ERR188454_chrX.sam</div><div class="line">samtools sort -@ 8 -o ERR204916_chrX.bam ERR204916_chrX.sam</div></pre></td></tr></table></figure>
+<p>运行完成后，生成对应的BAM文件：</p>
+<p>-rw-r–r–  1 xiuliliu  staff   149690318 May  1 23:25 ERR188044_chrX.bam<br>-rw-r–r–  1 xiuliliu  staff   144503638 May  1 23:26 ERR188104_chrX.bam<br>-rw-r–r–  1 xiuliliu  staff   192550220 May  1 23:27 ERR188234_chrX.bam<br>-rw-r–r–  1 xiuliliu  staff   105587796 May  1 23:28 ERR188245_chrX.bam<br>-rw-r–r–  1 xiuliliu  staff   117630914 May  1 23:29 ERR188257_chrX.bam<br>-rw-r–r–  1 xiuliliu  staff    69857742 May  1 23:30 ERR188273_chrX.bam<br>-rw-r–r–  1 xiuliliu  staff   157532931 May  1 23:31 ERR188337_chrX.bam<br>-rw-r–r–  1 xiuliliu  staff   108256114 May  1 23:32 ERR188383_chrX.bam<br>-rw-r–r–  1 xiuliliu  staff   151150838 May  1 23:32 ERR188401_chrX.bam<br>-rw-r–r–  1 xiuliliu  staff    97383432 May  1 23:33 ERR188428_chrX.bam<br>-rw-r–r–  1 xiuliliu  staff   121850605 May  1 23:34 ERR188454_chrX.bam<br>-rw-r–r–  1 xiuliliu  staff   131891473 May  1 23:34 ERR204916_chrX.bam</p>
+<hr>
+<h3 id="3-Assemble-transcripts-for-each-sample"><a href="#3-Assemble-transcripts-for-each-sample" class="headerlink" title="3 | Assemble transcripts for each sample"></a>3 | Assemble transcripts for each sample</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">conda install stringtie <span class="comment"># 安装stringtie</span></div><div class="line"><span class="comment"># [-p 8]：8个线程运行；[-G]：注释文件；[-o]：输出目录；[-l]：指定输出转录本的前缀；</span></div><div class="line">stringtie -p 8 -G chrX_data/genes/chrX.gtf -o ERR188044_chrX.gtf -l ERR188044 ERR188044_chrX.bam</div><div class="line">stringtie -p 8 -G chrX_data/genes/chrX.gtf -o ERR188104_chrX.gtf -l ERR188104 ERR188104_chrX.bam</div><div class="line">stringtie -p 8 -G chrX_data/genes/chrX.gtf -o ERR188234_chrX.gtf -l ERR188234 ERR188234_chrX.bam</div><div class="line">stringtie -p 8 -G chrX_data/genes/chrX.gtf -o ERR188245_chrX.gtf -l ERR188245 ERR188245_chrX.bam</div><div class="line">stringtie -p 8 -G chrX_data/genes/chrX.gtf -o ERR188337_chrX.gtf -l ERR188337 ERR188337_chrX.bam</div><div class="line">stringtie -p 8 -G chrX_data/genes/chrX.gtf -o ERR188257_chrX.gtf -l ERR188257 ERR188257_chrX.bam</div><div class="line">stringtie -p 8 -G chrX_data/genes/chrX.gtf -o ERR188273_chrX.gtf -l ERR188273 ERR188273_chrX.bam</div><div class="line">stringtie -p 8 -G chrX_data/genes/chrX.gtf -o ERR188383_chrX.gtf -l ERR188383 ERR188383_chrX.bam</div><div class="line">stringtie -p 8 -G chrX_data/genes/chrX.gtf -o ERR188401_chrX.gtf -l ERR188401 ERR188401_chrX.bam</div><div class="line">stringtie -p 8 -G chrX_data/genes/chrX.gtf -o ERR188428_chrX.gtf -l ERR188428 ERR188428_chrX.bam</div><div class="line">stringtie -p 8 -G chrX_data/genes/chrX.gtf -o ERR188454_chrX.gtf -l ERR188454 ERR188454_chrX.bam</div><div class="line">stringtie -p 8 -G chrX_data/genes/chrX.gtf -o ERR204916_chrX.gtf -l ERR204916 ERR204916_chrX.bam</div></pre></td></tr></table></figure>
+<p>运行完成后，生成如下文件：</p>
+<p>-rw-r–r–  1 xiuliliu  staff     1911015 May  2 22:09 ERR188044_chrX.gtf<br>-rw-r–r–  1 xiuliliu  staff     1905249 May  2 22:12 ERR188104_chrX.gtf<br>-rw-r–r–  1 xiuliliu  staff     1914897 May  2 22:13 ERR188234_chrX.gtf<br>-rw-r–r–  1 xiuliliu  staff     1750782 May  2 22:14 ERR188245_chrX.gtf<br>-rw-r–r–  1 xiuliliu  staff     1705229 May  2 22:19 ERR188257_chrX.gtf<br>-rw-r–r–  1 xiuliliu  staff     1487570 May  2 22:19 ERR188273_chrX.gtf<br>-rw-r–r–  1 xiuliliu  staff     1928401 May  2 22:17 ERR188337_chrX.gtf<br>-rw-r–r–  1 xiuliliu  staff     1744763 May  2 22:20 ERR188383_chrX.gtf<br>-rw-r–r–  1 xiuliliu  staff     1936094 May  2 22:20 ERR188401_chrX.gtf<br>-rw-r–r–  1 xiuliliu  staff     1617807 May  2 22:21 ERR188428_chrX.gtf<br>-rw-r–r–  1 xiuliliu  staff     1773237 May  2 22:21 ERR188454_chrX.gtf<br>-rw-r–r–  1 xiuliliu  staff     1818351 May  2 22:22 ERR204916_chrX.gtf</p>
+<hr>
+<h3 id="4-Merge-transcripts-from-all-samples"><a href="#4-Merge-transcripts-from-all-samples" class="headerlink" title="4 | Merge transcripts from all samples"></a>4 | Merge transcripts from all samples</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># [-p]：线程数；[-G]：注释文件；[-o]：输出目录</span></div><div class="line">stringtie --merge -p 8 -G chrX_data/genes/chrX.gtf -o stringtie_merged.gtf chrX_data/mergelist.txt</div></pre></td></tr></table></figure>
+<p>运行完成后，生成一个新的文件：</p>
+<p>stringtie_merged.gtf</p>
+<hr>
+<h3 id="5-Examine-how-the-transcripts-compare-with-the-reference-annotation"><a href="#5-Examine-how-the-transcripts-compare-with-the-reference-annotation" class="headerlink" title="5 | Examine how the transcripts compare with the reference annotation"></a>5 | Examine how the transcripts compare with the reference annotation</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">conda install gffcompare <span class="comment"># 安装gffcompare</span></div><div class="line">ffcompare -r chrX_data/genes/chrX.gtf -G -o merged stringtie_merged.gtf</div></pre></td></tr></table></figure>
+<p>运行完成后，生成多个文件：</p>
+<p>merged.annotated.gtf<br>merged.loci<br>merged.stats<br>merged.stringtie_merged.gtf.refmap<br>merged.stringtie_merged.gtf.tmap<br>merged.tracking</p>
+<hr>
+<h3 id="6-Estimate-transcript-abundances-and-create-table-counts-for-Ballgown"><a href="#6-Estimate-transcript-abundances-and-create-table-counts-for-Ballgown" class="headerlink" title="6 | Estimate transcript abundances and create table counts for Ballgown"></a>6 | Estimate transcript abundances and create table counts for Ballgown</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">stringtie -e -B -p 8 -G stringtie_merged.gtf -o ballgown/ERR188044/ERR188044_chrX.gtf ERR188044_chrX.bam</div><div class="line">stringtie -e -B -p 8 -G stringtie_merged.gtf -o ballgown/ERR188104/ERR188104_chrX.gtf ERR188104_chrX.bam</div><div class="line">stringtie -e -B -p 8 -G stringtie_merged.gtf -o ballgown/ERR188234/ERR188234_chrX.gtf ERR188234_chrX.bam</div><div class="line">stringtie -e -B -p 8 -G stringtie_merged.gtf -o ballgown/ERR188245/ERR188245_chrX.gtf ERR188245_chrX.bam</div><div class="line">stringtie -e -B -p 8 -G stringtie_merged.gtf -o ballgown/ERR188257/ERR188257_chrX.gtf ERR188257_chrX.bam</div><div class="line">stringtie -e -B -p 8 -G stringtie_merged.gtf -o ballgown/ERR188273/ERR188273_chrX.gtf ERR188273_chrX.bam</div><div class="line">stringtie -e -B -p 8 -G stringtie_merged.gtf -o ballgown/ERR188337/ERR188337_chrX.gtf ERR188337_chrX.bam</div><div class="line">stringtie -e -B -p 8 -G stringtie_merged.gtf -o ballgown/ERR188383/ERR188383_chrX.gtf ERR188383_chrX.bam</div><div class="line">stringtie -e -B -p 8 -G stringtie_merged.gtf -o ballgown/ERR188401/ERR188401_chrX.gtf ERR188401_chrX.bam</div><div class="line">stringtie -e -B -p 8 -G stringtie_merged.gtf -o ballgown/ERR188428/ERR188428_chrX.gtf ERR188428_chrX.bam</div><div class="line">stringtie -e -B -p 8 -G stringtie_merged.gtf -o ballgown/ERR188454/ERR188454_chrX.gtf ERR188454_chrX.bam</div><div class="line">stringtie -e -B -p 8 -G stringtie_merged.gtf -o ballgown/ERR204916/ERR204916_chrX.gtf ERR204916_chrX.bam</div></pre></td></tr></table></figure>
+<p>运行完成后，将生成ballgown文件夹，</p>
+<p>drwxr-xr-x  8 xiuliliu  staff  272 May  2 22:58 ERR188044<br>drwxr-xr-x  8 xiuliliu  staff  272 May  2 23:00 ERR188104<br>drwxr-xr-x  8 xiuliliu  staff  272 May  2 23:01 ERR188234<br>drwxr-xr-x  8 xiuliliu  staff  272 May  2 23:01 ERR188245<br>drwxr-xr-x  8 xiuliliu  staff  272 May  2 23:02 ERR188257<br>drwxr-xr-x  8 xiuliliu  staff  272 May  2 23:02 ERR188273<br>drwxr-xr-x  8 xiuliliu  staff  272 May  2 23:03 ERR188337<br>drwxr-xr-x  8 xiuliliu  staff  272 May  2 23:03 ERR188383<br>drwxr-xr-x  8 xiuliliu  staff  272 May  2 23:04 ERR188401<br>drwxr-xr-x  8 xiuliliu  staff  272 May  2 23:04 ERR188428<br>drwxr-xr-x  8 xiuliliu  staff  272 May  2 23:05 ERR188454<br>drwxr-xr-x  8 xiuliliu  staff  272 May  2 23:06 ERR204916</p>
+<p>以ERR188044为例，包含：</p>
+<p>-rw-r–r–  1 xiuliliu  staff  4737232 May  2 22:58 ERR188044_chrX.gtf<br>-rw-r–r–  1 xiuliliu  staff   279338 May  2 22:58 e2t.ctab<br>-rw-r–r–  1 xiuliliu  staff   767920 May  2 22:58 e_data.ctab<br>-rw-r–r–  1 xiuliliu  staff   244338 May  2 22:58 i2t.ctab<br>-rw-r–r–  1 xiuliliu  staff   358966 May  2 22:58 i_data.ctab<br>-rw-r–r–  1 xiuliliu  staff   288682 May  2 22:58 t_data.ctab</p>
+<hr>
+<h2 id="三、差异分析（Differential-Expression-Analysis）"><a href="#三、差异分析（Differential-Expression-Analysis）" class="headerlink" title="三、差异分析（Differential Expression Analysis）"></a>三、差异分析（Differential Expression Analysis）</h2><h3 id="7-Load-relevant-R-packages"><a href="#7-Load-relevant-R-packages" class="headerlink" title="7 | Load relevant R packages"></a>7 | Load relevant R packages</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt; R</div><div class="line">&gt; <span class="built_in">source</span>(<span class="string">"http://bioconductor.org/biocLite.R"</span>)</div><div class="line">&gt; biocLite(<span class="string">"ballgown"</span>)</div><div class="line">&gt; biocLite(<span class="string">"dplyr"</span>)</div><div class="line">&gt; biocLite(<span class="string">"devtools"</span>)</div><div class="line">&gt; biocLite(<span class="string">"RSkittleBrewer"</span>) <span class="comment"># 安装RSkittleBrewer，如果不行，尝试如下方法：</span></div><div class="line">&gt; devtools::install_github(<span class="string">'RSkittleBrewer'</span>, <span class="string">'alyssafrazee'</span>)</div><div class="line"><span class="comment"># 安装完成后，加载相关R包</span></div><div class="line">&gt; library(ballgown) <span class="comment"># 分析转录组差异表达</span></div><div class="line">&gt; library(RSkittleBrewer) <span class="comment"># 设置颜色</span></div><div class="line">&gt; library(genefilter) <span class="comment"># 快速计算均值和方差（means &amp; variances）</span></div><div class="line">&gt; library(dplyr) <span class="comment"># 对结果进行分类排序</span></div><div class="line">&gt; library(devtools) <span class="comment"># 安装R包</span></div></pre></td></tr></table></figure>
+<h3 id="8-Load-the-phenotype-data-for-the-samples"><a href="#8-Load-the-phenotype-data-for-the-samples" class="headerlink" title="8 | Load the phenotype data for the samples"></a>8 | Load the phenotype data for the samples</h3><p>chrX_data/geuvadis_phenodata.csv中包含样品的表型数据，<strong>行为样品，列为变量。</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; pheno_data = read.csv(<span class="string">"chrX_data/geuvadis_phenodata.csv"</span>)</div></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">“ids”</th>
+<th style="text-align:center">“sex”</th>
+<th style="text-align:center">“population”</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">“ERR188044”</td>
+<td style="text-align:center">“male”</td>
+<td style="text-align:center">“YRI”</td>
+</tr>
+<tr>
+<td style="text-align:center">“ERR188104”</td>
+<td style="text-align:center">“male”</td>
+<td style="text-align:center">“YRI”</td>
+</tr>
+<tr>
+<td style="text-align:center">“ERR188234”</td>
+<td style="text-align:center">“female”</td>
+<td style="text-align:center">“YRI”</td>
+</tr>
+<tr>
+<td style="text-align:center">“ERR188245”</td>
+<td style="text-align:center">“female”</td>
+<td style="text-align:center">“GBR”</td>
+</tr>
+<tr>
+<td style="text-align:center">“ERR188257”</td>
+<td style="text-align:center">“male”</td>
+<td style="text-align:center">“GBR”</td>
+</tr>
+<tr>
+<td style="text-align:center">“ERR188273”</td>
+<td style="text-align:center">“female”</td>
+<td style="text-align:center">“YRI”</td>
+</tr>
+<tr>
+<td style="text-align:center">“ERR188337”</td>
+<td style="text-align:center">“female”</td>
+<td style="text-align:center">“GBR”</td>
+</tr>
+<tr>
+<td style="text-align:center">“ERR188383”</td>
+<td style="text-align:center">“male”</td>
+<td style="text-align:center">“GBR”</td>
+</tr>
+<tr>
+<td style="text-align:center">“ERR188401”</td>
+<td style="text-align:center">“male”</td>
+<td style="text-align:center">“GBR”</td>
+</tr>
+<tr>
+<td style="text-align:center">“ERR188428”</td>
+<td style="text-align:center">“female”</td>
+<td style="text-align:center">“GBR”</td>
+</tr>
+<tr>
+<td style="text-align:center">“ERR188454”</td>
+<td style="text-align:center">“male”</td>
+<td style="text-align:center">“YRI”</td>
+</tr>
+<tr>
+<td style="text-align:center">“ERR204916”</td>
+<td style="text-align:center">“female”</td>
+<td style="text-align:center">“YRI”</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="9-Read-in-expression-data"><a href="#9-Read-in-expression-data" class="headerlink" title="9 | Read in expression data"></a>9 | Read in expression data</h3><p>ballgown包含三个参数：<br><strong>dataDir，</strong>数据存储目录，本例中命名为ballgown；<br><strong>samplePattern，</strong>样本名称的特征模式，本例中为ERR；<br><strong>pData，</strong>上一步加载的表型数据；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; bg_chrX = ballgown(dataDir = <span class="string">"ballgown"</span>, samplePattern = <span class="string">"ERR"</span>, pData=pheno_data)</div></pre></td></tr></table></figure>
+<h3 id="10-Filter-to-remove-low-abundance-genes"><a href="#10-Filter-to-remove-low-abundance-genes" class="headerlink" title="10 | Filter to remove low-abundance genes"></a>10 | Filter to remove low-abundance genes</h3><p>使用方差过滤掉低丰度的基因，即去掉所有样本中方差小于1的基因。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; bg_chrX_filt = subset (bg_chrX, <span class="string">"rowVars(texpr(bg_chrX)) &gt;1"</span>, genomesubset=TRUE) </div><div class="line"><span class="comment"># texpr()，在ballgown中用于提取基因表达水平；</span></div><div class="line"><span class="comment"># rowVars()，计算数组中每一行的方差；</span></div><div class="line"><span class="comment"># rowVars(texpr(bg_chrX)) &gt;1，代表提取每一行的表达数据，计算方差，并保留方差大于1的基因作为形构成子集的条件；</span></div><div class="line"><span class="comment"># subset (x, cond, genomesubset=TRUE)，x，抽取子集的对象；cond，子集的条件；genomesubset=TRUE（对象为特定基因组），FALSE（对象为特定样品）</span></div></pre></td></tr></table></figure>
+<hr>
+<h3 id="11-Identify-transcripts-that-show-statistically-significant-differences-between-groups"><a href="#11-Identify-transcripts-that-show-statistically-significant-differences-between-groups" class="headerlink" title="11 | Identify transcripts that show statistically significant differences between groups"></a>11 | Identify transcripts that show statistically significant differences between groups</h3><p>识别组间有显著差异的转录本：在此特别说明，我们需要考虑由其他变量引起的表达变化。在本例中，有两个变量，即sex &amp; population，在计算男女性别（sex）之间的差异时，需要考虑族群（population）这一变量对结果的影响，即需要修正由族群引起的表达差异。因此，需要使用stattest这个功能。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; results_transcripts = stattest(bg_chrX_filt, feature=<span class="string">"transcript"</span>, covariate=<span class="string">"sex"</span>, adjustvars = c(<span class="string">"population"</span>), getFC=TRUE, meas=<span class="string">"FPKM"</span>) </div><div class="line"><span class="comment"># stattest基本语法：stattest(gown = NULL, gowntable = NULL, pData = NULL, mod = NULL, mod0 = NULL, feature = c("gene", "exon", "intron", "transcript"), meas = c("cov", "FPKM", "rcount", "ucount", "mrcount", "mcov"), timecourse = FALSE, covariate = NULL, adjustvars = NULL, gexpr = NULL, df = 4, getFC = FALSE, libadjust = NULL, log = TRUE)</span></div><div class="line"><span class="comment"># feature，申明基因特征的类型，如"gene"/"transcript"/"exon"/"intron"</span></div><div class="line"><span class="comment"># covariate，协变量，感兴趣的协变量</span></div><div class="line"><span class="comment"># adjustvars，混杂因子</span></div><div class="line"><span class="comment"># getFC=TRUE，返回针对文库规模和混杂因子进行调整后的表达倍数变化</span></div><div class="line"><span class="comment"># meas，即measurement，包括"cov"/"FPKM"/"rcount"/"ucount"/"mrcount"/"mcov"</span></div><div class="line">&gt; head (results_transcripts) <span class="comment"># 显示前6行</span></div><div class="line">&gt; tail (results_transcripts) <span class="comment"># 显示后6行</span></div></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">feature</th>
+<th style="text-align:center">id</th>
+<th style="text-align:center">fc</th>
+<th style="text-align:center">pval</th>
+<th style="text-align:center">qval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0.9705279</td>
+<td style="text-align:center">0.8702505</td>
+<td style="text-align:center">0.9680215</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1.8315567</td>
+<td style="text-align:center">0.5824978</td>
+<td style="text-align:center">0.9194471</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">2.2376558</td>
+<td style="text-align:center">0.5410260</td>
+<td style="text-align:center">0.9174339</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0.1745325</td>
+<td style="text-align:center">0.2063035</td>
+<td style="text-align:center">0.8959691</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0.6220551</td>
+<td style="text-align:center">0.2836476</td>
+<td style="text-align:center">0.8997697</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">0.6956666</td>
+<td style="text-align:center">0.3957555</td>
+<td style="text-align:center">0.8997697</td>
+</tr>
+<tr>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">2193</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">3444</td>
+<td style="text-align:center">1.5894619</td>
+<td style="text-align:center">0.5488017</td>
+<td style="text-align:center">0.9174339</td>
+</tr>
+<tr>
+<td style="text-align:center">2194</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">3445</td>
+<td style="text-align:center">1.3396594</td>
+<td style="text-align:center">0.8246823</td>
+<td style="text-align:center">0.9661891</td>
+</tr>
+<tr>
+<td style="text-align:center">2195</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">3446</td>
+<td style="text-align:center">0.4460239</td>
+<td style="text-align:center">0.5313140</td>
+<td style="text-align:center">0.9174339</td>
+</tr>
+<tr>
+<td style="text-align:center">2196</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">3447</td>
+<td style="text-align:center">3.7182648</td>
+<td style="text-align:center">0.2045574</td>
+<td style="text-align:center">0.8959691</td>
+</tr>
+<tr>
+<td style="text-align:center">2197</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">3448</td>
+<td style="text-align:center">0.5894432</td>
+<td style="text-align:center">0.5519984</td>
+<td style="text-align:center">0.9174339</td>
+</tr>
+<tr>
+<td style="text-align:center">2198</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">3449</td>
+<td style="text-align:center">0.9296388</td>
+<td style="text-align:center">0.8386784</td>
+<td style="text-align:center">0.9662358</td>
+</tr>
+</tbody>
+</table>
+<p>我们看到，results_transcripts是一个2198x5的矩阵，即在男女两组间有显著差异的转录本共2198个。</p>
+<hr>
+<h3 id="12-Identify-genes-that-show-statistically-significant-differences-between-groups"><a href="#12-Identify-genes-that-show-statistically-significant-differences-between-groups" class="headerlink" title="12 | Identify genes that show statistically significant differences between groups"></a>12 | Identify genes that show statistically significant differences between groups</h3><p>识别组间有显著差异的基因：同样，再次使用stattest命令，但要设置feature=”gene”，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; results_genes = stattest(bg_chrX_filt, feature=<span class="string">"gene"</span>, covariate=<span class="string">"sex"</span>, adjustvars = c(<span class="string">"population"</span>), getFC=TRUE, meas=<span class="string">"FPKM"</span>)</div><div class="line">&gt; head (results_genes) </div><div class="line">&gt; tail (results_genes)</div></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">feature</th>
+<th style="text-align:center">id</th>
+<th style="text-align:center">fc</th>
+<th style="text-align:center">pval</th>
+<th style="text-align:center">qval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.1</td>
+<td style="text-align:center">1.0842110</td>
+<td style="text-align:center">0.6894045</td>
+<td style="text-align:center">0.9108614</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.10</td>
+<td style="text-align:center">0.5255349</td>
+<td style="text-align:center">0.2155227</td>
+<td style="text-align:center">0.7052821</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.100</td>
+<td style="text-align:center">1.1078716</td>
+<td style="text-align:center">0.8361049</td>
+<td style="text-align:center">0.9714996</td>
+</tr>
+<tr>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">983</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">NR_110830</td>
+<td style="text-align:center">1.2138007</td>
+<td style="text-align:center">0.5460477</td>
+<td style="text-align:center">0.8687917</td>
+</tr>
+<tr>
+<td style="text-align:center">984</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">NR_131236</td>
+<td style="text-align:center">2.0266878</td>
+<td style="text-align:center">0.1630176</td>
+<td style="text-align:center">0.6591538</td>
+</tr>
+<tr>
+<td style="text-align:center">985</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">NR_131237</td>
+<td style="text-align:center">0.8019495</td>
+<td style="text-align:center">0.6388593</td>
+<td style="text-align:center">0.9074799</td>
+</tr>
+</tbody>
+</table>
+<p>总计发现985个在男女两组间有显著差异的基因。</p>
+<hr>
+<h3 id="13-Add-gene-names-and-gene-IDs-to-the-results-transcripts-data-frame"><a href="#13-Add-gene-names-and-gene-IDs-to-the-results-transcripts-data-frame" class="headerlink" title="13 | Add gene names and gene IDs to the results_transcripts data frame"></a>13 | Add gene names and gene IDs to the <em>results_transcripts</em> data frame</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; results_transcripts = data.frame (geneNames=ballgown::geneNames(bg_chrX_filt), geneIDs=ballgown::geneIDs(bg_chrX_filt), results_transcripts)</div><div class="line"><span class="comment"># ballgown::geneNames，代表使用ballgown包中的geneNames函数</span></div><div class="line"><span class="comment"># ballgown::geneIDs，代表使用ballgown包中的geneIDs函数</span></div><div class="line">&gt; head (results_transcripts)</div><div class="line">&gt; tail (results_transcripts)</div></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">geneNames</th>
+<th style="text-align:center">geneIDs</th>
+<th style="text-align:center">feature</th>
+<th style="text-align:center">id</th>
+<th style="text-align:center">fc</th>
+<th style="text-align:center">pval</th>
+<th style="text-align:center">qval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">.</td>
+<td style="text-align:center">MSTRG.2</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0.9705279</td>
+<td style="text-align:center">0.8702505</td>
+<td style="text-align:center">0.9680215</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">PLCXD1</td>
+<td style="text-align:center">MSTRG.2</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1.8315567</td>
+<td style="text-align:center">0.5824978</td>
+<td style="text-align:center">0.9194471</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">.</td>
+<td style="text-align:center">MSTRG.2</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">2.2376558</td>
+<td style="text-align:center">0.5410260</td>
+<td style="text-align:center">0.9174339</td>
+</tr>
+<tr>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">3447</td>
+<td style="text-align:center">.</td>
+<td style="text-align:center">MSTRG.1033</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">3447</td>
+<td style="text-align:center">3.7182648</td>
+<td style="text-align:center">0.2045574</td>
+<td style="text-align:center">0.8959691</td>
+</tr>
+<tr>
+<td style="text-align:center">3448</td>
+<td style="text-align:center">.</td>
+<td style="text-align:center">MSTRG.1033</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">3448</td>
+<td style="text-align:center">0.5894432</td>
+<td style="text-align:center">0.5519984</td>
+<td style="text-align:center">0.9174339</td>
+</tr>
+<tr>
+<td style="text-align:center">3449</td>
+<td style="text-align:center">DDX11L16</td>
+<td style="text-align:center">MSTRG.1034</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">3449</td>
+<td style="text-align:center">0.9296388</td>
+<td style="text-align:center">0.8386784</td>
+<td style="text-align:center">0.9662358</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="14-Sort-the-results-from-the-smallest-P-value-to-the-largest"><a href="#14-Sort-the-results-from-the-smallest-P-value-to-the-largest" class="headerlink" title="14 | Sort the results from the smallest P value to the largest"></a>14 | Sort the results from the smallest <em>P value</em> to the largest</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; results_transcripts = arrange(results_transcripts, pval)</div><div class="line"><span class="comment"># arrange()，是dplyr下的函数，默认状态下，按指定的列对行进行升序排列</span></div><div class="line">&gt; results_genes = arrange(results_genes, pval)</div></pre></td></tr></table></figure>
+<p>排序后的results_transcripts如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">geneNames</th>
+<th style="text-align:center">geneIDs</th>
+<th style="text-align:center">feature</th>
+<th style="text-align:center">id</th>
+<th style="text-align:center">fc</th>
+<th style="text-align:center">pval</th>
+<th style="text-align:center">qval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">.</td>
+<td style="text-align:center">MSTRG.503</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">1623</td>
+<td style="text-align:center">0.031022135</td>
+<td style="text-align:center">1.600243e-10</td>
+<td style="text-align:center">2.636450e-07</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">.</td>
+<td style="text-align:center">MSTRG.503</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">1621</td>
+<td style="text-align:center">0.016352577</td>
+<td style="text-align:center">3.101146e-10</td>
+<td style="text-align:center">2.636450e-07</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">XIST</td>
+<td style="text-align:center">MSTRG.503</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">1622</td>
+<td style="text-align:center">0.003107383</td>
+<td style="text-align:center">3.598430e-10</td>
+<td style="text-align:center">2.636450e-07</td>
+</tr>
+<tr>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">2196</td>
+<td style="text-align:center">ARMCX5</td>
+<td style="text-align:center">MSTRG.650</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">1990</td>
+<td style="text-align:center">1.0009910</td>
+<td style="text-align:center">0.9991690</td>
+<td style="text-align:center">0.9994574</td>
+</tr>
+<tr>
+<td style="text-align:center">2197</td>
+<td style="text-align:center">MAP7D3</td>
+<td style="text-align:center">MSTRG.888</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">2848</td>
+<td style="text-align:center">1.0005197</td>
+<td style="text-align:center">0.9991786</td>
+<td style="text-align:center">0.9994574</td>
+</tr>
+<tr>
+<td style="text-align:center">2198</td>
+<td style="text-align:center">FHL1</td>
+<td style="text-align:center">MSTRG.887</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">2844</td>
+<td style="text-align:center">0.9993523</td>
+<td style="text-align:center">0.9994574</td>
+<td style="text-align:center">0.9994574</td>
+</tr>
+</tbody>
+</table>
+<p>排序后的results_genes如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">feature</th>
+<th style="text-align:center">id</th>
+<th style="text-align:center">fc</th>
+<th style="text-align:center">pval</th>
+<th style="text-align:center">qval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.503</td>
+<td style="text-align:center">0.002374652</td>
+<td style="text-align:center">2.081024e-11</td>
+<td style="text-align:center">2.049809e-08</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.502</td>
+<td style="text-align:center">0.082721440</td>
+<td style="text-align:center">7.853611e-06</td>
+<td style="text-align:center">2.788929e-03</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.133</td>
+<td style="text-align:center">3.103423470</td>
+<td style="text-align:center">1.032255e-05</td>
+<td style="text-align:center">2.788929e-03</td>
+</tr>
+<tr>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">983</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.388</td>
+<td style="text-align:center">0.9989017</td>
+<td style="text-align:center">0.9977412</td>
+<td style="text-align:center">0.9996474</td>
+</tr>
+<tr>
+<td style="text-align:center">984</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.86</td>
+<td style="text-align:center">1.0003031</td>
+<td style="text-align:center">0.9995072</td>
+<td style="text-align:center">0.9996474</td>
+</tr>
+<tr>
+<td style="text-align:center">985</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.933</td>
+<td style="text-align:center">1.0002451</td>
+<td style="text-align:center">0.9996474</td>
+<td style="text-align:center">0.9996474</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="15-Write-the-results-to-a-csv-file-that-can-be-shared-and-distributed"><a href="#15-Write-the-results-to-a-csv-file-that-can-be-shared-and-distributed" class="headerlink" title="15 | Write the results to a csv file that can be shared and distributed"></a>15 | Write the results to a csv file that can be shared and distributed</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; write.csv(results_transcripts, <span class="string">"chrX_transcripts_results.csv"</span>, row.names=FALSE)</div><div class="line">&gt; write.csv (results_genes, <span class="string">"chrX_gene_results.csv"</span>, row.names=FALSE)</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="16-Identify-transcripts-and-genes-with-a-q-value-lt-0-05"><a href="#16-Identify-transcripts-and-genes-with-a-q-value-lt-0-05" class="headerlink" title="16 | Identify transcripts and genes with a q value &lt;0.05"></a>16 | Identify transcripts and genes with a q value &lt;0.05</h3><p>subset(x, …)，返回向量、矩阵或数据框中满足条件的子集，x代表被子集的对象，…代表补充条件；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; subset (results_transcripts, results_transcripts<span class="variable">$qval</span> &lt; 0.05) <span class="comment"># results_transcripts$qval，代表results_transcripts数据框中的变量qval</span></div><div class="line">&gt; subset (results_genes, results_genes<span class="variable">$qval</span>&lt;0.05)</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">geneNames</th>
+<th style="text-align:center">geneIDs</th>
+<th style="text-align:center">feature</th>
+<th style="text-align:center">id</th>
+<th style="text-align:center">fc</th>
+<th style="text-align:center">pval</th>
+<th style="text-align:center">qval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">.</td>
+<td style="text-align:center">MSTRG.503</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">1623</td>
+<td style="text-align:center">0.031022135</td>
+<td style="text-align:center">1.600243e-10</td>
+<td style="text-align:center">2.636450e-07</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">.</td>
+<td style="text-align:center">MSTRG.503</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">1621</td>
+<td style="text-align:center">0.016352577</td>
+<td style="text-align:center">3.101146e-10</td>
+<td style="text-align:center">2.636450e-07</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">XIST</td>
+<td style="text-align:center">MSTRG.503</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">1622</td>
+<td style="text-align:center">0.003107383</td>
+<td style="text-align:center">3.598430e-10</td>
+<td style="text-align:center">2.636450e-07</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">.</td>
+<td style="text-align:center">MSTRG.503</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">1624</td>
+<td style="text-align:center">0.028430569</td>
+<td style="text-align:center">4.552122e-08</td>
+<td style="text-align:center">2.501391e-05</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">TSIX</td>
+<td style="text-align:center">MSTRG.502</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">1620</td>
+<td style="text-align:center">0.080804059</td>
+<td style="text-align:center">2.230664e-06</td>
+<td style="text-align:center">9.806001e-04</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">.</td>
+<td style="text-align:center">MSTRG.585</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">1812</td>
+<td style="text-align:center">7.403215751</td>
+<td style="text-align:center">1.083185e-05</td>
+<td style="text-align:center">3.968068e-03</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">.</td>
+<td style="text-align:center">MSTRG.734</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">2296</td>
+<td style="text-align:center">0.285432112</td>
+<td style="text-align:center">4.293753e-05</td>
+<td style="text-align:center">1.236355e-02</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">.</td>
+<td style="text-align:center">MSTRG.589</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">1816</td>
+<td style="text-align:center">9.079691942</td>
+<td style="text-align:center">4.499928e-05</td>
+<td style="text-align:center">1.236355e-02</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">.</td>
+<td style="text-align:center">MSTRG.133</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">415</td>
+<td style="text-align:center">3.282982493</td>
+<td style="text-align:center">9.861143e-05</td>
+<td style="text-align:center">2.260472e-02</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">KDM6A</td>
+<td style="text-align:center">MSTRG.242</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">721</td>
+<td style="text-align:center">0.056618320</td>
+<td style="text-align:center">1.028422e-04</td>
+<td style="text-align:center">2.260472e-02</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">PNPLA4</td>
+<td style="text-align:center">MSTRG.58</td>
+<td style="text-align:center">transcript</td>
+<td style="text-align:center">180</td>
+<td style="text-align:center">0.592766066</td>
+<td style="text-align:center">1.837704e-04</td>
+<td style="text-align:center">3.672066e-02</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">feature</th>
+<th style="text-align:center">id</th>
+<th style="text-align:center">fc</th>
+<th style="text-align:center">pval</th>
+<th style="text-align:center">qval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.503</td>
+<td style="text-align:center">0.002374652</td>
+<td style="text-align:center">2.081024e-11</td>
+<td style="text-align:center">2.049809e-08</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.502</td>
+<td style="text-align:center">0.082721440</td>
+<td style="text-align:center">7.853611e-06</td>
+<td style="text-align:center">2.788929e-03</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.133</td>
+<td style="text-align:center">3.103423470</td>
+<td style="text-align:center">1.032255e-05</td>
+<td style="text-align:center">2.788929e-03</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.585</td>
+<td style="text-align:center">7.275640247</td>
+<td style="text-align:center">1.132560e-05</td>
+<td style="text-align:center">2.788929e-03</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.734</td>
+<td style="text-align:center">0.274009446</td>
+<td style="text-align:center">1.719431e-05</td>
+<td style="text-align:center">3.387279e-03</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.589</td>
+<td style="text-align:center">9.144287534</td>
+<td style="text-align:center">4.825828e-05</td>
+<td style="text-align:center">7.922401e-03</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.491</td>
+<td style="text-align:center">0.638039877</td>
+<td style="text-align:center">9.299543e-05</td>
+<td style="text-align:center">1.308579e-02</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.58</td>
+<td style="text-align:center">0.599529415</td>
+<td style="text-align:center">1.561007e-04</td>
+<td style="text-align:center">1.921990e-02</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.355</td>
+<td style="text-align:center">0.628725310</td>
+<td style="text-align:center">2.718713e-04</td>
+<td style="text-align:center">2.975480e-02</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.590</td>
+<td style="text-align:center">7.808856957</td>
+<td style="text-align:center">3.827458e-04</td>
+<td style="text-align:center">3.770046e-02</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">gene</td>
+<td style="text-align:center">MSTRG.213</td>
+<td style="text-align:center">1.409064890</td>
+<td style="text-align:center">4.535347e-04</td>
+<td style="text-align:center">4.061197e-02</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="四、绘图（Data-visualization）"><a href="#四、绘图（Data-visualization）" class="headerlink" title="四、绘图（Data visualization）"></a>四、绘图（Data visualization）</h2><h3 id="17-Make-the-plots-pretty"><a href="#17-Make-the-plots-pretty" class="headerlink" title="17 | Make the plots pretty"></a>17 | Make the plots pretty</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; tropical = c(<span class="string">'darkorange'</span>, <span class="string">'dodgerblue'</span>, <span class="string">'hotpink'</span>, <span class="string">'limegreen'</span>, <span class="string">'yellow'</span>) </div><div class="line">&gt; palette (tropical) <span class="comment">#定义调色板</span></div></pre></td></tr></table></figure>
+<h3 id="18-Show-the-distribution-of-gene-abundances-across-samples-colored-by-sex"><a href="#18-Show-the-distribution-of-gene-abundances-across-samples-colored-by-sex" class="headerlink" title="18 | Show the distribution of gene abundances across samples, colored by sex"></a>18 | Show the distribution of gene abundances across samples, colored by sex</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; fpkm = texpr(bg_chrX, meas=<span class="string">"FPKM"</span>) <span class="comment"># texpr(x, meas = "FPKM")，从ballgown中抽取转录本的表达值</span></div><div class="line">&gt; fpkm = log2(fpkm+1) <span class="comment"># +1的原因是避免出现log2(0)</span></div><div class="line">&gt; boxplot(fpkm, col=as.numeric(pheno_data<span class="variable">$sex</span>), las=2, ylab=<span class="string">'log2(FPKM+1)'</span>)</div><div class="line"><span class="comment"># las=2，定义坐标轴标记为垂直，默认las=1，即水平；ylab，定义y轴；</span></div></pre></td></tr></table></figure>
+<p>fpkm如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">FPKM.ERR188044</th>
+<th style="text-align:center">FPKM.ERR188104</th>
+<th style="text-align:center">FPKM.ERR188234</th>
+<th style="text-align:center">FPKM.ERR188245</th>
+<th style="text-align:center">FPKM.ERR188257</th>
+<th style="text-align:center">FPKM.ERR188273</th>
+<th style="text-align:center">FPKM.ERR188337</th>
+<th style="text-align:center">FPKM.ERR188383</th>
+<th style="text-align:center">FPKM.ERR188401</th>
+<th style="text-align:center">FPKM.ERR188428</th>
+<th style="text-align:center">FPKM.ERR188454</th>
+<th style="text-align:center">FPKM.ERR204916</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">4.658196</td>
+<td style="text-align:center">4.287118</td>
+<td style="text-align:center">5.348706</td>
+<td style="text-align:center">3.878832</td>
+<td style="text-align:center">4.730237</td>
+<td style="text-align:center">4.636182</td>
+<td style="text-align:center">4.997749</td>
+<td style="text-align:center">4.442006</td>
+<td style="text-align:center">4.861568</td>
+<td style="text-align:center">4.700369</td>
+<td style="text-align:center">4.872868</td>
+<td style="text-align:center">4.410593</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">4.849373</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">5.523984</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">4.747225</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4.750170</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">5.121661</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">4.345735</td>
+<td style="text-align:center">5.597809</td>
+<td style="text-align:center">5.524776</td>
+<td style="text-align:center">5.223788</td>
+<td style="text-align:center">5.967379</td>
+<td style="text-align:center">0.000000</td>
+</tr>
+<tr>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">3447</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.0000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">7.0420943</td>
+<td style="text-align:center">0.0000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.0000000</td>
+<td style="text-align:center">3.699866</td>
+<td style="text-align:center">0.000000</td>
+</tr>
+<tr>
+<td style="text-align:center">3448</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.0000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">5.2154062</td>
+<td style="text-align:center">0.0000000</td>
+<td style="text-align:center">6.646315</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.0000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+</tr>
+<tr>
+<td style="text-align:center">3449</td>
+<td style="text-align:center">1.007382</td>
+<td style="text-align:center">1.979173</td>
+<td style="text-align:center">1.7364404</td>
+<td style="text-align:center">1.343544</td>
+<td style="text-align:center">0.6354767</td>
+<td style="text-align:center">0.0000000</td>
+<td style="text-align:center">1.047157</td>
+<td style="text-align:center">1.739338</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.0000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://upload-images.jianshu.io/upload_images/4189810-c5ff5c5b0ea9d2c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="19-Make-plots-of-individual-transcripts-across-samples"><a href="#19-Make-plots-of-individual-transcripts-across-samples" class="headerlink" title="19 | Make plots of individual transcripts across samples"></a>19 | Make plots of individual transcripts across samples</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt; ballgown::transcriptNames(bg_chrX)[9] <span class="comment"># 第九个转录本的名称</span></div><div class="line"><span class="comment"># 9</span></div><div class="line"><span class="comment"># "NM_012227"</span></div><div class="line">&gt; ballgown::geneNames(bg_chrX)[9] <span class="comment"># 第九个基因的名称</span></div><div class="line"><span class="comment"># 9</span></div><div class="line"><span class="comment"># "GTPBP6"</span></div><div class="line">&gt; plot (fpkm[9,] ~ pheno_data<span class="variable">$sex</span>, border=c(1,2), main=paste(ballgown::geneNames(bg_chrX)[9],<span class="string">':'</span>,ballgown::transcriptNames(bg_chrX)[9]), pch=19, xlab=<span class="string">"Sex"</span>, ylab=<span class="string">'log2(FPKM+1)'</span>)</div><div class="line">&gt; points(fpkm[9,] ~ jitter(as.numeric(pheno_data<span class="variable">$sex</span>)), col=as.numeric(pheno_data<span class="variable">$sex</span>))</div></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/4189810-b64fa21011cd51e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="20-Plot-the-structure-and-expression-levels-in-a-sample-of-all-transcripts-that-share-the-same-gene-locus"><a href="#20-Plot-the-structure-and-expression-levels-in-a-sample-of-all-transcripts-that-share-the-same-gene-locus" class="headerlink" title="20 | Plot the structure and expression levels in a sample of all transcripts that share the same gene locus"></a>20 | Plot the structure and expression levels in a sample of all transcripts that share the same gene locus</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; plotTranscripts(ballgown::geneIDs(bg_chrX)[1622], bg_chrX, main=c(<span class="string">'Gene XIST in sample ERR188234'</span>), sample=c(<span class="string">'ERR188234'</span>))</div></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/4189810-17b30d74aeb41597.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="21-Plot-the-average-expression-levels-for-all-transcripts-of-a-gene-within-different-groups"><a href="#21-Plot-the-average-expression-levels-for-all-transcripts-of-a-gene-within-different-groups" class="headerlink" title="21 | Plot the average expression levels for all transcripts of a gene within different groups"></a>21 | Plot the average expression levels for all transcripts of a gene within different groups</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; plotMeans (<span class="string">'MSTRG.56'</span>, bg_chrX_filt, groupvar=<span class="string">"sex"</span>, legend=FALSE)</div></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/4189810-db5a8b809b1ef072.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+
+      
+    </div>
+
+<div>
+
+
+<ul class="post-copyright">
+<li class="post-copyright-author">
+<strong>本文作者：</strong>括囊无誉
+</li>
+<li class="post-copyright-link">
+<strong>本文链接：</strong>
+<a href="/biji/" title="RNASEQ学习流程">biji/</a>
+</li>
+<li class="post-copyright-license">
+<strong>版权声明： </strong>
+本博客所有文章均为原创作品，转载请注明出处！
+</li>
+</ul>
+
+</div>
+
+    
+    
+    
+
+
+<div>
+
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创文章分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="括囊无誉 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RNASEQ/" rel="tag"># RNASEQ</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/R语言学习笔记4/" rel="next" title="R语言学习笔记4-随机数的产生">
+                <i class="fa fa-chevron-left"></i> R语言学习笔记4-随机数的产生
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="括囊无誉" />
+          <p class="site-author-name" itemprop="name">括囊无誉</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">169</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/75d3f95b058e" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-http://www.jianshu.com/u/75d3f95b058e"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、下载数据并解压"><span class="nav-number">1.</span> <span class="nav-text">一、下载数据并解压</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、比对读段到基因组上-Align-the-RNA-seq-reads-to-the-genome"><span class="nav-number">2.</span> <span class="nav-text">二、比对读段到基因组上 (Align the RNA-seq reads to the genome)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Map-the-reads-for-each-sample-to-the-reference-genome"><span class="nav-number">2.1.</span> <span class="nav-text">1 | Map the reads for each sample to the reference genome</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16265-1-23-aligned-concordantly-gt-1-times"><span class="nav-number">3.</span> <span class="nav-text">16265 (1.23%) aligned concordantly >1 times</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4200-3-45-aligned-discordantly-1-time"><span class="nav-number">4.</span> <span class="nav-text">4200 (3.45%) aligned discordantly 1 time</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Sort-and-convert-the-SAM-files-to-BAM"><span class="nav-number">4.1.</span> <span class="nav-text">2 | Sort and convert the SAM files to BAM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Assemble-transcripts-for-each-sample"><span class="nav-number">4.2.</span> <span class="nav-text">3 | Assemble transcripts for each sample</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Merge-transcripts-from-all-samples"><span class="nav-number">4.3.</span> <span class="nav-text">4 | Merge transcripts from all samples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Examine-how-the-transcripts-compare-with-the-reference-annotation"><span class="nav-number">4.4.</span> <span class="nav-text">5 | Examine how the transcripts compare with the reference annotation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Estimate-transcript-abundances-and-create-table-counts-for-Ballgown"><span class="nav-number">4.5.</span> <span class="nav-text">6 | Estimate transcript abundances and create table counts for Ballgown</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、差异分析（Differential-Expression-Analysis）"><span class="nav-number">5.</span> <span class="nav-text">三、差异分析（Differential Expression Analysis）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-Load-relevant-R-packages"><span class="nav-number">5.1.</span> <span class="nav-text">7 | Load relevant R packages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-Load-the-phenotype-data-for-the-samples"><span class="nav-number">5.2.</span> <span class="nav-text">8 | Load the phenotype data for the samples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-Read-in-expression-data"><span class="nav-number">5.3.</span> <span class="nav-text">9 | Read in expression data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-Filter-to-remove-low-abundance-genes"><span class="nav-number">5.4.</span> <span class="nav-text">10 | Filter to remove low-abundance genes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-Identify-transcripts-that-show-statistically-significant-differences-between-groups"><span class="nav-number">5.5.</span> <span class="nav-text">11 | Identify transcripts that show statistically significant differences between groups</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-Identify-genes-that-show-statistically-significant-differences-between-groups"><span class="nav-number">5.6.</span> <span class="nav-text">12 | Identify genes that show statistically significant differences between groups</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-Add-gene-names-and-gene-IDs-to-the-results-transcripts-data-frame"><span class="nav-number">5.7.</span> <span class="nav-text">13 | Add gene names and gene IDs to the results_transcripts data frame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-Sort-the-results-from-the-smallest-P-value-to-the-largest"><span class="nav-number">5.8.</span> <span class="nav-text">14 | Sort the results from the smallest P value to the largest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-Write-the-results-to-a-csv-file-that-can-be-shared-and-distributed"><span class="nav-number">5.9.</span> <span class="nav-text">15 | Write the results to a csv file that can be shared and distributed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-Identify-transcripts-and-genes-with-a-q-value-lt-0-05"><span class="nav-number">5.10.</span> <span class="nav-text">16 | Identify transcripts and genes with a q value <0.05</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、绘图（Data-visualization）"><span class="nav-number">6.</span> <span class="nav-text">四、绘图（Data visualization）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#17-Make-the-plots-pretty"><span class="nav-number">6.1.</span> <span class="nav-text">17 | Make the plots pretty</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-Show-the-distribution-of-gene-abundances-across-samples-colored-by-sex"><span class="nav-number">6.2.</span> <span class="nav-text">18 | Show the distribution of gene abundances across samples, colored by sex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-Make-plots-of-individual-transcripts-across-samples"><span class="nav-number">6.3.</span> <span class="nav-text">19 | Make plots of individual transcripts across samples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-Plot-the-structure-and-expression-levels-in-a-sample-of-all-transcripts-that-share-the-same-gene-locus"><span class="nav-number">6.4.</span> <span class="nav-text">20 | Plot the structure and expression levels in a sample of all transcripts that share the same gene locus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-Plot-the-average-expression-levels-for-all-transcripts-of-a-gene-within-different-groups"><span class="nav-number">6.5.</span> <span class="nav-text">21 | Plot the average expression levels for all transcripts of a gene within different groups</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">括囊无誉</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://uteric-1.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://uteric.github.io/biji/';
+          this.page.identifier = 'biji/';
+          this.page.title = 'RNASEQ学习流程';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://uteric-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
