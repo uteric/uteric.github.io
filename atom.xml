@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2018-09-19T05:14:41.000Z</updated>
+  <updated>2018-09-20T04:48:04.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>R语言学习笔记5-第1列作为行名</title>
+    <link href="http://uteric.github.io/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B05/"/>
+    <id>http://uteric.github.io/R语言学习笔记5/</id>
+    <published>2018-09-20T04:48:04.000Z</published>
+    <updated>2018-09-20T04:48:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>比如一个名为diff的数据，我们来看一下最后五行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tail (diff, n=5) <span class="comment"># 查看最后五行</span></div></pre></td></tr></table></figure>
+<p>control1 control2      rep1      rep2<br>48816 ENSMUSG00000110418 0.000000        0 0.0000000 0.0000000<br>48817 ENSMUSG00000110420 0.000000        0 0.0000000 0.0000000<br>48818 ENSMUSG00000110421 0.000000        0 0.0000000 0.9451464<br>48819 ENSMUSG00000110422 1.247384        0 0.7586195 1.8902928<br>48820 ENSMUSG00000110423 0.000000        0 0.0000000 0.0000000</p>
+<p>这个表格的行名是：48816，48817，48818，48819，48820，然而，有的时候，我们需要把文件中的第一列作为行名，如何操作呢？</p>
+<p><strong>首先把第一列指定为行名，然后，再把第一列删掉即可。</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rownames(diff) &lt;- diff[,1] <span class="comment"># 指定第一列为行名</span></div><div class="line">tail (diff,n=5) <span class="comment"># 查看最后五行</span></div></pre></td></tr></table></figure>
+<p>control1 control2      rep1      rep2<br>ENSMUSG00000110418 ENSMUSG00000110418 0.000000        0 0.0000000 0.0000000<br>ENSMUSG00000110420 ENSMUSG00000110420 0.000000        0 0.0000000 0.0000000<br>ENSMUSG00000110421 ENSMUSG00000110421 0.000000        0 0.0000000 0.9451464<br>ENSMUSG00000110422 ENSMUSG00000110422 1.247384        0 0.7586195 1.8902928<br>ENSMUSG00000110423 ENSMUSG00000110423 0.000000        0 0.0000000 0.0000000</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">diff2 &lt;- diff[,-1] <span class="comment"># 删掉第一列</span></div><div class="line">tail (diff2,n=5) <span class="comment"># 再次查看最后五行</span></div></pre></td></tr></table></figure>
+<p>control1 control2      rep1      rep2<br>ENSMUSG00000110418 0.000000        0 0.0000000 0.0000000<br>ENSMUSG00000110420 0.000000        0 0.0000000 0.0000000<br>ENSMUSG00000110421 0.000000        0 0.0000000 0.9451464<br>ENSMUSG00000110422 1.247384        0 0.7586195 1.8902928<br>ENSMUSG00000110423 0.000000        0 0.0000000 0.0000000</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;比如一个名为diff的数据，我们来看一下最后五行：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td c
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R语言" scheme="http://uteric.github.io/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
   
   <entry>
     <title>RNASEQ分析入门笔记9-使用pheatmap绘制热图</title>
@@ -2488,46 +2520,6 @@ done
     
     
       <category term="RNASEQ" scheme="http://uteric.github.io/tags/RNASEQ/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>英语笔记24：Purchase ticket/pass from a ticket vending machine</title>
-    <link href="http://uteric.github.io/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B024/"/>
-    <id>http://uteric.github.io/英语笔记24/</id>
-    <published>2017-12-29T04:12:22.000Z</published>
-    <updated>2017-12-29T04:12:22.000Z</updated>
-    
-    <content type="html"><![CDATA[<hr>
-<ul>
-<li>SELECT TICKET TYPE/PASS </li>
-<li>INSERT MONEY </li>
-<li>TICKET/PASS &amp; CHANGE</li>
-</ul>
-<hr>
-<p>这是在TVM（Ticket Vending Machine，自动售票机）买票的三个步骤，选择行程，插入硬币或纸币，出票找零；</p>
-<p><strong>Purchase ticket</strong>，买票，通常指Two-hour ticket，限2小时内乘车，不限次数，$2.5/ticket；<br><strong>Pass</strong>，通票，分为多种：</p>
-<p>1) <strong>Midday pass</strong>，午间通票，<em>Midday pass allows unlimited travel between 9:30 a.m. and 2:30 p.m. Monday through Friday</em>，限周一至周五9:30 A.M.至2:30 P.M乘车；<br>2) <strong>Day passes</strong>，日票，$5.0/pass；<br>3) <strong>Monthly passes</strong>，月票；<br>4) <strong>7 days passes</strong>，7天通票；<br>5) <strong>31 days passes</strong>，31天通票；</p>
-<p>在美国，进站上车并不检票，而是抽检，概率极低，但是一旦被发现无票乘车，后果是比较严重的；</p>
-<p><em>Hold on to your ticket or pass and be prepared to show them to a DART Fare Enforcement Officer, DART Police Officer or other uniformed DART or TRE personnel.</em></p>
-<p>检票人员有上述提到的几种：DART Fare Enforcement Officer（列车票价执法官员），DART Police Officer（列车警官），uniformed DART personnel（穿制服的工作人员）；</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-&lt;ul&gt;
-&lt;li&gt;SELECT TICKET TYPE/PASS &lt;/li&gt;
-&lt;li&gt;INSERT MONEY &lt;/li&gt;
-&lt;li&gt;TICKET/PASS &amp;amp; CHANGE&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;p&gt;这是在TVM（Ticket Vending Mac
-    
-    </summary>
-    
-      <category term="英语进阶" scheme="http://uteric.github.io/categories/%E8%8B%B1%E8%AF%AD%E8%BF%9B%E9%98%B6/"/>
-    
     
   </entry>
   
