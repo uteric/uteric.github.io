@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2018-09-20T04:48:04.000Z</updated>
+  <updated>2018-09-25T02:11:12.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RNASEQ分析入门笔记10-clusterProfiler富集分析</title>
+    <link href="http://uteric.github.io/RNASEQ%20clusterProfiler%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/"/>
+    <id>http://uteric.github.io/RNASEQ clusterProfiler富集分析/</id>
+    <published>2018-09-25T02:11:12.000Z</published>
+    <updated>2018-09-25T02:11:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、安装clusterProfiler"><a href="#一、安装clusterProfiler" class="headerlink" title="一、安装clusterProfiler"></a>一、安装clusterProfiler</h2><blockquote>
+<p>source(“<a href="https://bioconductor.org/biocLite.R" target="_blank" rel="external">https://bioconductor.org/biocLite.R</a>“) # 如果报错，请尝试http://<br>biocLite(“clusterProfiler”)<br>library(clusterProfiler) # 载入包，测试是否安装成功，如果提示找不到某个包，则安装相关的包即可，比如我的电脑提示“<strong>不存在叫‘rvcheck’这个名字的程辑包</strong>”，则使用如下语法安装“rvcheck”，如缺乏其他包，也是同理。<br>install.packages(“rvcheck”)</p>
+</blockquote>
+<h2 id="二、安装基因组注释数据"><a href="#二、安装基因组注释数据" class="headerlink" title="二、安装基因组注释数据"></a>二、安装基因组注释数据</h2><p>目前，<a href="http://bioconductor.org/packages/release/BiocViews.html#___OrgDb" target="_blank" rel="external">Bioconductor</a>官网支持19种生物的注释数据，可以直接安装：</p>
+<blockquote>
+<p>biocLite(“org.Hs.eg.db”) # 安装人类的注释数据<br>library(org.Hs.eg.db) # 测试，载入人类的注释数据<br>biocLite(“org.Mm.eg.db”) # 安装小鼠的注释数据<br>library(org.Mm.eg.db) # 测试，载入小鼠的注释数据</p>
+</blockquote>
+<h2 id="三、载入基因列表"><a href="#三、载入基因列表" class="headerlink" title="三、载入基因列表"></a>三、载入基因列表</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">data &lt;- read.csv(<span class="string">"top50.csv"</span>) <span class="comment"># 从文件中载入数据，并赋值给data</span></div><div class="line"><span class="comment"># 我们需要的是第二列的基因列表，因此，只筛选第二列即可</span></div><div class="line">gene &lt;- data[,2] <span class="comment"># 抽取第二列，赋值给gene</span></div><div class="line">gene &lt;- bitr(gene,fromType=<span class="string">"SYMBOL"</span>,toType=<span class="string">"ENTREZID"</span>,OrgDb=org.Hs.eg.db) <span class="comment"># groupGO默认使用"ENTREZID"作为输入数据，因此首先将“SYMBOL”转化为“ENTREZID”，以防出错</span></div><div class="line">gene &lt;- gene[,2] <span class="comment"># 抽取第二列作为input</span></div></pre></td></tr></table></figure>
+<h2 id="四、groupGO分析"><a href="#四、groupGO分析" class="headerlink" title="四、groupGO分析"></a>四、groupGO分析</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ggo &lt;- groupGO(gene=gene,OrgDb=org.Hs.eg.db,ont=<span class="string">"BP"</span>,level=3,readable=TRUE)</div><div class="line">ggo &lt;- groupGO(gene=gene,OrgDb=org.Hs.eg.db,ont=<span class="string">"CC"</span>,level=3,readable=TRUE)</div><div class="line">ggo &lt;- groupGO(gene=gene,OrgDb=org.Hs.eg.db,ont=<span class="string">"MF"</span>,level=3,readable=TRUE)</div></pre></td></tr></table></figure>
+<p>groupGO命令的格式为：<em>groupGO(gene,OrgDb,ont,level,readable)</em></p>
+<p><strong>gene</strong>，指定前景基因文件，即要分析的基因集合，默认为”ENTREZID”格式；<br><strong>OrgDb</strong>，指定基因组注释数据；<br><strong>ont</strong>，即ontology，参数有三个，分别为CC，BP和MF，对应：细胞组分（cellular component，CC），生物过程（biological process，BP），分子功能（molecular function，MF）；<br><strong>level</strong>，指定分析的GO水平；<br><strong>readable</strong>，逻辑值，TRUE或FALSE；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">head(as.data.frame(ggo)) <span class="comment"># 查看前六行，结果是六行五列的数据</span></div></pre></td></tr></table></figure>
+<p>ID                              Description Count<br>GO:0019953 GO:0019953                      sexual reproduction     7<br>GO:0019954 GO:0019954                     asexual reproduction     0<br>GO:0022414 GO:0022414                     reproductive process    26<br>GO:0032504 GO:0032504      multicellular organism reproduction     9<br>GO:0032505 GO:0032505 reproduction of a single-celled organism     0<br>GO:0061887 GO:0061887         reproduction of symbiont in host     0<br>GeneRatio<br>GO:0019953     7/298<br>GO:0019954     0/298<br>GO:0022414    26/298<br>GO:0032504     9/298<br>GO:0032505     0/298<br>GO:0061887     0/298<br>geneID<br>GO:0019953                                                                                                                 APOB/ABAT/ANG/AR/AVPR1A/LEPR/ACOX1<br>GO:0019954<br>GO:0022414 APOB/AGT/AMBP/RBP4/ABAT/SERPINF1/ANG/HNF4A/AR/AVPR1A/ARG1/LEPR/GJB1/BOK/DHODH/SLC38A3/PDGFRA/TBX3/ADGRG1/IGFBP2/TTPA/ACOX1/DBH/ETNK2/NAMPT/HSD17B2<br>GO:0032504                                                                                                  APOB/SERPINF1/ANG/AR/AVPR1A/ARG1/PDGFRA/ACOX1/DBH<br>GO:0032505<br>GO:0061887                                                                                           </p>
+<h2 id="五、groupGo结果可视化"><a href="#五、groupGo结果可视化" class="headerlink" title="五、groupGo结果可视化"></a>五、groupGo结果可视化</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">barplot(ggo,drop=TRUE,showCategory=20)</div></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/4189810-f92d7ebc27bfe4e3.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ggo barplot.jpeg"></p>
+<h2 id="六、enrichGO分析"><a href="#六、enrichGO分析" class="headerlink" title="六、enrichGO分析"></a>六、enrichGO分析</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ego &lt;- enrichGO(gene=gene,universe=names(geneList),OrgDb=org.Hs.eg.db,ont=<span class="string">"BP"</span>,pvalueCutoff=0.01,qvalueCutoff=0.05,readable=TRUE)</div><div class="line">ego &lt;- enrichGO(gene=gene,universe=names(geneList),OrgDb=org.Hs.eg.db,ont=<span class="string">"CC"</span>,pvalueCutoff=0.01,qvalueCutoff=0.05,readable=TRUE)</div><div class="line">ego &lt;- enrichGO(gene=gene,universe=names(geneList),OrgDb=org.Hs.eg.db,ont=<span class="string">"MF"</span>,pvalueCutoff=0.01,qvalueCutoff=0.05,readable=TRUE)</div></pre></td></tr></table></figure>
+<p>enrichGO命令语法：<em>enrichGO(gene,universe,OrgDb,ont,pvalueCutoff,qvalueCutoff,readable)</em></p>
+<p>universe，背景基因文件，可以使用默认值；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">head(as.data.frame(ego))</div></pre></td></tr></table></figure>
+<p>ID                                   Description<br>GO:0072562 GO:0072562                           blood microparticle<br>GO:0042627 GO:0042627                                   chylomicron<br>GO:0031093 GO:0031093                  platelet alpha granule lumen<br>GO:0005788 GO:0005788                   endoplasmic reticulum lumen<br>GO:0034361 GO:0034361         very-low-density lipoprotein particle<br>GO:0034385 GO:0034385 triglyceride-rich plasma lipoprotein particle<br>GeneRatio   BgRatio       pvalue     p.adjust       qvalue<br>GO:0072562    33/288 101/11817 9.367691e-29 2.519909e-26 2.336992e-26<br>GO:0042627     8/288  11/11817 1.750866e-11 2.354915e-09 2.183975e-09<br>GO:0031093    14/288  62/11817 1.938754e-10 1.738416e-08 1.612227e-08<br>GO:0005788    26/288 247/11817 3.097572e-10 2.083117e-08 1.931907e-08<br>GO:0034361     8/288  16/11817 1.227828e-09 5.504763e-08 5.105180e-08<br>GO:0034385     8/288  16/11817 1.227828e-09 5.504763e-08 5.105180e-08<br>geneID<br>GO:0072562 ITIH4/ALB/FGB/FGA/FGG/ORM1/HPX/HP/VTN/APOA2/AGT/AMBP/SERPINC1/F2/C3/C9/SERPING1/HRG/ITIH1/SERPINA3/AHSG/GC/APOA4/PLG/KNG1/TF/C4BPA/C8G/C8A/APOA1/HPR/ITIH2/C1S<br>GO:0042627                                                                                                                    APOB/APOC3/APOA2/APOA4/APOH/APOA1/LSR/APOC1<br>GO:0031093                                                                                       ALB/FGB/FGA/FGG/ORM1/SERPINA1/SERPING1/HRG/SERPINA3/AHSG/F5/PLG/KNG1/VWF<br>GO:0005788                           APOB/ALB/FGA/FGG/SERPINA1/VTN/APOA2/SERPINC1/F2/C3/IGFBP1/AHSG/F5/SERPIND1/APOA4/KNG1/TF/PROC/APOA1/F9/ITIH2/MTTP/F10/CES2/H6PD/CDH2<br>GO:0034361                                                                                                                    APOB/APOC3/APOA2/APOA4/APOH/APOA1/LSR/APOC1<br>GO:0034385                                                                                                                    APOB/APOC3/APOA2/APOA4/APOH/APOA1/LSR/APOC1<br>Count<br>GO:0072562    33<br>GO:0042627     8<br>GO:0031093    14<br>GO:0005788    26<br>GO:0034361     8<br>GO:0034385     8</p>
+<h2 id="七、enrichGO可视化"><a href="#七、enrichGO可视化" class="headerlink" title="七、enrichGO可视化"></a>七、enrichGO可视化</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">barplot(ego,drop=TRUE,showCategory=20)</div></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/4189810-74b5709dbbde256d.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ego barplot.jpeg"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dotplot(ego,title=<span class="string">"enrichGo CC dotplot"</span>)</div></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/4189810-d804a07f00df5610.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ego cc dotplot.jpeg"></p>
+<p>此外，还可以作enrichMap或cnetplot，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">enrichMap(ego, vertex.label.cex=1.2, layout=igraph::layout.kamada.kawai)</div><div class="line">cnetplot(ego, foldChange=geneList)</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、安装clusterProfiler&quot;&gt;&lt;a href=&quot;#一、安装clusterProfiler&quot; class=&quot;headerlink&quot; title=&quot;一、安装clusterProfiler&quot;&gt;&lt;/a&gt;一、安装clusterProfiler&lt;/h2&gt;&lt;bloc
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="RNASEQ" scheme="http://uteric.github.io/tags/RNASEQ/"/>
+    
+  </entry>
   
   <entry>
     <title>R语言学习笔记5-第1列作为行名</title>
@@ -2475,44 +2523,6 @@ done
     <summary type="html">
     
       &lt;h2 id=&quot;获取原始数据地址&quot;&gt;&lt;a href=&quot;#获取原始数据地址&quot; class=&quot;headerlink&quot; title=&quot;获取原始数据地址&quot;&gt;&lt;/a&gt;获取原始数据地址&lt;/h2&gt;&lt;p&gt;参考文献：&lt;em&gt;AKAP95 regulates splicing through sca
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="RNASEQ" scheme="http://uteric.github.io/tags/RNASEQ/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RNASEQ分析入门笔记5-参考基因组下载</title>
-    <link href="http://uteric.github.io/RNASEQ%E5%8F%82%E8%80%83%E5%9F%BA%E5%9B%A0%E7%BB%84%E4%B8%8B%E8%BD%BD/"/>
-    <id>http://uteric.github.io/RNASEQ参考基因组下载/</id>
-    <published>2018-03-21T03:46:13.000Z</published>
-    <updated>2018-03-21T03:46:13.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>进入<strong>UCSC</strong>网站（<a href="http://genome.ucsc.edu/" target="_blank" rel="external">http://genome.ucsc.edu/</a>  ），Downloads&gt;&gt;Genome Data&gt;&gt;Human&gt;&gt;Feb. 2009 (GRCh37/hg19)&gt;&gt;full data set&gt;&gt;chromFa.tar.gz，右键复制链接地址如下：<br><a href="http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz" target="_blank" rel="external">http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz</a></p>
-<p>下载参考基因组的代码如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mkdir hg19 <span class="comment">#在ncbi目录下新建hg19文件夹</span></div><div class="line"><span class="built_in">cd</span> hg19 <span class="comment">#切换到ncbi/hg19目录</span></div><div class="line">wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz <span class="comment">#下载GRCh37/hg19，文件大约905M</span></div><div class="line">tar -zxvf  chromFa.tar.gz <span class="comment">#解压文件</span></div></pre></td></tr></table></figure>
-<p>解压后出现一大堆文件：</p>
-<blockquote>
-<p>chr1.fa                  chr5.fa                  chrUn_gl000223.fa<br>chr10.fa                 chr6.fa                  chrUn_gl000224.fa<br>chr11.fa                 chr6_apd_hap1.fa         chrUn_gl000225.fa<br>chr11_gl000202_random.fa chr6_cox_hap2.fa         chrUn_gl000226.fa<br>chr12.fa                 chr6_dbb_hap3.fa         chrUn_gl000227.fa<br>chr13.fa                 chr6_mann_hap4.fa        chrUn_gl000228.fa<br>chr14.fa                 chr6_mcf_hap5.fa         chrUn_gl000229.fa<br>chr15.fa                 chr6_qbl_hap6.fa         chrUn_gl000230.fa<br>chr16.fa                 chr6_ssto_hap7.fa        chrUn_gl000231.fa<br>chr17.fa                 chr7.fa                  chrUn_gl000232.fa<br>chr17_ctg5_hap1.fa       chr7_gl000195_random.fa  chrUn_gl000233.fa<br>chr17_gl000203_random.fa chr8.fa                  chrUn_gl000234.fa<br>chr17_gl000204_random.fa chr8_gl000196_random.fa  chrUn_gl000235.fa<br>chr17_gl000205_random.fa chr8_gl000197_random.fa  chrUn_gl000236.fa<br>chr17_gl000206_random.fa chr9.fa                  chrUn_gl000237.fa<br>chr18.fa                 chr9_gl000198_random.fa  chrUn_gl000238.fa<br>chr18_gl000207_random.fa chr9_gl000199_random.fa  chrUn_gl000239.fa<br>chr19.fa                 chr9_gl000200_random.fa  chrUn_gl000240.fa<br>chr19_gl000208_random.fa chr9_gl000201_random.fa  chrUn_gl000241.fa<br>chr19_gl000209_random.fa chrM.fa                  chrUn_gl000242.fa<br>chr1_gl000191_random.fa  chrUn_gl000211.fa        chrUn_gl000243.fa<br>chr1_gl000192_random.fa  chrUn_gl000212.fa        chrUn_gl000244.fa<br>chr2.fa                  chrUn_gl000213.fa        chrUn_gl000245.fa<br>chr20.fa                 chrUn_gl000214.fa        chrUn_gl000246.fa<br>chr21.fa                 chrUn_gl000215.fa        chrUn_gl000247.fa<br>chr21_gl000210_random.fa chrUn_gl000216.fa        chrUn_gl000248.fa<br>chr22.fa                 chrUn_gl000217.fa        chrUn_gl000249.fa<br>chr3.fa                  chrUn_gl000218.fa        chrX.fa<br>chr4.fa                  chrUn_gl000219.fa        chrY.fa<br>chr4_ctg9_hap1.fa        chrUn_gl000220.fa        chromFa.tar.gz<br>chr4_gl000193_random.fa  chrUn_gl000221.fa<br>chr4_gl000194_random.fa  chrUn_gl000222.fa</p>
-</blockquote>
-<p>仔细观察这些解压出来的新文件，就会发现全部都是同一类型，chr*.fa，这为我们合并文件提供了极大的方便，代码如下：</p>
-<p>cat *.fa&gt;hg19.fa #将当前文件夹下所有.fa结尾的文件合并为一个文件，即hg19.fa</p>
-<p>删除其他无关的解压文件，以及参考基因组压缩文件，以节省空间，</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rm chr*.fa <span class="comment">#删除chr*.fa格式的所有文件</span></div><div class="line">rm chromFa.tar.gz <span class="comment">#删除下载的参考基因组压缩文件</span></div><div class="line">ls -l <span class="comment">#显示当前目录下得文件以及属性</span></div></pre></td></tr></table></figure>
-<p>结果如下，只有一个文件，即hg19.fa，</p>
-<blockquote>
-<p>-rw-r–r–  1 Administrator  staff  3199905909 Mar 16 23:07 hg19.fa</p>
-</blockquote>
-<p>到此为止，参考基因组就准备好了。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;进入&lt;strong&gt;UCSC&lt;/strong&gt;网站（&lt;a href=&quot;http://genome.ucsc.edu/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://genome.ucsc.edu/&lt;/a&gt;  ），Downloads&amp;gt;&amp;g
     
     </summary>
     
