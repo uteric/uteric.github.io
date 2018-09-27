@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2018-09-25T02:11:12.000Z</updated>
+  <updated>2018-09-27T04:16:58.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,99 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>R语言学习笔记7-最大整数问题</title>
+    <link href="http://uteric.github.io/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B07/"/>
+    <id>http://uteric.github.io/R语言学习笔记7/</id>
+    <published>2018-09-27T04:16:58.000Z</published>
+    <updated>2018-09-27T04:16:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在分析RNA-SEQ结果时，遇到一个问题，总是提示：</p>
+<p><em>message: In mde(x) : NAs introduced by coercion to integer range </em></p>
+<p>最开始时，我以为是原始数据中有NAs，但是检查了一遍发现没有，真正的原因是，原始数据中的整数太大，超出机器设定的最高限，因此才会报错。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.Machine<span class="variable">$integer</span>.max <span class="comment"># 查看最大整数</span></div><div class="line"><span class="comment"># [1] 2147483647</span></div><div class="line">x &lt;- as.interger(.Machine<span class="variable">$integer</span>.max)</div><div class="line">y&lt;- x+1</div><div class="line">as.integer(y)</div><div class="line"><span class="comment"># 猜猜会怎样？报错</span></div><div class="line"><span class="comment"># [1] NA</span></div><div class="line"><span class="comment"># Warning message: NAs introduced by coercion to integer range</span></div></pre></td></tr></table></figure>
+<p>可见，最大整数不可以超过2147483647，当然，这不意味着系统不能对更大的数值进行计算，而是说，如果某函数中需要输入整数，则最大不可以超过此上限。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在分析RNA-SEQ结果时，遇到一个问题，总是提示：&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;message: In mde(x) : NAs introduced by coercion to integer range &lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;最开始时，我以为是原始数据中有NAs，
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R语言" scheme="http://uteric.github.io/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>R语言学习笔记6-基本命令</title>
+    <link href="http://uteric.github.io/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B06/"/>
+    <id>http://uteric.github.io/R语言学习笔记6/</id>
+    <published>2018-09-27T04:15:28.000Z</published>
+    <updated>2018-09-27T04:15:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>1、查看当前目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getwd() <span class="comment"># get working directory</span></div></pre></td></tr></table></figure>
+<p>2、改变工作目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setwd()</div></pre></td></tr></table></figure>
+<p>3、查看当前目录中的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dir()</div></pre></td></tr></table></figure>
+<p>4、查看行数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nrow()</div></pre></td></tr></table></figure>
+<p>5、排序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data &lt;- data[order(data<span class="variable">$row</span>,decreasing=FALSE),] <span class="comment"># decreasing=FALSE为默认升序排列</span></div></pre></td></tr></table></figure>
+<p>6、查看文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">head() <span class="comment"># 查看前6行</span></div><div class="line">tail() <span class="comment"># 查看最后6行</span></div></pre></td></tr></table></figure>
+<p>7、查看类型</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class()</div></pre></td></tr></table></figure>
+<p>8、载入文档</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">read.csv() <span class="comment"># 载入逗号分隔的CSV文档</span></div><div class="line">read.csv2() <span class="comment"># 载入分号分隔的CSV文档</span></div><div class="line">read.delim() <span class="comment"># 载入TAB键分隔的文档</span></div></pre></td></tr></table></figure>
+<p>9、输出文档</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">write.csv() <span class="comment"># 输出逗号分隔的CSV文档</span></div><div class="line">write.csv2() <span class="comment"># 输出分号分隔的CSV文档</span></div></pre></td></tr></table></figure>
+<p>10、数据筛选</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">subset() <span class="comment"># 筛选特定子集</span></div></pre></td></tr></table></figure>
+<p>11、绝对值函数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">abs()</div></pre></td></tr></table></figure>
+<p>12、开根号</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sqrt()</div></pre></td></tr></table></figure>
+<p>13、判断正负</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sign()</div></pre></td></tr></table></figure>
+<p>14、自然指数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">exp() <span class="comment"># e的指数</span></div></pre></td></tr></table></figure>
+<p>15、对数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">log</span>(x,base)</div></pre></td></tr></table></figure>
+<p>16、四舍五入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">round(x,n) <span class="comment"># 将x四舍五入到第n位</span></div></pre></td></tr></table></figure>
+<p>17、取整数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">trunc()</div></pre></td></tr></table></figure>
+<p>18、最大值与最小值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">max()</div><div class="line">min()</div></pre></td></tr></table></figure>
+<p>19、求和</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">colSums() <span class="comment"># 按列求和</span></div><div class="line">rowSums() <span class="comment"># 按行求和</span></div></pre></td></tr></table></figure>
+<p>20、平均值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">colMeans()</div><div class="line">rowMeans()</div></pre></td></tr></table></figure>
+<p>21、缺失值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">na.fail() <span class="comment"># 检测是否有缺失值，若有则报错并停止</span></div><div class="line">na.omit() <span class="comment"># 去除缺失值</span></div><div class="line">na.exclude() <span class="comment"># 去除缺失值</span></div><div class="line">is.na() <span class="comment"># 判断是否是缺失值</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;1、查看当前目录&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R语言" scheme="http://uteric.github.io/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
   
   <entry>
     <title>RNASEQ分析入门笔记10-clusterProfiler富集分析</title>
@@ -2449,87 +2542,6 @@ done
     
     
       <category term="命令行" scheme="http://uteric.github.io/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RNASEQ分析入门笔记1-软件安装</title>
-    <link href="http://uteric.github.io/RNASEQ%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"/>
-    <id>http://uteric.github.io/RNASEQ软件安装/</id>
-    <published>2018-03-22T04:39:36.000Z</published>
-    <updated>2018-03-22T04:39:36.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>RNASEQ的基本软件包括：<em>sra-tools, fastqc, hisat2, samtools, htseq, r, rstudio</em>，建议使用conda命令安装软件，降低出错概率，<em>conda is a tool for managing and deploying applications, environments and packages.</em></p>
-<h2 id="miniconda3"><a href="#miniconda3" class="headerlink" title="miniconda3"></a>miniconda3</h2><p>在官网下载相应的版本，安装即可，<a href="https://conda.io/miniconda.html" target="_blank" rel="external">https://conda.io/miniconda.html</a></p>
-<p>安装完成后，需要创建频道，命令如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">conda config --add channels conda-forge</div><div class="line">conda config --add channels defaults</div><div class="line">conda config --add channels r</div><div class="line">conda config --add channels bioconda</div></pre></td></tr></table></figure>
-<p>如果使用iTerm2作为终端，conda可能无法执行：<em>command not found: conda</em></p>
-<p>原因：终端是 iTerm2，安装了 zsh 和 oh-my-zsh，因此，打开终端时不再执行~/.bash_profile。</p>
-<p>若使该文件有效，需要修改 zsh 的配置文件，方法如下：</p>
-<p>编辑~/.zshrc，在文件末尾加入一行：</p>
-<blockquote>
-<p>source ~/.bash_profile</p>
-</blockquote>
-<p><strong>注意：</strong> .zshrc是一个位于根目录下的隐藏文件，如果要显示隐藏文件，请在终端中输入：</p>
-<p>defaults write com.apple.finder AppleShowAllFiles -bool true;<br>KillAll Finder</p>
-<h2 id="sra-tools"><a href="#sra-tools" class="headerlink" title="sra-tools"></a>sra-tools</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install -c bioconda sra-tools=2.8.1</div></pre></td></tr></table></figure>
-<h2 id="fastqc"><a href="#fastqc" class="headerlink" title="fastqc"></a>fastqc</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install fastqc</div></pre></td></tr></table></figure>
-<h2 id="hisat2"><a href="#hisat2" class="headerlink" title="hisat2"></a>hisat2</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install hisat2</div></pre></td></tr></table></figure>
-<h2 id="samtools"><a href="#samtools" class="headerlink" title="samtools"></a>samtools</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install samtools</div></pre></td></tr></table></figure>
-<h2 id="htseq"><a href="#htseq" class="headerlink" title="htseq"></a>htseq</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install -c bioconda htseq</div></pre></td></tr></table></figure>
-<h2 id="R"><a href="#R" class="headerlink" title="R"></a>R</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install r</div></pre></td></tr></table></figure>
-<h2 id="Rstudio"><a href="#Rstudio" class="headerlink" title="Rstudio"></a>Rstudio</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install rstudio</div></pre></td></tr></table></figure>
-<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p>另外，下载NCBI上的原始数据（SRA文件），还需要用到wget，安装语法为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install wget</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;RNASEQ的基本软件包括：&lt;em&gt;sra-tools, fastqc, hisat2, samtools, htseq, r, rstudio&lt;/em&gt;，建议使用conda命令安装软件，降低出错概率，&lt;em&gt;conda is a tool for managing an
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="RNASEQ" scheme="http://uteric.github.io/tags/RNASEQ/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RNASEQ分析入门笔记2-下载原始数据</title>
-    <link href="http://uteric.github.io/RNASEQ%E4%B8%8B%E8%BD%BD%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE/"/>
-    <id>http://uteric.github.io/RNASEQ下载原始数据/</id>
-    <published>2018-03-21T21:41:13.000Z</published>
-    <updated>2018-03-21T21:41:13.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="获取原始数据地址"><a href="#获取原始数据地址" class="headerlink" title="获取原始数据地址"></a>获取原始数据地址</h2><p>参考文献：<em>AKAP95 regulates splicing through scaffolding RNAs and RNA processing factors. Nat Commun 2016 Nov 8;7:13347. PMID: 27824034</em></p>
-<p>根据文献，原始数据下载地址如下：ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747， 该目录下共有如下文件：</p>
-<blockquote>
-<p>| 26/May/2016 00:00 |    dir    | <a href="ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589948/" target="_blank" rel="external">SRR3589948</a> |  |<br>| 26/May/2016 00:00 |    dir    | <a href="ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589949/" target="_blank" rel="external">SRR3589949</a> |  |<br>| 26/May/2016 00:00 |    dir    | <a href="ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589950/" target="_blank" rel="external">SRR3589950</a> |  |<br>| 26/May/2016 00:00 |    dir    | <a href="ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589951/" target="_blank" rel="external">SRR3589951</a> |  |<br>| 26/May/2016 00:00 |    dir    | <a href="ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589952/" target="_blank" rel="external">SRR3589952</a> |  |<br>| 26/May/2016 00:00 |    dir    | <a href="ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589953/" target="_blank" rel="external">SRR3589953</a> |  |<br>| 26/May/2016 00:00 |    dir    | <a href="ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589954/" target="_blank" rel="external">SRR3589954</a> |  |<br>| 26/May/2016 00:00 |    dir    | <a href="ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589955/" target="_blank" rel="external">SRR3589955</a> |  |<br>| 26/May/2016 00:00 |    dir    | <a href="ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589956/" target="_blank" rel="external">SRR3589956</a> |  |<br>| 26/May/2016 00:00 |    dir    | <a href="ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589957/" target="_blank" rel="external">SRR3589957</a> |  |<br>| 26/May/2016 00:00 |    dir    | <a href="ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589958/" target="_blank" rel="external">SRR3589958</a> |  |<br>| 26/May/2016 00:00 |    dir    | <a href="ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589959/" target="_blank" rel="external">SRR3589959</a> |  |<br>| 26/May/2016 00:00 |    dir    | <a href="ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589960/" target="_blank" rel="external">SRR3589960</a> |  |<br>| 26/May/2016 00:00 |    dir    | <a href="ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589961/" target="_blank" rel="external">SRR3589961</a> |  |<br>| 26/May/2016 00:00 |    dir    | <a href="ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589962/" target="_blank" rel="external">SRR3589962</a> |</p>
-</blockquote>
-<p>我们只对最后4个来自小鼠的测序数据进行分析，即*59-62.sra</p>
-<h2 id="下载文件语法"><a href="#下载文件语法" class="headerlink" title="下载文件语法"></a>下载文件语法</h2><h4 id="单个文件下载"><a href="#单个文件下载" class="headerlink" title="单个文件下载"></a>单个文件下载</h4><p>本文以下载SRR3589959.sra为例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589959/SRR3589959.sra</div></pre></td></tr></table></figure></p>
-<p>下载过程如下：</p>
-<blockquote>
-<p>–2018-03-21 14:52:21–  ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589959/SRR3589959.sra<br>=&gt; ‘SRR3589959.sra’<br>Resolving ftp-trace.ncbi.nlm.nih.gov… 130.14.250.10, 2607:f220:41e:250::12<br>Connecting to ftp-trace.ncbi.nlm.nih.gov|130.14.250.10|:21… connected.<br>Logging in as anonymous … Logged in!<br>==&gt; SYST … done.    ==&gt; PWD … done.<br>==&gt; TYPE I … done.  ==&gt; CWD (1) /sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589959 … done.<br>==&gt; SIZE SRR3589959.sra … 1321462823<br>==&gt; PASV … done.    ==&gt; RETR SRR3589959.sra … done.<br>Length: 1321462823 (1.2G) (unauthoritative)<br>SRR3589959.sra      100%[===================&gt;]   1.23G  3.82MB/s    in 11m 8s<br>2018-03-21 15:03:31 (1.89 MB/s) - ‘SRR3589959.sra’ saved [1321462823]</p>
-</blockquote>
-<p>文件大小1.2GB，耗时约11Mins</p>
-<h4 id="批量下载文件"><a href="#批量下载文件" class="headerlink" title="批量下载文件"></a>批量下载文件</h4><p>批量依次下载SRR3589959.sra，SRR3589960.sra，SRR3589961.sra，SRR3589962.sra，四个文件，</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> ` seq 59 62`;</div><div class="line"><span class="keyword">do</span></div><div class="line">wget ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR35899<span class="variable">$&#123;i&#125;</span>/SRR35899<span class="variable">$&#123;i&#125;</span>.sra  </div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
-<p>将上述语法保存为*.sh文件，并在终端中执行即可。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;获取原始数据地址&quot;&gt;&lt;a href=&quot;#获取原始数据地址&quot; class=&quot;headerlink&quot; title=&quot;获取原始数据地址&quot;&gt;&lt;/a&gt;获取原始数据地址&lt;/h2&gt;&lt;p&gt;参考文献：&lt;em&gt;AKAP95 regulates splicing through sca
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="RNASEQ" scheme="http://uteric.github.io/tags/RNASEQ/"/>
     
   </entry>
   
