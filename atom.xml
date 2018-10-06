@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2018-09-27T04:16:58.000Z</updated>
+  <updated>2018-10-06T04:22:07.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,85 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>R语言学习笔记8-集合运算</title>
+    <link href="http://uteric.github.io/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08/"/>
+    <id>http://uteric.github.io/R语言学习笔记8/</id>
+    <published>2018-10-06T04:22:07.000Z</published>
+    <updated>2018-10-06T04:22:07.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、交集"><a href="#一、交集" class="headerlink" title="一、交集"></a>一、交集</h2><p>使用intersect计算两个向量的交集：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">x=1:10</div><div class="line">y=3:15</div><div class="line">z=5:9</div><div class="line"><span class="comment"># 定义x, y, z三个向量</span></div><div class="line">intersect(x,y)</div><div class="line"><span class="comment"># 3  4  5  6  7  8  9 10</span></div><div class="line">intersect(x,y,z)</div><div class="line"><span class="comment"># Error in intersect(x, y, z) : 参数没有用(z) #若使用intersect计算三个向量的交集，则会报错</span></div></pre></td></tr></table></figure>
+<p>使用intersect计算两个以上向量的交集：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A &lt;- Reduce(intersect,list(x,y,z)) <span class="comment"># 求x, y, z三个向量的交集</span></div><div class="line">5 6 7 8 9</div></pre></td></tr></table></figure>
+<h2 id="二、并集"><a href="#二、并集" class="headerlink" title="二、并集"></a>二、并集</h2><p>两个向量求并集</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">union(x,y)</div><div class="line"><span class="comment"># 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15</span></div></pre></td></tr></table></figure>
+<p>多个向量求并集</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">b &lt;- Reduce(union,list(x,y,z))</div><div class="line"><span class="comment"># 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15</span></div></pre></td></tr></table></figure>
+<h2 id="三、差集"><a href="#三、差集" class="headerlink" title="三、差集"></a>三、差集</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">setdiff(x,y) <span class="comment"># x-y的差集，即x中存在但在y中不存在的元素</span></div><div class="line"><span class="comment"># 1 2</span></div><div class="line">setdiff(y,x) <span class="comment"># y-x的差集，即y中存在但在x中不存在的元素</span></div><div class="line"><span class="comment"># 11 12 13 14 15</span></div></pre></td></tr></table></figure>
+<h2 id="四、检验集合是否相同"><a href="#四、检验集合是否相同" class="headerlink" title="四、检验集合是否相同"></a>四、检验集合是否相同</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">setequal(x,y)</div><div class="line"><span class="comment"># FALSE</span></div></pre></td></tr></table></figure>
+<h2 id="五、检验元素是否属于集合"><a href="#五、检验元素是否属于集合" class="headerlink" title="五、检验元素是否属于集合"></a>五、检验元素是否属于集合</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">is.element(5,x)</div><div class="line"><span class="comment"># TRUE</span></div><div class="line">&gt; is.element(15,x)</div><div class="line"><span class="comment"># FALSE</span></div></pre></td></tr></table></figure>
+<h2 id="六、检验集合B是否包含于集合A"><a href="#六、检验集合B是否包含于集合A" class="headerlink" title="六、检验集合B是否包含于集合A"></a>六、检验集合B是否包含于集合A</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">all(x%<span class="keyword">in</span>%y)</div><div class="line"><span class="comment"># FALSE</span></div><div class="line">all(z%<span class="keyword">in</span>%x)</div><div class="line"><span class="comment"># TRUE</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、交集&quot;&gt;&lt;a href=&quot;#一、交集&quot; class=&quot;headerlink&quot; title=&quot;一、交集&quot;&gt;&lt;/a&gt;一、交集&lt;/h2&gt;&lt;p&gt;使用intersect计算两个向量的交集：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;tabl
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R语言" scheme="http://uteric.github.io/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RNASEQ分析入门笔记10-差异分析与绘制热图（命令集合）</title>
+    <link href="http://uteric.github.io/RNASEQ%20%E5%B7%AE%E5%BC%82%E5%88%86%E6%9E%90%E4%B8%8E%E7%BB%98%E5%88%B6%E7%83%AD%E5%9B%BE/"/>
+    <id>http://uteric.github.io/RNASEQ 差异分析与绘制热图/</id>
+    <published>2018-10-06T04:19:13.000Z</published>
+    <updated>2018-10-06T04:19:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、差异分析"><a href="#一、差异分析" class="headerlink" title="一、差异分析"></a>一、差异分析</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">setwd(<span class="string">"E:/R/My Analysis/"</span>) <span class="comment"># 设置工作目录</span></div><div class="line">getwd() <span class="comment"># 查看当前工作目录</span></div><div class="line">dir() <span class="comment"># 查看工作目录下的文件</span></div><div class="line"></div><div class="line">library(DESeq2) <span class="comment"># 载入DESeq2</span></div><div class="line"></div><div class="line">data &lt;- read.delim(<span class="string">"clipboard"</span>,header=T,row.names=1) <span class="comment"># 从剪贴板载入要分析的数据</span></div><div class="line"></div><div class="line">countData &lt;- data</div><div class="line">condition &lt;- factor(c(<span class="string">"S"</span>,<span class="string">"S"</span>,<span class="string">"R"</span>,<span class="string">"R"</span>)) <span class="comment"># 定义condition，根据具体情况作相应改变</span></div><div class="line">colData &lt;- data.frame(row.names=colnames(countData),condition)</div><div class="line">condition <span class="comment"># 查看condition</span></div><div class="line">colData <span class="comment"># 查看colData是否与预期一致</span></div><div class="line"></div><div class="line">dds &lt;- DESeqDataSetFromMatrix(countData,DataFrame(condition),design= ~ condition) <span class="comment"># 构建dds矩阵</span></div><div class="line">head(dds) <span class="comment"># 查看dds矩阵的前端</span></div><div class="line">dds2 &lt;- DESeq(dds) <span class="comment"># 对dds矩阵进行Normalize</span></div><div class="line"></div><div class="line">res &lt;- results(dds2) <span class="comment"># 使用results()函数获取结果，并赋值给res</span></div><div class="line">summary(res) <span class="comment"># 查看res矩阵的总结信息</span></div><div class="line">table(res<span class="variable">$padj</span>&lt;0.05) <span class="comment"># 取padj小于0.05的数据，作为第一个checkpoint</span></div><div class="line">res &lt;- res[order(res<span class="variable">$padj</span>),] <span class="comment"># 按照padj的大小将res重新排列</span></div><div class="line"></div><div class="line">diff &lt;- subset(res,padj &lt; 0.05 &amp; (log2FoldChange &gt;1 | log2FoldChange &lt; -1)) <span class="comment"># 获取padj小于0.05，表达倍数取以2为对数后绝对值大于1的差异表达基因</span></div><div class="line">nrow(diff) <span class="comment"># 查看行数，作为第二个checkpoint</span></div><div class="line"></div><div class="line">resdata &lt;- merge(as.data.frame(diff),as.data.frame(counts(dds,normalize=FALSE)),by=<span class="string">"row.names"</span>,sort=FALSE) <span class="comment"># 合并文件</span></div><div class="line"></div><div class="line">write.csv(resdata,file=<span class="string">"diff_SR.csv"</span>) <span class="comment"># 结果输出为.CSV文件</span></div></pre></td></tr></table></figure>
+<h2 id="二、绘制热图"><a href="#二、绘制热图" class="headerlink" title="二、绘制热图"></a>二、绘制热图</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">data &lt;- read.delim(<span class="string">"clipboard"</span>,header=T,row.names=1) <span class="comment"># 从剪贴板载入数据</span></div><div class="line"></div><div class="line">col_anno=data.frame(PT=c(<span class="string">"S"</span>,<span class="string">"S"</span>,<span class="string">"S"</span>,<span class="string">"S"</span>,<span class="string">"S"</span>,<span class="string">"S"</span>,<span class="string">"S"</span>,<span class="string">"S"</span>,<span class="string">"S"</span>,<span class="string">"S"</span>,<span class="string">"S"</span>,<span class="string">"S"</span>,<span class="string">"R"</span>,<span class="string">"R"</span>,<span class="string">"R"</span>,<span class="string">"R"</span>,<span class="string">"R"</span>,<span class="string">"R"</span>,<span class="string">"R"</span>,<span class="string">"R"</span>,<span class="string">"R"</span>,<span class="string">"R"</span>,<span class="string">"R"</span>),row.names=colnames(data)) <span class="comment"># 定义分组信息，具体情况具体设置，本例是对列进行分组，前12列为S，后11列为R</span></div><div class="line"></div><div class="line">pheatmap(data,scale=<span class="string">"row"</span>,annotation_col=col_anno,color=colorRampPalette(c(<span class="string">"navy"</span>,<span class="string">"white"</span>,<span class="string">"firebrick3"</span>))(50)) <span class="comment"># 绘制热图</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、差异分析&quot;&gt;&lt;a href=&quot;#一、差异分析&quot; class=&quot;headerlink&quot; title=&quot;一、差异分析&quot;&gt;&lt;/a&gt;一、差异分析&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutt
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="RNASEQ" scheme="http://uteric.github.io/tags/RNASEQ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>EXCEL学习笔记1-AND与OR的用法</title>
+    <link href="http://uteric.github.io/EXCEL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/"/>
+    <id>http://uteric.github.io/EXCEL学习笔记1/</id>
+    <published>2018-10-06T04:16:43.000Z</published>
+    <updated>2018-10-06T04:16:43.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">=IF(AND(AC2&lt;AD2,Y2&lt;AB2),<span class="string">"Y"</span>,<span class="string">"N"</span>) <span class="comment"># 套用IF语句，如果AC2&lt;AD2且Y2&lt;AB2，则判断为Y，否则为N，注意，Y或N要加引号，否则报错</span></div><div class="line">=IF(OR(AE2=<span class="string">"Y"</span>,AF2=<span class="string">"Y"</span>),<span class="string">"Y"</span>,<span class="string">"N"</span>) <span class="comment"># 套用IF语句，如果AE2="Y"或AF2="Y"，则判断为Y，否则为N</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;co
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="EXCEL" scheme="http://uteric.github.io/tags/EXCEL/"/>
+    
+  </entry>
   
   <entry>
     <title>R语言学习笔记7-最大整数问题</title>
@@ -2407,141 +2486,6 @@ See</code>config.log’ for more details<br>ERROR: configuration failed for pack
     
     
       <category term="RNASEQ" scheme="http://uteric.github.io/tags/RNASEQ/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RNASEQ分析入门笔记3-HISAT2建立索引并比对序列</title>
-    <link href="http://uteric.github.io/RNASEQ%E5%BB%BA%E7%AB%8B%E7%B4%A2%E5%BC%95%E5%B9%B6%E6%AF%94%E5%AF%B9%E5%BA%8F%E5%88%97/"/>
-    <id>http://uteric.github.io/RNASEQ建立索引并比对序列/</id>
-    <published>2018-03-24T03:28:24.000Z</published>
-    <updated>2018-03-24T03:28:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>建立HISAT2索引</strong></p>
-<pre><code>hisat2-build -p 4 hg19.fa genome
-</code></pre><p>命令运行完成后，会在hg19文件夹下生成如下文件：</p>
-<blockquote>
-<p>genome.1.ht2<br>genome.2.ht2<br>genome.3.ht2<br>genome.4.ht2<br>genome.5.ht2<br>genome.6.ht2<br>genome.7.ht2<br>genome.8.ht2</p>
-</blockquote>
-<p>建立索引文件需要大约一个小时（MAC: 2.6 GHz Intel Core i5/ 8 GB 1600 MHz DDR3），记录如下：</p>
-<blockquote>
-<p>Total time for call to driver() for forward index: 01:01:06</p>
-</blockquote>
-<p>或者，也可以直接在hisat2官网下载，文件大小大约3.9GB：<a href="http://ccb.jhu.edu/software/hisat2/index.shtml" target="_blank" rel="external">http://ccb.jhu.edu/software/hisat2/index.shtml</a></p>
-<pre><code>wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/hg19.tar.gz
-tar -zxvf hg19.tar.gz
-</code></pre><hr>
-<p><strong>使用HISAT2进行序列比对</strong></p>
-<p>命令行目录：~<br>hg19 index目录：ncbi/hg19<br>fastq文件目录: miniconda3/fastq<br>输出目录：ncbi/aligned</p>
-<p>注释：-t 记录运行时间 -x hg19 index 文件路径 -1 -2 测序的两个fastq文件 -S 比对结果输出路径</p>
-<pre><code>hisat2 -t -x ncbi/hg19/genome -1 miniconda3/fastq/SRR3589956.sra_1.fastq.gz -2 miniconda3/fastq/SRR3589956.sra_2.fastq.gz -S ncbi/aligned/SRR3589956.sam
-</code></pre><p>结果如下：</p>
-<blockquote>
-<p>Time loading forward index: 00:00:07<br>Time loading reference: 00:00:02<br>Multiseed full-index search: 00:39:18<br>28856780 reads; of these:<br>  28856780 (100.00%) were paired; of these:<br>    1838758 (6.37%) aligned concordantly 0 times<br>    24733251 (85.71%) aligned concordantly exactly 1 time</p>
-<pre><code>2284771 (7.92%) aligned concordantly &gt;1 times
-----
-1838758 pairs aligned concordantly 0 times; of these:
-  90903 (4.94%) aligned discordantly 1 time
-----
-1747855 pairs aligned 0 times concordantly or discordantly; of these:
-  3495710 mates make up the pairs; of these:
-    2034757 (58.21%) aligned 0 times
-    1221304 (34.94%) aligned exactly 1 time
-    239649 (6.86%) aligned &gt;1 times
-</code></pre><p>96.47% overall alignment rate<br>Time searching: 00:39:21<br>Overall time: 00:39:28</p>
-</blockquote>
-<p>此命令只单独比对SRR3589956，若要运行多个文件，则可以使用VIM新建srr.sh文件，内容如下：</p>
-<pre><code>for i in `seq 57 58`
-do
-    hisat2 -t -x ncbi/hg19/genome -1 miniconda3/fastq/SRR35899${i}.sra_1.fastq.gz -2 miniconda3/fastq/SRR35899${i}.sra_2.fastq.gz -S ncbi/aligned/SRR35899${i}.sam
-done
-</code></pre><p>注意，新建的srr.sh文件是不能直接运行的，因为默认新建的shell文件只有读和写得权限，因此需要首先添加执行的权限，命令如下：</p>
-<pre><code>chmod +x srr.sh
-</code></pre><p>此时，srr.sh文件就可以执行了，在命令行目录下运行：</p>
-<pre><code>./srr.sh
-</code></pre><p>即可开始执行多个文件的比对。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;建立HISAT2索引&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;hisat2-build -p 4 hg19.fa genome
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;命令运行完成后，会在hg19文件夹下生成如下文件：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="RNASEQ" scheme="http://uteric.github.io/tags/RNASEQ/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac命令行查看硬盘状态</title>
-    <link href="http://uteric.github.io/Mac%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%9F%A5%E7%9C%8B%E7%A1%AC%E7%9B%98%E7%8A%B6%E6%80%81/"/>
-    <id>http://uteric.github.io/Mac命令行查看硬盘状态/</id>
-    <published>2018-03-23T03:29:47.000Z</published>
-    <updated>2018-03-23T03:29:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="查看整个硬盘"><a href="#查看整个硬盘" class="headerlink" title="查看整个硬盘"></a>查看整个硬盘</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df -h <span class="comment"># 查看整个硬盘的空间，h表明是人类可读的方式</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>Filesystem      Size   Used  Avail Capacity  iused    ifree %iused  Mounted on<br>/dev/disk1     233Gi  200Gi   33Gi    87% 52460543  8524799   86%   /<br>devfs          188Ki  188Ki    0Bi   100%      649        0  100%   /dev<br>map -hosts       0Bi    0Bi    0Bi   100%        0        0  100%   /net<br>map auto_home    0Bi    0Bi    0Bi   100%        0        0  100%   /home<br>/dev/disk2s1   931Gi  862Gi   70Gi    93%    97656 73042268    0%   /Volumes/TOSHIBA EXT</p>
-</blockquote>
-<h2 id="查看当前目录"><a href="#查看当前目录" class="headerlink" title="查看当前目录"></a>查看当前目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">du -d 1 -h <span class="comment"># 查看当前目录下所有文件占用的硬盘空间</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.9G    ./mothur #当前目录下有个mothur的文件夹，占用2.9GB<br>3.8G    . # 当前目录下其他文件占用3.8GB</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;查看整个硬盘&quot;&gt;&lt;a href=&quot;#查看整个硬盘&quot; class=&quot;headerlink&quot; title=&quot;查看整个硬盘&quot;&gt;&lt;/a&gt;查看整个硬盘&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutt
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="命令行" scheme="http://uteric.github.io/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何在命令行中运行shell文件</title>
-    <link href="http://uteric.github.io/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E8%BF%90%E8%A1%8Cshell%E6%96%87%E4%BB%B6/"/>
-    <id>http://uteric.github.io/如何在命令行中运行shell文件/</id>
-    <published>2018-03-23T03:15:47.000Z</published>
-    <updated>2018-03-23T03:15:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>使用VIM新建文本一个.sh，比如srawget.sh</p>
-<p>打开终端，进入当前目录，输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./srawget.sh <span class="comment">#当前目录下执行srwaget.sh文件</span></div></pre></td></tr></table></figure>
-<p>执行后返回：</p>
-<blockquote>
-<p>zsh: permission denied: ./srawget.sh</p>
-</blockquote>
-<p>发现.sh文件不能执行，为什么呢？</p>
-<p>这是因为VIM新建的shell文件默认权限只有–r–w，即只能读写，不能执行，因此出现上述错误，解决办法其实非常简单，只要修改.sh文件的权限即可，在终端中输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x srawget.sh <span class="comment">#添加执行权限</span></div></pre></td></tr></table></figure>
-<p>我们使用 ls -l 命令来查看一下，发现已经成功添加了执行权限，再次执行此命令即可：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./srawget.sh</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;使用VIM新建文本一个.sh，比如srawget.sh&lt;/p&gt;
-&lt;p&gt;打开终端，进入当前目录，输入&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="命令行" scheme="http://uteric.github.io/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/"/>
     
   </entry>
   
