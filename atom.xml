@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2018-10-08T16:33:11.000Z</updated>
+  <updated>2018-10-11T03:58:23.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>R语言学习笔记10-基础绘图函数plot</title>
+    <link href="http://uteric.github.io/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B010/"/>
+    <id>http://uteric.github.io/R语言学习笔记10/</id>
+    <published>2018-10-11T03:58:23.000Z</published>
+    <updated>2018-10-11T03:58:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>R中有个默认的数据叫euro（欧元汇率，长度为11），以euro为例来看一下如何使用绘图函数plot。</p>
+<p>plot基本语法：<strong>plot(x,y,xlab,ylab,main=,sub)</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">plot(euro) <span class="comment"># 作图</span></div><div class="line">lines(lowess(euro)) <span class="comment"># 添加一条平滑曲线</span></div></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/4189810-14241f65cb0b564b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><strong>type</strong>用于指定图形的类型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&gt; par(mfrow=c(3,3)) <span class="comment"># 使用par函数，参数mfrow指定图形排布3X3</span></div><div class="line">&gt; plot(euro,<span class="built_in">type</span>=<span class="string">"p"</span>) <span class="comment"># 同plot(euro)，"p" for points</span></div><div class="line">&gt; plot(euro,<span class="built_in">type</span>=<span class="string">"l"</span>) <span class="comment"># "l" for lines</span></div><div class="line">&gt; plot(euro,<span class="built_in">type</span>=<span class="string">"b"</span>) <span class="comment"># "b" for both</span></div><div class="line">&gt; plot(euro,<span class="built_in">type</span>=<span class="string">"c"</span>) <span class="comment"># "c" for the lines part alone of "b"</span></div><div class="line">&gt; plot(euro,<span class="built_in">type</span>=<span class="string">"o"</span>) <span class="comment"># "o" for both ‘overplotted’</span></div><div class="line">&gt; plot(euro,<span class="built_in">type</span>=<span class="string">"h"</span>) <span class="comment"># "h" for ‘histogram’ </span></div><div class="line">&gt; plot(euro,<span class="built_in">type</span>=<span class="string">"s"</span>) <span class="comment"># "s" for stair steps</span></div><div class="line">&gt; plot(euro,<span class="built_in">type</span>=<span class="string">"S"</span>) <span class="comment"># "S" for other steps</span></div><div class="line">&gt; plot(euro,<span class="built_in">type</span>=<span class="string">"n"</span>) <span class="comment"># "n" for no plotting</span></div></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/4189810-8d2b6ededb6ec974.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><strong>pch</strong>，用于指定图形样式，共25种，默认为1，如果pch=x，则每个点的样式都不同；<br><strong>col</strong>，用于指定颜色，共657种，可以使用colors()查看；<br><strong>lwd</strong>，用于指定宽度</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lot(euro,pch=1:11,col=1:11,<span class="built_in">type</span>=<span class="string">"h"</span>,lwd=15)</div></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/4189810-1ec8c2908df18c94.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;R中有个默认的数据叫euro（欧元汇率，长度为11），以euro为例来看一下如何使用绘图函数plot。&lt;/p&gt;
+&lt;p&gt;plot基本语法：&lt;strong&gt;plot(x,y,xlab,ylab,main=,sub)&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;hig
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R语言" scheme="http://uteric.github.io/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
   
   <entry>
     <title>R语言学习笔记9-绘制barplot</title>
@@ -2105,47 +2139,6 @@ See</code>config.log’ for more details<br>ERROR: configuration failed for pack
     <summary type="html">
     
       &lt;h2 id=&quot;HTseq统计基因reads数&quot;&gt;&lt;a href=&quot;#HTseq统计基因reads数&quot; class=&quot;headerlink&quot; title=&quot;HTseq统计基因reads数&quot;&gt;&lt;/a&gt;HTseq统计基因reads数&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;HTseq&lt;/str
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="RNASEQ" scheme="http://uteric.github.io/tags/RNASEQ/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RNASEQ分析入门笔记6-下载注释文件并导入IGV</title>
-    <link href="http://uteric.github.io/RNASEQ%E4%B8%8B%E8%BD%BD%E6%B3%A8%E9%87%8A%E6%96%87%E4%BB%B6%E5%B9%B6%E5%AF%BC%E5%85%A5IGV/"/>
-    <id>http://uteric.github.io/RNASEQ下载注释文件并导入IGV/</id>
-    <published>2018-03-24T04:02:02.000Z</published>
-    <updated>2018-03-24T04:02:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>注释文件下载流程</strong></p>
-<p>进入Gencode网站（<a href="http://www.gencodegenes.org/%EF%BC%89" target="_blank" rel="external">http://www.gencodegenes.org/）</a>，data&gt;&gt;human&gt;&gt;GRCh37-mapped releases&gt;&gt;GENCODE release 26&gt;&gt;Comprehensive genome annotation/ GTF, GFF3</p>
-<p>右键获取下载链接，使用wget命令进行下载：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ncbi/hg19 <span class="comment">#切换到hg19目录下</span></div><div class="line">wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_26/GRCh37_mapping/gencode.v26lift37.annotation.gtf.gz <span class="comment"># 下载GTF文件</span></div><div class="line">wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_26/GRCh37_mapping/gencode.v26lift37.annotation.gff3.gz <span class="comment"># 下载GFF3文件</span></div></pre></td></tr></table></figure>
-<p>文件下载完成后，使用gzip命令解压文件，同时删除压缩文件，</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gzip -d gencode.v26lift37.annotation.gtf.gz <span class="comment"># 解压GTF文件</span></div><div class="line">gzip -d gencode.v26lift37.annotation.gff3.gz <span class="comment"># 解压GFF3文件</span></div></pre></td></tr></table></figure>
-<p>使用ls命令查看当前目录下得文件，</p>
-<blockquote>
-<p>gencode.v26lift37.annotation.gff3<br>gencode.v26lift37.annotation.gtf<br>hg19.fa (之前下载并合并的参考基因组文件)</p>
-</blockquote>
-<p><strong>注释文件导入IGV流程</strong></p>
-<p>IGV下载地址：<a href="http://software.broadinstitute.org/software/igv/download" target="_blank" rel="external">http://software.broadinstitute.org/software/igv/download</a></p>
-<p>加载<em>hg19.fa</em>，点击Genome/load genome from files/hg19.fa<br>加载<em>gencode.v26lift37.annotation.gtf</em>与<em>gencode.v26lift37.annotation.gff3</em>，这两个文件不能直接加载，需要index文件，创建index文件流程如下：</p>
-<ol>
-<li>点击Tools/run igvtools/command选择sort，Input File选择GTF/GFF3文件，点击run，运行完成后会产生两个文件：gencode.v26lift37.annotation.sorted.gtf<br>gencode.v26lift37.annotation.sorted.gff3</li>
-<li>点击Tools/run igvtools/command选择index，Input File选择 .sorted.gtf/ .sorted.gff3文件，点击run，运行完成后会产生另外两个文件：gencode.v26lift37.annotation.sorted.gtf.idx<br>gencode.v26lift37.annotation.sorted.gff3.idx</li>
-<li>点击Genome/load genome from files/gencode.v26lift37.annotation.sorted.gtf.idx<br>点击Genome/load genome from files/gencode.v26lift37.annotation.sorted.gff3.idx<br>加载完成。</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;注释文件下载流程&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;进入Gencode网站（&lt;a href=&quot;http://www.gencodegenes.org/%EF%BC%89&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.ge
     
     </summary>
     
