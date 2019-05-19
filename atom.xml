@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2018-10-11T04:18:48.000Z</updated>
+  <updated>2019-05-19T22:26:51.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,108 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>美国家庭天燃气收费</title>
+    <link href="http://uteric.github.io/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B01/"/>
+    <id>http://uteric.github.io/美国生活日记1/</id>
+    <published>2019-05-19T22:26:51.000Z</published>
+    <updated>2019-05-19T22:26:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>美国的天燃气收费原则有点像国内的固话费，只要你开通这个服务，不管你用不用，基本费用必不可免，这叫做Customer Service Charge（CSC）或者Customer Charge（CC），真的是百分百的霸王条款。</p>
+<p>下面是一个虚拟的<strong>GAS BILL</strong>，由四部分组成。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">CURRENT GAS CHARGE TOTAL</th>
+<th style="text-align:center">20.79</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Customer Charge</td>
+<td style="text-align:center">18.88</td>
+</tr>
+<tr>
+<td style="text-align:left">Consump Chrg 4.000 @ 0.14846</td>
+<td style="text-align:center">0.59</td>
+</tr>
+<tr>
+<td style="text-align:left">Rider GCR 4.000 @ 0.3297</td>
+<td style="text-align:center">1.32</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>TAX/FEE CHARGE TOTAL</strong></td>
+<td style="text-align:center"><strong>1.99</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Rider FF @0.06323</td>
+<td style="text-align:center">1.31</td>
+</tr>
+<tr>
+<td style="text-align:left">Reimbursement of MGRT</td>
+<td style="text-align:center">0.45</td>
+</tr>
+<tr>
+<td style="text-align:left">City Sales Tax</td>
+<td style="text-align:center">0.23</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>OTHER CHARGE TOTAL</strong></td>
+<td style="text-align:center"><strong>19.00</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Meter Read Fee</td>
+<td style="text-align:center">19.00</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>CURRENT CHARGES</strong></td>
+<td style="text-align:center"><strong>41.76</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>一、客户服务费</strong>，每月$18.88，哪怕你不吃不喝不动，一个月下来也要至少交这么多钱。</p>
+<p><strong>二、消费记录</strong>，由两项组成：<br>1、CONSUMPTION CHARGE，是指公司为你提供供气服务所收取的费用，在本账单中每CCF收取0.14846刀；<br>2、Rider GCR（GAS COST RECOVERY），是天燃气公司向天燃气供货商支付的成本和运输费用，在本账单中每CCF收取0.3297刀，合计0.47816刀/CCF。由此可见，随着天燃气市场价格的波动，你的账单可能也会有较大幅度的变化。</p>
+<p><strong>三、税收</strong>，由三项组成：<br>1、FRANCHISE FEE（RIDER FF），这是市政当局征收的特许经营费；<br>2、Reimbursement of MGRT(Miscellaneous Gross Receipts Tax)，收入税报销；<br>3、City Sales Tax，市销售税。</p>
+<p><strong>四、其他收费</strong>，在本账单中，叫Meter Read Fee，只在开通服务时一次性收取。</p>
+<p><strong>友情提示</strong>：在CC部分，我用了个限定词<strong>“至少”</strong>，说明还有其他的隐性费用，这部分是<strong>Pilot Light</strong>。</p>
+<p><strong>Pilot Light</strong>，是加热器的火焰指示灯，在旧式的加热器中保持常开，作为加热器的点火源（ignition source），每个月也要消耗5CCF的天燃气。现在，新式的加热器只有在启动时才点火，不会有这个隐性费用。</p>
+<p>尽管这是个虚拟账单，但却是根据真实的账单而产生的，因此比较能反映现在的天燃气计价方式。具体的账单，里面的内容可能叫法不同，但是一个母牛生的犊，大同小异，基本都由这几项构成。美国的天燃气消耗是日常支出中的大项，但是好在美国在上世纪末已对天燃气解除管制，尽管有令人无可奈何的霸王条款，但是总得来说价格还算合理。</p>
+<hr>
+<h2 id="附：天燃气计价单位"><a href="#附：天燃气计价单位" class="headerlink" title="附：天燃气计价单位"></a>附：天燃气计价单位</h2><p><strong>一、常用的天燃气单位</strong></p>
+<p><em>Btu  (British Thermal Unit)</em>，英国热量单位，把1磅水从39°F加热到40°F所消耗的热量（英制单位是历史遗留产物，主要特点就是别扭，尽管英国人都改公制了，但美国人还在用，原因是错过了最佳历史机遇，现在想要更改成本太高，国家和人民都承受不起）。</p>
+<p><em>Therm</em>，千卡，=100,000 Btu，热量单位。<br><em>CCF</em>，100立方英尺，2.83立方米，是体积单位，最为常见。<br><em>MCF</em>，1000立方英尺，体积单位。</p>
+<p><strong>二、换算方法</strong></p>
+<p>Therms to Btu:therms × 100,000 = Btu<br>Therms to CCF:therms × 1.037 = CCF<br>Therms to MCF:therms × 10.37 = MCF<br>CCF to Btu:CCF × 103,700 = Btu<br>CCF to Therms:CCF ÷ 1.037 = Therms<br>CCF to MCF:CCF × 10 = MCF<br>MCF to Btu:MCF × 1,037,000 = Btu<br>MCF to Therms:MCF ÷ 10.37 = Therms<br>MCF to CCF:MCF ÷ 10 = CCF</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;美国的天燃气收费原则有点像国内的固话费，只要你开通这个服务，不管你用不用，基本费用必不可免，这叫做Customer Service Charge（CSC）或者Customer Charge（CC），真的是百分百的霸王条款。&lt;/p&gt;
+&lt;p&gt;下面是一个虚拟的&lt;strong&gt;GA
+    
+    </summary>
+    
+      <category term="美国生活" scheme="http://uteric.github.io/categories/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="美国" scheme="http://uteric.github.io/tags/%E7%BE%8E%E5%9B%BD/"/>
+    
+      <category term="天然气" scheme="http://uteric.github.io/tags/%E5%A4%A9%E7%84%B6%E6%B0%94/"/>
+    
+  </entry>
   
   <entry>
     <title>R语言学习笔记11-R自带数据集</title>
@@ -2046,33 +2148,6 @@ See</code>config.log’ for more details<br>ERROR: configuration failed for pack
     
     
       <category term="R语言" scheme="http://uteric.github.io/tags/R%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MAC命令行操作MacVim</title>
-    <link href="http://uteric.github.io/MAC%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9CMacVim/"/>
-    <id>http://uteric.github.io/MAC命令行操作MacVim/</id>
-    <published>2018-03-28T03:50:22.000Z</published>
-    <updated>2018-03-28T03:50:22.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>1. 打开MacVim</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim ./test.md <span class="comment"># 打开当前目录下的名位test.md的文件</span></div></pre></td></tr></table></figure></p>
-<p><strong>2. 在Vim中修改文件</strong><br>在Vim中打开的文件不能直接修改，如要插入字符，需要按下i键，进入INSERT模式，按下ESC则可退出INSERT模式。</p>
-<p><strong>3. 退出Vim</strong></p>
-<p><em>在末行模式下：</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">:qw <span class="comment"># 先保存文档，退出Vim，返回到Shell</span></div><div class="line">:q! <span class="comment">#放弃修改，直接返回到Shell</span></div></pre></td></tr></table></figure></p>
-<p><em>在命令行模式下：</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ZZ <span class="comment"># 保存修改，退出Vim，返回到Shell</span></div></pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;1. 打开MacVim&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="MAC" scheme="http://uteric.github.io/tags/MAC/"/>
     
   </entry>
   
