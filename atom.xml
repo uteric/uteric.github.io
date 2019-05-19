@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2019-05-19T22:36:18.000Z</updated>
+  <updated>2019-05-19T22:41:59.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,74 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>泳池设备维护</title>
+    <link href="http://uteric.github.io/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B04/"/>
+    <id>http://uteric.github.io/美国生活日记4/</id>
+    <published>2019-05-19T22:41:59.000Z</published>
+    <updated>2019-05-19T22:41:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>1、撇渣器（Skimmer），泳池的出水口之一，也是池水的第一道过滤网，水从这里被吸进水泵时会被滤网拦下，因此，需要定期打开盖子，取下滤网，清理滤网中的树叶等漂浮杂物，建议每周一次；如果需要添加药物，一般也要投放在Skimmer中，比如Pool Shock，Algeacide等等。</p>
+<p>2、水泵（Pump），水泵是第二道过滤网，旁边的透明盖子可以打开，需要定期清理滤网中的漂浮杂物。</p>
+<p>3、过滤沙缸（Sand Filter），池水通过水泵后，会进入到Filter中进行过滤，Filter上有个压力表，如果压力高达35 psi，则说明Filter该清理了。</p>
+<p>4、水底吸尘器（Pool Cleaner），放在池底，用于清理池底和池壁的尘土和藻类，使用时请根据需要调节流量，如果流量太低，吸尘器会趴在水底不能移动，如果太高，则会爬出水面，导致水泵大量吸入空气。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;1、撇渣器（Skimmer），泳池的出水口之一，也是池水的第一道过滤网，水从这里被吸进水泵时会被滤网拦下，因此，需要定期打开盖子，取下滤网，清理滤网中的树叶等漂浮杂物，建议每周一次；如果需要添加药物，一般也要投放在Skimmer中，比如Pool Shock，Algeacid
+    
+    </summary>
+    
+      <category term="美国生活" scheme="http://uteric.github.io/categories/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="美国" scheme="http://uteric.github.io/tags/%E7%BE%8E%E5%9B%BD/"/>
+    
+      <category term="泳池" scheme="http://uteric.github.io/tags/%E6%B3%B3%E6%B1%A0/"/>
+    
+      <category term="设备" scheme="http://uteric.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>泳池水质检测</title>
+    <link href="http://uteric.github.io/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B03/"/>
+    <id>http://uteric.github.io/美国生活日记3/</id>
+    <published>2019-05-19T22:40:04.000Z</published>
+    <updated>2019-05-19T22:40:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、水质重要指标"><a href="#一、水质重要指标" class="headerlink" title="一、水质重要指标"></a>一、水质重要指标</h2><p><em>ppm，parts per million，百万分之一</em><br>| 指标 | 值 |<br>|:—: |:—: |<br>| 碱度（Alkalinity）| 80-100 ppm|<br>| 酸碱度（PH）| 7.2-7.8|<br>| 钙硬度（Calcium）|  200-500 ppm|<br>| 自由氯（Chlorine）| 1.0-3.0 ppm|<br>| 盐（Salt）| 3200 ppm|<br>| 氯稳定剂（Stabilizer）| 30-50 ppm| </p>
+<h2 id="二、水的平衡顺序"><a href="#二、水的平衡顺序" class="headerlink" title="二、水的平衡顺序"></a>二、水的平衡顺序</h2><p>关于水的平衡，最重要的四个指标依次是碱度，酸碱度，钙硬度，自由氯。</p>
+<p>1、碱度（Alkalinity），碱度是水体中碱的含量，影响水体的缓冲能力。碱度的合适范围是80-100 ppm。如果太低，就加Alkalinity Increaser，其实就是碳酸氢钠（NaHCO₃），俗名叫小苏打；如果太高，就加Alkalinity Decreaser，其实就是盐酸（Muriatic Acid）。</p>
+<p>$\underline{提示：碱度是最先要调节的，否则影响后面的所有过程。}$</p>
+<p>2、酸碱度（PH），范围是7.2-7.8之间，适合人的皮肤直接接触，低加碱，高加酸。</p>
+<p>3、钙硬度（Calcium Hardness），反映化学试剂在水中的溶解度，合适范围为200-500 ppm。如果偏低，加Calcium Hardness Increaser即可；如果太高，则只能将池水放出一部分，加入新水来稀释。</p>
+<p>4、自由氯（Free Chlorine，FC），氯是强氧化剂，可对池水进行消毒，合适范围是1.0-3.0 ppm。如果太低，需加Pool Shock，如果太高，不用担心，晒几天太阳就降下来了，只是暂时不要游泳。一般来说，一周加1磅shock即可（<em>1LB Shock week/p to pool, No swim 4-6 hr</em>）。此外还有一个概念，叫结合氯（Combined Chlorine，CC），CC仍在水中，但是消毒能力大大减弱，CC要低于0.2 ppm；FC+CC=TC（总氯，Total Chlorine）。</p>
+<p>关于Pool Shock，详见<strong>“三、氯和氯稳定剂”</strong>。</p>
+<p>5、Algeacide，用来抑制藻类（Algae）生长，如果没有藻类生长也可以不加。</p>
+<h2 id="三、氯和氯稳定剂"><a href="#三、氯和氯稳定剂" class="headerlink" title="三、氯和氯稳定剂"></a>三、氯和氯稳定剂</h2><p>在美国，最常见的泳池杀菌药物是TCCA（三氯异氰尿酸，国内商品名叫“强氯精”，trichloroisocyanuric acid或trichloro-s-triazinetrione，TCCA，分子式为C3N3O3Cl3)，TCCA具有多种优点，如杀菌范围广、有效氯含量高、维持时间长，且可灭藻、除臭、净水、漂白，因此，其在池水消毒方面被广泛使用。</p>
+<p>TCCA在消毒的过程中能产生氰尿酸（Cyanuric Acid，CYA），CYA是一种次氯酸的稳定剂，它能使水中的次氯酸浓度维持稳定，从而产生持久的消毒效果。然而，CYA不易分解和去除，因此很容易在水中集聚，当其浓度增高到一定程度时，反而会严重抑制次氯酸的消毒效果，并对人体健康产生危害。</p>
+<p>因此，我们平时也需要检测泳池中CYA的浓度。CYA的浓度应当维持在30-50 ppm，既能稳定次氯酸，又不至于对人体产生危害。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、水质重要指标&quot;&gt;&lt;a href=&quot;#一、水质重要指标&quot; class=&quot;headerlink&quot; title=&quot;一、水质重要指标&quot;&gt;&lt;/a&gt;一、水质重要指标&lt;/h2&gt;&lt;p&gt;&lt;em&gt;ppm，parts per million，百万分之一&lt;/em&gt;&lt;br&gt;| 指标 |
+    
+    </summary>
+    
+      <category term="美国生活" scheme="http://uteric.github.io/categories/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="美国" scheme="http://uteric.github.io/tags/%E7%BE%8E%E5%9B%BD/"/>
+    
+      <category term="泳池" scheme="http://uteric.github.io/tags/%E6%B3%B3%E6%B1%A0/"/>
+    
+      <category term="水质" scheme="http://uteric.github.io/tags/%E6%B0%B4%E8%B4%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>美国家庭电费</title>
@@ -2070,97 +2138,6 @@
     
     
       <category term="RNASEQ" scheme="http://uteric.github.io/tags/RNASEQ/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MAC安装DESeq2报错及解决方案</title>
-    <link href="http://uteric.github.io/MAC%E5%AE%89%E8%A3%85DESeq2%E6%8A%A5%E9%94%99%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-    <id>http://uteric.github.io/MAC安装DESeq2报错及解决方案/</id>
-    <published>2018-04-05T01:43:45.000Z</published>
-    <updated>2018-04-05T01:43:45.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="在R环境中安装DESeq2"><a href="#在R环境中安装DESeq2" class="headerlink" title="在R环境中安装DESeq2"></a>在R环境中安装DESeq2</h2><p><strong>1、安装DESeq2基本语法：</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> (<span class="string">"http://bioconductor.org/biocLite.R"</span>) <span class="comment"># 调入安装工具Bioconductor</span></div><div class="line">biocLite(<span class="string">"DESeq2"</span>) <span class="comment"># 安装DESeq2</span></div><div class="line">library(<span class="string">"DESeq2"</span>) <span class="comment"># 测试是否安装成功</span></div></pre></td></tr></table></figure>
-<p><strong>2、报错信息</strong></p>
-<p>我的系统是MacOS 10.10.5，执行安装命令后各种报错：</p>
-<hr>
-<p><del>fatal error:<br><strong>‘string.h’ file not found</strong><br>include <string.h>            /<em> for memcpy, memset </em>/<br>1 error generated.<br>make: <em>*</em> [000.init.o] Error 1<br>ERROR: compilation failed for package ‘matrixStats’</string.h></del></p>
-<hr>
-<p><del>fatal error:<br><strong>‘math.h’ file not found</strong><br>include_next <math.h><br>1 error generated.<br>make: <em>*</em> [DbColumn.o] Error 1<br>ERROR: compilation failed for package ‘RSQLite’</math.h></del></p>
-<hr>
-<p><del>fatal error:<br><strong>‘ctype.h’ file not found</strong><br>include <ctype.h><br>1 error generated.<br>make: <em>*</em> [DocParse.o] Error 1<br>ERROR: compilation failed for package ‘XML’</ctype.h></del></p>
-<hr>
-<p><del>fatal error:<br><strong>‘stdlib.h’ file not found</strong><br>include <stdlib.h> /<em> Not used by R itself, but widely assumed in packages </em>/<br>1 error generated.<br>make: <em>*</em> [all_missing.o] Error 1<br>ERROR: compilation failed for package ‘checkmate’</stdlib.h></del></p>
-<hr>
-<p><del>fatal error:<br><strong>‘string.h’ file not found</strong><br>include <string.h><br>/<em> for memcpy, memset </em>/<br>1 error generated.<br>make: <em>*</em> [AEbufs.o] Error 1<br>ERROR: compilation failed for package ‘S4Vectors’</string.h></del></p>
-<hr>
-<p><del>fatal error:<br><strong>‘stdio.h’ file not found</strong><br>include <stdio.h><br>1 error generated.<br>make: <em>*</em> [Rinit.o] Error 1<br>ERROR: compilation failed for package ‘Biobase’</stdio.h></del></p>
-<hr>
-<p><del>fatal error:<br><strong>‘unistd.h’ file not found</strong><br>include <unistd.h><br>1 error generated.<br>make: <em>*</em> [ipcmutex.o] Error 1<br>ERROR: compilation failed for package ‘BiocParallel’</unistd.h></del></p>
-<hr>
-<p><del>fatal error:<br><strong>‘stdlib.h’ file not found</strong><br>include <stdlib.h><br>1 error generated.<br>make: <em>*</em> [S_enter.o] Error 1<br>ERROR: compilation failed for package ‘locfit’</stdlib.h></del></p>
-<hr>
-<p><del>configure: error:<br><strong>cannot run C++ compiled programs.</strong><br>If you meant to cross compile, use <code>--host&#39;.
-See</code>config.log’ for more details<br>ERROR: configuration failed for package ‘RcppArmadillo’</del></p>
-<hr>
-<p><em>There were 22 warnings (use warnings() to see them)</em><br><strong>warnings()</strong><br>Warning messages:<br>1: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘matrixStats’ had non-zero exit status<br>2: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘RSQLite’ had non-zero exit status<br>3: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘XML’ had non-zero exit status<br>4: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘checkmate’ had non-zero exit status<br>5: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘S4Vectors’ had non-zero exit status<br>6: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘Biobase’ had non-zero exit status<br>7: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘BiocParallel’ had non-zero exit status<br>8: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘locfit’ had non-zero exit status<br>9: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘RcppArmadillo’ had non-zero exit status<br>10: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘htmlTable’ had non-zero exit status<br>11: In install.packages(pkgs = doing, lib = lib, …) :<br> installation of package ‘IRanges’ had non-zero exit status<br>12: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘GenomeInfoDb’ had non-zero exit status<br>13: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘XVector’ had non-zero exit status<br>14: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘DelayedArray’ had non-zero exit status<br>15: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘AnnotationDbi’ had non-zero exit status<br>16: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘Hmisc’ had non-zero exit status<br>17: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘annotate’ had non-zero exit status<br>18: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘GenomicRanges’ had non-zero exit status<br>19: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘SummarizedExperiment’ had non-zero exit status<br>20: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘genefilter’ had non-zero exit status<br>21: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘geneplotter’ had non-zero exit status<br>22: In install.packages(pkgs = doing, lib = lib, …) :<br>installation of package ‘DESeq2’ had non-zero exit status</p>
-<hr>
-<p><strong>3、报错原因</strong></p>
-<p>根据返回的报错信息，可以知道，系统中缺乏’string.h’，’math.h’，’ctype.h’，’stdlib.h’，’stdio.h’，’unistd.h’这些文件，这些文件都是C++ library中得Header files，因此，需要安装C++，或者直接安装Xcode Command Line Tools。</p>
-<hr>
-<h2 id="安装Xcode命令行工具"><a href="#安装Xcode命令行工具" class="headerlink" title="安装Xcode命令行工具"></a>安装Xcode命令行工具</h2><p>Xcode Command Line Tools，包含一些命令行开发工具，例如gcc/g++编译器、make、git、nasm等，安装命令如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xcode-select --install <span class="comment"># 安装Xcode命令行工具（Xcode Command Line Tools）</span></div></pre></td></tr></table></figure>
-<p>安装完成后，检查是否成功：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xcode-select -p <span class="comment"># 检查是否成功安装</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>/Applications/Xcode.app/Contents/Developer</p>
-</blockquote>
-<p>若看到如下信息，则表明Xcode Command Line Tools已经安装：</p>
-<blockquote>
-<p>xcode-select: error: command line tools are already installed, use “Software Update” to install update</p>
-</blockquote>
-<hr>
-<h2 id="再次安装DESeq2"><a href="#再次安装DESeq2" class="headerlink" title="再次安装DESeq2"></a>再次安装DESeq2</h2><p>此时，就可以着手安装DESeq2软件包了，执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> (<span class="string">"http://bioconductor.org/biocLite.R"</span>) <span class="comment"># 调入安装工具Bioconductor</span></div><div class="line">biocLite(<span class="string">"DESeq2"</span>) <span class="comment"># 安装DESeq2</span></div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;在R环境中安装DESeq2&quot;&gt;&lt;a href=&quot;#在R环境中安装DESeq2&quot; class=&quot;headerlink&quot; title=&quot;在R环境中安装DESeq2&quot;&gt;&lt;/a&gt;在R环境中安装DESeq2&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;1、安装DESeq2基本语法：&lt;/s
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="MAC" scheme="http://uteric.github.io/tags/MAC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo常用命令</title>
-    <link href="http://uteric.github.io/Hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
-    <id>http://uteric.github.io/Hexo常用命令/</id>
-    <published>2018-03-29T04:28:28.000Z</published>
-    <updated>2018-03-29T04:28:28.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="hexo-clean"><a href="#hexo-clean" class="headerlink" title="hexo clean"></a>hexo clean</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo clean <span class="comment"># 清除缓存文件db.json 和已生成的静态文件public</span></div></pre></td></tr></table></figure>
-<h2 id="hexo-g"><a href="#hexo-g" class="headerlink" title="hexo g"></a>hexo g</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g <span class="comment"># 是hexo generate的简写形式，生成静态文件到public文件夹</span></div></pre></td></tr></table></figure>
-<h2 id="hexo-d"><a href="#hexo-d" class="headerlink" title="hexo d"></a>hexo d</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d <span class="comment"># 是hexo deploy的简写形式，部署静态文件到设定的仓库</span></div></pre></td></tr></table></figure>
-<h2 id="hexo-clean-amp-amp-hexo-g-amp-amp-hexo-d"><a href="#hexo-clean-amp-amp-hexo-g-amp-amp-hexo-d" class="headerlink" title="hexo clean &amp;&amp; hexo g &amp;&amp; hexo d"></a>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d <span class="comment"># 常用的组合命令，清除缓存，生成静态文件，并部署到指定仓库</span></div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;hexo-clean&quot;&gt;&lt;a href=&quot;#hexo-clean&quot; class=&quot;headerlink&quot; title=&quot;hexo clean&quot;&gt;&lt;/a&gt;hexo clean&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="Hexo" scheme="http://uteric.github.io/tags/Hexo/"/>
     
   </entry>
   
