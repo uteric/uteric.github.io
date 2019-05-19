@@ -91,10 +91,44 @@
     <published>2019-05-19T22:40:04.000Z</published>
     <updated>2019-05-19T22:40:04.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="一、水质重要指标"><a href="#一、水质重要指标" class="headerlink" title="一、水质重要指标"></a>一、水质重要指标</h2><p><em>ppm，parts per million，百万分之一</em><br>| 指标 | 值 |<br>|:—: |:—: |<br>| 碱度（Alkalinity）| 80-100 ppm|<br>| 酸碱度（PH）| 7.2-7.8|<br>| 钙硬度（Calcium）|  200-500 ppm|<br>| 自由氯（Chlorine）| 1.0-3.0 ppm|<br>| 盐（Salt）| 3200 ppm|<br>| 氯稳定剂（Stabilizer）| 30-50 ppm| </p>
+    <content type="html"><![CDATA[<h2 id="一、水质重要指标"><a href="#一、水质重要指标" class="headerlink" title="一、水质重要指标"></a>一、水质重要指标</h2><p><em>ppm，parts per million，百万分之一</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指标</th>
+<th style="text-align:center">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">碱度（Alkalinity）</td>
+<td style="text-align:center">80-100 ppm</td>
+</tr>
+<tr>
+<td style="text-align:center">酸碱度（PH）</td>
+<td style="text-align:center">7.2-7.8</td>
+</tr>
+<tr>
+<td style="text-align:center">钙硬度（Calcium）</td>
+<td style="text-align:center">200-500 ppm</td>
+</tr>
+<tr>
+<td style="text-align:center">自由氯（Chlorine）</td>
+<td style="text-align:center">1.0-3.0 ppm</td>
+</tr>
+<tr>
+<td style="text-align:center">盐（Salt）</td>
+<td style="text-align:center">3200 ppm</td>
+</tr>
+<tr>
+<td style="text-align:center">氯稳定剂（Stabilizer）</td>
+<td style="text-align:center">30-50 ppm</td>
+</tr>
+</tbody>
+</table>
 <h2 id="二、水的平衡顺序"><a href="#二、水的平衡顺序" class="headerlink" title="二、水的平衡顺序"></a>二、水的平衡顺序</h2><p>关于水的平衡，最重要的四个指标依次是碱度，酸碱度，钙硬度，自由氯。</p>
 <p>1、碱度（Alkalinity），碱度是水体中碱的含量，影响水体的缓冲能力。碱度的合适范围是80-100 ppm。如果太低，就加Alkalinity Increaser，其实就是碳酸氢钠（NaHCO₃），俗名叫小苏打；如果太高，就加Alkalinity Decreaser，其实就是盐酸（Muriatic Acid）。</p>
-<p>$\underline{提示：碱度是最先要调节的，否则影响后面的所有过程。}$</p>
+<p><strong>提示：</strong> <del>碱度是最先要调节的，否则影响后面的所有过程。</del></p>
 <p>2、酸碱度（PH），范围是7.2-7.8之间，适合人的皮肤直接接触，低加碱，高加酸。</p>
 <p>3、钙硬度（Calcium Hardness），反映化学试剂在水中的溶解度，合适范围为200-500 ppm。如果偏低，加Calcium Hardness Increaser即可；如果太高，则只能将池水放出一部分，加入新水来稀释。</p>
 <p>4、自由氯（Free Chlorine，FC），氯是强氧化剂，可对池水进行消毒，合适范围是1.0-3.0 ppm。如果太低，需加Pool Shock，如果太高，不用担心，晒几天太阳就降下来了，只是暂时不要游泳。一般来说，一周加1磅shock即可（<em>1LB Shock week/p to pool, No swim 4-6 hr</em>）。此外还有一个概念，叫结合氯（Combined Chlorine，CC），CC仍在水中，但是消毒能力大大减弱，CC要低于0.2 ppm；FC+CC=TC（总氯，Total Chlorine）。</p>
@@ -107,7 +141,8 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;一、水质重要指标&quot;&gt;&lt;a href=&quot;#一、水质重要指标&quot; class=&quot;headerlink&quot; title=&quot;一、水质重要指标&quot;&gt;&lt;/a&gt;一、水质重要指标&lt;/h2&gt;&lt;p&gt;&lt;em&gt;ppm，parts per million，百万分之一&lt;/em&gt;&lt;br&gt;| 指标 |
+      &lt;h2 id=&quot;一、水质重要指标&quot;&gt;&lt;a href=&quot;#一、水质重要指标&quot; class=&quot;headerlink&quot; title=&quot;一、水质重要指标&quot;&gt;&lt;/a&gt;一、水质重要指标&lt;/h2&gt;&lt;p&gt;&lt;em&gt;ppm，parts per million，百万分之一&lt;/em&gt;&lt;/p&gt;
+&lt;tabl
     
     </summary>
     
