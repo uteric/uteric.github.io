@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2019-05-19T22:44:09.000Z</updated>
+  <updated>2019-06-01T22:55:22.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,420 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PowerPlex 16 Primer Pairs</title>
+    <link href="http://uteric.github.io/PowerPlex%2016%20Primer%20Pairs/"/>
+    <id>http://uteric.github.io/PowerPlex 16 Primer Pairs/</id>
+    <published>2019-06-01T22:55:22.000Z</published>
+    <updated>2019-06-01T22:55:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>PowerPlex 16 system 是由PROMEGA开发的STR检测试剂盒，用于亲子鉴定（paternity testing）、法医分析（forensic DNA analysis）、身份识别（human identity testing），以及品系鉴定（tissue culture strain identification）。包含全部13个CODIS STR LOCI（TPOX, D3S1358, FGA, CSF1PO, D5S818, D7S820, D8S1179, TH01,VWA, D13S317, D16S539, D18S51, D21S11），  Penta D，Penta E，以及用于性别鉴定的Amelogenin，共计16个位点。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4189810-70cc47ae561701ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="PowerPlex 16 System"></p>
+<p><strong>引物信息如下</strong>： </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Locus</th>
+<th style="text-align:center">Forward</th>
+<th style="text-align:center">Reverse</th>
+<th style="text-align:center">5’ end</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">FGA</td>
+<td style="text-align:center">GGCTGCAGGGCATAACATTA</td>
+<td style="text-align:center">ATTCTATGACTTTGCGCTTCAGGA</td>
+<td style="text-align:center">TMR /OH</td>
+</tr>
+<tr>
+<td style="text-align:center">TPOX</td>
+<td style="text-align:center">GCACAGAACAGGCACTTAGG</td>
+<td style="text-align:center">CGCTCAAACGTGAGGTTG</td>
+<td style="text-align:center">OH /TMR</td>
+</tr>
+<tr>
+<td style="text-align:center">D8S1179</td>
+<td style="text-align:center">ATTGCAACTTATATGTATTTTTGTATTTCATG</td>
+<td style="text-align:center">ACCAAATTGTGTTCATGAGTATAGTTTC</td>
+<td style="text-align:center">OH /TMR</td>
+</tr>
+<tr>
+<td style="text-align:center">VWA</td>
+<td style="text-align:center">GCCCTAGTGGATGATAAGAATAATCAGTATGTG</td>
+<td style="text-align:center">GGACAGATGATAAATACATAGGATGGATGG</td>
+<td style="text-align:center">OH /TMR</td>
+</tr>
+<tr>
+<td style="text-align:center">AMEL</td>
+<td style="text-align:center">CCCTGGGCTCTGTAAAGAA</td>
+<td style="text-align:center">ATCAGAGCTTAAACTGGGAAGCTG</td>
+<td style="text-align:center">TMR /OH</td>
+</tr>
+<tr>
+<td style="text-align:center">PENTA E</td>
+<td style="text-align:center">ATTACCAACATGAAAGGGTACCAATA</td>
+<td style="text-align:center">TGGGTTATTAATTGAGAAAACTCCTTACAATTT</td>
+<td style="text-align:center">OH /FL</td>
+</tr>
+<tr>
+<td style="text-align:center">D18S51</td>
+<td style="text-align:center">TTCTTGAGCCCAGAAGGTTA</td>
+<td style="text-align:center">ATTCTACCAGCAACAACACAAATAAAC</td>
+<td style="text-align:center">FL /OH</td>
+</tr>
+<tr>
+<td style="text-align:center">D21S11</td>
+<td style="text-align:center">ATATGTGAGTCAATTCCCCAAG</td>
+<td style="text-align:center">TGTATTAGTCAATGTTCTCCAGAGAC</td>
+<td style="text-align:center">OH /FL</td>
+</tr>
+<tr>
+<td style="text-align:center">TH01</td>
+<td style="text-align:center">GTGATTCCCATTGGCCTGTTC</td>
+<td style="text-align:center">ATTCCTGTGGGCTGAAAAGCTC</td>
+<td style="text-align:center">FL /OH</td>
+</tr>
+<tr>
+<td style="text-align:center">D3S1358</td>
+<td style="text-align:center">ACTGCAGTCCAATCTGGGT</td>
+<td style="text-align:center">ATGAAATCAACAGAGGCTTGC</td>
+<td style="text-align:center">OH /FL</td>
+</tr>
+<tr>
+<td style="text-align:center">PENTA D</td>
+<td style="text-align:center">GAAGGTCGAAGCTGAAGTG</td>
+<td style="text-align:center">ATTAGAATTCTTTAATCTGGACACAAG</td>
+<td style="text-align:center">JOE /OH</td>
+</tr>
+<tr>
+<td style="text-align:center">CSF1PO</td>
+<td style="text-align:center">CCGGAGGTAAAGGTGTCTTAAAGT</td>
+<td style="text-align:center">ATTTCCTGTGTCAGACCCTGTT</td>
+<td style="text-align:center">JOE /OH</td>
+</tr>
+<tr>
+<td style="text-align:center">D16S539</td>
+<td style="text-align:center">GGGGGTCTAAGAGCTTGTAAAAAG</td>
+<td style="text-align:center">GTTTGTGTGTGCATCTGTAAGCATGTATC</td>
+<td style="text-align:center">OH /JOE</td>
+</tr>
+<tr>
+<td style="text-align:center">D7S820</td>
+<td style="text-align:center">ATGTTGGTCAGGCTGACTATG</td>
+<td style="text-align:center">GATTCCACATTTATCCTCATTGAC</td>
+<td style="text-align:center">JOE /OH</td>
+</tr>
+<tr>
+<td style="text-align:center">D13S317</td>
+<td style="text-align:center">ATTACAGAAGTCTGGGATGTGGAGGA</td>
+<td style="text-align:center">GGCAGCCCAAAAAGACAGA</td>
+<td style="text-align:center">OH /JOE</td>
+</tr>
+<tr>
+<td style="text-align:center">D5S818</td>
+<td style="text-align:center">GGTGATTTTCCTCTTTGGTATCC</td>
+<td style="text-align:center">AGCCACAGTTTACAACATTTGTATCT</td>
+<td style="text-align:center">OH /JOE</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>参见文章：<em>Published in Krenke, B. E., Tereba, A., Anderson, S. J., Buel, E., Culhane, S., Finis, C. J., Tomsey, C. S., Zachetti, J. M., Masibay, A., Rabbach, D. R., Amiott, E. A., and Sprecher, C. J. (2002) Validation of a 16-locus fluorescent multiplex system. J. Forensic Sci. 47(4): 773-785.</em></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;PowerPlex 16 system 是由PROMEGA开发的STR检测试剂盒，用于亲子鉴定（paternity testing）、法医分析（forensic DNA analysis）、身份识别（human identity testing），以及品系鉴定（tissue
+    
+    </summary>
+    
+      <category term="基因技术" scheme="http://uteric.github.io/categories/%E5%9F%BA%E5%9B%A0%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="STR" scheme="http://uteric.github.io/tags/STR/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CODIS CORE STR LOCI 概况</title>
+    <link href="http://uteric.github.io/CODIS%20CORE%20STR%20LOCI%E6%A6%82%E5%86%B5/"/>
+    <id>http://uteric.github.io/CODIS CORE STR LOCI概况/</id>
+    <published>2019-06-01T22:51:19.000Z</published>
+    <updated>2019-06-01T22:51:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、13-CODIS-Core-STR-Loci"><a href="#一、13-CODIS-Core-STR-Loci" class="headerlink" title="一、13 CODIS Core STR Loci"></a>一、13 CODIS Core STR Loci</h2><p>2000年，FBI公布了13对CODIS （Combined DNA Index System）Core STR Loci，如图1：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4189810-5b1acc17d123827e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="13 FBI CODIS Core STR Loci"></p>
+<p>STR位点信息：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Loci Name</th>
+<th style="text-align:center">Gene Name</th>
+<th style="text-align:center">Chromosomal Location</th>
+<th style="text-align:center">Primer</th>
+<th style="text-align:center">Primer #</th>
+<th style="text-align:center">Size Range</th>
+<th style="text-align:center">Repeat Structure</th>
+<th style="text-align:center">Mutation Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">TPOX</td>
+<td style="text-align:center">TPO</td>
+<td style="text-align:center">2p25.3</td>
+<td style="text-align:center">GCACAGAACAGGCACTTAGG CGCTCAAACGTGAGGTTG</td>
+<td style="text-align:center">#5</td>
+<td style="text-align:center">254-302</td>
+<td style="text-align:center">[AATG]n</td>
+<td style="text-align:center">0.01%</td>
+</tr>
+<tr>
+<td style="text-align:center">D3S1358</td>
+<td style="text-align:center">LARS2</td>
+<td style="text-align:center">3p21.31</td>
+<td style="text-align:center">ACTGCAGTCCAATCTGGGT  ATGAAATCAACAGAGGCTTGC</td>
+<td style="text-align:center">#3</td>
+<td style="text-align:center">99-147</td>
+<td style="text-align:center">TCTA[TCTG]n[TCTA]n</td>
+<td style="text-align:center">0.12%</td>
+</tr>
+<tr>
+<td style="text-align:center">FGA</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">4q28</td>
+<td style="text-align:center">GGCTGCAGGGCATAACATTA  ATTCTATGACTTTGCGCTTCAGGA</td>
+<td style="text-align:center">#3</td>
+<td style="text-align:center">308-464</td>
+<td style="text-align:center">[TTTC]3TTTTTTCT[CTTT]nCTCC[TTCC]2</td>
+<td style="text-align:center">0.28%</td>
+</tr>
+<tr>
+<td style="text-align:center">CSF1PO</td>
+<td style="text-align:center">CSF1R</td>
+<td style="text-align:center">5q33.1</td>
+<td style="text-align:center">AACCTGAGTCTGCCAAGGACTAGC  TTCCACACACCACTGGCCATCTTC</td>
+<td style="text-align:center">#1</td>
+<td style="text-align:center">287-331</td>
+<td style="text-align:center">[AGAT]n</td>
+<td style="text-align:center">0.16%</td>
+</tr>
+<tr>
+<td style="text-align:center">D5S818</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">5q23.2</td>
+<td style="text-align:center">GGGTGATTTTCCTCTTTGGT  TGATTCCAATCATAGCCACA</td>
+<td style="text-align:center">#2</td>
+<td style="text-align:center">129-177</td>
+<td style="text-align:center">[AGAT]n</td>
+<td style="text-align:center">0.11%</td>
+</tr>
+<tr>
+<td style="text-align:center">D7S820</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">7q21.11</td>
+<td style="text-align:center">ATGTTGGTCAGGCTGACTATG  GATTCCACATTTATCCTCATTGAC</td>
+<td style="text-align:center">#1</td>
+<td style="text-align:center">211-251</td>
+<td style="text-align:center">[GATA]n</td>
+<td style="text-align:center">0.10%</td>
+</tr>
+<tr>
+<td style="text-align:center">D8S1179</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">8q24.13</td>
+<td style="text-align:center">ATTGCAACTTATATGTATTTTTGTATTTCATG  ACCAAATTGTGTTCATGAGTATAGTTTC</td>
+<td style="text-align:center">#3</td>
+<td style="text-align:center">203-255</td>
+<td style="text-align:center">[TCTA]n[TCTG]n[TCTA]n</td>
+<td style="text-align:center">0.14%</td>
+</tr>
+<tr>
+<td style="text-align:center">TH01</td>
+<td style="text-align:center">TH</td>
+<td style="text-align:center">11p15.5</td>
+<td style="text-align:center">GTGGGCTGAAAAGCTCCCGATTAT  ATTCAAAGGGTATCTGGGCTCTGG</td>
+<td style="text-align:center">#1</td>
+<td style="text-align:center">171-215</td>
+<td style="text-align:center">[AATG]nATG[AATG]n</td>
+<td style="text-align:center">0.01%</td>
+</tr>
+<tr>
+<td style="text-align:center">VWA</td>
+<td style="text-align:center">VWF</td>
+<td style="text-align:center">12p13.31</td>
+<td style="text-align:center">GCCCTAGTGGATGATAAGAATAATCAGTATGTG  GGACAGATGATAAATACATAGGATGGATGG</td>
+<td style="text-align:center">#2</td>
+<td style="text-align:center">123-183</td>
+<td style="text-align:center">[TCTA][TCTG]n[TCTA]n[TCCA][TCTA]</td>
+<td style="text-align:center">0.17%</td>
+</tr>
+<tr>
+<td style="text-align:center">D13S317</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">13q31.1</td>
+<td style="text-align:center">ATTACAGAAGTCTGGGATGTGGAGGA  GGCAGCCCAAAAAGACAGA</td>
+<td style="text-align:center">#1</td>
+<td style="text-align:center">157-205</td>
+<td style="text-align:center">[TATC]n[AATC]n</td>
+<td style="text-align:center">0.14%</td>
+</tr>
+<tr>
+<td style="text-align:center">D16S539</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">16q24.1</td>
+<td style="text-align:center">GGGGGTCTAAGAGCTTGTAAAAAG GTTTGTGTGTGCATCTGTAAGCATGTATC</td>
+<td style="text-align:center">#1</td>
+<td style="text-align:center">260-308</td>
+<td style="text-align:center">[GATA]n</td>
+<td style="text-align:center">0.11%</td>
+</tr>
+<tr>
+<td style="text-align:center">D18S51</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">18q21.33</td>
+<td style="text-align:center">TTCTTGAGCCCAGAAGGTTA  ATTCTACCAGCAACAACACAAATAAAC</td>
+<td style="text-align:center">#3</td>
+<td style="text-align:center">286-373</td>
+<td style="text-align:center">[AGAA]n(AAAGAGAGAG)</td>
+<td style="text-align:center">0.22%</td>
+</tr>
+<tr>
+<td style="text-align:center">D21S11</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">21q21.1</td>
+<td style="text-align:center">ATATGTGAGTCAATTCCCCAAG  TGTATTAGTCAATGTTCTCCAGAGAC</td>
+<td style="text-align:center">#4</td>
+<td style="text-align:center">155-273</td>
+<td style="text-align:center">[TCTA]n[TCTG]n[TCTA]n[TA][TCTA]n[TCA][TCTA]n[TCCATA][TCTA]n</td>
+<td style="text-align:center">0.19%</td>
+</tr>
+<tr>
+<td style="text-align:center">AMELX</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">CCCTGGGCTCTGTAAAGAA  ATCAGAGCTTAAACTGGGAAGCTG</td>
+<td style="text-align:center">#1</td>
+<td style="text-align:center">106</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center">AMELY</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">CCCTGGGCTCTGTAAAGAA  ATCAGAGCTTAAACTGGGAAGCTG</td>
+<td style="text-align:center">#1</td>
+<td style="text-align:center">112</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="二、Additional-7-STR-loci"><a href="#二、Additional-7-STR-loci" class="headerlink" title="二、Additional 7 STR loci"></a>二、Additional 7 STR loci</h2><p>从2017年1月1日起，对于上传至National DNA Index System (NDIS)的数据，FBI要求增加7个STR位点，如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Loci Name</th>
+<th style="text-align:center">Gene Name</th>
+<th style="text-align:center">Chromosomal Location</th>
+<th style="text-align:center">Primer</th>
+<th style="text-align:center">Primer #</th>
+<th style="text-align:center">Size Range</th>
+<th style="text-align:center">Repeat Structure</th>
+<th style="text-align:center">Mutation Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">D1S1656</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1q42</td>
+<td style="text-align:center">GTGTTGCTCAAGGGTCAACT  GAGAAATAGAATCACTAGGGAACC</td>
+<td style="text-align:center">#1</td>
+<td style="text-align:center">121-169</td>
+<td style="text-align:center">[TAGA]n[TGA]n[TAGA]n[TAGG]n[TG]n</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">D2S441</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2p14</td>
+<td style="text-align:center">TGCACCCAACATTCTAACAA  ATTGGAGCTAAGTGGCTGTG</td>
+<td style="text-align:center">#1</td>
+<td style="text-align:center">78-114</td>
+<td style="text-align:center">[TCTA]n</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">D2S1338</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2q35</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">[TGCC]n[TTCC]n</td>
+<td style="text-align:center">0.12%</td>
+</tr>
+<tr>
+<td style="text-align:center">D10S1248</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">10q26.3</td>
+<td style="text-align:center">GGAATAAGTGCAGTGCTTGG  ACCAATCTGGTCACAACCAT</td>
+<td style="text-align:center">#1</td>
+<td style="text-align:center">227-271</td>
+<td style="text-align:center">[GGAA]n</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">D12S391</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">Chr12</td>
+<td style="text-align:center">AACAGGATCAATGGATGCAT  TGGCTTTTAGACCTGGACTG</td>
+<td style="text-align:center">#1</td>
+<td style="text-align:center">209-253</td>
+<td style="text-align:center">[AGAT]8-17[AGAC]6-10[AGAT]0-1</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">D19S433</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">19q12</td>
+<td style="text-align:center">CCTGGGCAACAGAATAAGAT  TAGGTTTTTAAGGAACAGGTGG</td>
+<td style="text-align:center">#1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">[AAGG][AAAG][AAGG][TAGG][AAGG]12</td>
+<td style="text-align:center">0.11%</td>
+</tr>
+<tr>
+<td style="text-align:center">D22S1045</td>
+<td style="text-align:center">IL2RB</td>
+<td style="text-align:center">22q12.3</td>
+<td style="text-align:center">GCTAGATTTTCCCCGATGAT  ATGTAAAGTGCTCTCAAGAGTGC</td>
+<td style="text-align:center">#1</td>
+<td style="text-align:center">129-165</td>
+<td style="text-align:center">[ATT]n[ACT][ATT]n</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、13-CODIS-Core-STR-Loci&quot;&gt;&lt;a href=&quot;#一、13-CODIS-Core-STR-Loci&quot; class=&quot;headerlink&quot; title=&quot;一、13 CODIS Core STR Loci&quot;&gt;&lt;/a&gt;一、13 CODIS Cor
+    
+    </summary>
+    
+      <category term="基因技术" scheme="http://uteric.github.io/categories/%E5%9F%BA%E5%9B%A0%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="STR" scheme="http://uteric.github.io/tags/STR/"/>
+    
+      <category term="CODIS" scheme="http://uteric.github.io/tags/CODIS/"/>
+    
+  </entry>
   
   <entry>
     <title>美国垃圾如何分类</title>
@@ -1692,73 +2106,6 @@
     
       &lt;h2 id=&quot;1、均匀分布随机数&quot;&gt;&lt;a href=&quot;#1、均匀分布随机数&quot; class=&quot;headerlink&quot; title=&quot;1、均匀分布随机数&quot;&gt;&lt;/a&gt;1、均匀分布随机数&lt;/h2&gt;&lt;p&gt;在R语言中，生成均匀分布随机数的函数是：runif()&lt;/p&gt;
 &lt;p&gt;基本语法：ru
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="R语言" scheme="http://uteric.github.io/tags/R%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>R语言学习笔记3-生成二项分布随机数</title>
-    <link href="http://uteric.github.io/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B03/"/>
-    <id>http://uteric.github.io/R语言学习笔记3/</id>
-    <published>2018-04-07T23:31:44.000Z</published>
-    <updated>2018-04-07T23:31:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="伯努利试验"><a href="#伯努利试验" class="headerlink" title="伯努利试验"></a>伯努利试验</h2><p>首先简单介绍一下<strong>伯努利试验（Bernoulli experiment）</strong>。</p>
-<p>伯努利试验，是指在同样的条件下，重复地，相互独立地，进行的一种随机试验，该随机试验只有两种结果：<del>发生或不发生</del>。</p>
-<p>假设：该项试验重复独立地进行了N次，则称为<strong>N重伯努利试验</strong>，N即为该试验的SIZE。</p>
-<p><del>比如，连续抛N次硬币，每次抛硬币相互独立互不影响，结果只能是“正面”或者“反面”，得到正面的概率为0.5，每次抛硬币的试验即为伯努利试验。</del></p>
-<hr>
-<h2 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a>二项分布</h2><p>多次伯努利试验的分布概率，即为二项分布；换句话说，当二项分布的试验次数为1时，符合伯努利试验。</p>
-<hr>
-<h2 id="生成二项分布随机数"><a href="#生成二项分布随机数" class="headerlink" title="生成二项分布随机数"></a>生成二项分布随机数</h2><p>在R语言中，生成二项分布随机数的函数是：<strong>rbinom()</strong></p>
-<p>基本语法：rbinom(n,size,prob)，n表示生成的随机数的数量，size表示进行伯努利试验的次数，prob表示一次伯努利试验成功的概率。</p>
-<p>仍以抛硬币为例，总共抛硬币100次（size=100），得到正面记为成功，即每次成功概率为0.5（prob=0.5），那么，n的含义是什么呢？现在，我们让计算机模拟30个随机数，看看这30个数字有何特点，据此来解释n的含义。</p>
-<p>在本例中，n=30，size=100，prob=0.5，在R中输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rbinom(30,100,.5) <span class="comment"># 小数点前的0可以省略</span></div><div class="line">[1] 52 39 45 53 51 53 52 43 50 51 52 48 56 47 43 53 47 47 52 53 49 43 51 50 44 57 54 59 43 48</div></pre></td></tr></table></figure>
-<p>仔细观察就会发现，生成的30个随机数都在50左右徘徊，这是为什么呢？因为每次伯努利试验（抛硬币）的成功概率是0.5，那么在理想状态下，模拟100次伯努利试验（抛100次硬币），成功的次数应为50次，由此可见，在函数rbinom()中，<strong>n的含义是伯努利试验成功的次数</strong>。</p>
-<p>可以想见，如果模拟伯努利试验的次数减少，n值的偏差将会变大，比如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; rbinom(10,10,.5)</div><div class="line">[1] 5 6 6 4 4 4 3 5 6 8</div></pre></td></tr></table></figure>
-<p>在本例中，单次试验的成功概率依旧为0.5，但是只模拟10次试验，并生成10个随机数，最大的数为8，远远偏离预期的5。</p>
-<p>注意：在rbinom()函数中，n可以大于size，比如rbinom(100,10,.5)。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;伯努利试验&quot;&gt;&lt;a href=&quot;#伯努利试验&quot; class=&quot;headerlink&quot; title=&quot;伯努利试验&quot;&gt;&lt;/a&gt;伯努利试验&lt;/h2&gt;&lt;p&gt;首先简单介绍一下&lt;strong&gt;伯努利试验（Bernoulli experiment）&lt;/strong&gt;。&lt;/p&gt;
-
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="R语言" scheme="http://uteric.github.io/tags/R%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>R语言学习笔记2</title>
-    <link href="http://uteric.github.io/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/"/>
-    <id>http://uteric.github.io/R语言学习笔记2/</id>
-    <published>2018-04-07T22:15:58.000Z</published>
-    <updated>2018-04-07T22:15:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="1、数学运算（Arithmetic-Operators）"><a href="#1、数学运算（Arithmetic-Operators）" class="headerlink" title="1、数学运算（Arithmetic Operators）"></a>1、数学运算（Arithmetic Operators）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># BASIC ARITHMETIC OPERATORS</span></div><div class="line">&gt; 2-5+1 <span class="comment"># 加减法</span></div><div class="line">[1] -2</div><div class="line">&gt; 6/3*2 <span class="comment"># 乘除法</span></div><div class="line">[1] 4</div><div class="line">&gt; 3+2*5 <span class="comment"># 混合运算</span></div><div class="line">[1] 13</div><div class="line">&gt; 4^3 <span class="comment"># 4的3次方，^代表乘幂</span></div><div class="line">[1] 64</div><div class="line">&gt; exp(4) <span class="comment"># 自然常数e的乘幂，即e^4</span></div><div class="line">[1] 54.59815</div><div class="line">&gt; <span class="built_in">log</span>(2.742) <span class="comment"># 某数的自然对数</span></div><div class="line">[1] 1.008688</div><div class="line">&gt; log10(1000) <span class="comment"># 某数以10为底的对数</span></div><div class="line">[1] 3</div><div class="line">&gt; pi <span class="comment"># 圆周率π</span></div><div class="line">[1] 3.141593</div></pre></td></tr></table></figure>
-<h2 id="2、变量（Variables）"><a href="#2、变量（Variables）" class="headerlink" title="2、变量（Variables）"></a>2、变量（Variables）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># VARIABLES</span></div><div class="line">x &lt;- 3 <span class="comment"># 将3储存到变量x</span></div><div class="line">x <span class="comment"># 输出x，也可以使用print(x)</span></div><div class="line">[1] 3</div><div class="line">&gt; sqrt(x) <span class="comment"># 平方根</span></div><div class="line">[1] 1.732051</div><div class="line">&gt; x^4 <span class="comment"># 指定次方</span></div><div class="line">[1] 81</div><div class="line">&gt; <span class="built_in">log</span>(x) <span class="comment"># 自然对数</span></div><div class="line">[1] 1.098612</div><div class="line">&gt; log10(x) <span class="comment"># 以10为底对数</span></div><div class="line">[1] 0.4771213</div><div class="line">&gt; exp(x) 自然常数的指定次方</div><div class="line">[1] 20.08554</div><div class="line">&gt; tan(x) <span class="comment"># tan</span></div><div class="line">[1] -0.1425465</div><div class="line">&gt; y &lt;- pi <span class="comment"># 将圆周率π的值储存为变量y</span></div><div class="line">&gt; y</div><div class="line">[1] 3.141593</div></pre></td></tr></table></figure>
-<h2 id="3、向量（VECTORS）"><a href="#3、向量（VECTORS）" class="headerlink" title="3、向量（VECTORS）"></a>3、向量（VECTORS）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># VECTORS</span></div><div class="line">&gt; x &lt;- c(2,3,5,1,4,4) <span class="comment"># 创建向量x，值为（2,3,5,1,4,4) </span></div><div class="line">&gt; x</div><div class="line">[1] 2 3 5 1 4 4</div><div class="line">&gt; sum(x) <span class="comment"># 求和</span></div><div class="line">[1] 19</div><div class="line">&gt; mean(x) <span class="comment"># 平均值</span></div><div class="line">[1] 3.166667</div><div class="line">&gt; sd(x) <span class="comment"># 标准差</span></div><div class="line">[1] 1.47196</div><div class="line">&gt; median(x) <span class="comment"># 中位数</span></div><div class="line">[1] 3.5</div><div class="line">&gt; sqrt(x) <span class="comment"># 平方根 </span></div><div class="line">[1] 1.414214 1.732051 2.236068 1.000000 2.000000 2.000000</div><div class="line">&gt; x^2 <span class="comment"># 指定次方</span></div><div class="line">[1]  4  9 25  1 16 16</div><div class="line">&gt; seq(1,10) <span class="comment"># 创建向量，从1开始，每次增加1，至10结束；或者使用seq(1:10)</span></div><div class="line">[1]  1  2  3  4  5  6  7  8  9 10</div><div class="line">&gt; seq(1,10,2) <span class="comment"># 创建向量，从1开始，每次增加2，至10结束；或者使用seq(1,10,by=2)</span></div><div class="line">[1] 1 3 5 7 9</div><div class="line">&gt; z &lt;- c(1:12,0,-6) <span class="comment"># 将值添加到向量中</span></div><div class="line">&gt; z</div><div class="line">[1]  1  2  3  4  5  6  7  8  9 10 11 12  0 -6</div><div class="line">------------------------------------------------------</div><div class="line">&gt; x &lt;- c(-5,0,7,-6,14,27) <span class="comment"># 创建向量</span></div><div class="line">&gt; x</div><div class="line">[1] -5  0  7 -6 14 27</div><div class="line">&gt; x[1] <span class="comment"># 输出第一个元素</span></div><div class="line">[1] -5</div><div class="line">&gt; x[7] <span class="comment"># 输出第七个元素，因为x向量一共6个元素，因此返回NA</span></div><div class="line">[1] NA</div><div class="line">&gt; length(x) <span class="comment"># x向量的元素个数</span></div><div class="line">[1] 6</div><div class="line">&gt; x[length(x)] <span class="comment"># 输出最后一个元素</span></div><div class="line">[1] 27</div><div class="line">&gt; x[-1] <span class="comment"># 输出除第一个以外的其他元素</span></div><div class="line">[1]  0  7 -6 14 27</div><div class="line">&gt; x <span class="comment"># 注意，上述操作并不改变x向量的组成</span></div><div class="line">[1] -5  0  7 -6 14 27 </div><div class="line">&gt; x[c(2,3)] <span class="comment"># 输出第二第三个元素</span></div><div class="line">[1] 0 7</div><div class="line">&gt; x[-c(2,3)] <span class="comment"># 输出除第二第三以外的其他元素</span></div><div class="line">[1] -5 -6 14 27</div><div class="line">&gt; x[2] &lt;- 5 <span class="comment"># 修改第二个元素为5</span></div><div class="line">&gt; x</div><div class="line">[1] -5  5  7 -6 14 27</div><div class="line">&gt; x[7] &lt;-3 <span class="comment"># 修改第七个元素为3，若不存在则添加</span></div><div class="line">&gt; x</div><div class="line">[1] -5  5  7 -6 14 27  3</div><div class="line">&gt; x[c(1,4)] &lt;- c(2,3) <span class="comment"># 同时修改多个元素</span></div><div class="line">&gt; x</div><div class="line">[1]  2  5  7  3 14 27  3</div><div class="line">&gt; x &lt;3 <span class="comment"># 给出逻辑判断</span></div><div class="line">[1]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</div><div class="line">&gt; <span class="built_in">which</span>(x&lt;3) <span class="comment"># 逻辑判断，并给出判定为TRUE的元素的位置</span></div><div class="line">[1] 1</div><div class="line">&gt; x[x&lt;3] <span class="comment"># 逻辑判断，并给出判定为TRUE的元素的值</span></div><div class="line">[1] 2</div></pre></td></tr></table></figure>
-<h2 id="4、矩阵（MATRIX"><a href="#4、矩阵（MATRIX" class="headerlink" title="4、矩阵（MATRIX)"></a>4、矩阵（MATRIX)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># MATRIX</span></div><div class="line">&gt; matrix(1:20,nrow=4,ncol=5) <span class="comment"># 创建矩阵，从1到20，共20个元素，4行5列，按列填充</span></div><div class="line">[,1] [,2] [,3] [,4] [,5]</div><div class="line">[1,]    1    5    9   13   17</div><div class="line">[2,]    2    6   10   14   18</div><div class="line">[3,]    3    7   11   15   19</div><div class="line">[4,]    4    8   12   16   20</div><div class="line">&gt; matrix(1:30,5,6) <span class="comment"># 简化输入方式</span></div><div class="line">[,1] [,2] [,3] [,4] [,5] [,6]</div><div class="line">[1,]    1    6   11   16   21   26</div><div class="line">[2,]    2    7   12   17   22   27</div><div class="line">[3,]    3    8   13   18   23   28</div><div class="line">[4,]    4    9   14   19   24   29</div><div class="line">[5,]    5   10   15   20   25   30</div></pre></td></tr></table></figure>
-<h2 id="5、作图（GRAPHING）"><a href="#5、作图（GRAPHING）" class="headerlink" title="5、作图（GRAPHING）"></a>5、作图（GRAPHING）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GRAPHING</span></div><div class="line"><span class="comment"># 创建2个长度为29的向量x，y</span></div><div class="line">&gt; x &lt;- c(2,4,4,6,6,5,5,7,3,7,3,8,9,7,9,6,4,3,4,4,6,2,2,1,2,4,6,6,8)</div><div class="line">&gt; y &lt;- c(1:29)</div><div class="line">&gt; x</div><div class="line">[1] 2 4 4 6 6 5 5 7 3 7 3 8 9 7 9 6 4 3 4 4 6 2 2 1 2 4 6 6 8</div><div class="line">&gt; y</div><div class="line">[1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29</div><div class="line">&gt; hist(x) <span class="comment"># x的直方图</span></div><div class="line">&gt; hist(y) <span class="comment"># y的直方图</span></div><div class="line">&gt; plot(x) <span class="comment"># 散点图</span></div><div class="line">&gt; plot(x,<span class="built_in">type</span>=<span class="string">"b"</span>) <span class="comment"># 带连线的散点图，指示顺序</span></div><div class="line">&gt; plot(x,y) <span class="comment"># 二维散点图</span></div><div class="line">&gt; boxplot(x) <span class="comment"># 箱线图</span></div><div class="line">&gt; boxplot(x,y) <span class="comment"># 两个向量的箱线图</span></div><div class="line">&gt; pie(x) <span class="comment"># 饼图</span></div><div class="line">&gt; y &lt;- rbinom(20,12,.4) <span class="comment"># rbinom可生成随机数，语法为rbinom(n, size, prob)，即产生n个b(size,prob)的二项分布随机数</span></div><div class="line">&gt; hist(y) <span class="comment"># 可以看到，生成的直方图不是经典的二项分布</span></div><div class="line">&gt; y &lt;- rbinom(200,12,.4) <span class="comment"># 生成200个随机数，符合二项分布</span></div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;1、数学运算（Arithmetic-Operators）&quot;&gt;&lt;a href=&quot;#1、数学运算（Arithmetic-Operators）&quot; class=&quot;headerlink&quot; title=&quot;1、数学运算（Arithmetic Operators）&quot;&gt;&lt;/a&gt;1、
     
     </summary>
     
