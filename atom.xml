@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2019-12-25T17:21:27.000Z</updated>
+  <updated>2019-12-29T00:08:45.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,122 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GEO数据库测序数据下载位置变更</title>
+    <link href="http://uteric.github.io/GEO%20FTP%20address%20change/"/>
+    <id>http://uteric.github.io/GEO FTP address change/</id>
+    <published>2019-12-29T00:08:45.000Z</published>
+    <updated>2019-12-29T00:08:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://www.ncbi.nlm.nih.gov/geo/" target="_blank" rel="external">GEO</a>是一个公共基因数据库，包含绝大多数已发表文章的原始测序数据，在学习测序数据分析时，我们需要从GEO数据库来下载原始测序文件。</p>
+<p>去年我在学习RNA测序分析时，写了几篇RNASEQ分析入门笔记，最近，当我再打开时，发现之前提到的SRA测序文件下载地址发生了变动，因此，特别写下这篇小小笔记以方便初学RNASEQ的朋友们少走弯路。</p>
+<p>在这篇笔记<a href="https://uteric.github.io/RNASEQ%E4%B8%8B%E8%BD%BD%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE/">RNASEQ分析入门笔记2-下载原始数据</a>中，[SRR3589959]的下载地址原本是：ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589959/SRR3589959.sra，但是，现在这个地址已经打不开了，我仔细查看了FTP文件目录，发现FTP地址发生了变化，但仍然很有规律，可以分为如下两个部分：</p>
+<p>1）通用部分：<a href="ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/" target="_blank" rel="external">ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/</a><br>2）变动部分：SRR358/SRR3589959/SRR3589959.sra #格式为SRRabc/SRRabcdef/SRRabcdef.sra</p>
+<p>因此，SRR3589959.sra的地址即为：<a href="ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR358/SRR3589959/SRR3589959.sra" target="_blank" rel="external">ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR358/SRR3589959/SRR3589959.sra</a></p>
+<p>对于数据下载，使用wget命令即可，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget -c ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR358/SRR3589959/SRR3589959.sra # -c表示断点续传，以防意外情况导致下载失败</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.ncbi.nlm.nih.gov/geo/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GEO&lt;/a&gt;是一个公共基因数据库，包含绝大多数已发表文章的原始测序数据，在学习测序数据分析时，我们需要从GEO数据库来下载
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="GEO" scheme="http://uteric.github.io/tags/GEO/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu系统安装JAVA</title>
+    <link href="http://uteric.github.io/Ubuntu%20Java%20Install/"/>
+    <id>http://uteric.github.io/Ubuntu Java Install/</id>
+    <published>2019-12-29T00:08:40.000Z</published>
+    <updated>2019-12-29T00:08:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1、安装系统默认的JAVA"><a href="#1、安装系统默认的JAVA" class="headerlink" title="1、安装系统默认的JAVA"></a>1、安装系统默认的JAVA</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install default-jdk</div></pre></td></tr></table></figure>
+<h2 id="2、安装JAVA11或JAVA13"><a href="#2、安装JAVA11或JAVA13" class="headerlink" title="2、安装JAVA11或JAVA13"></a>2、安装JAVA11或JAVA13</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">add-apt-repository ppa:linuxuprising/java</div><div class="line">apt-get update</div><div class="line">apt-get install oracle-java11-installer</div><div class="line">apt-get install oracle-java13-installer</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1、安装系统默认的JAVA&quot;&gt;&lt;a href=&quot;#1、安装系统默认的JAVA&quot; class=&quot;headerlink&quot; title=&quot;1、安装系统默认的JAVA&quot;&gt;&lt;/a&gt;1、安装系统默认的JAVA&lt;/h2&gt;&lt;figure class=&quot;highlight plai
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="JAVA" scheme="http://uteric.github.io/tags/JAVA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用youtube-dl命令下载youtube视频与音频</title>
+    <link href="http://uteric.github.io/Youtube%20dl/"/>
+    <id>http://uteric.github.io/Youtube dl/</id>
+    <published>2019-12-29T00:08:35.000Z</published>
+    <updated>2019-12-29T00:08:35.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1、安装youtube-dl"><a href="#1、安装youtube-dl" class="headerlink" title="1、安装youtube-dl"></a>1、安装youtube-dl</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl</div><div class="line">sudo chmod a+rx /usr/local/bin/youtube-dl</div><div class="line">hash -r</div></pre></td></tr></table></figure>
+<p>现在，你可以使用如下命令来将youtube-dl更新到最新版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo youtube-dl -U # 版本更新</div><div class="line">youtube-dl --version # 检查版本</div></pre></td></tr></table></figure>
+<p>如果你之前使用apt命令安装youtube-dl但无法正常使用，请使用如下命令卸载并重新安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get remove -y youtube-dl</div></pre></td></tr></table></figure>
+<h2 id="2、获取视频与音频信息"><a href="#2、获取视频与音频信息" class="headerlink" title="2、获取视频与音频信息"></a>2、获取视频与音频信息</h2><p>以Jingle Bells这首儿歌为例，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl -F https://www.youtube.com/watch?v=eQ34DSTjsLQ</div></pre></td></tr></table></figure>
+<p>返回如下信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">[youtube] eQ34DSTjsLQ: Downloading webpage</div><div class="line">[youtube] eQ34DSTjsLQ: Downloading video info webpage</div><div class="line">[info] Available formats for eQ34DSTjsLQ:</div><div class="line">format code  extension  resolution note</div><div class="line">249          webm       audio only tiny   83k , opus @ 50k (48000Hz), 1.48MiB</div><div class="line">250          webm       audio only tiny  104k , opus @ 70k (48000Hz), 1.87MiB</div><div class="line">140          m4a        audio only tiny  130k , m4a_dash container, mp4a.40.2@128k (44100Hz), 2.93MiB</div><div class="line">251          webm       audio only tiny  178k , opus @160k (48000Hz), 3.46MiB</div><div class="line">394          mp4        256x144    144p   80k , av01.0.00M.08, 24fps, video only, 1.64MiB</div><div class="line">278          webm       256x144    144p   97k , webm container, vp9, 24fps, video only, 2.08MiB</div><div class="line">160          mp4        256x144    144p  109k , avc1.4d400c, 24fps, video only, 2.08MiB</div><div class="line">395          mp4        426x240    240p  168k , av01.0.00M.08, 24fps, video only, 3.19MiB</div><div class="line">242          webm       426x240    240p  222k , vp9, 24fps, video only, 4.24MiB</div><div class="line">133          mp4        426x240    240p  292k , avc1.4d4015, 24fps, video only, 4.61MiB</div><div class="line">396          mp4        640x360    360p  299k , av01.0.01M.08, 24fps, video only, 5.49MiB</div><div class="line">243          webm       640x360    360p  408k , vp9, 24fps, video only, 7.19MiB</div><div class="line">397          mp4        854x480    480p  515k , av01.0.04M.08, 24fps, video only, 9.39MiB</div><div class="line">134          mp4        640x360    360p  528k , avc1.4d401e, 24fps, video only, 8.33MiB</div><div class="line">244          webm       854x480    480p  751k , vp9, 24fps, video only, 10.84MiB</div><div class="line">135          mp4        854x480    480p  800k , avc1.4d401e, 24fps, video only, 11.53MiB</div><div class="line">398          mp4        1280x720   720p 1044k , av01.0.05M.08, 24fps, video only, 19.72MiB</div><div class="line">136          mp4        1280x720   720p 1098k , avc1.4d401f, 24fps, video only, 16.32MiB</div><div class="line">247          webm       1280x720   720p 1297k , vp9, 24fps, video only, 18.38MiB</div><div class="line">18           mp4        640x360    360p  667k , avc1.42001E, mp4a.40.2@ 96k (44100Hz), 15.09MiB (best)</div></pre></td></tr></table></figure>
+<p>每个视频或音频前都有一个编号，如140代表m4a音频，18代表mp4视频等，现在，可以开始下载了。</p>
+<h2 id="3、下载视频或音频"><a href="#3、下载视频或音频" class="headerlink" title="3、下载视频或音频"></a>3、下载视频或音频</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">youtube-dl -f 140 https://www.youtube.com/watch?v=eQ34DSTjsLQ # 下载m4a音频</div><div class="line">youtube-dl -f 18 https://www.youtube.com/watch?v=eQ34DSTjsLQ # 下载mp4视频</div></pre></td></tr></table></figure>
+<p>OK，all done!</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1、安装youtube-dl&quot;&gt;&lt;a href=&quot;#1、安装youtube-dl&quot; class=&quot;headerlink&quot; title=&quot;1、安装youtube-dl&quot;&gt;&lt;/a&gt;1、安装youtube-dl&lt;/h2&gt;&lt;figure class=&quot;highlight 
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="YouTube" scheme="http://uteric.github.io/tags/YouTube/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>免ROOT在小米盒子上看YouTube</title>
+    <link href="http://uteric.github.io/Youtube%20install/"/>
+    <id>http://uteric.github.io/Youtube install/</id>
+    <published>2019-12-29T00:08:29.000Z</published>
+    <updated>2019-12-29T00:08:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近，小米盒子上的youtube软件打开时总显示“不允许执行此操作”，于是，不得不重新安装youtube软件。</p>
+<p>下面这个方法适合不想ROOT的用户，更不需要安装GOOGLE服务框架。</p>
+<p>需要下载<a href="https://smartyoutubetv.github.io/" target="_blank" rel="external">SmartyouTube TV</a>，下载后通过U盘安装到小米盒子。</p>
+<p>安装完成后，打开，选择第一项，然后在手机或者电脑上登录Youtube.com/activate，输入电视上显示的密码，即可用谷歌账号登录YouTube。</p>
+<p>这个方法同样也适用于安装YouTube Kids，控制孩子看电视的时间。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近，小米盒子上的youtube软件打开时总显示“不允许执行此操作”，于是，不得不重新安装youtube软件。&lt;/p&gt;
+&lt;p&gt;下面这个方法适合不想ROOT的用户，更不需要安装GOOGLE服务框架。&lt;/p&gt;
+&lt;p&gt;需要下载&lt;a href=&quot;https://smartyoutu
+    
+    </summary>
+    
+      <category term="美国生活" scheme="http://uteric.github.io/categories/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="YouTube" scheme="http://uteric.github.io/tags/YouTube/"/>
+    
+  </entry>
   
   <entry>
     <title>TUNA的镜像源</title>
@@ -1004,169 +1120,6 @@
     <summary type="html">
     
       &lt;h2 id=&quot;一、差异分析&quot;&gt;&lt;a href=&quot;#一、差异分析&quot; class=&quot;headerlink&quot; title=&quot;一、差异分析&quot;&gt;&lt;/a&gt;一、差异分析&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutt
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="RNASEQ" scheme="http://uteric.github.io/tags/RNASEQ/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>EXCEL学习笔记1-AND与OR的用法</title>
-    <link href="http://uteric.github.io/EXCEL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/"/>
-    <id>http://uteric.github.io/EXCEL学习笔记1/</id>
-    <published>2018-10-06T04:16:43.000Z</published>
-    <updated>2018-10-06T04:16:43.000Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">=IF(AND(AC2&lt;AD2,Y2&lt;AB2),<span class="string">"Y"</span>,<span class="string">"N"</span>) <span class="comment"># 套用IF语句，如果AC2&lt;AD2且Y2&lt;AB2，则判断为Y，否则为N，注意，Y或N要加引号，否则报错</span></div><div class="line">=IF(OR(AE2=<span class="string">"Y"</span>,AF2=<span class="string">"Y"</span>),<span class="string">"Y"</span>,<span class="string">"N"</span>) <span class="comment"># 套用IF语句，如果AE2="Y"或AF2="Y"，则判断为Y，否则为N</span></div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;co
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="EXCEL" scheme="http://uteric.github.io/tags/EXCEL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>R语言学习笔记7-最大整数问题</title>
-    <link href="http://uteric.github.io/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B07/"/>
-    <id>http://uteric.github.io/R语言学习笔记7/</id>
-    <published>2018-09-27T04:16:58.000Z</published>
-    <updated>2018-09-27T04:16:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近在分析RNA-SEQ结果时，遇到一个问题，总是提示：</p>
-<p><em>message: In mde(x) : NAs introduced by coercion to integer range </em></p>
-<p>最开始时，我以为是原始数据中有NAs，但是检查了一遍发现没有，真正的原因是，原始数据中的整数太大，超出机器设定的最高限，因此才会报错。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.Machine<span class="variable">$integer</span>.max <span class="comment"># 查看最大整数</span></div><div class="line"><span class="comment"># [1] 2147483647</span></div><div class="line">x &lt;- as.interger(.Machine<span class="variable">$integer</span>.max)</div><div class="line">y&lt;- x+1</div><div class="line">as.integer(y)</div><div class="line"><span class="comment"># 猜猜会怎样？报错</span></div><div class="line"><span class="comment"># [1] NA</span></div><div class="line"><span class="comment"># Warning message: NAs introduced by coercion to integer range</span></div></pre></td></tr></table></figure>
-<p>可见，最大整数不可以超过2147483647，当然，这不意味着系统不能对更大的数值进行计算，而是说，如果某函数中需要输入整数，则最大不可以超过此上限。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近在分析RNA-SEQ结果时，遇到一个问题，总是提示：&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;message: In mde(x) : NAs introduced by coercion to integer range &lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;最开始时，我以为是原始数据中有NAs，
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="R语言" scheme="http://uteric.github.io/tags/R%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>R语言学习笔记6-基本命令</title>
-    <link href="http://uteric.github.io/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B06/"/>
-    <id>http://uteric.github.io/R语言学习笔记6/</id>
-    <published>2018-09-27T04:15:28.000Z</published>
-    <updated>2018-09-27T04:15:28.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>1、查看当前目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getwd() <span class="comment"># get working directory</span></div></pre></td></tr></table></figure>
-<p>2、改变工作目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setwd()</div></pre></td></tr></table></figure>
-<p>3、查看当前目录中的文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dir()</div></pre></td></tr></table></figure>
-<p>4、查看行数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nrow()</div></pre></td></tr></table></figure>
-<p>5、排序</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data &lt;- data[order(data<span class="variable">$row</span>,decreasing=FALSE),] <span class="comment"># decreasing=FALSE为默认升序排列</span></div></pre></td></tr></table></figure>
-<p>6、查看文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">head() <span class="comment"># 查看前6行</span></div><div class="line">tail() <span class="comment"># 查看最后6行</span></div></pre></td></tr></table></figure>
-<p>7、查看类型</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class()</div></pre></td></tr></table></figure>
-<p>8、载入文档</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">read.csv() <span class="comment"># 载入逗号分隔的CSV文档</span></div><div class="line">read.csv2() <span class="comment"># 载入分号分隔的CSV文档</span></div><div class="line">read.delim() <span class="comment"># 载入TAB键分隔的文档</span></div></pre></td></tr></table></figure>
-<p>9、输出文档</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">write.csv() <span class="comment"># 输出逗号分隔的CSV文档</span></div><div class="line">write.csv2() <span class="comment"># 输出分号分隔的CSV文档</span></div></pre></td></tr></table></figure>
-<p>10、数据筛选</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">subset() <span class="comment"># 筛选特定子集</span></div></pre></td></tr></table></figure>
-<p>11、绝对值函数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">abs()</div></pre></td></tr></table></figure>
-<p>12、开根号</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sqrt()</div></pre></td></tr></table></figure>
-<p>13、判断正负</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sign()</div></pre></td></tr></table></figure>
-<p>14、自然指数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">exp() <span class="comment"># e的指数</span></div></pre></td></tr></table></figure>
-<p>15、对数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">log</span>(x,base)</div></pre></td></tr></table></figure>
-<p>16、四舍五入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">round(x,n) <span class="comment"># 将x四舍五入到第n位</span></div></pre></td></tr></table></figure>
-<p>17、取整数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">trunc()</div></pre></td></tr></table></figure>
-<p>18、最大值与最小值</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">max()</div><div class="line">min()</div></pre></td></tr></table></figure>
-<p>19、求和</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">colSums() <span class="comment"># 按列求和</span></div><div class="line">rowSums() <span class="comment"># 按行求和</span></div></pre></td></tr></table></figure>
-<p>20、平均值</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">colMeans()</div><div class="line">rowMeans()</div></pre></td></tr></table></figure>
-<p>21、缺失值</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">na.fail() <span class="comment"># 检测是否有缺失值，若有则报错并停止</span></div><div class="line">na.omit() <span class="comment"># 去除缺失值</span></div><div class="line">na.exclude() <span class="comment"># 去除缺失值</span></div><div class="line">is.na() <span class="comment"># 判断是否是缺失值</span></div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;1、查看当前目录&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="R语言" scheme="http://uteric.github.io/tags/R%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RNASEQ分析入门笔记10-clusterProfiler富集分析</title>
-    <link href="http://uteric.github.io/RNASEQ%20clusterProfiler%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/"/>
-    <id>http://uteric.github.io/RNASEQ clusterProfiler富集分析/</id>
-    <published>2018-09-25T02:11:12.000Z</published>
-    <updated>2018-09-25T02:11:12.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="一、安装clusterProfiler"><a href="#一、安装clusterProfiler" class="headerlink" title="一、安装clusterProfiler"></a>一、安装clusterProfiler</h2><blockquote>
-<p>source(“<a href="https://bioconductor.org/biocLite.R" target="_blank" rel="external">https://bioconductor.org/biocLite.R</a>“) # 如果报错，请尝试http://<br>biocLite(“clusterProfiler”)<br>library(clusterProfiler) # 载入包，测试是否安装成功，如果提示找不到某个包，则安装相关的包即可，比如我的电脑提示“<strong>不存在叫‘rvcheck’这个名字的程辑包</strong>”，则使用如下语法安装“rvcheck”，如缺乏其他包，也是同理。<br>install.packages(“rvcheck”)</p>
-</blockquote>
-<h2 id="二、安装基因组注释数据"><a href="#二、安装基因组注释数据" class="headerlink" title="二、安装基因组注释数据"></a>二、安装基因组注释数据</h2><p>目前，<a href="http://bioconductor.org/packages/release/BiocViews.html#___OrgDb" target="_blank" rel="external">Bioconductor</a>官网支持19种生物的注释数据，可以直接安装：</p>
-<blockquote>
-<p>biocLite(“org.Hs.eg.db”) # 安装人类的注释数据<br>library(org.Hs.eg.db) # 测试，载入人类的注释数据<br>biocLite(“org.Mm.eg.db”) # 安装小鼠的注释数据<br>library(org.Mm.eg.db) # 测试，载入小鼠的注释数据</p>
-</blockquote>
-<h2 id="三、载入基因列表"><a href="#三、载入基因列表" class="headerlink" title="三、载入基因列表"></a>三、载入基因列表</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">data &lt;- read.csv(<span class="string">"top50.csv"</span>) <span class="comment"># 从文件中载入数据，并赋值给data</span></div><div class="line"><span class="comment"># 我们需要的是第二列的基因列表，因此，只筛选第二列即可</span></div><div class="line">gene &lt;- data[,2] <span class="comment"># 抽取第二列，赋值给gene</span></div><div class="line">gene &lt;- bitr(gene,fromType=<span class="string">"SYMBOL"</span>,toType=<span class="string">"ENTREZID"</span>,OrgDb=org.Hs.eg.db) <span class="comment"># groupGO默认使用"ENTREZID"作为输入数据，因此首先将“SYMBOL”转化为“ENTREZID”，以防出错</span></div><div class="line">gene &lt;- gene[,2] <span class="comment"># 抽取第二列作为input</span></div></pre></td></tr></table></figure>
-<h2 id="四、groupGO分析"><a href="#四、groupGO分析" class="headerlink" title="四、groupGO分析"></a>四、groupGO分析</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ggo &lt;- groupGO(gene=gene,OrgDb=org.Hs.eg.db,ont=<span class="string">"BP"</span>,level=3,readable=TRUE)</div><div class="line">ggo &lt;- groupGO(gene=gene,OrgDb=org.Hs.eg.db,ont=<span class="string">"CC"</span>,level=3,readable=TRUE)</div><div class="line">ggo &lt;- groupGO(gene=gene,OrgDb=org.Hs.eg.db,ont=<span class="string">"MF"</span>,level=3,readable=TRUE)</div></pre></td></tr></table></figure>
-<p>groupGO命令的格式为：<em>groupGO(gene,OrgDb,ont,level,readable)</em></p>
-<p><strong>gene</strong>，指定前景基因文件，即要分析的基因集合，默认为”ENTREZID”格式；<br><strong>OrgDb</strong>，指定基因组注释数据；<br><strong>ont</strong>，即ontology，参数有三个，分别为CC，BP和MF，对应：细胞组分（cellular component，CC），生物过程（biological process，BP），分子功能（molecular function，MF）；<br><strong>level</strong>，指定分析的GO水平；<br><strong>readable</strong>，逻辑值，TRUE或FALSE；</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">head(as.data.frame(ggo)) <span class="comment"># 查看前六行，结果是六行五列的数据</span></div></pre></td></tr></table></figure>
-<p>ID                              Description Count<br>GO:0019953 GO:0019953                      sexual reproduction     7<br>GO:0019954 GO:0019954                     asexual reproduction     0<br>GO:0022414 GO:0022414                     reproductive process    26<br>GO:0032504 GO:0032504      multicellular organism reproduction     9<br>GO:0032505 GO:0032505 reproduction of a single-celled organism     0<br>GO:0061887 GO:0061887         reproduction of symbiont in host     0<br>GeneRatio<br>GO:0019953     7/298<br>GO:0019954     0/298<br>GO:0022414    26/298<br>GO:0032504     9/298<br>GO:0032505     0/298<br>GO:0061887     0/298<br>geneID<br>GO:0019953                                                                                                                 APOB/ABAT/ANG/AR/AVPR1A/LEPR/ACOX1<br>GO:0019954<br>GO:0022414 APOB/AGT/AMBP/RBP4/ABAT/SERPINF1/ANG/HNF4A/AR/AVPR1A/ARG1/LEPR/GJB1/BOK/DHODH/SLC38A3/PDGFRA/TBX3/ADGRG1/IGFBP2/TTPA/ACOX1/DBH/ETNK2/NAMPT/HSD17B2<br>GO:0032504                                                                                                  APOB/SERPINF1/ANG/AR/AVPR1A/ARG1/PDGFRA/ACOX1/DBH<br>GO:0032505<br>GO:0061887                                                                                           </p>
-<h2 id="五、groupGo结果可视化"><a href="#五、groupGo结果可视化" class="headerlink" title="五、groupGo结果可视化"></a>五、groupGo结果可视化</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">barplot(ggo,drop=TRUE,showCategory=20)</div></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4189810-f92d7ebc27bfe4e3.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ggo barplot.jpeg"></p>
-<h2 id="六、enrichGO分析"><a href="#六、enrichGO分析" class="headerlink" title="六、enrichGO分析"></a>六、enrichGO分析</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ego &lt;- enrichGO(gene=gene,universe=names(geneList),OrgDb=org.Hs.eg.db,ont=<span class="string">"BP"</span>,pvalueCutoff=0.01,qvalueCutoff=0.05,readable=TRUE)</div><div class="line">ego &lt;- enrichGO(gene=gene,universe=names(geneList),OrgDb=org.Hs.eg.db,ont=<span class="string">"CC"</span>,pvalueCutoff=0.01,qvalueCutoff=0.05,readable=TRUE)</div><div class="line">ego &lt;- enrichGO(gene=gene,universe=names(geneList),OrgDb=org.Hs.eg.db,ont=<span class="string">"MF"</span>,pvalueCutoff=0.01,qvalueCutoff=0.05,readable=TRUE)</div></pre></td></tr></table></figure>
-<p>enrichGO命令语法：<em>enrichGO(gene,universe,OrgDb,ont,pvalueCutoff,qvalueCutoff,readable)</em></p>
-<p>universe，背景基因文件，可以使用默认值；</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">head(as.data.frame(ego))</div></pre></td></tr></table></figure>
-<p>ID                                   Description<br>GO:0072562 GO:0072562                           blood microparticle<br>GO:0042627 GO:0042627                                   chylomicron<br>GO:0031093 GO:0031093                  platelet alpha granule lumen<br>GO:0005788 GO:0005788                   endoplasmic reticulum lumen<br>GO:0034361 GO:0034361         very-low-density lipoprotein particle<br>GO:0034385 GO:0034385 triglyceride-rich plasma lipoprotein particle<br>GeneRatio   BgRatio       pvalue     p.adjust       qvalue<br>GO:0072562    33/288 101/11817 9.367691e-29 2.519909e-26 2.336992e-26<br>GO:0042627     8/288  11/11817 1.750866e-11 2.354915e-09 2.183975e-09<br>GO:0031093    14/288  62/11817 1.938754e-10 1.738416e-08 1.612227e-08<br>GO:0005788    26/288 247/11817 3.097572e-10 2.083117e-08 1.931907e-08<br>GO:0034361     8/288  16/11817 1.227828e-09 5.504763e-08 5.105180e-08<br>GO:0034385     8/288  16/11817 1.227828e-09 5.504763e-08 5.105180e-08<br>geneID<br>GO:0072562 ITIH4/ALB/FGB/FGA/FGG/ORM1/HPX/HP/VTN/APOA2/AGT/AMBP/SERPINC1/F2/C3/C9/SERPING1/HRG/ITIH1/SERPINA3/AHSG/GC/APOA4/PLG/KNG1/TF/C4BPA/C8G/C8A/APOA1/HPR/ITIH2/C1S<br>GO:0042627                                                                                                                    APOB/APOC3/APOA2/APOA4/APOH/APOA1/LSR/APOC1<br>GO:0031093                                                                                       ALB/FGB/FGA/FGG/ORM1/SERPINA1/SERPING1/HRG/SERPINA3/AHSG/F5/PLG/KNG1/VWF<br>GO:0005788                           APOB/ALB/FGA/FGG/SERPINA1/VTN/APOA2/SERPINC1/F2/C3/IGFBP1/AHSG/F5/SERPIND1/APOA4/KNG1/TF/PROC/APOA1/F9/ITIH2/MTTP/F10/CES2/H6PD/CDH2<br>GO:0034361                                                                                                                    APOB/APOC3/APOA2/APOA4/APOH/APOA1/LSR/APOC1<br>GO:0034385                                                                                                                    APOB/APOC3/APOA2/APOA4/APOH/APOA1/LSR/APOC1<br>Count<br>GO:0072562    33<br>GO:0042627     8<br>GO:0031093    14<br>GO:0005788    26<br>GO:0034361     8<br>GO:0034385     8</p>
-<h2 id="七、enrichGO可视化"><a href="#七、enrichGO可视化" class="headerlink" title="七、enrichGO可视化"></a>七、enrichGO可视化</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">barplot(ego,drop=TRUE,showCategory=20)</div></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4189810-74b5709dbbde256d.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ego barplot.jpeg"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dotplot(ego,title=<span class="string">"enrichGo CC dotplot"</span>)</div></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4189810-d804a07f00df5610.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ego cc dotplot.jpeg"></p>
-<p>此外，还可以作enrichMap或cnetplot，命令如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">enrichMap(ego, vertex.label.cex=1.2, layout=igraph::layout.kamada.kawai)</div><div class="line">cnetplot(ego, foldChange=geneList)</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一、安装clusterProfiler&quot;&gt;&lt;a href=&quot;#一、安装clusterProfiler&quot; class=&quot;headerlink&quot; title=&quot;一、安装clusterProfiler&quot;&gt;&lt;/a&gt;一、安装clusterProfiler&lt;/h2&gt;&lt;bloc
     
     </summary>
     
