@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-02-07T03:12:13.000Z</updated>
+  <updated>2020-02-07T04:37:57.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,88 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>R可视化-绘制柱形图2</title>
+    <link href="http://uteric.github.io/R%E5%8F%AF%E8%A7%86%E5%8C%96-%E7%BB%98%E5%88%B6%E6%9F%B1%E5%BD%A2%E5%9B%BE2/"/>
+    <id>http://uteric.github.io/R可视化-绘制柱形图2/</id>
+    <published>2020-02-07T04:37:57.000Z</published>
+    <updated>2020-02-07T04:37:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>首先，我们准备绘图数据，数据来源是2018年的一篇研究论文，<em>In Vitro and In Vivo Gene Therapy Vector Evolution via Multispecies Interbreeding and Retargeting of Adeno-Associated Viruses</em>，我们把数据输入到文件AAV infectivity.csv，并保存在工作目录下。</p>
+<p>下面开始正式绘图：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">library(ggplot2) <span class="comment"># 加载ggplot2</span></div><div class="line">data1=read.csv(<span class="string">"AAV infectivity.csv"</span>, header=T) <span class="comment"># 加载数据到变量data1</span></div><div class="line">head(data1,3) <span class="comment"># 查看data1前三行</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Cell.line Tissue.or.cell.type AAV.1 AAV.2  AAV.3   AAV.4  AAV.5</div><div class="line">1     Huh-7            hu liver  4000   500  20000 2000000 400000</div><div class="line">2       293           hu kidney  2000   500  20000  700000 400000</div><div class="line">3      HeLa           hu cervix 70000  2000 100000 2000000  30000</div></pre></td></tr></table></figure>
+<p>以第一列为横坐标，第三列为纵坐标，绘制条形图：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">pbar=ggplot(data1,aes(x=data1[,1],y=data1[,3]))+ <span class="comment"># 调用ggplot函数，以data1的第一列为横坐标，第三列为纵坐标，作为第一图层；</span></div><div class="line">geom_bar(<span class="built_in">stat</span>=<span class="string">"identity"</span>,position = <span class="string">"dodge"</span>,width=0.8,fill=<span class="string">"lightblue"</span>,color=<span class="string">"black"</span>)+ <span class="comment"># 第二图层：绘制条形图，位置为肩并肩，柱子的宽度为0.8，填充为浅蓝色，边框为黑色；</span></div><div class="line">geom_text(aes(label=paste(as.character(data1[,3]),sep=<span class="string">""</span>)),vjust=-0.5,size=4)+ <span class="comment"># 第三图层：将第三列数据绘制在柱子顶端，字号为4号；</span></div><div class="line">ggtitle(label=<span class="string">"In Vitro infectivities of AAV1"</span>,subtitle=<span class="string">"Data midified from [Grimm, D. et al. (2008). J. Virol. 82: 5887-5911]"</span>)+ <span class="comment"># 第四图层：设定标题与副标题；</span></div><div class="line">xlab(<span class="string">"Cells"</span>)+ <span class="comment"># 第五图层：X轴标签</span></div><div class="line">ylab(<span class="string">"In Vitro Infectivities of AAV1"</span>)+ <span class="comment"># 第六图层：Y轴标签；</span></div><div class="line">theme(plot.title = element_text(size=20,face=<span class="string">"bold"</span>,vjust=1,hjust=0.5), <span class="comment"># 第七图层：设定标题，字号20号，粗体，以及对齐方式；</span></div><div class="line">axis.title.x = element_text(size=15,face=<span class="string">"bold"</span>,vjust=0.5,hjust=0.5), <span class="comment"># 第七图层：X轴标签，字号15号，粗体，水平垂直居中；</span></div><div class="line">axis.title.y = element_text(size=15,face=<span class="string">"bold"</span>,vjust=1,hjust=0.5), <span class="comment"># 第七图层：Y轴标签，字号15号，粗体，水平居中；</span></div><div class="line">axis.text.x=element_text(size=12,face=<span class="string">"bold"</span>,vjust=1,hjust=1,angle=45), <span class="comment"># 第七图层：X轴文字，字号12号，粗体，45度倾斜；</span></div><div class="line">axis.text.y=element_text(size=12,face=<span class="string">"bold"</span>,vjust=0.5,hjust=0.5), <span class="comment"># 第七图层：Y轴文字，字号12号，粗体，水平垂直居中；</span></div><div class="line">panel.background = element_rect(fill=<span class="string">"transparent"</span>,color=<span class="string">"black"</span>), <span class="comment"># 第七图层：背景颜色透明，边框黑色；</span></div><div class="line">panel.grid.minor = element_blank(), <span class="comment"># 第七图层：次网格线隐藏；</span></div><div class="line">panel.grid.major = element_blank()) <span class="comment"># 第七图层：主网格线隐藏；</span></div><div class="line">pbar <span class="comment"># 绘制条形图</span></div></pre></td></tr></table></figure>
+<p>如果需要对数据进行排序并绘制条形图，可以首先对第三列从大到小排序，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">data1=data1[order(data1[,3],decreasing = T),] <span class="comment"># 对第三列进行降序排列；</span></div><div class="line">head(data1,3) <span class="comment"># 查看前三行；</span></div></pre></td></tr></table></figure>
+<p>以第三列从大到小排序后的data1如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Cell.line Tissue.or.cell.type   AAV.1 AAV.2  AAV.3    AAV.4   AAV.5</div><div class="line">4      HepG2            hu liver 2000000 50000 300000 20000000 3000000</div><div class="line">10    NIH3T3      mu fibroblasts  200000 20000 700000   700000 7000000</div><div class="line">3       HeLa           hu cervix   70000  2000 100000  2000000   30000</div></pre></td></tr></table></figure>
+<p>然而，此时绘制条形图，图形却不会从大到小排列，需要对第一列进行排列，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data1[,1]=factor(data1[,1],levels=data1[,1],order=T) <span class="comment"># 对第一列排序；</span></div></pre></td></tr></table></figure>
+<p>再次调用ggplot作图，就会得到降序排列的条形图。</p>
+<p>最后，保存图片为PDF格式，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ggsave(pbar,filename=<span class="string">"in vitro AAV1-order.pdf"</span>,width=12,height=9)</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先，我们准备绘图数据，数据来源是2018年的一篇研究论文，&lt;em&gt;In Vitro and In Vivo Gene Therapy Vector Evolution via Multispecies Interbreeding and Retargeting of Ad
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R可视化" scheme="http://uteric.github.io/tags/R%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>R可视化-绘制柱形图1</title>
+    <link href="http://uteric.github.io/R%E5%8F%AF%E8%A7%86%E5%8C%96-%E7%BB%98%E5%88%B6%E6%9F%B1%E5%BD%A2%E5%9B%BE1/"/>
+    <id>http://uteric.github.io/R可视化-绘制柱形图1/</id>
+    <published>2020-02-07T04:37:51.000Z</published>
+    <updated>2020-02-07T04:37:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、模拟数据-＃"><a href="#一、模拟数据-＃" class="headerlink" title="一、模拟数据 ＃"></a>一、模拟数据 ＃</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">data &lt;- data.frame(</div><div class="line">samplename=letters[1:6], <span class="comment"># 变量samplename，赋值从字母A－F；</span></div><div class="line">samplevalue=sample(seq(3,12),6) <span class="comment">#变量samplevalue，赋值为3－12之间的随机数；</span></div><div class="line">)</div><div class="line">data <span class="comment"># 查看data，如下：</span></div><div class="line">samplename samplevalue</div><div class="line">1          a           6</div><div class="line">2          b           7</div><div class="line">3          c          10</div><div class="line">4          d          12</div><div class="line">5          e           4</div><div class="line">6          f           9</div></pre></td></tr></table></figure>
+<h1 id="二、绘制柱形图"><a href="#二、绘制柱形图" class="headerlink" title="二、绘制柱形图"></a>二、绘制柱形图</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">barplot(height=data<span class="variable">$samplevalue</span>,</div><div class="line">names=data<span class="variable">$samplename</span>,</div><div class="line">) <span class="comment">#绘图，横坐标是names，纵坐标是height，生成最基本的柱形图，如图一；</span></div><div class="line">barplot(height=data<span class="variable">$samplevalue</span>,</div><div class="line">names=data<span class="variable">$samplename</span>,</div><div class="line">col=<span class="string">"red"</span></div><div class="line">) <span class="comment">#填充单一颜色，如图二；</span></div><div class="line">barplot(height=data<span class="variable">$samplevalue</span>,</div><div class="line">names=data<span class="variable">$samplename</span>,</div><div class="line">col=<span class="string">"red"</span>,</div><div class="line">border=<span class="string">"blue"</span></div><div class="line">) <span class="comment">#添加边框颜色，如图三；</span></div><div class="line">cols &lt;- brewer.pal(6,<span class="string">"Paired"</span>)</div><div class="line">barplot(height=data<span class="variable">$samplevalue</span>,</div><div class="line">names=data<span class="variable">$samplename</span>,</div><div class="line">col=cols,</div><div class="line">border=<span class="string">"blue"</span></div><div class="line">) <span class="comment">#从调色板中的"Paired"取色，并依次填充，如图四；</span></div><div class="line">cols &lt;- brewer.pal(6,<span class="string">"Paired"</span>)</div><div class="line">barplot(height=data<span class="variable">$samplevalue</span>,</div><div class="line">names=data<span class="variable">$samplename</span>,</div><div class="line">col=cols,</div><div class="line">border=<span class="string">"blue"</span>,</div><div class="line">main=<span class="string">"My title"</span>,</div><div class="line">xlab=<span class="string">"Name"</span>,</div><div class="line">ylab=<span class="string">"Value"</span>,</div><div class="line">ylim=c(0,13)</div><div class="line">) <span class="comment">#添加主标题，X轴标题，Y轴标题，设定Y轴刻度限度，如图五；</span></div><div class="line">barplot(height=data<span class="variable">$samplevalue</span>,</div><div class="line">names=data<span class="variable">$samplename</span>,</div><div class="line">col=cols,</div><div class="line">border=<span class="string">"blue"</span>,</div><div class="line">main=<span class="string">"My title"</span>,</div><div class="line">xlab=<span class="string">"Name"</span>,</div><div class="line">ylab=<span class="string">"Value"</span>,</div><div class="line">ylim=c(0,13),</div><div class="line">horiz=T,</div><div class="line">las=2</div><div class="line">) <span class="comment">#调整为水平柱形图，设定坐标轴文字方向，如图六；</span></div><div class="line">barplot(height=data<span class="variable">$samplevalue</span>,</div><div class="line">names=data<span class="variable">$samplename</span>,</div><div class="line">col=cols,</div><div class="line">border=<span class="string">"blue"</span>,</div><div class="line">main=<span class="string">"My title"</span>,</div><div class="line">xlab=<span class="string">"Name"</span>,</div><div class="line">ylab=<span class="string">"Value"</span>,</div><div class="line">ylim=c(0,13),</div><div class="line">col.axis=<span class="string">"green"</span>, <span class="comment">#坐标轴颜色；</span></div><div class="line">font.axis=2, <span class="comment">#坐标轴字体，1为正常，2为粗体，3为斜体，4为斜粗体；</span></div><div class="line">cex.axis=1 <span class="comment">#字号；</span></div><div class="line">) <span class="comment">#如图七；</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、模拟数据-＃&quot;&gt;&lt;a href=&quot;#一、模拟数据-＃&quot; class=&quot;headerlink&quot; title=&quot;一、模拟数据 ＃&quot;&gt;&lt;/a&gt;一、模拟数据 ＃&lt;/h1&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cla
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R可视化" scheme="http://uteric.github.io/tags/R%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://uteric.github.io/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%8D%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE/"/>
+    <id>http://uteric.github.io/R语言学习笔记－创建数据/</id>
+    <published>2020-02-07T04:37:45.000Z</published>
+    <updated>2020-02-07T04:39:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<hr>
+<p>title: R语言学习笔记－创建数据<br>date: 2020-02-06 22:37:45<br>updated: 2020-02-06 22:37:45<br>tags: R语言</p>
+<h2 id="categories-编程语言"><a href="#categories-编程语言" class="headerlink" title="categories: 编程语言"></a>categories: 编程语言</h2><h1 id="一、直接读取文件中的数据"><a href="#一、直接读取文件中的数据" class="headerlink" title="一、直接读取文件中的数据"></a>一、直接读取文件中的数据</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#直接读取.csv文件，本地或网络文件都可以；</span></div><div class="line">data1 &lt;- read.table(<span class="string">"https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/1_OneNum.csv"</span>, header=TRUE)</div><div class="line">head(data1)</div><div class="line">price</div><div class="line">1    75</div><div class="line">2   104</div><div class="line">3   369</div><div class="line">4   300</div><div class="line">5    92</div><div class="line">6    64</div><div class="line"><span class="comment">#对比看一下header=FALSE的结果，列名将被当作第一行，需要特别注意；</span></div><div class="line">data1 &lt;- read.table(<span class="string">"https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/1_OneNum.csv"</span>, header=FALSE)</div><div class="line">head(data2)</div><div class="line">V1</div><div class="line">1 price</div><div class="line">2  75.0</div><div class="line">3 104.0</div><div class="line">4 369.0</div><div class="line">5 300.0</div><div class="line">6  92.0</div><div class="line"><span class="comment">#可以发现，这是一个只有一列的文件，列名为price，9996行；</span></div><div class="line"><span class="comment">#此类数据适合作「密度图」</span></div><div class="line"><span class="comment">#若要取出price中满足特定条件的数值，可以使用filter()函数，用法如下：</span></div><div class="line">p &lt;- filter(data,price&lt;100)</div><div class="line">nrow(p)</div><div class="line"><span class="comment">#[1] 4799</span></div><div class="line"><span class="comment">#也可以直接传递数值，如下：</span></div><div class="line">data %&gt;%</div><div class="line">filter( price&lt;300 ) %&gt;%</div></pre></td></tr></table></figure>
+<h1 id="二、通过函数创建数据"><a href="#二、通过函数创建数据" class="headerlink" title="二、通过函数创建数据"></a>二、通过函数创建数据</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#创建数据框</span></div><div class="line"><span class="comment">#方法一：手动添加数据，仅在数据量小的情况下，谨慎使用；</span></div><div class="line">var1=c(<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>) <span class="comment">#对于string，需要用""括起来；</span></div><div class="line">var2=c(3,5,1,10,8) <span class="comment">#对于numeric，不要使用"";</span></div><div class="line">data=data.frame (var1,var2)</div><div class="line">head(data)</div><div class="line">var1 var2</div><div class="line">1    A    3</div><div class="line">2    B    5</div><div class="line">3    C    1</div><div class="line">4    D   10</div><div class="line">5    E    8</div><div class="line"><span class="comment">#也可以使用如下方法创建数据框，效果是相同的；</span></div><div class="line">data &lt;- data.frame (</div><div class="line">var1=c(<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>),</div><div class="line">var2=c(3,5,1,10,8)</div><div class="line">)</div><div class="line"><span class="comment">#此类数据有两列，一列为分类变量（categorical variable），一列为数值变量（numeric variable），适合作条形图，如；</span></div><div class="line">ggplot(data,aes(x=var1,y=var2))+geom_bar(<span class="built_in">stat</span>=<span class="string">"identity"</span>) <span class="comment">#stat="identity表明直接引用数据集里变量的值作为纵坐标的高度；</span></div><div class="line"></div><div class="line"><span class="comment">#方法二：使用rnorm()函数，rnorm(n, mean = 0, sd = 1)，n为产生随机值个数，mean是平均数，sd是标准差；默认平均数为0，标准差为1，呈正态分布；</span></div><div class="line">var1=rnorm(100)</div><div class="line">var2=rnorm(100,mean=2,sd=0.5)</div><div class="line">head(var1)</div><div class="line">[1]  0.7376882  0.9055453 -0.1456011  0.8596800 -1.5881099  1.4858029 <span class="comment">#var1在0左右分布；</span></div><div class="line">head(var2)</div><div class="line">[1] 3.309464 2.371139 1.848107 2.126949 2.006115 2.082000 <span class="comment">#var2在2左右分布；</span></div><div class="line"><span class="comment">#创建数据框</span></div><div class="line">data &lt;- data.frame (var1,var2)</div><div class="line">head(data)</div><div class="line">var1     var2</div><div class="line">1  0.7376882 3.309464</div><div class="line">2  0.9055453 2.371139</div><div class="line">3 -0.1456011 1.848107</div><div class="line">4  0.8596800 2.126949</div><div class="line">5 -1.5881099 2.006115</div><div class="line">6  1.4858029 2.082000</div><div class="line"><span class="comment">#此类数据有两列，两列都是数值，适合作散点图；</span></div><div class="line"></div><div class="line"><span class="comment">#方法三：使用sample(seq())函数创建数值变量；</span></div><div class="line">data &lt;- data.frame (</div><div class="line">var1=sample(seq(1,9),20,replace=T), <span class="comment">#replace=T，允许数值重复；</span></div><div class="line">var2=sample(seq(1,30),20,replace=F) <span class="comment">#replace=F，数值不能重复；</span></div><div class="line">)</div><div class="line">head(data)</div><div class="line">var1 var2</div><div class="line">1    3   16</div><div class="line">2    2    5</div><div class="line">3    3   28</div><div class="line">4    6   30</div><div class="line">5    2   10</div><div class="line">6    3   17</div><div class="line"></div><div class="line"><span class="comment">#方法四：使用sample()函数创建数值变量；</span></div><div class="line">data &lt;- data.frame (</div><div class="line">var1=sample(3:20,30,replace=T), <span class="comment">#3－20之间取30个数，允许重复；</span></div><div class="line">var2=sample(21:30,30,replace=T) <span class="comment">#21－30之间取30个数，允许重复；</span></div><div class="line">)</div><div class="line">head(data)</div><div class="line">var1 var2</div><div class="line">1   15   21</div><div class="line">2   14   21</div><div class="line">3   17   27</div><div class="line">4   10   29</div><div class="line">5    7   27</div><div class="line">6   12   24</div><div class="line"></div><div class="line"><span class="comment">#方法五：使用LETTERS创建字母；</span></div><div class="line">var1=letters[1:7] <span class="comment">#letters取小写字母；</span></div><div class="line">var2=LETTERS[8:14] <span class="comment">#LETTERS取大写字母；</span></div><div class="line">var1</div><div class="line">[1] <span class="string">"a"</span> <span class="string">"b"</span> <span class="string">"c"</span> <span class="string">"d"</span> <span class="string">"e"</span> <span class="string">"f"</span> <span class="string">"g"</span></div><div class="line">var2</div><div class="line">[1] <span class="string">"H"</span> <span class="string">"I"</span> <span class="string">"J"</span> <span class="string">"K"</span> <span class="string">"L"</span> <span class="string">"M"</span> <span class="string">"N"</span></div><div class="line"></div><div class="line"><span class="comment">#方法六：使用abs()函数取绝对值；</span></div><div class="line">var1=abs(rnorm(10,mean=0,sd=3))</div><div class="line">var1</div><div class="line">2.8804684 1.8650338 0.3870626 1.2668471 5.1131199 4.6320510 2.8822397 0.2476684 7.1651732 3.2236713</div><div class="line"></div><div class="line"><span class="comment">#方法七：使用seq()函数创建数值变量；</span></div><div class="line">var1=seq(1,9,length.out=10) <span class="comment"># 从1至9，产生10个数，两两之间是等距的；</span></div><div class="line">var2=seq(1,9,2) <span class="comment"># 从1至9，以2为间隔产生数列；</span></div><div class="line">var1</div><div class="line">1.000000 1.888889 2.777778 3.666667 4.555556 5.444444 6.333333 7.222222 8.111111 9.000000</div><div class="line">var2</div><div class="line">1 3 5 7 9</div><div class="line"></div><div class="line"><span class="comment">#方法八，使用paste()创建分类变量；</span></div><div class="line">var1=paste(<span class="string">"sample"</span>,seq(1,10),sep=<span class="string">""</span>) <span class="comment"># 结合字符串与数字，中间没有分隔；</span></div><div class="line">var2=paste(<span class="string">"sample"</span>,seq(1,10),sep=<span class="string">"-"</span>) <span class="comment"># 结合字符串与数字，中间以－分隔；</span></div><div class="line">var1</div><div class="line"><span class="string">"sample1"</span>  <span class="string">"sample2"</span>  <span class="string">"sample3"</span>  <span class="string">"sample4"</span>  <span class="string">"sample5"</span>  <span class="string">"sample6"</span> <span class="string">"sample7"</span>  <span class="string">"sample8"</span>  <span class="string">"sample9"</span>  <span class="string">"sample10"</span></div><div class="line">var2</div><div class="line"><span class="string">"sample-1"</span>  <span class="string">"sample-2"</span>  <span class="string">"sample-3"</span>  <span class="string">"sample-4"</span>  <span class="string">"sample-5"</span> <span class="string">"sample-6"</span>  <span class="string">"sample-7"</span>  <span class="string">"sample-8"</span>  <span class="string">"sample-9"</span>  <span class="string">"sample-10"</span></div><div class="line"></div><div class="line"><span class="comment">#方法九，使用mutate()函数向数据框末端追加一列；</span></div><div class="line">data &lt;- data.frame (</div><div class="line">var1=rnorm(200,mean=1,sd=1),</div><div class="line">var2=rnorm(200,mean=3,sd=0.3)</div><div class="line">)</div><div class="line">head(data)</div><div class="line">var1     var2</div><div class="line">1  1.39138057 2.816622</div><div class="line">2  1.19333387 3.243189</div><div class="line">3 -0.07646219 2.950697</div><div class="line">4 -0.39530844 2.954534</div><div class="line">5  0.52766461 2.923421</div><div class="line">6  0.34335782 2.870595</div><div class="line"><span class="comment">#下面使用mutate()函数追加新的一列var3;</span></div><div class="line">data &lt;-mutate(data,var3=paste(<span class="string">"sample"</span>,seq(1,200),sep=<span class="string">""</span>)) <span class="comment">#mutate()本身并不改变data的值，只会生成一个新的数据框，因此要重新对data赋值；</span></div><div class="line">&gt; head(data)</div><div class="line">var1     var2    var3</div><div class="line">1  1.39138057 2.816622 sample1</div><div class="line">2  1.19333387 3.243189 sample2</div><div class="line">3 -0.07646219 2.950697 sample3</div><div class="line">4 -0.39530844 2.954534 sample4</div><div class="line">5  0.52766461 2.923421 sample5</div><div class="line">6  0.34335782 2.870595 sample6</div><div class="line"></div><div class="line"><span class="comment"># mutate()也可以结合ifelse()函数追加分类；</span></div><div class="line">var1=sample(1:30,10,replace=T)</div><div class="line">var2=sample(31:45,10,replace=T)</div><div class="line">data &lt;- data.frame (var1,var2)</div><div class="line">var3=ifelse(var1&gt;15,<span class="string">"type1"</span>,<span class="string">"type2"</span>)</div><div class="line">data &lt;- mutate(data,var3) <span class="comment"># 或者可以写成，</span></div><div class="line">data</div><div class="line">var1 var2  var3</div><div class="line">1     1   35 type2</div><div class="line">2    10   37 type2</div><div class="line">3     1   44 type2</div><div class="line">4    26   37 type1</div><div class="line">5     1   35 type2</div><div class="line">6    16   42 type1</div><div class="line">7    12   45 type2</div><div class="line">8     5   31 type2</div><div class="line">9    26   41 type1</div><div class="line">10    8   43 type2</div><div class="line"></div><div class="line"><span class="comment">#方法十：使用rep()函数添加数值或分类变量；</span></div><div class="line">var1=rep(1:4,3)</div><div class="line">var2=rep(1:4,each=3)</div><div class="line">var3=rep(1:4,each=3,len=10)</div><div class="line">var1</div><div class="line">1 2 3 4 1 2 3 4 1 2 3 4</div><div class="line">var2</div><div class="line">1 1 1 2 2 2 3 3 3 4 4 4</div><div class="line">var3</div><div class="line">1 1 1 2 2 2 3 3 3 4</div><div class="line"><span class="comment">#同理，可以结合mutate()和rep()来追加分类变量；</span></div><div class="line">var1=sample(2:50,10,replace=T)</div><div class="line">var2=sample(40:60,10,replace=T)</div><div class="line">data &lt;- data.frame (var1,var2)</div><div class="line">var3=rep(c(<span class="string">"class1"</span>,<span class="string">"class2"</span>),each=5)</div><div class="line">data &lt;- mutate(data,var3)</div><div class="line">data</div><div class="line">var1 var2   var3</div><div class="line">1    49   58 class1</div><div class="line">2    39   47 class1</div><div class="line">3    18   47 class1</div><div class="line">4    17   54 class1</div><div class="line">5    25   52 class1</div><div class="line">6    22   43 class2</div><div class="line">7     4   59 class2</div><div class="line">8    23   45 class2</div><div class="line">9    41   47 class2</div><div class="line">10   43   40 class2</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;p&gt;title: R语言学习笔记－创建数据&lt;br&gt;date: 2020-02-06 22:37:45&lt;br&gt;updated: 2020-02-06 22:37:45&lt;br&gt;tags: R语言&lt;/p&gt;
+&lt;h2 id=&quot;categories-编程语言&quot;&gt;&lt;a href=&quot;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>R可视化-雷达图</title>
@@ -862,252 +944,6 @@
       <category term="泳池" scheme="http://uteric.github.io/tags/%E6%B3%B3%E6%B1%A0/"/>
     
       <category term="设备" scheme="http://uteric.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>泳池水质检测</title>
-    <link href="http://uteric.github.io/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B03/"/>
-    <id>http://uteric.github.io/美国生活日记3/</id>
-    <published>2019-05-19T22:40:04.000Z</published>
-    <updated>2019-05-19T22:40:04.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="一、水质重要指标"><a href="#一、水质重要指标" class="headerlink" title="一、水质重要指标"></a>一、水质重要指标</h2><p><em>ppm，parts per million，百万分之一</em></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">指标</th>
-<th style="text-align:center">值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">碱度（Alkalinity）</td>
-<td style="text-align:center">80-100 ppm</td>
-</tr>
-<tr>
-<td style="text-align:center">酸碱度（PH）</td>
-<td style="text-align:center">7.2-7.8</td>
-</tr>
-<tr>
-<td style="text-align:center">钙硬度（Calcium）</td>
-<td style="text-align:center">200-500 ppm</td>
-</tr>
-<tr>
-<td style="text-align:center">自由氯（Chlorine）</td>
-<td style="text-align:center">1.0-3.0 ppm</td>
-</tr>
-<tr>
-<td style="text-align:center">盐（Salt）</td>
-<td style="text-align:center">3200 ppm</td>
-</tr>
-<tr>
-<td style="text-align:center">氯稳定剂（Stabilizer）</td>
-<td style="text-align:center">30-50 ppm</td>
-</tr>
-</tbody>
-</table>
-<h2 id="二、水的平衡顺序"><a href="#二、水的平衡顺序" class="headerlink" title="二、水的平衡顺序"></a>二、水的平衡顺序</h2><p>关于水的平衡，最重要的四个指标依次是碱度，酸碱度，钙硬度，自由氯。</p>
-<p>1、碱度（Alkalinity），碱度是水体中碱的含量，影响水体的缓冲能力。碱度的合适范围是80-100 ppm。如果太低，就加Alkalinity Increaser，其实就是碳酸氢钠（NaHCO₃），俗名叫小苏打；如果太高，就加Alkalinity Decreaser，其实就是盐酸（Muriatic Acid）。</p>
-<p><strong>提示：</strong> <del>碱度是最先要调节的，否则影响后面的所有过程。</del></p>
-<p>2、酸碱度（PH），范围是7.2-7.8之间，适合人的皮肤直接接触，低加碱，高加酸。</p>
-<p>3、钙硬度（Calcium Hardness），反映化学试剂在水中的溶解度，合适范围为200-500 ppm。如果偏低，加Calcium Hardness Increaser即可；如果太高，则只能将池水放出一部分，加入新水来稀释。</p>
-<p>4、自由氯（Free Chlorine，FC），氯是强氧化剂，可对池水进行消毒，合适范围是1.0-3.0 ppm。如果太低，需加Pool Shock，如果太高，不用担心，晒几天太阳就降下来了，只是暂时不要游泳。一般来说，一周加1磅shock即可（<em>1LB Shock week/p to pool, No swim 4-6 hr</em>）。此外还有一个概念，叫结合氯（Combined Chlorine，CC），CC仍在水中，但是消毒能力大大减弱，CC要低于0.2 ppm；FC+CC=TC（总氯，Total Chlorine）。</p>
-<p>关于Pool Shock，详见<strong>“三、氯和氯稳定剂”</strong>。</p>
-<p>5、Algeacide，用来抑制藻类（Algae）生长，如果没有藻类生长也可以不加。</p>
-<h2 id="三、氯和氯稳定剂"><a href="#三、氯和氯稳定剂" class="headerlink" title="三、氯和氯稳定剂"></a>三、氯和氯稳定剂</h2><p>在美国，最常见的泳池杀菌药物是TCCA（三氯异氰尿酸，国内商品名叫“强氯精”，trichloroisocyanuric acid或trichloro-s-triazinetrione，TCCA，分子式为C3N3O3Cl3)，TCCA具有多种优点，如杀菌范围广、有效氯含量高、维持时间长，且可灭藻、除臭、净水、漂白，因此，其在池水消毒方面被广泛使用。</p>
-<p>TCCA在消毒的过程中能产生氰尿酸（Cyanuric Acid，CYA），CYA是一种次氯酸的稳定剂，它能使水中的次氯酸浓度维持稳定，从而产生持久的消毒效果。然而，CYA不易分解和去除，因此很容易在水中集聚，当其浓度增高到一定程度时，反而会严重抑制次氯酸的消毒效果，并对人体健康产生危害。</p>
-<p>因此，我们平时也需要检测泳池中CYA的浓度。CYA的浓度应当维持在30-50 ppm，既能稳定次氯酸，又不至于对人体产生危害。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一、水质重要指标&quot;&gt;&lt;a href=&quot;#一、水质重要指标&quot; class=&quot;headerlink&quot; title=&quot;一、水质重要指标&quot;&gt;&lt;/a&gt;一、水质重要指标&lt;/h2&gt;&lt;p&gt;&lt;em&gt;ppm，parts per million，百万分之一&lt;/em&gt;&lt;/p&gt;
-&lt;tabl
-    
-    </summary>
-    
-      <category term="美国生活" scheme="http://uteric.github.io/categories/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="美国" scheme="http://uteric.github.io/tags/%E7%BE%8E%E5%9B%BD/"/>
-    
-      <category term="泳池" scheme="http://uteric.github.io/tags/%E6%B3%B3%E6%B1%A0/"/>
-    
-      <category term="水质" scheme="http://uteric.github.io/tags/%E6%B0%B4%E8%B4%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>美国家庭电费</title>
-    <link href="http://uteric.github.io/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B02/"/>
-    <id>http://uteric.github.io/美国生活日记2/</id>
-    <published>2019-05-19T22:36:18.000Z</published>
-    <updated>2019-05-19T22:36:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>搬新家时，朋友推荐我用RELIANT ENERGY的Reliant Truly Free Nights 12 plan，原因是这个Plan从晚上8:00至早晨6:00免费，我们两口子白天都上班，晚上回家才有时间煮肉炖菜，觉得这个计划比较合适，于是果断加入。</p>
-<p>电费的计算规则如下：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Reliant Charges</th>
-<th style="text-align:left"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Daytime Energy Charge</td>
-<td style="text-align:left">+ 16.8311¢ per kWh</td>
-</tr>
-<tr>
-<td style="text-align:left">Nighttime Energy Charge</td>
-<td style="text-align:left">+ $0.00 per kWh</td>
-</tr>
-<tr>
-<td style="text-align:left">Base Charge</td>
-<td style="text-align:left">+ $0.00 per month</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>TDSP/Utility (ONCOR) Charges</strong></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Monthly Charge</td>
-<td style="text-align:left">+ $3.42 per month</td>
-</tr>
-<tr>
-<td style="text-align:left">Daytime Delivery Charges</td>
-<td style="text-align:left">+ 3.1350¢ per kWh</td>
-</tr>
-<tr>
-<td style="text-align:left">Nighttime Delivery Charges</td>
-<td style="text-align:left">+ $0.00 per kWh</td>
-</tr>
-</tbody>
-</table>
-<p>用了一个星期，收到RELIANT的电费周报，我们一周居然花了25.63刀的电费，吓了一跳，因为我们白天基本不在家，晚上回家就简单做点饭，因为是春天，空调也很少开，觉得非常奇怪。看了一下报告单，说我们晚上用电20度，白天用电110度，开始还以为是电力公司搞错了，后来才发现原来泳池定时在每天上午10：00开始循环，傍晚自动关闭，而当我们回到家时已经停止循环了，因此我们都没发现。发现问题后，把泳池的定时器重设了一下，晚上循环，白天停止，电费一下子就从之前每天2.8刀降到每天0.4刀，整整七倍。</p>
-<p>美国的制度有个好处，就是你可以用各种各样的方法合法规避你的花销，关键看你愿不愿意投入时间和精力去了解它的运行规则。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;搬新家时，朋友推荐我用RELIANT ENERGY的Reliant Truly Free Nights 12 plan，原因是这个Plan从晚上8:00至早晨6:00免费，我们两口子白天都上班，晚上回家才有时间煮肉炖菜，觉得这个计划比较合适，于是果断加入。&lt;/p&gt;
-&lt;p&gt;电
-    
-    </summary>
-    
-      <category term="美国生活" scheme="http://uteric.github.io/categories/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="美国" scheme="http://uteric.github.io/tags/%E7%BE%8E%E5%9B%BD/"/>
-    
-      <category term="电费" scheme="http://uteric.github.io/tags/%E7%94%B5%E8%B4%B9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>美国家庭天燃气收费</title>
-    <link href="http://uteric.github.io/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B01/"/>
-    <id>http://uteric.github.io/美国生活日记1/</id>
-    <published>2019-05-19T22:26:51.000Z</published>
-    <updated>2019-05-19T22:26:51.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>美国的天燃气收费原则有点像国内的固话费，只要你开通这个服务，不管你用不用，基本费用必不可免，这叫做Customer Service Charge（CSC）或者Customer Charge（CC），真的是百分百的霸王条款。</p>
-<p>下面是一个虚拟的<strong>GAS BILL</strong>，由四部分组成。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">CURRENT GAS CHARGE TOTAL</th>
-<th style="text-align:center">20.79</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Customer Charge</td>
-<td style="text-align:center">18.88</td>
-</tr>
-<tr>
-<td style="text-align:left">Consump Chrg 4.000 @ 0.14846</td>
-<td style="text-align:center">0.59</td>
-</tr>
-<tr>
-<td style="text-align:left">Rider GCR 4.000 @ 0.3297</td>
-<td style="text-align:center">1.32</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>TAX/FEE CHARGE TOTAL</strong></td>
-<td style="text-align:center"><strong>1.99</strong></td>
-</tr>
-<tr>
-<td style="text-align:left">Rider FF @0.06323</td>
-<td style="text-align:center">1.31</td>
-</tr>
-<tr>
-<td style="text-align:left">Reimbursement of MGRT</td>
-<td style="text-align:center">0.45</td>
-</tr>
-<tr>
-<td style="text-align:left">City Sales Tax</td>
-<td style="text-align:center">0.23</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>OTHER CHARGE TOTAL</strong></td>
-<td style="text-align:center"><strong>19.00</strong></td>
-</tr>
-<tr>
-<td style="text-align:left">Meter Read Fee</td>
-<td style="text-align:center">19.00</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>CURRENT CHARGES</strong></td>
-<td style="text-align:center"><strong>41.76</strong></td>
-</tr>
-</tbody>
-</table>
-<p><strong>一、客户服务费</strong>，每月$18.88，哪怕你不吃不喝不动，一个月下来也要至少交这么多钱。</p>
-<p><strong>二、消费记录</strong>，由两项组成：<br>1、CONSUMPTION CHARGE，是指公司为你提供供气服务所收取的费用，在本账单中每CCF收取0.14846刀；<br>2、Rider GCR（GAS COST RECOVERY），是天燃气公司向天燃气供货商支付的成本和运输费用，在本账单中每CCF收取0.3297刀，合计0.47816刀/CCF。由此可见，随着天燃气市场价格的波动，你的账单可能也会有较大幅度的变化。</p>
-<p><strong>三、税收</strong>，由三项组成：<br>1、FRANCHISE FEE（RIDER FF），这是市政当局征收的特许经营费；<br>2、Reimbursement of MGRT(Miscellaneous Gross Receipts Tax)，收入税报销；<br>3、City Sales Tax，市销售税。</p>
-<p><strong>四、其他收费</strong>，在本账单中，叫Meter Read Fee，只在开通服务时一次性收取。</p>
-<p><strong>友情提示</strong>：在CC部分，我用了个限定词<strong>“至少”</strong>，说明还有其他的隐性费用，这部分是<strong>Pilot Light</strong>。</p>
-<p><strong>Pilot Light</strong>，是加热器的火焰指示灯，在旧式的加热器中保持常开，作为加热器的点火源（ignition source），每个月也要消耗5CCF的天燃气。现在，新式的加热器只有在启动时才点火，不会有这个隐性费用。</p>
-<p>尽管这是个虚拟账单，但却是根据真实的账单而产生的，因此比较能反映现在的天燃气计价方式。具体的账单，里面的内容可能叫法不同，但是一个母牛生的犊，大同小异，基本都由这几项构成。美国的天燃气消耗是日常支出中的大项，但是好在美国在上世纪末已对天燃气解除管制，尽管有令人无可奈何的霸王条款，但是总得来说价格还算合理。</p>
-<hr>
-<h2 id="附：天燃气计价单位"><a href="#附：天燃气计价单位" class="headerlink" title="附：天燃气计价单位"></a>附：天燃气计价单位</h2><p><strong>一、常用的天燃气单位</strong></p>
-<p><em>Btu  (British Thermal Unit)</em>，英国热量单位，把1磅水从39°F加热到40°F所消耗的热量（英制单位是历史遗留产物，主要特点就是别扭，尽管英国人都改公制了，但美国人还在用，原因是错过了最佳历史机遇，现在想要更改成本太高，国家和人民都承受不起）。</p>
-<p><em>Therm</em>，千卡，=100,000 Btu，热量单位。<br><em>CCF</em>，100立方英尺，2.83立方米，是体积单位，最为常见。<br><em>MCF</em>，1000立方英尺，体积单位。</p>
-<p><strong>二、换算方法</strong></p>
-<p>Therms to Btu:therms × 100,000 = Btu<br>Therms to CCF:therms × 1.037 = CCF<br>Therms to MCF:therms × 10.37 = MCF<br>CCF to Btu:CCF × 103,700 = Btu<br>CCF to Therms:CCF ÷ 1.037 = Therms<br>CCF to MCF:CCF × 10 = MCF<br>MCF to Btu:MCF × 1,037,000 = Btu<br>MCF to Therms:MCF ÷ 10.37 = Therms<br>MCF to CCF:MCF ÷ 10 = CCF</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;美国的天燃气收费原则有点像国内的固话费，只要你开通这个服务，不管你用不用，基本费用必不可免，这叫做Customer Service Charge（CSC）或者Customer Charge（CC），真的是百分百的霸王条款。&lt;/p&gt;
-&lt;p&gt;下面是一个虚拟的&lt;strong&gt;GA
-    
-    </summary>
-    
-      <category term="美国生活" scheme="http://uteric.github.io/categories/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="美国" scheme="http://uteric.github.io/tags/%E7%BE%8E%E5%9B%BD/"/>
-    
-      <category term="天然气" scheme="http://uteric.github.io/tags/%E5%A4%A9%E7%84%B6%E6%B0%94/"/>
     
   </entry>
   
