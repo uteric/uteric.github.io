@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-02-10T04:49:49.000Z</updated>
+  <updated>2020-02-12T04:51:40.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -14,6 +14,98 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>R可视化-棒棒糖图</title>
+    <link href="http://uteric.github.io/R%E5%8F%AF%E8%A7%86%E5%8C%96-%E6%A3%92%E6%A3%92%E7%B3%96%E5%9B%BE/"/>
+    <id>http://uteric.github.io/R可视化-棒棒糖图/</id>
+    <published>2020-02-12T04:51:40.000Z</published>
+    <updated>2020-02-12T04:51:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>棒棒糖图，介于柱形图与散点图之间，之所以这么说，是因为它能以柱形图与散点图的数据作图，即两列定量变量（数字），或一列定量变量（数字）一列分类变量（字符串）；</p>
+<p>有趣的是，棒棒糖图其实不是由一个函数绘制的，而是由两个函数叠加成的，即使用geom_point()绘制点，使用geom_segment()绘制线；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">library(ggplot2)</div><div class="line">var1 &lt;- LETTERS[1:20]</div><div class="line">var2 &lt;- runif(20,min=2,max=20)</div><div class="line">var3 &lt;- runif(20,min=1,max=5)</div><div class="line">var4 &lt;- c(rep(<span class="string">"classI"</span>,10),rep(<span class="string">"classII"</span>,10))</div><div class="line">data &lt;- data.frame(var1,var2,var3,var4)</div><div class="line">&gt; data</div><div class="line">var1      var2     var3    var4</div><div class="line">1     A  6.266182 3.434602  classI</div><div class="line">2     B 12.758686 3.288259  classI</div><div class="line">3     C 10.340497 1.924543  classI</div><div class="line">4     D  6.177109 2.720639  classI</div><div class="line">5     E 16.549641 2.546006  classI</div><div class="line">6     F  2.460816 1.659354  classI</div><div class="line">7     G  9.812373 2.556147  classI</div><div class="line">8     H  3.367085 3.515422  classI</div><div class="line">9     I  6.891384 1.811289  classI</div><div class="line">10    J  8.513522 2.264906  classI</div><div class="line">11    K 16.506077 1.968184 classII</div><div class="line">12    L  2.638983 4.739859 classII</div><div class="line">13    M 19.169797 3.854552 classII</div><div class="line">14    N 12.261985 2.441648 classII</div><div class="line">15    O 16.296435 4.560705 classII</div><div class="line">16    P 13.804297 2.391673 classII</div><div class="line">17    Q  2.207188 1.330717 classII</div><div class="line">18    R 13.063605 3.532234 classII</div><div class="line">19    S 17.489978 4.359878 classII</div><div class="line">20    T 15.389995 4.394447 classII</div><div class="line"><span class="comment"># 数据准备好了，现在开始正式作图；</span></div><div class="line">plolli &lt;- ggplot(data,aes(x=var1,y=var2))+</div><div class="line">geom_point()+</div><div class="line">geom_segment(aes(x=var1,xend=var1,y=0,yend=var2))</div><div class="line">plolli</div><div class="line">ggsave(plolli,filename=<span class="string">"lollipop1.png"</span>,width=12,height=9)</div></pre></td></tr></table></figure>
+<h1 id="着重解释一下geom-segment-函数的用法，如下："><a href="#着重解释一下geom-segment-函数的用法，如下：" class="headerlink" title="着重解释一下geom_segment()函数的用法，如下："></a>着重解释一下geom_segment()函数的用法，如下：</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">geom_segment(x,y,xend,yend,color,size,linetype,alpha)</div><div class="line"><span class="comment"># 其中，x=xstart,y=ystart,xend=xend,yend=yend，表示x与y的起始位置与终止位置；</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 优化散点的大小，形状，颜色，填充，透明度；</span></div><div class="line">plolli &lt;- ggplot(data,aes(x=var1,y=var2))+</div><div class="line">geom_point(color=<span class="string">"black"</span>,</div><div class="line">fill=<span class="string">"69b3a2"</span>,</div><div class="line">size=3,</div><div class="line">shape=22,</div><div class="line">alpha=0.8)+</div><div class="line">geom_segment(aes(x=var1,xend=var1,y=0,yend=var2))</div><div class="line">plolli</div><div class="line"><span class="comment"># 优化线条的大小，线型，颜色，透明度；</span></div><div class="line"><span class="comment"># 其中，linetype数值为[0:6]，0 = blank, 1 = solid, 2 = dashed, 3 = dotted, 4 = dotdash, 5 = longdash, 6 = twodash；</span></div><div class="line">plolli &lt;- ggplot(data,aes(x=var1,y=var2))+</div><div class="line">geom_point(color=<span class="string">"black"</span>,</div><div class="line">fill=<span class="string">"69b3a2"</span>,</div><div class="line">size=4,</div><div class="line">shape=22,</div><div class="line">alpha=0.8)+</div><div class="line">geom_segment(aes(x=var1,xend=var1,y=0,yend=var2),</div><div class="line">color=<span class="string">"black"</span>,</div><div class="line">alpha=0.4,</div><div class="line">size=1.2,</div><div class="line">linetype=3)</div><div class="line">plolli</div><div class="line"><span class="comment"># 优化主题；</span></div><div class="line">plolli &lt;- ggplot(data,aes(x=var1,y=var2))+</div><div class="line">geom_point(color=<span class="string">"black"</span>,</div><div class="line">fill=<span class="string">"69b3a2"</span>,</div><div class="line">size=4,</div><div class="line">shape=22,</div><div class="line">alpha=0.8)+</div><div class="line">geom_segment(aes(x=var1,xend=var1,y=0,yend=var2),</div><div class="line">color=<span class="string">"black"</span>,</div><div class="line">alpha=0.8,</div><div class="line">size=1,</div><div class="line">linetype=1)+</div><div class="line">theme_ipsum()+</div><div class="line">theme(panel.grid = element_blank())</div><div class="line">plolli</div><div class="line"><span class="comment"># 转换为水平版本；</span></div><div class="line">plolli &lt;- ggplot(data,aes(x=var1,y=var2))+</div><div class="line">geom_point(color=<span class="string">"black"</span>,</div><div class="line">fill=<span class="string">"69b3a2"</span>,</div><div class="line">size=4,</div><div class="line">shape=22,</div><div class="line">alpha=0.8)+</div><div class="line">geom_segment(aes(x=var1,xend=var1,y=0,yend=var2),</div><div class="line">color=<span class="string">"black"</span>,</div><div class="line">alpha=0.8,</div><div class="line">size=1,</div><div class="line">linetype=1)+</div><div class="line">theme_ipsum()+</div><div class="line">theme(panel.grid = element_blank())+</div><div class="line">xlab(<span class="string">""</span>)+</div><div class="line">ylab(<span class="string">""</span>)+</div><div class="line">coord_flip()</div><div class="line">plolli</div><div class="line"><span class="comment"># 改变基线位置，默认为0；</span></div><div class="line">plolli &lt;- ggplot(data,aes(x=var1,y=var2))+</div><div class="line">geom_point(color=<span class="string">"black"</span>,</div><div class="line">fill=<span class="string">"69b3a2"</span>,</div><div class="line">size=4,</div><div class="line">shape=22,</div><div class="line">alpha=0.8)+</div><div class="line">geom_segment(aes(x=var1,xend=var1,y=10,yend=var2),</div><div class="line">color=<span class="string">"black"</span>,</div><div class="line">alpha=0.8,</div><div class="line">size=1,</div><div class="line">linetype=1)+</div><div class="line">theme_ipsum()+</div><div class="line">theme(panel.grid = element_blank())+</div><div class="line">xlab(<span class="string">""</span>)+</div><div class="line">ylab(<span class="string">""</span>)</div><div class="line">plolli</div><div class="line"><span class="comment"># 对数据分组，并对散点填充不同颜色；</span></div><div class="line">plolli &lt;- ggplot(data,aes(x=var1,y=var2,fill=var4))+</div><div class="line">geom_point(color=<span class="string">"black"</span>,</div><div class="line">size=4,</div><div class="line">shape=22,</div><div class="line">alpha=0.8)+</div><div class="line">geom_segment(aes(x=var1,xend=var1,y=10,yend=var2),</div><div class="line">color=<span class="string">"black"</span>,</div><div class="line">alpha=0.8,</div><div class="line">size=1,</div><div class="line">linetype=1)+</div><div class="line">theme_ipsum()+</div><div class="line">theme(panel.grid = element_blank(),</div><div class="line">legend.position = <span class="string">"none"</span>)+</div><div class="line">xlab(<span class="string">""</span>)+</div><div class="line">ylab(<span class="string">""</span>)</div><div class="line">plolli</div><div class="line"><span class="comment">#分组，并对线填充不同颜色；</span></div><div class="line">plolli &lt;- ggplot(data,aes(x=var1,y=var2,fill=var4))+</div><div class="line">geom_point(color=<span class="string">"black"</span>,</div><div class="line">size=4,</div><div class="line">shape=22,</div><div class="line">alpha=0.8)+</div><div class="line">geom_segment(aes(x=var1,xend=var1,y=10,yend=var2,color=var4),</div><div class="line">alpha=0.8,</div><div class="line">size=1,</div><div class="line">linetype=1)+</div><div class="line">theme_ipsum()+</div><div class="line">theme(panel.grid = element_blank(),</div><div class="line">legend.position = <span class="string">"none"</span>)+</div><div class="line">xlab(<span class="string">""</span>)+</div><div class="line">ylab(<span class="string">""</span>)</div><div class="line">plolli</div><div class="line"><span class="comment"># 排序；</span></div><div class="line">data &lt;- data.frame(var1,var2,var3,var4)</div><div class="line">data &lt;- arrange(data,var2)</div><div class="line">data[,1]=factor(data[,1],levels=data[,1],order=T)</div><div class="line">plolli &lt;- ggplot(data,aes(x=var1,y=var2,fill=var4))+</div><div class="line">geom_point(color=<span class="string">"black"</span>,</div><div class="line">size=4,</div><div class="line">shape=22,</div><div class="line">alpha=0.8)+</div><div class="line">geom_segment(aes(x=var1,xend=var1,y=0,yend=var2,color=var4),</div><div class="line">alpha=0.8,</div><div class="line">size=1,</div><div class="line">linetype=1)+</div><div class="line">theme_ipsum()+</div><div class="line">theme(panel.grid = element_blank(),</div><div class="line">legend.position = <span class="string">"none"</span>)+</div><div class="line">xlab(<span class="string">""</span>)+</div><div class="line">ylab(<span class="string">""</span>)</div><div class="line">plolli</div><div class="line"><span class="comment"># 克利夫兰点图，比较每个实体中的两个点的关系；</span></div><div class="line">plolli &lt;- ggplot(data,aes(x=var1,y=var2,fill=var4))+</div><div class="line">geom_segment(aes(x=var1,xend=var1,y=var2,yend=var3),linetype=2)+</div><div class="line">geom_point(aes(x=var1,y=var2),color=alpha(<span class="string">"red"</span>,0.5),size=3)+</div><div class="line">geom_point(aes(x=var1,y=var3),color=alpha(<span class="string">"blue"</span>,0.5),size=3)+</div><div class="line">coord_flip()+</div><div class="line">theme_ipsum()+</div><div class="line">theme(legend.position = <span class="string">"none"</span>,</div><div class="line">panel.grid.major.y = element_blank())+</div><div class="line">xlab(<span class="string">""</span>)+</div><div class="line">ylab(<span class="string">""</span>)</div><div class="line">plolli</div><div class="line"><span class="comment"># 克利夫兰点图，若不进行排序，会显得图片杂乱无章，因此，最好先排序后作图，下面这个例子是以平均值从小到大作图；</span></div><div class="line">library(ggplot2)</div><div class="line">library(hrbrthemes)</div><div class="line">library(dplyr)</div><div class="line">var1 &lt;- LETTERS[1:20]</div><div class="line">var2 &lt;- runif(20,min=2,max=20)</div><div class="line">var3 &lt;- runif(20,min=1,max=5)</div><div class="line">var4 &lt;- c(rep(<span class="string">"classI"</span>,10),rep(<span class="string">"classII"</span>,10))</div><div class="line">data &lt;- data.frame(var1,var2,var3,var4)</div><div class="line">data &lt;- mutate(data,var5=(var2+var3)/2) <span class="comment">#加入新的一列var5，其值为var2与var3的平均值；</span></div><div class="line">data &lt;- arrange(data,var5) <span class="comment"># 以</span></div><div class="line">data[,1]=factor(data[,1],levels=data[,1],order=T)</div><div class="line">plolli &lt;- ggplot(data,aes(x=var1,y=var2,fill=var4))+</div><div class="line">geom_segment(aes(x=var1,xend=var1,y=var2,yend=var3),linetype=2)+</div><div class="line">geom_point(aes(x=var1,y=var2),color=alpha(<span class="string">"red"</span>,0.5),size=3)+</div><div class="line">geom_point(aes(x=var1,y=var3),color=alpha(<span class="string">"blue"</span>,0.5),size=3)+</div><div class="line">coord_flip()+</div><div class="line">theme_ipsum()+</div><div class="line">theme(legend.position = <span class="string">"none"</span>,</div><div class="line">panel.grid.major.y = element_blank())+</div><div class="line">xlab(<span class="string">""</span>)+</div><div class="line">ylab(<span class="string">""</span>)</div><div class="line">plolli</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;棒棒糖图，介于柱形图与散点图之间，之所以这么说，是因为它能以柱形图与散点图的数据作图，即两列定量变量（数字），或一列定量变量（数字）一列分类变量（字符串）；&lt;/p&gt;
+&lt;p&gt;有趣的是，棒棒糖图其实不是由一个函数绘制的，而是由两个函数叠加成的，即使用geom_point()绘制
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R可视化" scheme="http://uteric.github.io/tags/R%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>R可视化-线图</title>
+    <link href="http://uteric.github.io/R%E5%8F%AF%E8%A7%86%E5%8C%96-%E7%BA%BF%E5%9B%BE/"/>
+    <id>http://uteric.github.io/R可视化-线图/</id>
+    <published>2020-02-12T04:51:34.000Z</published>
+    <updated>2020-02-12T04:51:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、绘制基本线图"><a href="#一、绘制基本线图" class="headerlink" title="一、绘制基本线图"></a>一、绘制基本线图</h1><p>对于线图的作图数据，至少两列，且两列都是数值变量；从本质上讲，其实就是散点图加上连线；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">library(ggplot2)</div><div class="line">library(hrbrthemes)</div><div class="line"><span class="comment"># 作图数据；</span></div><div class="line">var1&lt;- seq(1:100)</div><div class="line">var2&lt;- seq(1:100)+rnorm(100,mean=1,sd=2)</div><div class="line">data &lt;- data.frame(var1,var2)</div><div class="line"><span class="comment"># 线图；</span></div><div class="line">pline &lt;- ggplot(data,aes(x=var1,y=var2))+</div><div class="line">geom_line(alpha=0.9,size=1,linetype=6,color=<span class="string">"#69b3a2"</span>)+</div><div class="line">theme_ipsum()+</div><div class="line">xlab(<span class="string">""</span>)+</div><div class="line">ylab(<span class="string">""</span>)+</div><div class="line">pline</div><div class="line">ggsave(pline,filename=<span class="string">"line01.png"</span>,width=12,height=9)</div></pre></td></tr></table></figure>
+<h1 id="二、对数转换"><a href="#二、对数转换" class="headerlink" title="二、对数转换"></a>二、对数转换</h1><p>有时，数据在坐标轴上跨度很大，如果取大单位，则小数据会看不到，这时候可以对坐标轴作对数转换；<br>注意：实际作图时坐标轴的值为真值，并不是取对数后的值，但是坐标轴的刻度却是以对数值分布的，比如（10，100，1000，100）分别对应坐标轴上的（1，2，3，4）的位置，但显示的刻度却是（10，100，1000，10000）；<br>对数转换有个极大的优点，即放大了曲线的下端；<br>本例中仅对Y轴作对数转换，也可以对x轴进行对数转换，或根据需要同时转换；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">pline &lt;- ggplot(data,aes(x=var1,y=var2))+</div><div class="line">geom_line(alpha=0.9,size=1,linetype=6,color=<span class="string">"#69b3a2"</span>)+</div><div class="line">theme_ipsum()+</div><div class="line">xlab(<span class="string">""</span>)+</div><div class="line">ylab(<span class="string">""</span>)+</div><div class="line">scale_y_log10()</div><div class="line">pline</div></pre></td></tr></table></figure>
+<h1 id="三、显示数据点"><a href="#三、显示数据点" class="headerlink" title="三、显示数据点"></a>三、显示数据点</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">pline &lt;- ggplot(data,aes(x=var1,y=var2))+</div><div class="line">geom_line(alpha=0.9,size=1,linetype=1,color=<span class="string">"steelblue"</span>)+</div><div class="line">theme_ipsum()+</div><div class="line">xlab(<span class="string">""</span>)+</div><div class="line">ylab(<span class="string">""</span>)+</div><div class="line">geom_point(alpha=0.9,size=1.5,shape=21,fill=<span class="string">"blue"</span>)</div><div class="line">pline</div></pre></td></tr></table></figure>
+<h1 id="四、分组"><a href="#四、分组" class="headerlink" title="四、分组"></a>四、分组</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var1 &lt;- c(rep(<span class="string">"A"</span>,30),rep(<span class="string">"B"</span>,30),rep(<span class="string">"C"</span>,30))</div><div class="line">var2 &lt;- c(rnorm(30),rnorm(30,mean=3),rnorm(30,mean=9))</div><div class="line">var3 &lt;- c(rnorm(30,mean=4),rnorm(30,mean=2),rnorm(30,mean=1))</div><div class="line">data &lt;- data.frame(var1,var2,var3)</div><div class="line">pline &lt;- ggplot(data,aes(x=var2,y=var3,group=var1,color=var1))+</div><div class="line">geom_line()+</div><div class="line">geom_point()+</div><div class="line">theme_ipsum()+</div><div class="line">xlab(<span class="string">""</span>)+</div><div class="line">ylab(<span class="string">""</span>)</div><div class="line">pline</div></pre></td></tr></table></figure>
+<h1 id="五、添加水平与垂直标度线，注释点，注释文字"><a href="#五、添加水平与垂直标度线，注释点，注释文字" class="headerlink" title="五、添加水平与垂直标度线，注释点，注释文字"></a>五、添加水平与垂直标度线，注释点，注释文字</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">pline &lt;- ggplot(data,aes(x=var2,y=var3,group=var1,color=var1))+</div><div class="line">geom_line()+</div><div class="line">geom_point()+</div><div class="line">theme_ipsum()+</div><div class="line">xlab(<span class="string">""</span>)+</div><div class="line">ylab(<span class="string">""</span>)+</div><div class="line">geom_hline(yintercept=2.18,color=<span class="string">"red"</span>,size=0.7,alpha=0.9)+</div><div class="line">geom_vline(xintercept=4.47,color=<span class="string">"blue"</span>,size=0.7,alpha=0.9)+</div><div class="line">annotate(geom=<span class="string">"point"</span>,x=4.47,y=2.18,size=3,fill=<span class="string">"transparent"</span>,color=<span class="string">"red"</span>)+</div><div class="line">annotate(geom=<span class="string">"text"</span>,x=5,y=1.5,label=<span class="string">"very important"</span>,color=<span class="string">"red"</span>)</div><div class="line">pline</div></pre></td></tr></table></figure>
+<h1 id="六、使用patchwork绘制双Y轴"><a href="#六、使用patchwork绘制双Y轴" class="headerlink" title="六、使用patchwork绘制双Y轴"></a>六、使用patchwork绘制双Y轴</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">library(babynames)</div><div class="line">library(dplyr)</div><div class="line">library(tidyr)</div><div class="line">library(ggrepel)</div><div class="line">library(patchwork)</div><div class="line"></div><div class="line">var1 &lt;- c(rep(<span class="string">"A"</span>,30),rep(<span class="string">"B"</span>,30),rep(<span class="string">"C"</span>,30))</div><div class="line">var2 &lt;- c(rnorm(30),rnorm(30,mean=3),rnorm(30,mean=9))</div><div class="line">var3 &lt;- c(rnorm(30,mean=4),rnorm(30,mean=2),rnorm(30,mean=1))</div><div class="line">var4 &lt;- c(1:90)</div><div class="line">data &lt;- data.frame(var1,var2,var3,var4)</div><div class="line">p1 &lt;- ggplot(data,aes(x=var4,y=var2))+</div><div class="line">geom_line(color=<span class="string">"blue"</span>,size=1)</div><div class="line">p1  </div><div class="line">p2 &lt;- ggplot(data,aes(x=var4,y=var3))+</div><div class="line">geom_line(color=<span class="string">"red"</span>,size=1)</div><div class="line">p2</div><div class="line">pline &lt;- p1+p2</div><div class="line">pline</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、绘制基本线图&quot;&gt;&lt;a href=&quot;#一、绘制基本线图&quot; class=&quot;headerlink&quot; title=&quot;一、绘制基本线图&quot;&gt;&lt;/a&gt;一、绘制基本线图&lt;/h1&gt;&lt;p&gt;对于线图的作图数据，至少两列，且两列都是数值变量；从本质上讲，其实就是散点图加上连线；&lt;/p
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R可视化" scheme="http://uteric.github.io/tags/R%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>R可视化-散点图</title>
+    <link href="http://uteric.github.io/R%E5%8F%AF%E8%A7%86%E5%8C%96-%E6%95%A3%E7%82%B9%E5%9B%BE/"/>
+    <id>http://uteric.github.io/R可视化-散点图/</id>
+    <published>2020-02-12T04:51:29.000Z</published>
+    <updated>2020-02-12T04:51:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在绘图之前，先谈谈散点图需要的数据类型。散点，顾名思义，就是很多点分散在平面上，而在平面坐标中，确定一个点需要两个坐标值，因此，绘制散点图的数据需要两列，且两列都是数字，对应的每一行都是平面坐标中的一个点。</p>
+<p>另外，样本大小没有限制，少到一个点，多到成千上万，都是可以的；对于有规律的散点，甚至也可以拟合平滑曲线呈现其趋势。</p>
+<h1 id="一、绘制基本的散点图"><a href="#一、绘制基本的散点图" class="headerlink" title="一、绘制基本的散点图"></a>一、绘制基本的散点图</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 生成随机数据；</span></div><div class="line">var1 &lt;- runif(200) <span class="comment"># runif用来生成介于min与max之间的随机数，默认0至1之间；</span></div><div class="line">var2 &lt;- runif(200,min=3,max=15)</div><div class="line">data &lt;- data.frame(var1,var2) <span class="comment"># 通过runif()生成的数据是毫无规律可言的，是名副其实的散点；</span></div><div class="line"></div><div class="line"><span class="comment"># 绘制散点图；</span></div><div class="line">pscatter &lt;- ggplot(data,aes(x=var1,y=var2))+</div><div class="line">geom_point() <span class="comment"># 绘制散点图的函数；</span></div><div class="line">pscatter</div><div class="line">ggsave(pscatter,filename=<span class="string">"scatter.png"</span>,width=12,height=9)</div></pre></td></tr></table></figure>
+<h1 id="二、散点图优化"><a href="#二、散点图优化" class="headerlink" title="二、散点图优化"></a>二、散点图优化</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 对散点进行修饰，改变散点大小，形状，颜色，透明度，与笔触；</span></div><div class="line">pscatter &lt;- ggplot(data,aes(x=var1,y=var2))+</div><div class="line">geom_point(color=<span class="string">"black"</span>, <span class="comment"># 笔触颜色；</span></div><div class="line">fill=<span class="string">"#69b3a2"</span>, <span class="comment">#填充色；</span></div><div class="line">size=4,  <span class="comment"># 大小；</span></div><div class="line">shape=22, <span class="comment"># 形状；</span></div><div class="line">alpha=0.8, <span class="comment"># 透明度；</span></div><div class="line">stroke=1)+ <span class="comment"># 笔触大小；</span></div><div class="line">theme_ipsum()</div><div class="line">pscatter</div><div class="line"></div><div class="line"><span class="comment"># 对散点进行分类；</span></div><div class="line"><span class="comment"># 为方便分类，在此我们给data添加新的一列var3，并以var3分组进行填充；</span></div><div class="line">var1 &lt;- runif(200)</div><div class="line">var2 &lt;- runif(200,min=3,max=15)</div><div class="line">var3 &lt;- c(rep(<span class="string">"A"</span>,30),rep(<span class="string">"B"</span>,60),rep(<span class="string">"C"</span>,110))</div><div class="line">data &lt;- data.frame(var1,var2,var3)</div><div class="line">pscatter &lt;- ggplot(data,aes(x=var1,y=var2,fill=var3))+</div><div class="line">geom_point(size=4,</div><div class="line">shape=24,</div><div class="line">alpha=0.8,</div><div class="line">stroke=1)+</div><div class="line">theme_ipsum()</div><div class="line">pscatter</div><div class="line"></div><div class="line"><span class="comment"># 以var3分组设定形状；</span></div><div class="line">pscatter &lt;- ggplot(data,aes(x=var1,y=var2,shape=var3))+</div><div class="line">geom_point(size=4,</div><div class="line">color=<span class="string">"#69b3a2"</span>,</div><div class="line">alpha=0.9,</div><div class="line">stroke=1)+</div><div class="line">theme_ipsum()</div><div class="line">pscatter</div><div class="line"></div><div class="line"><span class="comment"># 以var3分组设定大小；</span></div><div class="line">pscatter &lt;- ggplot(data,aes(x=var1,y=var2,size=var3))+</div><div class="line">geom_point(color=<span class="string">"black"</span>,</div><div class="line">fill=<span class="string">"#69b3a2"</span>,</div><div class="line">alpha=0.9,</div><div class="line">shape=22,</div><div class="line">stroke=1)+</div><div class="line">theme_ipsum()</div><div class="line">pscatter</div><div class="line"></div><div class="line"><span class="comment"># 以var3分组设定透明度；</span></div><div class="line">pscatter &lt;- ggplot(data,aes(x=var1,y=var2,alpha=var3))+</div><div class="line">geom_point(color=<span class="string">"black"</span>,</div><div class="line">fill=<span class="string">"#69b3a2"</span>,</div><div class="line">size=4,</div><div class="line">shape=22,</div><div class="line">stroke=1)+</div><div class="line">theme_ipsum()</div><div class="line">pscatter</div><div class="line"></div><div class="line"><span class="comment"># 以var3分组，同时设定形状，透明度，大小，颜色；</span></div><div class="line">pscatter &lt;- ggplot(data,aes(x=var1,y=var2,shape=var3,alpha=var3,size=var3,color=var3))+</div><div class="line">geom_point()+</div><div class="line">theme_ipsum()</div><div class="line">pscatter</div></pre></td></tr></table></figure>
+<h1 id="三、给散点添加文字标签"><a href="#三、给散点添加文字标签" class="headerlink" title="三、给散点添加文字标签"></a>三、给散点添加文字标签</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 使用geom_text()函数添加文字；</span></div><div class="line">var1 &lt;- runif(26)</div><div class="line">var2 &lt;- runif(26,min=3,max=15)</div><div class="line">var3 &lt;- c(rep(<span class="string">"classI"</span>,6),rep(<span class="string">"classII"</span>,9),rep(<span class="string">"classIII"</span>,11))</div><div class="line">var4 &lt;- LETTERS[1:26]</div><div class="line">data &lt;- data.frame(var1,var2,var3,var4)</div><div class="line">pscatter &lt;- ggplot(data,aes(x=var1,y=var2,fill=var3))+</div><div class="line">geom_point(color=<span class="string">"black"</span>,</div><div class="line">size=4,</div><div class="line">alpha=0.8,</div><div class="line">shape=22,</div><div class="line">stroke=1)+</div><div class="line">theme_ipsum()+</div><div class="line">geom_text(label=var4, <span class="comment"># 指定标签来源</span></div><div class="line">nudge_x=0.02,nudge_y=0.02, <span class="comment"># 标签位置的偏移量；</span></div><div class="line">check_overlap = T) <span class="comment"># 尽量不要重叠；</span></div><div class="line">pscatter</div><div class="line"></div><div class="line"><span class="comment"># 使用geom_label()函数添加文字标签，效果与geom_text()不同，会显示外框；</span></div><div class="line">pscatter &lt;- ggplot(data,aes(x=var1,y=var2,fill=var3))+</div><div class="line">geom_point(color=<span class="string">"black"</span>,</div><div class="line">size=4,</div><div class="line">alpha=0.8,</div><div class="line">shape=22,</div><div class="line">stroke=1)+</div><div class="line">theme_ipsum()+</div><div class="line">geom_label(label=var4,</div><div class="line">nudge_x=0.02,nudge_y=0.02,</div><div class="line">check_overlap = T,</div><div class="line">fill=<span class="string">"white"</span>,</div><div class="line">color=<span class="string">"blue"</span>)</div><div class="line">pscatter</div><div class="line"></div><div class="line"><span class="comment"># 只添加一个文字标签；</span></div><div class="line">pscatter &lt;- ggplot(data,aes(x=var1,y=var2,fill=var3))+</div><div class="line">geom_point(color=<span class="string">"black"</span>,</div><div class="line">size=4,</div><div class="line">alpha=0.8,</div><div class="line">shape=22,</div><div class="line">stroke=1)+</div><div class="line">theme_ipsum()+</div><div class="line">geom_label(label=<span class="string">"important"</span>, <span class="comment"># 直接以字符串形式指定标签内容；</span></div><div class="line">x=0.5, <span class="comment"># 位置</span></div><div class="line">y=6.5,</div><div class="line">fill=<span class="string">"white"</span>,</div><div class="line">color=<span class="string">"blue"</span>)</div><div class="line">pscatter</div><div class="line"></div><div class="line"><span class="comment"># 仅对选择的点添加文字标签；</span></div><div class="line">library(dplyr) <span class="comment"># 调用dplyr包中的filter()函数进行数据筛选；</span></div><div class="line">var1 &lt;- runif(26)</div><div class="line">var2 &lt;- runif(26,min=3,max=15)</div><div class="line">var3 &lt;- c(rep(<span class="string">"classI"</span>,6),rep(<span class="string">"classII"</span>,9),rep(<span class="string">"classIII"</span>,11))</div><div class="line">var4 &lt;- LETTERS[1:26]</div><div class="line">data &lt;- data.frame(var1,var2,var3,var4)</div><div class="line">data2 &lt;- filter(data,var1&gt;0.5 &amp; var2&gt;9)</div><div class="line">data2</div><div class="line">pscatter &lt;- ggplot(data,aes(x=var1,y=var2,fill=var3))+</div><div class="line">geom_point(color=<span class="string">"black"</span>,</div><div class="line">size=4,</div><div class="line">alpha=0.8,</div><div class="line">shape=22,</div><div class="line">stroke=1)+</div><div class="line">theme_ipsum()+</div><div class="line">geom_label(data=data2,</div><div class="line">aes(label=var4), <span class="comment"># 语法格式为(data=,aes(label=));</span></div><div class="line">nudge_x=0.03,nudge_y=0.03,</div><div class="line">check_overlap = T,</div><div class="line">fill=<span class="string">"transparent"</span>)</div><div class="line">pscatter</div></pre></td></tr></table></figure>
+<h1 id="为坐标轴添加触须"><a href="#为坐标轴添加触须" class="headerlink" title="为坐标轴添加触须"></a>为坐标轴添加触须</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 使用geom_rug()添加触须，并指定颜色，透明度，和大小；</span></div><div class="line">var1 &lt;- runif(26)</div><div class="line">var2 &lt;- runif(26,min=3,max=15)</div><div class="line">var3 &lt;- c(rep(<span class="string">"classI"</span>,6),rep(<span class="string">"classII"</span>,9),rep(<span class="string">"classIII"</span>,11))</div><div class="line">var4 &lt;- LETTERS[1:26]</div><div class="line">data &lt;- data.frame(var1,var2,var3,var4)</div><div class="line">pscatter &lt;- ggplot(data,aes(x=var1,y=var2,fill=var3))+</div><div class="line">geom_point(color=<span class="string">"black"</span>,</div><div class="line">size=4,</div><div class="line">alpha=0.8,</div><div class="line">shape=22,</div><div class="line">stroke=1)+</div><div class="line">theme_ipsum()+</div><div class="line">geom_rug(col=<span class="string">"steelblue"</span>,alpha=0.7, size=0.9)</div><div class="line">pscatter</div></pre></td></tr></table></figure>
+<h1 id="四、添加边际分布（Marginal-distribution）"><a href="#四、添加边际分布（Marginal-distribution）" class="headerlink" title="四、添加边际分布（Marginal distribution）"></a>四、添加边际分布（Marginal distribution）</h1><p>边际分布可以通过ggExtra:ggMarginal()函数添加，用法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ggMarginal(p, data, x, y, <span class="built_in">type</span> = c(<span class="string">"density"</span>, <span class="string">"histogram"</span>, <span class="string">"boxplot"</span>,</div><div class="line"><span class="string">"violin"</span>, <span class="string">"densigram"</span>), margins = c(<span class="string">"both"</span>, <span class="string">"x"</span>, <span class="string">"y"</span>), size = 5, ...,</div><div class="line">xparams = list(), yparams = list(), groupColour = FALSE,</div><div class="line">groupFill = FALSE,color,fill)</div><div class="line"><span class="comment"># type必须是五种中的一种；margins决定呈现在X轴，Y轴或双侧（默认）；size决定大小；</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">library(dplyr)</div><div class="line">library(ggplot2)</div><div class="line">library(hrbrthemes)</div><div class="line">library(ggExtra)</div><div class="line">var1 &lt;- runif(26)</div><div class="line">var2 &lt;- runif(26,min=3,max=15)</div><div class="line">var3 &lt;- c(rep(<span class="string">"classI"</span>,6),rep(<span class="string">"classII"</span>,9),rep(<span class="string">"classIII"</span>,11))</div><div class="line">var4 &lt;- LETTERS[1:26]</div><div class="line">data &lt;- data.frame(var1,var2,var3,var4)</div><div class="line">pscatter &lt;- ggplot(data,aes(x=var1,y=var2,fill=var3))+</div><div class="line">geom_point(color=<span class="string">"black"</span>,</div><div class="line">size=3,</div><div class="line">alpha=0.8,</div><div class="line">shape=22,</div><div class="line">stroke=1)+</div><div class="line">theme_ipsum()+</div><div class="line">theme(legend.position = <span class="string">"none"</span>)+</div><div class="line">geom_rug(col=<span class="string">"steelblue"</span>,alpha=0.7, size=0.9)</div><div class="line">pscatter1 &lt;- ggMarginal(pscatter,<span class="built_in">type</span>=<span class="string">"densigram"</span>)</div><div class="line">pscatter1</div><div class="line"></div><div class="line"><span class="comment"># 进一步优化，指定大小（数字越大边际占比越小），添加填充色；</span></div></pre></td></tr></table></figure>
+<h1 id="五、添加平滑趋势线"><a href="#五、添加平滑趋势线" class="headerlink" title="五、添加平滑趋势线"></a>五、添加平滑趋势线</h1><h1 id="使用函数geom-smooth-添加趋势线，用法如下："><a href="#使用函数geom-smooth-添加趋势线，用法如下：" class="headerlink" title="使用函数geom_smooth()添加趋势线，用法如下："></a>使用函数geom_smooth()添加趋势线，用法如下：</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">geom_smooth(mapping = NULL, data = NULL, <span class="built_in">stat</span> = <span class="string">"smooth"</span>,</div><div class="line">position = <span class="string">"identity"</span>, ..., method = <span class="string">"auto"</span>, formula = y ~ x,</div><div class="line">se = TRUE, na.rm = FALSE, show.legend = NA, inherit.aes = TRUE)</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var5 &lt;- 1:200+rnorm(200,sd=2)</div><div class="line">var6 &lt;- 1:200+rnorm(200,sd=5)</div><div class="line">var7 &lt;- rep(c(<span class="string">"classI"</span>,<span class="string">"classII"</span>),each=100)</div><div class="line">data &lt;- data.frame(var5,var6,var7)</div><div class="line">head(data)</div><div class="line"></div><div class="line">pscatter &lt;- ggplot(data,aes(x=var5,y=var6,fill=var7))+</div><div class="line">geom_point(color=<span class="string">"blue"</span>,</div><div class="line">size=0.9)+</div><div class="line">geom_smooth(method=lm,color=<span class="string">"red"</span>,se=F)</div><div class="line">pscatter</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在绘图之前，先谈谈散点图需要的数据类型。散点，顾名思义，就是很多点分散在平面上，而在平面坐标中，确定一个点需要两个坐标值，因此，绘制散点图的数据需要两列，且两列都是数字，对应的每一行都是平面坐标中的一个点。&lt;/p&gt;
+&lt;p&gt;另外，样本大小没有限制，少到一个点，多到成千上万，都
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R可视化" scheme="http://uteric.github.io/tags/R%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+  </entry>
   
   <entry>
     <title>R可视化-小提琴图</title>
@@ -483,449 +575,6 @@
     
     
       <category term="LINUX" scheme="http://uteric.github.io/tags/LINUX/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何解决LINUX安装包相互依赖</title>
-    <link href="http://uteric.github.io/package%20dependency/"/>
-    <id>http://uteric.github.io/package dependency/</id>
-    <published>2019-12-25T17:14:54.000Z</published>
-    <updated>2019-12-25T17:14:54.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo apt install -y git apt-rdepends</div><div class="line">mkdir debs</div><div class="line">cd debs</div><div class="line">apt-get download $(apt-rdepends dkms | grep -v &quot;^ &quot;)</div></pre></td></tr></table></figure>
-<p>在运行apt-rdepends过程中，若某个包无法下载，提示no candicate，比如lib-dev无法下载，将命令改成如下将其忽略：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get download $(apt-rdepends dkms | grep -v &quot;^ &quot; | grep -v &quot;^lib-dev&quot;)</div></pre></td></tr></table></figure>
-<p>下载完成后，切换到debs文件夹，执行安装：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd debs</div><div class="line">sudo dpkg -i *</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;命令如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="LINUX" scheme="http://uteric.github.io/tags/LINUX/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PowerPlex 16 Primer Pairs</title>
-    <link href="http://uteric.github.io/PowerPlex%2016%20Primer%20Pairs/"/>
-    <id>http://uteric.github.io/PowerPlex 16 Primer Pairs/</id>
-    <published>2019-06-01T22:55:22.000Z</published>
-    <updated>2019-06-01T22:55:22.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>PowerPlex 16 system 是由PROMEGA开发的STR检测试剂盒，用于亲子鉴定（paternity testing）、法医分析（forensic DNA analysis）、身份识别（human identity testing），以及品系鉴定（tissue culture strain identification）。包含全部13个CODIS STR LOCI（TPOX, D3S1358, FGA, CSF1PO, D5S818, D7S820, D8S1179, TH01,VWA, D13S317, D16S539, D18S51, D21S11），  Penta D，Penta E，以及用于性别鉴定的Amelogenin，共计16个位点。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/4189810-70cc47ae561701ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="PowerPlex 16 System"></p>
-<p><strong>引物信息如下</strong>： </p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Locus</th>
-<th style="text-align:center">Forward</th>
-<th style="text-align:center">Reverse</th>
-<th style="text-align:center">5’ end</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">FGA</td>
-<td style="text-align:center">GGCTGCAGGGCATAACATTA</td>
-<td style="text-align:center">ATTCTATGACTTTGCGCTTCAGGA</td>
-<td style="text-align:center">TMR /OH</td>
-</tr>
-<tr>
-<td style="text-align:center">TPOX</td>
-<td style="text-align:center">GCACAGAACAGGCACTTAGG</td>
-<td style="text-align:center">CGCTCAAACGTGAGGTTG</td>
-<td style="text-align:center">OH /TMR</td>
-</tr>
-<tr>
-<td style="text-align:center">D8S1179</td>
-<td style="text-align:center">ATTGCAACTTATATGTATTTTTGTATTTCATG</td>
-<td style="text-align:center">ACCAAATTGTGTTCATGAGTATAGTTTC</td>
-<td style="text-align:center">OH /TMR</td>
-</tr>
-<tr>
-<td style="text-align:center">VWA</td>
-<td style="text-align:center">GCCCTAGTGGATGATAAGAATAATCAGTATGTG</td>
-<td style="text-align:center">GGACAGATGATAAATACATAGGATGGATGG</td>
-<td style="text-align:center">OH /TMR</td>
-</tr>
-<tr>
-<td style="text-align:center">AMEL</td>
-<td style="text-align:center">CCCTGGGCTCTGTAAAGAA</td>
-<td style="text-align:center">ATCAGAGCTTAAACTGGGAAGCTG</td>
-<td style="text-align:center">TMR /OH</td>
-</tr>
-<tr>
-<td style="text-align:center">PENTA E</td>
-<td style="text-align:center">ATTACCAACATGAAAGGGTACCAATA</td>
-<td style="text-align:center">TGGGTTATTAATTGAGAAAACTCCTTACAATTT</td>
-<td style="text-align:center">OH /FL</td>
-</tr>
-<tr>
-<td style="text-align:center">D18S51</td>
-<td style="text-align:center">TTCTTGAGCCCAGAAGGTTA</td>
-<td style="text-align:center">ATTCTACCAGCAACAACACAAATAAAC</td>
-<td style="text-align:center">FL /OH</td>
-</tr>
-<tr>
-<td style="text-align:center">D21S11</td>
-<td style="text-align:center">ATATGTGAGTCAATTCCCCAAG</td>
-<td style="text-align:center">TGTATTAGTCAATGTTCTCCAGAGAC</td>
-<td style="text-align:center">OH /FL</td>
-</tr>
-<tr>
-<td style="text-align:center">TH01</td>
-<td style="text-align:center">GTGATTCCCATTGGCCTGTTC</td>
-<td style="text-align:center">ATTCCTGTGGGCTGAAAAGCTC</td>
-<td style="text-align:center">FL /OH</td>
-</tr>
-<tr>
-<td style="text-align:center">D3S1358</td>
-<td style="text-align:center">ACTGCAGTCCAATCTGGGT</td>
-<td style="text-align:center">ATGAAATCAACAGAGGCTTGC</td>
-<td style="text-align:center">OH /FL</td>
-</tr>
-<tr>
-<td style="text-align:center">PENTA D</td>
-<td style="text-align:center">GAAGGTCGAAGCTGAAGTG</td>
-<td style="text-align:center">ATTAGAATTCTTTAATCTGGACACAAG</td>
-<td style="text-align:center">JOE /OH</td>
-</tr>
-<tr>
-<td style="text-align:center">CSF1PO</td>
-<td style="text-align:center">CCGGAGGTAAAGGTGTCTTAAAGT</td>
-<td style="text-align:center">ATTTCCTGTGTCAGACCCTGTT</td>
-<td style="text-align:center">JOE /OH</td>
-</tr>
-<tr>
-<td style="text-align:center">D16S539</td>
-<td style="text-align:center">GGGGGTCTAAGAGCTTGTAAAAAG</td>
-<td style="text-align:center">GTTTGTGTGTGCATCTGTAAGCATGTATC</td>
-<td style="text-align:center">OH /JOE</td>
-</tr>
-<tr>
-<td style="text-align:center">D7S820</td>
-<td style="text-align:center">ATGTTGGTCAGGCTGACTATG</td>
-<td style="text-align:center">GATTCCACATTTATCCTCATTGAC</td>
-<td style="text-align:center">JOE /OH</td>
-</tr>
-<tr>
-<td style="text-align:center">D13S317</td>
-<td style="text-align:center">ATTACAGAAGTCTGGGATGTGGAGGA</td>
-<td style="text-align:center">GGCAGCCCAAAAAGACAGA</td>
-<td style="text-align:center">OH /JOE</td>
-</tr>
-<tr>
-<td style="text-align:center">D5S818</td>
-<td style="text-align:center">GGTGATTTTCCTCTTTGGTATCC</td>
-<td style="text-align:center">AGCCACAGTTTACAACATTTGTATCT</td>
-<td style="text-align:center">OH /JOE</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p>参见文章：<em>Published in Krenke, B. E., Tereba, A., Anderson, S. J., Buel, E., Culhane, S., Finis, C. J., Tomsey, C. S., Zachetti, J. M., Masibay, A., Rabbach, D. R., Amiott, E. A., and Sprecher, C. J. (2002) Validation of a 16-locus fluorescent multiplex system. J. Forensic Sci. 47(4): 773-785.</em></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;PowerPlex 16 system 是由PROMEGA开发的STR检测试剂盒，用于亲子鉴定（paternity testing）、法医分析（forensic DNA analysis）、身份识别（human identity testing），以及品系鉴定（tissue
-    
-    </summary>
-    
-      <category term="基因技术" scheme="http://uteric.github.io/categories/%E5%9F%BA%E5%9B%A0%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="STR" scheme="http://uteric.github.io/tags/STR/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CODIS CORE STR LOCI 概况</title>
-    <link href="http://uteric.github.io/CODIS%20CORE%20STR%20LOCI%E6%A6%82%E5%86%B5/"/>
-    <id>http://uteric.github.io/CODIS CORE STR LOCI概况/</id>
-    <published>2019-06-01T22:51:19.000Z</published>
-    <updated>2019-06-01T22:51:19.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="一、13-CODIS-Core-STR-Loci"><a href="#一、13-CODIS-Core-STR-Loci" class="headerlink" title="一、13 CODIS Core STR Loci"></a>一、13 CODIS Core STR Loci</h2><p>2000年，FBI公布了13对CODIS （Combined DNA Index System）Core STR Loci，如图1：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/4189810-5b1acc17d123827e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="13 FBI CODIS Core STR Loci"></p>
-<p>STR位点信息：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Loci Name</th>
-<th style="text-align:center">Gene Name</th>
-<th style="text-align:center">Chromosomal Location</th>
-<th style="text-align:center">Primer</th>
-<th style="text-align:center">Primer #</th>
-<th style="text-align:center">Size Range</th>
-<th style="text-align:center">Repeat Structure</th>
-<th style="text-align:center">Mutation Rate</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">TPOX</td>
-<td style="text-align:center">TPO</td>
-<td style="text-align:center">2p25.3</td>
-<td style="text-align:center">GCACAGAACAGGCACTTAGG CGCTCAAACGTGAGGTTG</td>
-<td style="text-align:center">#5</td>
-<td style="text-align:center">254-302</td>
-<td style="text-align:center">[AATG]n</td>
-<td style="text-align:center">0.01%</td>
-</tr>
-<tr>
-<td style="text-align:center">D3S1358</td>
-<td style="text-align:center">LARS2</td>
-<td style="text-align:center">3p21.31</td>
-<td style="text-align:center">ACTGCAGTCCAATCTGGGT  ATGAAATCAACAGAGGCTTGC</td>
-<td style="text-align:center">#3</td>
-<td style="text-align:center">99-147</td>
-<td style="text-align:center">TCTA[TCTG]n[TCTA]n</td>
-<td style="text-align:center">0.12%</td>
-</tr>
-<tr>
-<td style="text-align:center">FGA</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">4q28</td>
-<td style="text-align:center">GGCTGCAGGGCATAACATTA  ATTCTATGACTTTGCGCTTCAGGA</td>
-<td style="text-align:center">#3</td>
-<td style="text-align:center">308-464</td>
-<td style="text-align:center">[TTTC]3TTTTTTCT[CTTT]nCTCC[TTCC]2</td>
-<td style="text-align:center">0.28%</td>
-</tr>
-<tr>
-<td style="text-align:center">CSF1PO</td>
-<td style="text-align:center">CSF1R</td>
-<td style="text-align:center">5q33.1</td>
-<td style="text-align:center">AACCTGAGTCTGCCAAGGACTAGC  TTCCACACACCACTGGCCATCTTC</td>
-<td style="text-align:center">#1</td>
-<td style="text-align:center">287-331</td>
-<td style="text-align:center">[AGAT]n</td>
-<td style="text-align:center">0.16%</td>
-</tr>
-<tr>
-<td style="text-align:center">D5S818</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">5q23.2</td>
-<td style="text-align:center">GGGTGATTTTCCTCTTTGGT  TGATTCCAATCATAGCCACA</td>
-<td style="text-align:center">#2</td>
-<td style="text-align:center">129-177</td>
-<td style="text-align:center">[AGAT]n</td>
-<td style="text-align:center">0.11%</td>
-</tr>
-<tr>
-<td style="text-align:center">D7S820</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">7q21.11</td>
-<td style="text-align:center">ATGTTGGTCAGGCTGACTATG  GATTCCACATTTATCCTCATTGAC</td>
-<td style="text-align:center">#1</td>
-<td style="text-align:center">211-251</td>
-<td style="text-align:center">[GATA]n</td>
-<td style="text-align:center">0.10%</td>
-</tr>
-<tr>
-<td style="text-align:center">D8S1179</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">8q24.13</td>
-<td style="text-align:center">ATTGCAACTTATATGTATTTTTGTATTTCATG  ACCAAATTGTGTTCATGAGTATAGTTTC</td>
-<td style="text-align:center">#3</td>
-<td style="text-align:center">203-255</td>
-<td style="text-align:center">[TCTA]n[TCTG]n[TCTA]n</td>
-<td style="text-align:center">0.14%</td>
-</tr>
-<tr>
-<td style="text-align:center">TH01</td>
-<td style="text-align:center">TH</td>
-<td style="text-align:center">11p15.5</td>
-<td style="text-align:center">GTGGGCTGAAAAGCTCCCGATTAT  ATTCAAAGGGTATCTGGGCTCTGG</td>
-<td style="text-align:center">#1</td>
-<td style="text-align:center">171-215</td>
-<td style="text-align:center">[AATG]nATG[AATG]n</td>
-<td style="text-align:center">0.01%</td>
-</tr>
-<tr>
-<td style="text-align:center">VWA</td>
-<td style="text-align:center">VWF</td>
-<td style="text-align:center">12p13.31</td>
-<td style="text-align:center">GCCCTAGTGGATGATAAGAATAATCAGTATGTG  GGACAGATGATAAATACATAGGATGGATGG</td>
-<td style="text-align:center">#2</td>
-<td style="text-align:center">123-183</td>
-<td style="text-align:center">[TCTA][TCTG]n[TCTA]n[TCCA][TCTA]</td>
-<td style="text-align:center">0.17%</td>
-</tr>
-<tr>
-<td style="text-align:center">D13S317</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">13q31.1</td>
-<td style="text-align:center">ATTACAGAAGTCTGGGATGTGGAGGA  GGCAGCCCAAAAAGACAGA</td>
-<td style="text-align:center">#1</td>
-<td style="text-align:center">157-205</td>
-<td style="text-align:center">[TATC]n[AATC]n</td>
-<td style="text-align:center">0.14%</td>
-</tr>
-<tr>
-<td style="text-align:center">D16S539</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">16q24.1</td>
-<td style="text-align:center">GGGGGTCTAAGAGCTTGTAAAAAG GTTTGTGTGTGCATCTGTAAGCATGTATC</td>
-<td style="text-align:center">#1</td>
-<td style="text-align:center">260-308</td>
-<td style="text-align:center">[GATA]n</td>
-<td style="text-align:center">0.11%</td>
-</tr>
-<tr>
-<td style="text-align:center">D18S51</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">18q21.33</td>
-<td style="text-align:center">TTCTTGAGCCCAGAAGGTTA  ATTCTACCAGCAACAACACAAATAAAC</td>
-<td style="text-align:center">#3</td>
-<td style="text-align:center">286-373</td>
-<td style="text-align:center">[AGAA]n(AAAGAGAGAG)</td>
-<td style="text-align:center">0.22%</td>
-</tr>
-<tr>
-<td style="text-align:center">D21S11</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">21q21.1</td>
-<td style="text-align:center">ATATGTGAGTCAATTCCCCAAG  TGTATTAGTCAATGTTCTCCAGAGAC</td>
-<td style="text-align:center">#4</td>
-<td style="text-align:center">155-273</td>
-<td style="text-align:center">[TCTA]n[TCTG]n[TCTA]n[TA][TCTA]n[TCA][TCTA]n[TCCATA][TCTA]n</td>
-<td style="text-align:center">0.19%</td>
-</tr>
-<tr>
-<td style="text-align:center">AMELX</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">X</td>
-<td style="text-align:center">CCCTGGGCTCTGTAAAGAA  ATCAGAGCTTAAACTGGGAAGCTG</td>
-<td style="text-align:center">#1</td>
-<td style="text-align:center">106</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:center">AMELY</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">Y</td>
-<td style="text-align:center">CCCTGGGCTCTGTAAAGAA  ATCAGAGCTTAAACTGGGAAGCTG</td>
-<td style="text-align:center">#1</td>
-<td style="text-align:center">112</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">-</td>
-</tr>
-</tbody>
-</table>
-<h2 id="二、Additional-7-STR-loci"><a href="#二、Additional-7-STR-loci" class="headerlink" title="二、Additional 7 STR loci"></a>二、Additional 7 STR loci</h2><p>从2017年1月1日起，对于上传至National DNA Index System (NDIS)的数据，FBI要求增加7个STR位点，如下：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Loci Name</th>
-<th style="text-align:center">Gene Name</th>
-<th style="text-align:center">Chromosomal Location</th>
-<th style="text-align:center">Primer</th>
-<th style="text-align:center">Primer #</th>
-<th style="text-align:center">Size Range</th>
-<th style="text-align:center">Repeat Structure</th>
-<th style="text-align:center">Mutation Rate</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">D1S1656</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">1q42</td>
-<td style="text-align:center">GTGTTGCTCAAGGGTCAACT  GAGAAATAGAATCACTAGGGAACC</td>
-<td style="text-align:center">#1</td>
-<td style="text-align:center">121-169</td>
-<td style="text-align:center">[TAGA]n[TGA]n[TAGA]n[TAGG]n[TG]n</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">D2S441</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">2p14</td>
-<td style="text-align:center">TGCACCCAACATTCTAACAA  ATTGGAGCTAAGTGGCTGTG</td>
-<td style="text-align:center">#1</td>
-<td style="text-align:center">78-114</td>
-<td style="text-align:center">[TCTA]n</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">D2S1338</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">2q35</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">[TGCC]n[TTCC]n</td>
-<td style="text-align:center">0.12%</td>
-</tr>
-<tr>
-<td style="text-align:center">D10S1248</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">10q26.3</td>
-<td style="text-align:center">GGAATAAGTGCAGTGCTTGG  ACCAATCTGGTCACAACCAT</td>
-<td style="text-align:center">#1</td>
-<td style="text-align:center">227-271</td>
-<td style="text-align:center">[GGAA]n</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">D12S391</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">Chr12</td>
-<td style="text-align:center">AACAGGATCAATGGATGCAT  TGGCTTTTAGACCTGGACTG</td>
-<td style="text-align:center">#1</td>
-<td style="text-align:center">209-253</td>
-<td style="text-align:center">[AGAT]8-17[AGAC]6-10[AGAT]0-1</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">D19S433</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">19q12</td>
-<td style="text-align:center">CCTGGGCAACAGAATAAGAT  TAGGTTTTTAAGGAACAGGTGG</td>
-<td style="text-align:center">#1</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">[AAGG][AAAG][AAGG][TAGG][AAGG]12</td>
-<td style="text-align:center">0.11%</td>
-</tr>
-<tr>
-<td style="text-align:center">D22S1045</td>
-<td style="text-align:center">IL2RB</td>
-<td style="text-align:center">22q12.3</td>
-<td style="text-align:center">GCTAGATTTTCCCCGATGAT  ATGTAAAGTGCTCTCAAGAGTGC</td>
-<td style="text-align:center">#1</td>
-<td style="text-align:center">129-165</td>
-<td style="text-align:center">[ATT]n[ACT][ATT]n</td>
-</tr>
-</tbody>
-</table>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一、13-CODIS-Core-STR-Loci&quot;&gt;&lt;a href=&quot;#一、13-CODIS-Core-STR-Loci&quot; class=&quot;headerlink&quot; title=&quot;一、13 CODIS Core STR Loci&quot;&gt;&lt;/a&gt;一、13 CODIS Cor
-    
-    </summary>
-    
-      <category term="基因技术" scheme="http://uteric.github.io/categories/%E5%9F%BA%E5%9B%A0%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="STR" scheme="http://uteric.github.io/tags/STR/"/>
-    
-      <category term="CODIS" scheme="http://uteric.github.io/tags/CODIS/"/>
     
   </entry>
   
