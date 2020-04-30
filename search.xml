@@ -1079,6 +1079,43 @@ See</code>config.log’ for more details<br>ERROR: configuration failed for pack
       </tags>
   </entry>
   <entry>
+    <title>RNASEQ分析入门笔记10-clusterProfiler富集分析</title>
+    <url>/RNASEQ%20clusterProfiler%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h2 id="一、安装clusterProfiler"><a href="#一、安装clusterProfiler" class="headerlink" title="一、安装clusterProfiler"></a>一、安装clusterProfiler</h2><blockquote>
+<p>source(“<a href="https://bioconductor.org/biocLite.R&quot;" target="_blank" rel="noopener">https://bioconductor.org/biocLite.R&quot;</a>) # 如果报错，请尝试http://<br>biocLite(“clusterProfiler”)<br>library(clusterProfiler) # 载入包，测试是否安装成功，如果提示找不到某个包，则安装相关的包即可，比如我的电脑提示“<strong>不存在叫‘rvcheck’这个名字的程辑包</strong>”，则使用如下语法安装“rvcheck”，如缺乏其他包，也是同理。<br>install.packages(“rvcheck”)</p>
+</blockquote>
+<h2 id="二、安装基因组注释数据"><a href="#二、安装基因组注释数据" class="headerlink" title="二、安装基因组注释数据"></a>二、安装基因组注释数据</h2><p>目前，<a href="http://bioconductor.org/packages/release/BiocViews.html#___OrgDb" target="_blank" rel="noopener">Bioconductor</a>官网支持19种生物的注释数据，可以直接安装：</p>
+<blockquote>
+<p>biocLite(“org.Hs.eg.db”) # 安装人类的注释数据<br>library(org.Hs.eg.db) # 测试，载入人类的注释数据<br>biocLite(“org.Mm.eg.db”) # 安装小鼠的注释数据<br>library(org.Mm.eg.db) # 测试，载入小鼠的注释数据</p>
+</blockquote>
+<h2 id="三、载入基因列表"><a href="#三、载入基因列表" class="headerlink" title="三、载入基因列表"></a>三、载入基因列表</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">data &lt;- read.csv(<span class="string">"top50.csv"</span>) <span class="comment"># 从文件中载入数据，并赋值给data</span></span><br><span class="line"><span class="comment"># 我们需要的是第二列的基因列表，因此，只筛选第二列即可</span></span><br><span class="line">gene &lt;- data[,2] <span class="comment"># 抽取第二列，赋值给gene</span></span><br><span class="line">gene &lt;- bitr(gene,fromType=<span class="string">"SYMBOL"</span>,toType=<span class="string">"ENTREZID"</span>,OrgDb=org.Hs.eg.db) <span class="comment"># groupGO默认使用"ENTREZID"作为输入数据，因此首先将“SYMBOL”转化为“ENTREZID”，以防出错</span></span><br><span class="line">gene &lt;- gene[,2] <span class="comment"># 抽取第二列作为input</span></span><br></pre></td></tr></table></figure>
+<h2 id="四、groupGO分析"><a href="#四、groupGO分析" class="headerlink" title="四、groupGO分析"></a>四、groupGO分析</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ggo &lt;- groupGO(gene=gene,OrgDb=org.Hs.eg.db,ont=<span class="string">"BP"</span>,level=3,readable=TRUE)</span><br><span class="line">ggo &lt;- groupGO(gene=gene,OrgDb=org.Hs.eg.db,ont=<span class="string">"CC"</span>,level=3,readable=TRUE)</span><br><span class="line">ggo &lt;- groupGO(gene=gene,OrgDb=org.Hs.eg.db,ont=<span class="string">"MF"</span>,level=3,readable=TRUE)</span><br></pre></td></tr></table></figure>
+<p>groupGO命令的格式为：<em>groupGO(gene,OrgDb,ont,level,readable)</em></p>
+<p><strong>gene</strong>，指定前景基因文件，即要分析的基因集合，默认为”ENTREZID”格式；<br><strong>OrgDb</strong>，指定基因组注释数据；<br><strong>ont</strong>，即ontology，参数有三个，分别为CC，BP和MF，对应：细胞组分（cellular component，CC），生物过程（biological process，BP），分子功能（molecular function，MF）；<br><strong>level</strong>，指定分析的GO水平；<br><strong>readable</strong>，逻辑值，TRUE或FALSE；</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">head(as.data.frame(ggo)) <span class="comment"># 查看前六行，结果是六行五列的数据</span></span><br></pre></td></tr></table></figure>
+<p>ID                              Description Count<br>GO:0019953 GO:0019953                      sexual reproduction     7<br>GO:0019954 GO:0019954                     asexual reproduction     0<br>GO:0022414 GO:0022414                     reproductive process    26<br>GO:0032504 GO:0032504      multicellular organism reproduction     9<br>GO:0032505 GO:0032505 reproduction of a single-celled organism     0<br>GO:0061887 GO:0061887         reproduction of symbiont in host     0<br>GeneRatio<br>GO:0019953     7/298<br>GO:0019954     0/298<br>GO:0022414    26/298<br>GO:0032504     9/298<br>GO:0032505     0/298<br>GO:0061887     0/298<br>geneID<br>GO:0019953                                                                                                                 APOB/ABAT/ANG/AR/AVPR1A/LEPR/ACOX1<br>GO:0019954<br>GO:0022414 APOB/AGT/AMBP/RBP4/ABAT/SERPINF1/ANG/HNF4A/AR/AVPR1A/ARG1/LEPR/GJB1/BOK/DHODH/SLC38A3/PDGFRA/TBX3/ADGRG1/IGFBP2/TTPA/ACOX1/DBH/ETNK2/NAMPT/HSD17B2<br>GO:0032504                                                                                                  APOB/SERPINF1/ANG/AR/AVPR1A/ARG1/PDGFRA/ACOX1/DBH<br>GO:0032505<br>GO:0061887                                                                                           </p>
+<h2 id="五、groupGo结果可视化"><a href="#五、groupGo结果可视化" class="headerlink" title="五、groupGo结果可视化"></a>五、groupGo结果可视化</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">barplot(ggo,drop=TRUE,showCategory=20)</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/4189810-f92d7ebc27bfe4e3.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ggo barplot.jpeg"></p>
+<h2 id="六、enrichGO分析"><a href="#六、enrichGO分析" class="headerlink" title="六、enrichGO分析"></a>六、enrichGO分析</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ego &lt;- enrichGO(gene=gene,universe=names(geneList),OrgDb=org.Hs.eg.db,ont=<span class="string">"BP"</span>,pvalueCutoff=0.01,qvalueCutoff=0.05,readable=TRUE)</span><br><span class="line">ego &lt;- enrichGO(gene=gene,universe=names(geneList),OrgDb=org.Hs.eg.db,ont=<span class="string">"CC"</span>,pvalueCutoff=0.01,qvalueCutoff=0.05,readable=TRUE)</span><br><span class="line">ego &lt;- enrichGO(gene=gene,universe=names(geneList),OrgDb=org.Hs.eg.db,ont=<span class="string">"MF"</span>,pvalueCutoff=0.01,qvalueCutoff=0.05,readable=TRUE)</span><br></pre></td></tr></table></figure>
+<p>enrichGO命令语法：<em>enrichGO(gene,universe,OrgDb,ont,pvalueCutoff,qvalueCutoff,readable)</em></p>
+<p>universe，背景基因文件，可以使用默认值；</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">head(as.data.frame(ego))</span><br></pre></td></tr></table></figure>
+<p>ID                                   Description<br>GO:0072562 GO:0072562                           blood microparticle<br>GO:0042627 GO:0042627                                   chylomicron<br>GO:0031093 GO:0031093                  platelet alpha granule lumen<br>GO:0005788 GO:0005788                   endoplasmic reticulum lumen<br>GO:0034361 GO:0034361         very-low-density lipoprotein particle<br>GO:0034385 GO:0034385 triglyceride-rich plasma lipoprotein particle<br>GeneRatio   BgRatio       pvalue     p.adjust       qvalue<br>GO:0072562    33/288 101/11817 9.367691e-29 2.519909e-26 2.336992e-26<br>GO:0042627     8/288  11/11817 1.750866e-11 2.354915e-09 2.183975e-09<br>GO:0031093    14/288  62/11817 1.938754e-10 1.738416e-08 1.612227e-08<br>GO:0005788    26/288 247/11817 3.097572e-10 2.083117e-08 1.931907e-08<br>GO:0034361     8/288  16/11817 1.227828e-09 5.504763e-08 5.105180e-08<br>GO:0034385     8/288  16/11817 1.227828e-09 5.504763e-08 5.105180e-08<br>geneID<br>GO:0072562 ITIH4/ALB/FGB/FGA/FGG/ORM1/HPX/HP/VTN/APOA2/AGT/AMBP/SERPINC1/F2/C3/C9/SERPING1/HRG/ITIH1/SERPINA3/AHSG/GC/APOA4/PLG/KNG1/TF/C4BPA/C8G/C8A/APOA1/HPR/ITIH2/C1S<br>GO:0042627                                                                                                                    APOB/APOC3/APOA2/APOA4/APOH/APOA1/LSR/APOC1<br>GO:0031093                                                                                       ALB/FGB/FGA/FGG/ORM1/SERPINA1/SERPING1/HRG/SERPINA3/AHSG/F5/PLG/KNG1/VWF<br>GO:0005788                           APOB/ALB/FGA/FGG/SERPINA1/VTN/APOA2/SERPINC1/F2/C3/IGFBP1/AHSG/F5/SERPIND1/APOA4/KNG1/TF/PROC/APOA1/F9/ITIH2/MTTP/F10/CES2/H6PD/CDH2<br>GO:0034361                                                                                                                    APOB/APOC3/APOA2/APOA4/APOH/APOA1/LSR/APOC1<br>GO:0034385                                                                                                                    APOB/APOC3/APOA2/APOA4/APOH/APOA1/LSR/APOC1<br>Count<br>GO:0072562    33<br>GO:0042627     8<br>GO:0031093    14<br>GO:0005788    26<br>GO:0034361     8<br>GO:0034385     8</p>
+<h2 id="七、enrichGO可视化"><a href="#七、enrichGO可视化" class="headerlink" title="七、enrichGO可视化"></a>七、enrichGO可视化</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">barplot(ego,drop=TRUE,showCategory=20)</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/4189810-74b5709dbbde256d.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ego barplot.jpeg"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotplot(ego,title=<span class="string">"enrichGo CC dotplot"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/4189810-d804a07f00df5610.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ego cc dotplot.jpeg"></p>
+<p>此外，还可以作enrichMap或cnetplot，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">enrichMap(ego, vertex.label.cex=1.2, layout=igraph::layout.kamada.kawai)</span><br><span class="line">cnetplot(ego, foldChange=geneList)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+      </categories>
+      <tags>
+        <tag>RNASEQ</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>RNASEQ分析入门笔记7- HTSeq定量基因表达水平</title>
     <url>/RNASEQ%20HTSeq%E5%AE%9A%E9%87%8F%E5%9F%BA%E5%9B%A0%E8%A1%A8%E8%BE%BE%E6%B0%B4%E5%B9%B3/</url>
     <content><![CDATA[<h2 id="HTseq统计基因reads数"><a href="#HTseq统计基因reads数" class="headerlink" title="HTseq统计基因reads数"></a>HTseq统计基因reads数</h2><p><strong>HTseq</strong>是用于分析基因表达量的软件，能够根据基因结构注释GTF文件对排序过的SAM/BAM文件进行基因reads数的统计。</p>
@@ -1157,43 +1194,6 @@ See</code>config.log’ for more details<br>ERROR: configuration failed for pack
 </blockquote>
 <p>如果想要把分析结果保存下来，则存储为.csv格式：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">write.csv (x=raw_count_filt2, file=<span class="string">"SRR35899.csv"</span>) <span class="comment"># 保存raw_count_filt2矩阵为SRR35899.csv文件，保存位置在当前命令行目录中</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-      </categories>
-      <tags>
-        <tag>RNASEQ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RNASEQ分析入门笔记10-clusterProfiler富集分析</title>
-    <url>/RNASEQ%20clusterProfiler%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<h2 id="一、安装clusterProfiler"><a href="#一、安装clusterProfiler" class="headerlink" title="一、安装clusterProfiler"></a>一、安装clusterProfiler</h2><blockquote>
-<p>source(“<a href="https://bioconductor.org/biocLite.R&quot;" target="_blank" rel="noopener">https://bioconductor.org/biocLite.R&quot;</a>) # 如果报错，请尝试http://<br>biocLite(“clusterProfiler”)<br>library(clusterProfiler) # 载入包，测试是否安装成功，如果提示找不到某个包，则安装相关的包即可，比如我的电脑提示“<strong>不存在叫‘rvcheck’这个名字的程辑包</strong>”，则使用如下语法安装“rvcheck”，如缺乏其他包，也是同理。<br>install.packages(“rvcheck”)</p>
-</blockquote>
-<h2 id="二、安装基因组注释数据"><a href="#二、安装基因组注释数据" class="headerlink" title="二、安装基因组注释数据"></a>二、安装基因组注释数据</h2><p>目前，<a href="http://bioconductor.org/packages/release/BiocViews.html#___OrgDb" target="_blank" rel="noopener">Bioconductor</a>官网支持19种生物的注释数据，可以直接安装：</p>
-<blockquote>
-<p>biocLite(“org.Hs.eg.db”) # 安装人类的注释数据<br>library(org.Hs.eg.db) # 测试，载入人类的注释数据<br>biocLite(“org.Mm.eg.db”) # 安装小鼠的注释数据<br>library(org.Mm.eg.db) # 测试，载入小鼠的注释数据</p>
-</blockquote>
-<h2 id="三、载入基因列表"><a href="#三、载入基因列表" class="headerlink" title="三、载入基因列表"></a>三、载入基因列表</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">data &lt;- read.csv(<span class="string">"top50.csv"</span>) <span class="comment"># 从文件中载入数据，并赋值给data</span></span><br><span class="line"><span class="comment"># 我们需要的是第二列的基因列表，因此，只筛选第二列即可</span></span><br><span class="line">gene &lt;- data[,2] <span class="comment"># 抽取第二列，赋值给gene</span></span><br><span class="line">gene &lt;- bitr(gene,fromType=<span class="string">"SYMBOL"</span>,toType=<span class="string">"ENTREZID"</span>,OrgDb=org.Hs.eg.db) <span class="comment"># groupGO默认使用"ENTREZID"作为输入数据，因此首先将“SYMBOL”转化为“ENTREZID”，以防出错</span></span><br><span class="line">gene &lt;- gene[,2] <span class="comment"># 抽取第二列作为input</span></span><br></pre></td></tr></table></figure>
-<h2 id="四、groupGO分析"><a href="#四、groupGO分析" class="headerlink" title="四、groupGO分析"></a>四、groupGO分析</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ggo &lt;- groupGO(gene=gene,OrgDb=org.Hs.eg.db,ont=<span class="string">"BP"</span>,level=3,readable=TRUE)</span><br><span class="line">ggo &lt;- groupGO(gene=gene,OrgDb=org.Hs.eg.db,ont=<span class="string">"CC"</span>,level=3,readable=TRUE)</span><br><span class="line">ggo &lt;- groupGO(gene=gene,OrgDb=org.Hs.eg.db,ont=<span class="string">"MF"</span>,level=3,readable=TRUE)</span><br></pre></td></tr></table></figure>
-<p>groupGO命令的格式为：<em>groupGO(gene,OrgDb,ont,level,readable)</em></p>
-<p><strong>gene</strong>，指定前景基因文件，即要分析的基因集合，默认为”ENTREZID”格式；<br><strong>OrgDb</strong>，指定基因组注释数据；<br><strong>ont</strong>，即ontology，参数有三个，分别为CC，BP和MF，对应：细胞组分（cellular component，CC），生物过程（biological process，BP），分子功能（molecular function，MF）；<br><strong>level</strong>，指定分析的GO水平；<br><strong>readable</strong>，逻辑值，TRUE或FALSE；</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">head(as.data.frame(ggo)) <span class="comment"># 查看前六行，结果是六行五列的数据</span></span><br></pre></td></tr></table></figure>
-<p>ID                              Description Count<br>GO:0019953 GO:0019953                      sexual reproduction     7<br>GO:0019954 GO:0019954                     asexual reproduction     0<br>GO:0022414 GO:0022414                     reproductive process    26<br>GO:0032504 GO:0032504      multicellular organism reproduction     9<br>GO:0032505 GO:0032505 reproduction of a single-celled organism     0<br>GO:0061887 GO:0061887         reproduction of symbiont in host     0<br>GeneRatio<br>GO:0019953     7/298<br>GO:0019954     0/298<br>GO:0022414    26/298<br>GO:0032504     9/298<br>GO:0032505     0/298<br>GO:0061887     0/298<br>geneID<br>GO:0019953                                                                                                                 APOB/ABAT/ANG/AR/AVPR1A/LEPR/ACOX1<br>GO:0019954<br>GO:0022414 APOB/AGT/AMBP/RBP4/ABAT/SERPINF1/ANG/HNF4A/AR/AVPR1A/ARG1/LEPR/GJB1/BOK/DHODH/SLC38A3/PDGFRA/TBX3/ADGRG1/IGFBP2/TTPA/ACOX1/DBH/ETNK2/NAMPT/HSD17B2<br>GO:0032504                                                                                                  APOB/SERPINF1/ANG/AR/AVPR1A/ARG1/PDGFRA/ACOX1/DBH<br>GO:0032505<br>GO:0061887                                                                                           </p>
-<h2 id="五、groupGo结果可视化"><a href="#五、groupGo结果可视化" class="headerlink" title="五、groupGo结果可视化"></a>五、groupGo结果可视化</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">barplot(ggo,drop=TRUE,showCategory=20)</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4189810-f92d7ebc27bfe4e3.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ggo barplot.jpeg"></p>
-<h2 id="六、enrichGO分析"><a href="#六、enrichGO分析" class="headerlink" title="六、enrichGO分析"></a>六、enrichGO分析</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ego &lt;- enrichGO(gene=gene,universe=names(geneList),OrgDb=org.Hs.eg.db,ont=<span class="string">"BP"</span>,pvalueCutoff=0.01,qvalueCutoff=0.05,readable=TRUE)</span><br><span class="line">ego &lt;- enrichGO(gene=gene,universe=names(geneList),OrgDb=org.Hs.eg.db,ont=<span class="string">"CC"</span>,pvalueCutoff=0.01,qvalueCutoff=0.05,readable=TRUE)</span><br><span class="line">ego &lt;- enrichGO(gene=gene,universe=names(geneList),OrgDb=org.Hs.eg.db,ont=<span class="string">"MF"</span>,pvalueCutoff=0.01,qvalueCutoff=0.05,readable=TRUE)</span><br></pre></td></tr></table></figure>
-<p>enrichGO命令语法：<em>enrichGO(gene,universe,OrgDb,ont,pvalueCutoff,qvalueCutoff,readable)</em></p>
-<p>universe，背景基因文件，可以使用默认值；</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">head(as.data.frame(ego))</span><br></pre></td></tr></table></figure>
-<p>ID                                   Description<br>GO:0072562 GO:0072562                           blood microparticle<br>GO:0042627 GO:0042627                                   chylomicron<br>GO:0031093 GO:0031093                  platelet alpha granule lumen<br>GO:0005788 GO:0005788                   endoplasmic reticulum lumen<br>GO:0034361 GO:0034361         very-low-density lipoprotein particle<br>GO:0034385 GO:0034385 triglyceride-rich plasma lipoprotein particle<br>GeneRatio   BgRatio       pvalue     p.adjust       qvalue<br>GO:0072562    33/288 101/11817 9.367691e-29 2.519909e-26 2.336992e-26<br>GO:0042627     8/288  11/11817 1.750866e-11 2.354915e-09 2.183975e-09<br>GO:0031093    14/288  62/11817 1.938754e-10 1.738416e-08 1.612227e-08<br>GO:0005788    26/288 247/11817 3.097572e-10 2.083117e-08 1.931907e-08<br>GO:0034361     8/288  16/11817 1.227828e-09 5.504763e-08 5.105180e-08<br>GO:0034385     8/288  16/11817 1.227828e-09 5.504763e-08 5.105180e-08<br>geneID<br>GO:0072562 ITIH4/ALB/FGB/FGA/FGG/ORM1/HPX/HP/VTN/APOA2/AGT/AMBP/SERPINC1/F2/C3/C9/SERPING1/HRG/ITIH1/SERPINA3/AHSG/GC/APOA4/PLG/KNG1/TF/C4BPA/C8G/C8A/APOA1/HPR/ITIH2/C1S<br>GO:0042627                                                                                                                    APOB/APOC3/APOA2/APOA4/APOH/APOA1/LSR/APOC1<br>GO:0031093                                                                                       ALB/FGB/FGA/FGG/ORM1/SERPINA1/SERPING1/HRG/SERPINA3/AHSG/F5/PLG/KNG1/VWF<br>GO:0005788                           APOB/ALB/FGA/FGG/SERPINA1/VTN/APOA2/SERPINC1/F2/C3/IGFBP1/AHSG/F5/SERPIND1/APOA4/KNG1/TF/PROC/APOA1/F9/ITIH2/MTTP/F10/CES2/H6PD/CDH2<br>GO:0034361                                                                                                                    APOB/APOC3/APOA2/APOA4/APOH/APOA1/LSR/APOC1<br>GO:0034385                                                                                                                    APOB/APOC3/APOA2/APOA4/APOH/APOA1/LSR/APOC1<br>Count<br>GO:0072562    33<br>GO:0042627     8<br>GO:0031093    14<br>GO:0005788    26<br>GO:0034361     8<br>GO:0034385     8</p>
-<h2 id="七、enrichGO可视化"><a href="#七、enrichGO可视化" class="headerlink" title="七、enrichGO可视化"></a>七、enrichGO可视化</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">barplot(ego,drop=TRUE,showCategory=20)</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4189810-74b5709dbbde256d.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ego barplot.jpeg"></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotplot(ego,title=<span class="string">"enrichGo CC dotplot"</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4189810-d804a07f00df5610.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ego cc dotplot.jpeg"></p>
-<p>此外，还可以作enrichMap或cnetplot，命令如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">enrichMap(ego, vertex.label.cex=1.2, layout=igraph::layout.kamada.kawai)</span><br><span class="line">cnetplot(ego, foldChange=geneList)</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>编程语言</category>
@@ -3753,13 +3753,6 @@ done
       <tags>
         <tag>LINUX</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>test</title>
-    <url>/test/</url>
-    <content><![CDATA[<p>This is a test file, created on 4/30/2020.</p>
-<p>Anyway, it works now, even if password is still needed.</p>
-]]></content>
   </entry>
   <entry>
     <title>古人上厕所都有哪些文辞婉约的说法？</title>
@@ -7564,5 +7557,11 @@ done
         <tag>龙生九子</tag>
         <tag>九龙</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>R test</title>
+    <url>/R/test/</url>
+    <content><![CDATA[<p>This file is in R folder.</p>
+]]></content>
   </entry>
 </search>

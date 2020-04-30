@@ -17,20 +17,19 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>test</title>
-    <link href="http://uteric.github.io/test/"/>
-    <id>http://uteric.github.io/test/</id>
+    <title>R test</title>
+    <link href="http://uteric.github.io/R/test/"/>
+    <id>http://uteric.github.io/R/test/</id>
     <published>2020-04-30T15:30:45.000Z</published>
     <updated>2020-04-30T15:30:45.000Z</updated>
     
-    <content type="html"><![CDATA[<p>This is a test file, created on 4/30/2020.</p><p>Anyway, it works now, even if password is still needed.</p>]]></content>
+    <content type="html"><![CDATA[<p>This file is in R folder.</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;This is a test file, created on 4/30/2020.&lt;/p&gt;
-&lt;p&gt;Anyway, it works now, even if password is still needed.&lt;/p&gt;
+        &lt;p&gt;This file is in R folder.&lt;/p&gt;
 
       
     
