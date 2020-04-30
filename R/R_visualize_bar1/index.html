@@ -103,10 +103,18 @@
 <meta property="og:site_name" content="诸子百家">
 <meta property="og:description" content="一、模拟数据 ＃123456789101112data &amp;lt;- data.frame(samplename=letters[1:6], # 变量samplename，赋值从字母A－F；samplevalue=sample(seq(3,12),6) #变量samplevalue，赋值为3－12之间的随机数；)data # 查看data，如下：samplename samplevalue1">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://uteric.github.io/images/R/barplot01.png">
+<meta property="og:image" content="http://uteric.github.io/images/R/barplot02.png">
+<meta property="og:image" content="http://uteric.github.io/images/R/barplot03.png">
+<meta property="og:image" content="http://uteric.github.io/images/R/barplot04.png">
+<meta property="og:image" content="http://uteric.github.io/images/R/barplot05.png">
+<meta property="og:image" content="http://uteric.github.io/images/R/barplot06.png">
+<meta property="og:image" content="http://uteric.github.io/images/R/barplot07.png">
 <meta property="og:updated_time" content="2020-02-07T03:37:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="R可视化-绘制柱形图1">
 <meta name="twitter:description" content="一、模拟数据 ＃123456789101112data &amp;lt;- data.frame(samplename=letters[1:6], # 变量samplename，赋值从字母A－F；samplevalue=sample(seq(3,12),6) #变量samplevalue，赋值为3－12之间的随机数；)data # 查看data，如下：samplename samplevalue1">
+<meta name="twitter:image" content="http://uteric.github.io/images/R/barplot01.png">
 
 
 
@@ -443,25 +451,25 @@ ga('send', 'pageview');
         <h1 id="一、模拟数据-＃"><a href="#一、模拟数据-＃" class="headerlink" title="一、模拟数据 ＃"></a>一、模拟数据 ＃</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">data &lt;- data.frame(</span><br><span class="line">samplename=letters[1:6], <span class="comment"># 变量samplename，赋值从字母A－F；</span></span><br><span class="line">samplevalue=sample(seq(3,12),6) <span class="comment">#变量samplevalue，赋值为3－12之间的随机数；</span></span><br><span class="line">)</span><br><span class="line">data <span class="comment"># 查看data，如下：</span></span><br><span class="line">samplename samplevalue</span><br><span class="line">1          a           6</span><br><span class="line">2          b           7</span><br><span class="line">3          c          10</span><br><span class="line">4          d          12</span><br><span class="line">5          e           4</span><br><span class="line">6          f           9</span><br></pre></td></tr></table></figure>
 <h1 id="二、绘制柱形图"><a href="#二、绘制柱形图" class="headerlink" title="二、绘制柱形图"></a>二、绘制柱形图</h1><p>2.1 基本柱形图</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">barplot(height=data<span class="variable">$samplevalue</span>,</span><br><span class="line">names=data<span class="variable">$samplename</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>1<a href="/images/R/barplot01.png"></a></p>
+<p><img src="/images/R/barplot01.png" alt></p>
 <p>2.2 单一颜色</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">barplot(height=data<span class="variable">$samplevalue</span>,</span><br><span class="line">names=data<span class="variable">$samplename</span>,</span><br><span class="line">col=<span class="string">"red"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>1<a href="/images/R/barplot02.png"></a></p>
+<p><img src="/images/R/barplot02.png" alt></p>
 <p>2.3 边框颜色</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">barplot(height=data<span class="variable">$samplevalue</span>,</span><br><span class="line">names=data<span class="variable">$samplename</span>,</span><br><span class="line">col=<span class="string">"red"</span>,</span><br><span class="line">border=<span class="string">"blue"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>1<a href="/images/R/barplot03.png"></a></p>
+<p><img src="/images/R/barplot03.png" alt></p>
 <p>2.4 从调色板填充颜色</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">library(RColorBrewer)</span><br><span class="line"></span><br><span class="line">cols &lt;- brewer.pal(6,<span class="string">"Paired"</span>)</span><br><span class="line">barplot(height=data<span class="variable">$samplevalue</span>,</span><br><span class="line">names=data<span class="variable">$samplename</span>,</span><br><span class="line">col=cols,</span><br><span class="line">border=<span class="string">"blue"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>1<a href="/images/R/barplot04.png"></a></p>
+<p><img src="/images/R/barplot04.png" alt></p>
 <p>2.5 添加主标题，X轴标题，Y轴标题，设定Y轴刻度限度</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cols &lt;- brewer.pal(6,<span class="string">"Paired"</span>)</span><br><span class="line">barplot(height=data<span class="variable">$samplevalue</span>,</span><br><span class="line">names=data<span class="variable">$samplename</span>,</span><br><span class="line">col=cols,</span><br><span class="line">border=<span class="string">"blue"</span>,</span><br><span class="line">main=<span class="string">"My title"</span>,</span><br><span class="line">xlab=<span class="string">"Name"</span>,</span><br><span class="line">ylab=<span class="string">"Value"</span>,</span><br><span class="line">ylim=c(0,13)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>1<a href="/images/R/barplot05.png"></a></p>
+<p><img src="/images/R/barplot05.png" alt></p>
 <p>2.6 调整为水平柱形图，设定坐标轴文字方向</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">barplot(height=data<span class="variable">$samplevalue</span>,</span><br><span class="line">names=data<span class="variable">$samplename</span>,</span><br><span class="line">col=cols,</span><br><span class="line">border=<span class="string">"blue"</span>,</span><br><span class="line">main=<span class="string">"My title"</span>,</span><br><span class="line">xlab=<span class="string">"Name"</span>,</span><br><span class="line">ylab=<span class="string">"Value"</span>,</span><br><span class="line">ylim=c(0,13),</span><br><span class="line">horiz=T,</span><br><span class="line">las=2</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>1<a href="/images/R/barplot06.png"></a></p>
+<p><img src="/images/R/barplot06.png" alt></p>
 <p>2.7 坐标轴颜色，字体，字号</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">barplot(height=data<span class="variable">$samplevalue</span>,</span><br><span class="line">names=data<span class="variable">$samplename</span>,</span><br><span class="line">col=cols,</span><br><span class="line">border=<span class="string">"blue"</span>,</span><br><span class="line">main=<span class="string">"My title"</span>,</span><br><span class="line">xlab=<span class="string">"Name"</span>,</span><br><span class="line">ylab=<span class="string">"Value"</span>,</span><br><span class="line">ylim=c(0,13),</span><br><span class="line">col.axis=<span class="string">"green"</span>, </span><br><span class="line">font.axis=2, </span><br><span class="line">cex.axis=1 </span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>1<a href="/images/R/barplot07.png"></a></p>
+<p><img src="/images/R/barplot07.png" alt></p>
 
       
     </div>
