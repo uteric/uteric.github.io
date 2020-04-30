@@ -23,13 +23,14 @@
     <published>2020-04-30T15:30:45.000Z</published>
     <updated>2020-04-30T15:30:45.000Z</updated>
     
-    <content type="html"><![CDATA[<p>This file is in R folder.</p>]]></content>
+    <content type="html"><![CDATA[<p>“<img src="/images/image.jpeg" alt>“</p><p><img src="/images/test.jpeg" alt></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;This file is in R folder.&lt;/p&gt;
+        &lt;p&gt;“&lt;img src=&quot;/images/image.jpeg&quot; alt&gt;“&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/test.jpeg&quot; alt&gt;&lt;/p&gt;
 
       
     
