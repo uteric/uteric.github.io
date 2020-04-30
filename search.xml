@@ -3758,6 +3758,7 @@ done
     <title>test</title>
     <url>/test/</url>
     <content><![CDATA[<p>This is a test file, created on 4/30/2020.</p>
+<p>Anyway, it works now, even if password is still needed.</p>
 ]]></content>
   </entry>
   <entry>
