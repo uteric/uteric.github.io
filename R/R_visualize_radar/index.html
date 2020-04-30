@@ -99,14 +99,19 @@
 <meta name="keywords" content="R可视化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R可视化-雷达图">
-<meta property="og:url" content="http://uteric.github.io/R/R可视化-雷达图/index.html">
+<meta property="og:url" content="http://uteric.github.io/R/R_visualize_radar/index.html">
 <meta property="og:site_name" content="诸子百家">
 <meta property="og:description" content="雷达图（radar, spider, or web plot），可以使用R中的fmsb程序包构建； 适合作雷达图的数据是极特别的，只有一行，同时需要对列进行命名；作图之前，需要在数据中添加额外两行，第一行表示最大值，第二行表示最小值； 数据准备就绪后，加载fmsb，并使用radarchart()函数作图即可； 一、简单的雷达图123456789101112131415161718192021222">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://uteric.github.io/images/R/radar01.png">
+<meta property="og:image" content="http://uteric.github.io/images/R/radar02.png">
+<meta property="og:image" content="http://uteric.github.io/images/R/radar03.png">
+<meta property="og:image" content="http://uteric.github.io/images/R/radar04.png">
 <meta property="og:updated_time" content="2020-02-07T02:12:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="R可视化-雷达图">
 <meta name="twitter:description" content="雷达图（radar, spider, or web plot），可以使用R中的fmsb程序包构建； 适合作雷达图的数据是极特别的，只有一行，同时需要对列进行命名；作图之前，需要在数据中添加额外两行，第一行表示最大值，第二行表示最小值； 数据准备就绪后，加载fmsb，并使用radarchart()函数作图即可； 一、简单的雷达图123456789101112131415161718192021222">
+<meta name="twitter:image" content="http://uteric.github.io/images/R/radar01.png">
 
 
 
@@ -135,7 +140,7 @@
 
 
 
-  <link rel="canonical" href="http://uteric.github.io/R/R可视化-雷达图/">
+  <link rel="canonical" href="http://uteric.github.io/R/R_visualize_radar/">
 
 
 
@@ -335,7 +340,7 @@ ga('send', 'pageview');
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/R/R可视化-雷达图/">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/R/R_visualize_radar/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="括囊无誉">
@@ -406,8 +411,8 @@ ga('send', 'pageview');
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/R/R可视化-雷达图/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="R/R可视化-雷达图/" itemprop="commentCount"></span>
+                <a href="/R/R_visualize_radar/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="R/R_visualize_radar/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -444,10 +449,17 @@ ga('send', 'pageview');
 <p>适合作雷达图的数据是极特别的，只有一行，同时需要对列进行命名；作图之前，需要在数据中添加额外两行，第一行表示最大值，第二行表示最小值；</p>
 <p>数据准备就绪后，加载fmsb，并使用radarchart()函数作图即可；</p>
 <h1 id="一、简单的雷达图"><a href="#一、简单的雷达图" class="headerlink" title="一、简单的雷达图"></a>一、简单的雷达图</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&gt; library(fmsb)</span><br><span class="line"><span class="comment"># 作图数据</span></span><br><span class="line">&gt; var1 &lt;- sample(3:25,15,replace=T)</span><br><span class="line">&gt; var1</span><br><span class="line">[1] 18 20 18 25 23 15 19 12 20 21  3  5 22 21 15</span><br><span class="line"><span class="comment"># 通过矩阵平铺成一行；</span></span><br><span class="line">&gt; data &lt;- matrix(var1,nrow=1)</span><br><span class="line">&gt; data</span><br><span class="line">[,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13] [,14] [,15]</span><br><span class="line">[1,]   18   20   18   25   23   15   19   12   20    21     3     5    22    21    15</span><br><span class="line"><span class="comment"># 转化为数据框，以增加数据类型；   </span></span><br><span class="line">&gt; data &lt;- as.data.frame(data)</span><br><span class="line">&gt; data</span><br><span class="line">V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13 V14 V15</span><br><span class="line">1 18 20 18 25 23 15 19 12 20  21   3   5  22  21  15</span><br><span class="line"><span class="comment"># 更改列名；</span></span><br><span class="line">&gt; colnames(data) &lt;- LETTERS[1:15]</span><br><span class="line">&gt; data</span><br><span class="line">A  B  C  D  E  F  G  H  I  J K L  M  N  O</span><br><span class="line">1 18 20 18 25 23 15 19 12 20 21 3 5 22 21 15</span><br><span class="line"><span class="comment"># 定义最大值与最小值；</span></span><br><span class="line">&gt; var2 &lt;- rep(25,15)</span><br><span class="line">&gt; var3 &lt;- rep(0,15)</span><br><span class="line">&gt; var2</span><br><span class="line">[1] 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25</span><br><span class="line">&gt; var3</span><br><span class="line">[1] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span><br><span class="line"><span class="comment"># 加入到数据框前两行中，注意顺序；</span></span><br><span class="line">&gt; data &lt;- rbind(var2,var3,data)</span><br><span class="line">&gt; data</span><br><span class="line">A  B  C  D  E  F  G  H  I  J  K  L  M  N  O</span><br><span class="line">1 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25</span><br><span class="line">2  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0</span><br><span class="line">3 18 20 18 25 23 15 19 12 20 21  3  5 22 21 15</span><br><span class="line"><span class="comment"># 最后一步，作图；</span></span><br><span class="line">&gt; p &lt;- radarchart(data)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/R/radar01.png" alt></p>
 <h1 id="二、图形优化"><a href="#二、图形优化" class="headerlink" title="二、图形优化"></a>二、图形优化</h1><p>主要参数如下：<br>axistype，坐标轴类型，[0:5]， 0=无标签；1=中心标签；2=周围标签；3=中心与周围标签；4=标签1的分数形式；5=标签3的分数形式；<br>seg，每个轴的段数，默认为4；<br>pty，数据点符号，默认16，若指定32，即不加点；<br>pcol，连接各点的外框线的颜色，默认[1：8]，1=黑色，2=红色，3=绿色，4=蓝色，5=兰色，6=紫色，7=黄色，8=灰色；<br>plty，连接各点的外框线的类型，默认[1：6]，1=实线，[2:6]=虚线；<br>plwd，连接各点的外框线的宽度；<br>pfcol，外框线圈住的面积中的填充色；<br>cglcol，网格线的颜色；<br>cglwd，网格线的宽度，默认为1；<br>cglty，网格线的类型：1=实线；2=虚线；3=细虚线；4=致密虚线，默认为3；<br>axislabcol，坐标轴标签的颜色；<br>casixlables，坐标轴刻度，定义最小值，最大值，以及刻度宽度；<br>title，标题；<br>centerzero，默认为FALSE，否则从（0，0）为中心作图；<br>vlcex，组标签字体大小；</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">radarchart(data,</span><br><span class="line">axistype=1,seg=5,</span><br><span class="line">pty=16,pcol=rgb(0.2,0.5,0.5,0.9),plty=7,pfcol=rgb(0.2,0.5,0.5,0.5),plwd=3,</span><br><span class="line">cglcol=<span class="string">"grey"</span>,cglty=1,axislabcol=<span class="string">"blue"</span>,cglwd=1.5,caxislabels=seq(0,30,5),</span><br><span class="line">vlcex=0.8,title=<span class="string">"Radar Plot"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/R/radar02.png" alt></p>
 <h1 id="三、多组叠加"><a href="#三、多组叠加" class="headerlink" title="三、多组叠加"></a>三、多组叠加</h1><p>注意：尽管多个雷达图可以叠加，但是不要叠加超过3层，否则会造成阅读困难；</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据方面，我们把刚才的数据稍作修改，再添加两行进去即可；</span></span><br><span class="line">var1 &lt;- sample(3:50,24,replace=T)</span><br><span class="line">data &lt;- matrix(var1,nrow=3)</span><br><span class="line">data &lt;- as.data.frame(data)</span><br><span class="line">colnames(data) &lt;- LETTERS[1:8]</span><br><span class="line">rownames(data) &lt;- paste(<span class="string">"sample"</span>,letters[1:3],sep=<span class="string">"-"</span>)</span><br><span class="line">var2 &lt;- rep(50,8)</span><br><span class="line">var3 &lt;- rep(0,8)</span><br><span class="line">data &lt;- rbind(var2,var3,data)</span><br><span class="line">data</span><br><span class="line">radarchart(data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对雷达图进行优化，主要是控制颜色；</span></span><br><span class="line">color_line=c(rgb(0.2,0.5,0.5,0.9), rgb(0.8,0.2,0.5,0.9) , rgb(0.7,0.5,0.1,0.9))</span><br><span class="line">color_fill=c(rgb(0.2,0.5,0.5,0.4), rgb(0.8,0.2,0.5,0.4) , rgb(0.7,0.5,0.1,0.4))</span><br><span class="line">radarchart(data,</span><br><span class="line">axistype=1,seg=5,</span><br><span class="line">pty=16,pcol=color_line,plty=7,pfcol=color_fill,plwd=3,</span><br><span class="line">cglcol=<span class="string">"grey"</span>,cglty=1,axislabcol=<span class="string">"grey"</span>,cglwd=1.5,caxislabels=seq(0,50,10),</span><br><span class="line">vlcex=1.2,title=<span class="string">"Multi-Radar Plot"</span>)</span><br><span class="line"><span class="comment"># 多个图叠加时需要加上图例，否则让人不知所云；</span></span><br><span class="line">legend(x=0.9,y=1.2,legend=rownames(data[c(3,4,5),]),bty = <span class="string">"n"</span>, pch=20 , col=color_line , text.col=color_line, cex=1, pt.cex=1.5)</span><br><span class="line"><span class="comment"># 到此为止吧，雷达图尽在于此了。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据方面，我们把刚才的数据稍作修改，再添加两行进去即可；</span></span><br><span class="line">var1 &lt;- sample(3:50,24,replace=T)</span><br><span class="line">data &lt;- matrix(var1,nrow=3)</span><br><span class="line">data &lt;- as.data.frame(data)</span><br><span class="line">colnames(data) &lt;- LETTERS[1:8]</span><br><span class="line">rownames(data) &lt;- paste(<span class="string">"sample"</span>,letters[1:3],sep=<span class="string">"-"</span>)</span><br><span class="line">var2 &lt;- rep(50,8)</span><br><span class="line">var3 &lt;- rep(0,8)</span><br><span class="line">data &lt;- rbind(var2,var3,data)</span><br><span class="line">data</span><br><span class="line">radarchart(data)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/R/radar03.png" alt></p>
+<p>对雷达图进行优化，主要是控制颜色；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">color_line=c(rgb(0.2,0.5,0.5,0.9), rgb(0.8,0.2,0.5,0.9) , rgb(0.7,0.5,0.1,0.9))</span><br><span class="line">color_fill=c(rgb(0.2,0.5,0.5,0.4), rgb(0.8,0.2,0.5,0.4) , rgb(0.7,0.5,0.1,0.4))</span><br><span class="line">radarchart(data,</span><br><span class="line">axistype=1,seg=5,</span><br><span class="line">pty=16,pcol=color_line,plty=7,pfcol=color_fill,plwd=3,</span><br><span class="line">cglcol=<span class="string">"grey"</span>,cglty=1,axislabcol=<span class="string">"grey"</span>,cglwd=1.5,caxislabels=seq(0,50,10),</span><br><span class="line">vlcex=1.2,title=<span class="string">"Multi-Radar Plot"</span>)</span><br><span class="line"><span class="comment"># 多个图叠加时需要加上图例，否则让人不知所云；</span></span><br><span class="line">legend(x=0.9,y=1.2,legend=rownames(data[c(3,4,5),]),bty = <span class="string">"n"</span>, pch=20 , col=color_line , text.col=color_line, cex=1, pt.cex=1.5)</span><br><span class="line"><span class="comment"># 到此为止吧，雷达图尽在于此了。</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/R/radar04.png" alt></p>
+
       
     </div>
 
@@ -460,7 +472,7 @@ ga('send', 'pageview');
 </li>
 <li class="post-copyright-link">
 <strong>本文链接：</strong>
-<a href="/R/R可视化-雷达图/" title="R可视化-雷达图">R/R可视化-雷达图/</a>
+<a href="/R/R_visualize_radar/" title="R可视化-雷达图">R/R_visualize_radar/</a>
 </li>
 <li class="post-copyright-license">
 <strong>版权声明： </strong>
@@ -537,7 +549,7 @@ ga('send', 'pageview');
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/R/R可视化-绘制柱形图1/" rel="prev" title="R可视化-绘制柱形图1">
+              <a href="/R/R_visualize_bar1/" rel="prev" title="R可视化-绘制柱形图1">
                 R可视化-绘制柱形图1 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -861,8 +873,8 @@ ga('send', 'pageview');
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://uteric.github.io/R/R可视化-雷达图/';
-          this.page.identifier = 'R/R可视化-雷达图/';
+          this.page.url = 'http://uteric.github.io/R/R_visualize_radar/';
+          this.page.identifier = 'R/R_visualize_radar/';
           this.page.title = 'R可视化-雷达图';
         };
         var d = document, s = d.createElement('script');
