@@ -333,7 +333,7 @@ ga('send', 'pageview');
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/R/R可视化-绘制柱形图2/">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/R/R_learn_9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="括囊无誉">
@@ -352,7 +352,7 @@ ga('send', 'pageview');
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/R/R可视化-绘制柱形图2/" itemprop="url">R可视化-绘制柱形图2</a></h1>
+                <a class="post-title-link" href="/R/R_learn_9/" itemprop="url">R语言学习笔记9-绘制barplot</a></h1>
         
 
         <div class="post-meta">
@@ -364,8 +364,8 @@ ga('send', 'pageview');
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-06T22:37:57-05:00">
-                2020-02-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-08T11:33:11-04:00">
+                2018-10-08
               </time>
             
 
@@ -406,8 +406,8 @@ ga('send', 'pageview');
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/R/R可视化-绘制柱形图2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="R/R可视化-绘制柱形图2/" itemprop="commentCount"></span>
+                <a href="/R/R_learn_9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="R/R_learn_9/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -437,13 +437,14 @@ ga('send', 'pageview');
       
         
           
-          首先，我们准备绘图数据，数据来源是2018年的一篇研究论文，In Vitro and In Vivo Gene Therapy Vector Evolution via Multispecies Interbreeding and Retargeting of Adeno-Associated Viruses，我们把数据输入到文件AAV infectivity.csv，并保存在工作目录下。
-下面开始正式绘图：
-123library(ggplot2) # 加载ggplot2data1=read.c
+          一、条形图barplot基本语法：
+1barplot(H,xlab,ylab,main, names.arg,col,horiz=FALSE,density,las)
+H - 用于创建柱状图的矢量或矩阵xlab - X轴标签ylab - Y轴标签main - 柱状图的标题names.arg - 每个柱的名称col - 柱的颜色horiz - 默认为FALSE，即竖直方向density - 条纹密度las - 坐标轴字体方向，las=1为水平方向，las=2为垂直方向
+12data &lt;- c
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/R/R可视化-绘制柱形图2/#more" rel="contents">
+            <a class="btn" href="/R/R_learn_9/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -505,7 +506,7 @@ ga('send', 'pageview');
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/R/R_visualize_bar1/">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/R/R语言学习笔记8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="括囊无誉">
@@ -524,7 +525,7 @@ ga('send', 'pageview');
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/R/R_visualize_bar1/" itemprop="url">R可视化-绘制柱形图1</a></h1>
+                <a class="post-title-link" href="/R/R语言学习笔记8/" itemprop="url">R语言学习笔记8-集合运算</a></h1>
         
 
         <div class="post-meta">
@@ -536,8 +537,8 @@ ga('send', 'pageview');
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-06T22:37:51-05:00">
-                2020-02-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-05T23:22:07-04:00">
+                2018-10-05
               </time>
             
 
@@ -578,8 +579,8 @@ ga('send', 'pageview');
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/R/R_visualize_bar1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="R/R_visualize_bar1/" itemprop="commentCount"></span>
+                <a href="/R/R语言学习笔记8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="R/R语言学习笔记8/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -609,11 +610,14 @@ ga('send', 'pageview');
       
         
           
-          一、模拟数据 ＃123456789101112data &lt;- data.frame(samplename=letters[1:6], # 变量samplename，赋值从字母A－F；samplevalue=sample(seq(3,12),6) #变量samplevalue，赋值为3－12之间的随机数；)data # 查看data，如下：samplename samplevalue1          a           62          b           73      
+          一、交集使用intersect计算两个向量的交集：
+12345678x=1:10y=3:15z=5:9# 定义x, y, z三个向量intersect(x,y)# 3  4  5  6  7  8  9 10intersect(x,y,z)# Error in intersect(x, y, z) : 参数没有用(z) #若使用intersect计算三个向量的交集，则会报错
+使用intersect计算两个以上向量的交集：
+12A &lt;- Reduce(intersect,list(x,y,z
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/R/R_visualize_bar1/#more" rel="contents">
+            <a class="btn" href="/R/R语言学习笔记8/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -675,7 +679,7 @@ ga('send', 'pageview');
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/R/R_visualize_radar/">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/RNASEQ/RNASEQ 差异分析与绘制热图/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="括囊无誉">
@@ -694,7 +698,7 @@ ga('send', 'pageview');
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/R/R_visualize_radar/" itemprop="url">R可视化-雷达图</a></h1>
+                <a class="post-title-link" href="/RNASEQ/RNASEQ 差异分析与绘制热图/" itemprop="url">RNASEQ分析入门笔记10-差异分析与绘制热图（命令集合）</a></h1>
         
 
         <div class="post-meta">
@@ -706,8 +710,8 @@ ga('send', 'pageview');
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-06T21:12:13-05:00">
-                2020-02-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-05T23:19:13-04:00">
+                2018-10-05
               </time>
             
 
@@ -748,8 +752,8 @@ ga('send', 'pageview');
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/R/R_visualize_radar/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="R/R_visualize_radar/" itemprop="commentCount"></span>
+                <a href="/RNASEQ/RNASEQ 差异分析与绘制热图/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="RNASEQ/RNASEQ 差异分析与绘制热图/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -779,14 +783,11 @@ ga('send', 'pageview');
       
         
           
-          雷达图（radar, spider, or web plot），可以使用R中的fmsb程序包构建；
-适合作雷达图的数据是极特别的，只有一行，同时需要对列进行命名；作图之前，需要在数据中添加额外两行，第一行表示最大值，第二行表示最小值；
-数据准备就绪后，加载fmsb，并使用radarchart()函数作图即可；
-一、简单的雷达图123456789101112131415161718192021222324252627282930313233343536&gt; library(fmsb)# 作图数
+          一、差异分析1234567891011121314151617181920212223242526272829setwd("E:/R/My Analysis/") # 设置工作目录getwd() # 查看当前工作目录dir() # 查看工作目录下的文件library(DESeq2) # 载入DESeq2data &lt;- read.delim("clipboard",header=T,row.names=1) # 从剪贴板载入要分析的数据countData &lt;- dataconditio
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/R/R_visualize_radar/#more" rel="contents">
+            <a class="btn" href="/RNASEQ/RNASEQ 差异分析与绘制热图/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -848,7 +849,7 @@ ga('send', 'pageview');
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/R/R语言学习笔记-赋值符号（<-与=）/">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/EXCEL/EXCEL学习笔记1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="括囊无誉">
@@ -867,7 +868,7 @@ ga('send', 'pageview');
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/R/R语言学习笔记-赋值符号（<-与=）/" itemprop="url">R语言学习笔记-赋值符号（<-与=）< a></-与=）<></a></h1>
+                <a class="post-title-link" href="/EXCEL/EXCEL学习笔记1/" itemprop="url">EXCEL学习笔记1-AND与OR的用法</a></h1>
         
 
         <div class="post-meta">
@@ -879,8 +880,8 @@ ga('send', 'pageview');
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-06T21:09:51-05:00">
-                2020-02-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-05T23:16:43-04:00">
+                2018-10-05
               </time>
             
 
@@ -921,8 +922,8 @@ ga('send', 'pageview');
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/R/R语言学习笔记-赋值符号（<-与=）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="R/R语言学习笔记-赋值符号（<-与=）/" itemprop="commentCount"></span>
+                <a href="/EXCEL/EXCEL学习笔记1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="EXCEL/EXCEL学习笔记1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -952,12 +953,11 @@ ga('send', 'pageview');
       
         
           
-          在R中，运算符&lt;-和=是等价的，但是，赋值符号&lt;-更加科学，它可以使用在任何地方，不会引起歧义；
-1The operators &lt;- and = assign into the environment in which they are evaluated. The operator &lt;- can be used anywhere, whereas the operator = is only allowed at the top level (e.g., in the 
-          ...
+          12=IF(AND(AC2&lt;AD2,Y2&lt;AB2),"Y","N") # 套用IF语句，如果AC2&lt;AD2且Y2&lt;AB2，则判断为Y，否则为N，注意，Y或N要加引号，否则报错=IF(OR(AE2="Y",AF2="Y"),"Y","N") # 套用IF语句，如果AE2="Y"或AF2="Y"，则判断为Y，否则为N
+          
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/R/R语言学习笔记-赋值符号（<-与=）/#more" rel="contents">
+            <a class="btn" href="/EXCEL/EXCEL学习笔记1/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1019,7 +1019,7 @@ ga('send', 'pageview');
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/R/R语言学习笔记-数据类型：向量，矩阵，数组，数据框，列表/">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/R/R语言学习笔记7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="括囊无誉">
@@ -1038,7 +1038,7 @@ ga('send', 'pageview');
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/R/R语言学习笔记-数据类型：向量，矩阵，数组，数据框，列表/" itemprop="url">R语言学习笔记-数据类型：向量，矩阵，数组，数据框，列表</a></h1>
+                <a class="post-title-link" href="/R/R语言学习笔记7/" itemprop="url">R语言学习笔记7-最大整数问题</a></h1>
         
 
         <div class="post-meta">
@@ -1050,8 +1050,8 @@ ga('send', 'pageview');
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-06T21:06:08-05:00">
-                2020-02-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-26T23:16:58-04:00">
+                2018-09-26
               </time>
             
 
@@ -1092,8 +1092,8 @@ ga('send', 'pageview');
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/R/R语言学习笔记-数据类型：向量，矩阵，数组，数据框，列表/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="R/R语言学习笔记-数据类型：向量，矩阵，数组，数据框，列表/" itemprop="commentCount"></span>
+                <a href="/R/R语言学习笔记7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="R/R语言学习笔记7/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1123,11 +1123,14 @@ ga('send', 'pageview');
       
         
           
-          一、向量(vector)123456789101112131415161718&gt; A &lt;- c(1,2,3,4,5,6)&gt; B &lt;- c("A","B","C","D","E")&gt; A[1] 1 2 3 4 5 6&gt; B[1] "A" "B" "C" "D" "E"&gt; class(A)[1] "numeric"&gt; mode(A)[1] "numeric"&gt; typeof(A)[1] "double"&gt; class(B)[1] "char
+          最近在分析RNA-SEQ结果时，遇到一个问题，总是提示：
+message: In mde(x) : NAs introduced by coercion to integer range 
+最开始时，我以为是原始数据中有NAs，但是检查了一遍发现没有，真正的原因是，原始数据中的整数太大，超出机器设定的最高限，因此才会报错。
+12345678.Machine$integer.max # 查看最大整数# [1] 2147483647x &lt;- as.interger(.Machine$integ
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/R/R语言学习笔记-数据类型：向量，矩阵，数组，数据框，列表/#more" rel="contents">
+            <a class="btn" href="/R/R语言学习笔记7/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1189,7 +1192,7 @@ ga('send', 'pageview');
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/R/R语言学习笔记-矩阵的创建与操作方法/">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/R/R语言学习笔记6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="括囊无誉">
@@ -1208,7 +1211,7 @@ ga('send', 'pageview');
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/R/R语言学习笔记-矩阵的创建与操作方法/" itemprop="url">R语言学习笔记-矩阵的创建与操作方法</a></h1>
+                <a class="post-title-link" href="/R/R语言学习笔记6/" itemprop="url">R语言学习笔记6-基本命令</a></h1>
         
 
         <div class="post-meta">
@@ -1220,8 +1223,8 @@ ga('send', 'pageview');
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-06T21:03:52-05:00">
-                2020-02-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-26T23:15:28-04:00">
+                2018-09-26
               </time>
             
 
@@ -1262,8 +1265,8 @@ ga('send', 'pageview');
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/R/R语言学习笔记-矩阵的创建与操作方法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="R/R语言学习笔记-矩阵的创建与操作方法/" itemprop="commentCount"></span>
+                <a href="/R/R语言学习笔记6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="R/R语言学习笔记6/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1293,11 +1296,26 @@ ga('send', 'pageview');
       
         
           
-          一、创建矩阵1234567891011121314151617181920# 创建两个数字变量var5=sample(31:60,25,replace=T)var6=sample(1:30,25,replace=T)# 创建两个5行5列的矩阵，创建5行5列的矩阵的原因，是为了方便说明问题；A &lt;- matrix(var5,nrow=5)B &lt;- matrix(var6,nrow=5)&gt; A[,1] [,2] [,3] [,4] [,5][1,]   43   32   54  
+          1、查看当前目录
+1getwd() # get working directory
+2、改变工作目录
+1setwd()
+3、查看当前目录中的文件
+1dir()
+4、查看行数
+1nrow()
+5、排序
+1data &lt;- data[order(data$row,decreasing=FALSE),] # decreasing=FALSE为默认升序排列
+6、查看文件
+12head() # 查看前6行tail() # 查看最后6行
+7、查看类型
+1class()
+8、载入文档
+123read.cs
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/R/R语言学习笔记-矩阵的创建与操作方法/#more" rel="contents">
+            <a class="btn" href="/R/R语言学习笔记6/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1359,7 +1377,7 @@ ga('send', 'pageview');
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/R/R语言学习笔记-数据框与矩阵的区别/">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/RNASEQ/RNASEQ clusterProfiler富集分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="括囊无誉">
@@ -1378,7 +1396,7 @@ ga('send', 'pageview');
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/R/R语言学习笔记-数据框与矩阵的区别/" itemprop="url">R语言学习笔记-数据框与矩阵的区别</a></h1>
+                <a class="post-title-link" href="/RNASEQ/RNASEQ clusterProfiler富集分析/" itemprop="url">RNASEQ分析入门笔记10-clusterProfiler富集分析</a></h1>
         
 
         <div class="post-meta">
@@ -1390,8 +1408,8 @@ ga('send', 'pageview');
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-06T20:57:54-05:00">
-                2020-02-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-24T21:11:12-04:00">
+                2018-09-24
               </time>
             
 
@@ -1432,8 +1450,8 @@ ga('send', 'pageview');
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/R/R语言学习笔记-数据框与矩阵的区别/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="R/R语言学习笔记-数据框与矩阵的区别/" itemprop="commentCount"></span>
+                <a href="/RNASEQ/RNASEQ clusterProfiler富集分析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="RNASEQ/RNASEQ clusterProfiler富集分析/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1463,11 +1481,12 @@ ga('send', 'pageview');
       
         
           
-          一、数据框(data.frame)1234567891011121314&gt; var1=c(1,2,3,4,5,6)&gt; var2=LETTERS[1:6]&gt; var3=c(7,8,9,10,11,12)&gt; data &lt;- data.frame (var1,var2,var3)&gt; datavar1 var2 var31    1    A    72    2    B    83    3    C    94    4    D   105    5    E
+          一、安装clusterProfiler
+source(“https://bioconductor.org/biocLite.R&quot;) # 如果报错，请尝试http://biocLite(“clusterProfiler”)library(clusterProfiler) # 载入包，测试是否安装成功，如果提示找不到某个包，则安装相关的包即可，比如我的电脑提示“不存在叫‘rvcheck’这个名字的程辑包”，则使用如下语法安装“rvcheck”，如缺乏其他包，也是同理。install.pac
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/R/R语言学习笔记-数据框与矩阵的区别/#more" rel="contents">
+            <a class="btn" href="/RNASEQ/RNASEQ clusterProfiler富集分析/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1529,7 +1548,7 @@ ga('send', 'pageview');
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/RNASEQ/GEO FTP address change/">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/R/R语言学习笔记5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="括囊无誉">
@@ -1548,7 +1567,7 @@ ga('send', 'pageview');
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/RNASEQ/GEO FTP address change/" itemprop="url">GEO数据库测序数据下载位置变更</a></h1>
+                <a class="post-title-link" href="/R/R语言学习笔记5/" itemprop="url">R语言学习笔记5-第1列作为行名</a></h1>
         
 
         <div class="post-meta">
@@ -1560,8 +1579,8 @@ ga('send', 'pageview');
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-28T18:08:45-05:00">
-                2019-12-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-19T23:48:04-04:00">
+                2018-09-19
               </time>
             
 
@@ -1602,8 +1621,8 @@ ga('send', 'pageview');
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/RNASEQ/GEO FTP address change/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="RNASEQ/GEO FTP address change/" itemprop="commentCount"></span>
+                <a href="/R/R语言学习笔记5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="R/R语言学习笔记5/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1633,13 +1652,13 @@ ga('send', 'pageview');
       
         
           
-          GEO是一个公共基因数据库，包含绝大多数已发表文章的原始测序数据，在学习测序数据分析时，我们需要从GEO数据库来下载原始测序文件。
-去年我在学习RNA测序分析时，写了几篇RNASEQ分析入门笔记，最近，当我再打开时，发现之前提到的SRA测序文件下载地址发生了变动，因此，特别写下这篇小小笔记以方便初学RNASEQ的朋友们少走弯路。
-在这篇笔记RNASEQ分析入门笔记2-下载原始数据中，[SRR3589959]的下载地址原本是：ftp://ftp-trace.ncbi.nlm.nih.gov/sra
+          比如一个名为diff的数据，我们来看一下最后五行：
+1tail (diff, n=5) # 查看最后五行
+control1 control2      rep1      rep248816 ENSMUSG00000110418 0.000000        0 0.0000000 0.000000048817 ENSMUSG00000110420 0.000000        0 0.0000000 0.000000048818 ENSMUSG00000110421 0.000000   
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/RNASEQ/GEO FTP address change/#more" rel="contents">
+            <a class="btn" href="/R/R语言学习笔记5/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1701,7 +1720,7 @@ ga('send', 'pageview');
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/Linux/Ubuntu Java Install/">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/RNASEQ/RNASEQ 使用pheatmap绘制热图/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="括囊无誉">
@@ -1720,7 +1739,7 @@ ga('send', 'pageview');
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Linux/Ubuntu Java Install/" itemprop="url">Ubuntu系统安装JAVA</a></h1>
+                <a class="post-title-link" href="/RNASEQ/RNASEQ 使用pheatmap绘制热图/" itemprop="url">RNASEQ分析入门笔记9-使用pheatmap绘制热图</a></h1>
         
 
         <div class="post-meta">
@@ -1732,8 +1751,8 @@ ga('send', 'pageview');
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-28T18:08:40-05:00">
-                2019-12-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-19T00:14:41-04:00">
+                2018-09-19
               </time>
             
 
@@ -1774,8 +1793,8 @@ ga('send', 'pageview');
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Linux/Ubuntu Java Install/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Linux/Ubuntu Java Install/" itemprop="commentCount"></span>
+                <a href="/RNASEQ/RNASEQ 使用pheatmap绘制热图/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="RNASEQ/RNASEQ 使用pheatmap绘制热图/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1805,13 +1824,12 @@ ga('send', 'pageview');
       
         
           
-          1、安装系统默认的JAVA1apt-get install default-jdk
-2、安装JAVA11或JAVA131234add-apt-repository ppa:linuxuprising/javaapt-get updateapt-get install oracle-java11-installerapt-get install oracle-java13-installer
-
-          
+          一、安装pheatmap123source("http://bioconductor.org/biocLite.R") #调入安装工具biocLite("pheatmap") # 安装pheatmaplibrary(pheatmap) # 检测是否安装成功
+二、读取数据12setwd("E:/R") # 设置工作路径，本例是在E盘下的R文件夹，如果要查询当前工作路径，则使用getwd()命令，其中，wd=working directorydata &lt;- read.delim("clipbo
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Linux/Ubuntu Java Install/#more" rel="contents">
+            <a class="btn" href="/RNASEQ/RNASEQ 使用pheatmap绘制热图/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1873,7 +1891,7 @@ ga('send', 'pageview');
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/Linux/Youtube dl/">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/RNASEQ/RNASEQ学习流程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="括囊无誉">
@@ -1892,7 +1910,7 @@ ga('send', 'pageview');
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Linux/Youtube dl/" itemprop="url">使用youtube-dl命令下载youtube视频与音频</a></h1>
+                <a class="post-title-link" href="/RNASEQ/RNASEQ学习流程/" itemprop="url">RNASEQ学习流程</a></h1>
         
 
         <div class="post-meta">
@@ -1904,8 +1922,8 @@ ga('send', 'pageview');
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-28T18:08:35-05:00">
-                2019-12-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-21T23:33:04-04:00">
+                2018-05-21
               </time>
             
 
@@ -1946,8 +1964,8 @@ ga('send', 'pageview');
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Linux/Youtube dl/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Linux/Youtube dl/" itemprop="commentCount"></span>
+                <a href="/RNASEQ/RNASEQ学习流程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="RNASEQ/RNASEQ学习流程/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1977,14 +1995,15 @@ ga('send', 'pageview');
       
         
           
-          1、安装youtube-dl123sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dlsudo chmod a+rx /usr/local/bin/youtube-dlhash -r
-现在，你可以使用如下命令来将youtube-dl更新到最新版本：
-12sudo youtube-dl -U # 版本更新youtube-dl --version # 检查版本
-如果你之前使用apt命令
+          参考文献：Transcript-level expression analysis of RNA-seq experiments with HISAT, StringTie and Ballgown
+
+一、下载数据并解压12wget ftp://ftp.ccb.jhu.edu/pub/RNAseq_protocol/chrX_data.tar.gz # 下载原始数据tar zxvf chrX_data.tar.gz # 解压
+解压后在当前目录下生成新文件夹chrX_data，里面包含如下文件：
+
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Linux/Youtube dl/#more" rel="contents">
+            <a class="btn" href="/RNASEQ/RNASEQ学习流程/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

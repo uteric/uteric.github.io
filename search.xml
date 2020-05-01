@@ -4931,6 +4931,32 @@ See</code>config.log’ for more details<br>ERROR: configuration failed for pack
       </tags>
   </entry>
   <entry>
+    <title>R可视化-小提琴图</title>
+    <url>/R/R_visualize_violin/</url>
+    <content><![CDATA[<h1 id="一、简单小提琴图"><a href="#一、简单小提琴图" class="headerlink" title="一、简单小提琴图"></a>一、简单小提琴图</h1><p>小提琴图的作图数据同箱线图，X轴为定性变量，Y轴为定量变量，数据量足够大才有统计意义；</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">library(hrbrthemes)</span><br><span class="line"></span><br><span class="line">name &lt;- c(rep(<span class="string">"A"</span>,300),rep(<span class="string">"B"</span>,300),rep(<span class="string">"C"</span>,100),rep(<span class="string">"C"</span>,200),rep(<span class="string">"D"</span>,300))</span><br><span class="line">value &lt;- c(rnorm(300,10,2),rnorm(300,15,4),rnorm(100,5,1),rnorm(200,12,1),rnorm(300,3,1))</span><br><span class="line">data &lt;- data.frame(name,value)</span><br><span class="line"></span><br><span class="line">pviolin &lt;- ggplot(data,aes(x=name,y=value,fill=name))+</span><br><span class="line">geom_violin()+</span><br><span class="line">geom_jitter(color=<span class="string">"black"</span>, size=0.4, alpha=0.9)+</span><br><span class="line">theme_ipsum()+</span><br><span class="line">theme(legend.position=<span class="string">"none"</span>)+</span><br><span class="line">ggtitle(<span class="string">"violin plot with jitter"</span>) +</span><br><span class="line">xlab(<span class="string">""</span>)</span><br><span class="line">pviolin</span><br></pre></td></tr></table></figure>
+<p><img src="/images/R/violin01.png" alt></p>
+<h1 id="二、小提琴图优化"><a href="#二、小提琴图优化" class="headerlink" title="二、小提琴图优化"></a>二、小提琴图优化</h1><p>2.1 排序</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 如果要对X轴进行升序排列，使用reorder(x=x,y=y)函数；</span></span><br><span class="line"><span class="comment"># 若要降序排列，则使用reorder(x=x,y=-y)函数；</span></span><br><span class="line">pviolin &lt;- ggplot(data,aes(x=reorder(name,-value),y=value,fill=name))+</span><br><span class="line">geom_violin()+</span><br><span class="line">geom_jitter(color=<span class="string">"black"</span>, size=0.4, alpha=0.9)+</span><br><span class="line">theme_ipsum()+</span><br><span class="line">theme(legend.position=<span class="string">"none"</span>)+</span><br><span class="line">ggtitle(<span class="string">"violin plot with jitter"</span>) +</span><br><span class="line">xlab(<span class="string">""</span>)</span><br><span class="line">pviolin</span><br></pre></td></tr></table></figure>
+<p><img src="/images/R/violin02.png" alt></p>
+<p>2.2 调节Y轴限度，使用ylim()函数</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ggsave(pviolin,filename=<span class="string">"violin4.png"</span>,width=12,height=9)</span><br><span class="line">pviolin &lt;- ggplot(data,aes(x=reorder(name,-value),y=value,fill=name))+</span><br><span class="line">geom_violin()+</span><br><span class="line">geom_boxplot(width=0.1,color=<span class="string">"grey"</span>,alpha=0.3)+</span><br><span class="line">theme_ipsum()+</span><br><span class="line">theme(legend.position=<span class="string">"none"</span>)+</span><br><span class="line">ggtitle(<span class="string">"violin plot with jitter"</span>) +</span><br><span class="line">xlab(<span class="string">""</span>)+</span><br><span class="line">ylim(0,30)</span><br><span class="line">pviolin</span><br></pre></td></tr></table></figure>
+<p><img src="/images/R/violin03.png" alt></p>
+<p>2.3 绘制水平小提琴图，加上coord_flip()函数</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pviolin &lt;- ggplot(data,aes(x=reorder(name,-value),y=value,fill=name))+</span><br><span class="line">geom_violin()+</span><br><span class="line">geom_jitter(color=<span class="string">"black"</span>, size=0.4, alpha=0.9)+</span><br><span class="line">theme_ipsum()+</span><br><span class="line">theme(legend.position=<span class="string">"none"</span>)+</span><br><span class="line">ggtitle(<span class="string">"violin plot with jitter"</span>) +</span><br><span class="line">xlab(<span class="string">""</span>)+</span><br><span class="line">coord_flip()</span><br><span class="line">pviolin</span><br></pre></td></tr></table></figure>
+<p><img src="/images/R/violin04.png" alt></p>
+<p>2.4 同时绘制小提琴图与箱线图</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pviolin &lt;- ggplot(data,aes(x=reorder(name,-value),y=value,fill=name))+</span><br><span class="line">geom_violin()+</span><br><span class="line">geom_boxplot(width=0.1,color=<span class="string">"grey"</span>,alpha=0.3)+</span><br><span class="line">geom_jitter(color=<span class="string">"black"</span>, size=0.4, alpha=0.9)+</span><br><span class="line">theme_ipsum()+</span><br><span class="line">theme(legend.position=<span class="string">"none"</span>)+</span><br><span class="line">ggtitle(<span class="string">"violin plot with jitter"</span>) +</span><br><span class="line">xlab(<span class="string">""</span>)</span><br><span class="line">pviolin</span><br></pre></td></tr></table></figure>
+<p><img src="/images/R/violin05.png" alt></p>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+      </categories>
+      <tags>
+        <tag>R可视化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>R可视化-散点图</title>
     <url>/R/R_visualize_scatter/</url>
     <content><![CDATA[<p>在绘图之前，先谈谈散点图需要的数据类型。散点，顾名思义，就是很多点分散在平面上，而在平面坐标中，确定一个点需要两个坐标值，因此，绘制散点图的数据需要两列，且两列都是数字，对应的每一行都是平面坐标中的一个点。</p>
@@ -4979,32 +5005,6 @@ See</code>config.log’ for more details<br>ERROR: configuration failed for pack
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">geom_smooth(mapping = NULL, data = NULL, <span class="built_in">stat</span> = <span class="string">"smooth"</span>,</span><br><span class="line">position = <span class="string">"identity"</span>, ..., method = <span class="string">"auto"</span>, formula = y ~ x,</span><br><span class="line">se = TRUE, na.rm = FALSE, show.legend = NA, inherit.aes = TRUE)</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">var5 &lt;- 1:200+rnorm(200,sd=2)</span><br><span class="line">var6 &lt;- 1:200+rnorm(200,sd=5)</span><br><span class="line">var7 &lt;- rep(c(<span class="string">"classI"</span>,<span class="string">"classII"</span>),each=100)</span><br><span class="line">data &lt;- data.frame(var5,var6,var7)</span><br><span class="line">head(data)</span><br><span class="line">pscatter &lt;- ggplot(data,aes(x=var5,y=var6,fill=var7))+</span><br><span class="line">geom_point(color=<span class="string">"blue"</span>,</span><br><span class="line">size=0.9)+</span><br><span class="line">geom_smooth(method=lm,color=<span class="string">"red"</span>,se=F)</span><br><span class="line">pscatter</span><br></pre></td></tr></table></figure>
 <p><img src="/images/R/scatter14.png" alt></p>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-      </categories>
-      <tags>
-        <tag>R可视化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>R可视化-小提琴图</title>
-    <url>/R/R_visualize_violin/</url>
-    <content><![CDATA[<h1 id="一、简单小提琴图"><a href="#一、简单小提琴图" class="headerlink" title="一、简单小提琴图"></a>一、简单小提琴图</h1><p>小提琴图的作图数据同箱线图，X轴为定性变量，Y轴为定量变量，数据量足够大才有统计意义；</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">library(hrbrthemes)</span><br><span class="line"></span><br><span class="line">name &lt;- c(rep(<span class="string">"A"</span>,300),rep(<span class="string">"B"</span>,300),rep(<span class="string">"C"</span>,100),rep(<span class="string">"C"</span>,200),rep(<span class="string">"D"</span>,300))</span><br><span class="line">value &lt;- c(rnorm(300,10,2),rnorm(300,15,4),rnorm(100,5,1),rnorm(200,12,1),rnorm(300,3,1))</span><br><span class="line">data &lt;- data.frame(name,value)</span><br><span class="line"></span><br><span class="line">pviolin &lt;- ggplot(data,aes(x=name,y=value,fill=name))+</span><br><span class="line">geom_violin()+</span><br><span class="line">geom_jitter(color=<span class="string">"black"</span>, size=0.4, alpha=0.9)+</span><br><span class="line">theme_ipsum()+</span><br><span class="line">theme(legend.position=<span class="string">"none"</span>)+</span><br><span class="line">ggtitle(<span class="string">"violin plot with jitter"</span>) +</span><br><span class="line">xlab(<span class="string">""</span>)</span><br><span class="line">pviolin</span><br></pre></td></tr></table></figure>
-<p><img src="/images/R/violin01.png" alt></p>
-<h1 id="二、小提琴图优化"><a href="#二、小提琴图优化" class="headerlink" title="二、小提琴图优化"></a>二、小提琴图优化</h1><p>2.1 排序</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 如果要对X轴进行升序排列，使用reorder(x=x,y=y)函数；</span></span><br><span class="line"><span class="comment"># 若要降序排列，则使用reorder(x=x,y=-y)函数；</span></span><br><span class="line">pviolin &lt;- ggplot(data,aes(x=reorder(name,-value),y=value,fill=name))+</span><br><span class="line">geom_violin()+</span><br><span class="line">geom_jitter(color=<span class="string">"black"</span>, size=0.4, alpha=0.9)+</span><br><span class="line">theme_ipsum()+</span><br><span class="line">theme(legend.position=<span class="string">"none"</span>)+</span><br><span class="line">ggtitle(<span class="string">"violin plot with jitter"</span>) +</span><br><span class="line">xlab(<span class="string">""</span>)</span><br><span class="line">pviolin</span><br></pre></td></tr></table></figure>
-<p><img src="/images/R/violin02.png" alt></p>
-<p>2.2 调节Y轴限度，使用ylim()函数</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ggsave(pviolin,filename=<span class="string">"violin4.png"</span>,width=12,height=9)</span><br><span class="line">pviolin &lt;- ggplot(data,aes(x=reorder(name,-value),y=value,fill=name))+</span><br><span class="line">geom_violin()+</span><br><span class="line">geom_boxplot(width=0.1,color=<span class="string">"grey"</span>,alpha=0.3)+</span><br><span class="line">theme_ipsum()+</span><br><span class="line">theme(legend.position=<span class="string">"none"</span>)+</span><br><span class="line">ggtitle(<span class="string">"violin plot with jitter"</span>) +</span><br><span class="line">xlab(<span class="string">""</span>)+</span><br><span class="line">ylim(0,30)</span><br><span class="line">pviolin</span><br></pre></td></tr></table></figure>
-<p><img src="/images/R/violin03.png" alt></p>
-<p>2.3 绘制水平小提琴图，加上coord_flip()函数</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pviolin &lt;- ggplot(data,aes(x=reorder(name,-value),y=value,fill=name))+</span><br><span class="line">geom_violin()+</span><br><span class="line">geom_jitter(color=<span class="string">"black"</span>, size=0.4, alpha=0.9)+</span><br><span class="line">theme_ipsum()+</span><br><span class="line">theme(legend.position=<span class="string">"none"</span>)+</span><br><span class="line">ggtitle(<span class="string">"violin plot with jitter"</span>) +</span><br><span class="line">xlab(<span class="string">""</span>)+</span><br><span class="line">coord_flip()</span><br><span class="line">pviolin</span><br></pre></td></tr></table></figure>
-<p><img src="/images/R/violin04.png" alt></p>
-<p>2.4 同时绘制小提琴图与箱线图</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pviolin &lt;- ggplot(data,aes(x=reorder(name,-value),y=value,fill=name))+</span><br><span class="line">geom_violin()+</span><br><span class="line">geom_boxplot(width=0.1,color=<span class="string">"grey"</span>,alpha=0.3)+</span><br><span class="line">geom_jitter(color=<span class="string">"black"</span>, size=0.4, alpha=0.9)+</span><br><span class="line">theme_ipsum()+</span><br><span class="line">theme(legend.position=<span class="string">"none"</span>)+</span><br><span class="line">ggtitle(<span class="string">"violin plot with jitter"</span>) +</span><br><span class="line">xlab(<span class="string">""</span>)</span><br><span class="line">pviolin</span><br></pre></td></tr></table></figure>
-<p><img src="/images/R/violin05.png" alt></p>
 ]]></content>
       <categories>
         <category>编程语言</category>
