@@ -99,18 +99,18 @@
 <meta name="keywords" content="R语言">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R语言学习笔记9-绘制barplot">
-<meta property="og:url" content="http://uteric.github.io/R/R语言学习笔记9/index.html">
+<meta property="og:url" content="http://uteric.github.io/R/R_learn_9/index.html">
 <meta property="og:site_name" content="诸子百家">
 <meta property="og:description" content="一、条形图barplot基本语法： 1barplot(H,xlab,ylab,main, names.arg,col,horiz=FALSE,density,las) H - 用于创建柱状图的矢量或矩阵xlab - X轴标签ylab - Y轴标签main - 柱状图的标题names.arg - 每个柱的名称col - 柱的颜色horiz - 默认为FALSE，即竖直方向density - 条纹密度">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4189810-c43d30e6b6c0c8f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4189810-e89a28945243083a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4189810-2744ba74ff446af4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://uteric.github.io/images/R/barplot08.png">
+<meta property="og:image" content="http://uteric.github.io/images/R/barplot09.png">
+<meta property="og:image" content="http://uteric.github.io/images/R/barplot10.png">
 <meta property="og:updated_time" content="2018-10-08T15:33:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="R语言学习笔记9-绘制barplot">
 <meta name="twitter:description" content="一、条形图barplot基本语法： 1barplot(H,xlab,ylab,main, names.arg,col,horiz=FALSE,density,las) H - 用于创建柱状图的矢量或矩阵xlab - X轴标签ylab - Y轴标签main - 柱状图的标题names.arg - 每个柱的名称col - 柱的颜色horiz - 默认为FALSE，即竖直方向density - 条纹密度">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/4189810-c43d30e6b6c0c8f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://uteric.github.io/images/R/barplot08.png">
 
 
 
@@ -139,7 +139,7 @@
 
 
 
-  <link rel="canonical" href="http://uteric.github.io/R/R语言学习笔记9/">
+  <link rel="canonical" href="http://uteric.github.io/R/R_learn_9/">
 
 
 
@@ -339,7 +339,7 @@ ga('send', 'pageview');
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/R/R语言学习笔记9/">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/R/R_learn_9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="括囊无誉">
@@ -410,8 +410,8 @@ ga('send', 'pageview');
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/R/R语言学习笔记9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="R/R语言学习笔记9/" itemprop="commentCount"></span>
+                <a href="/R/R_learn_9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="R/R_learn_9/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -448,11 +448,11 @@ ga('send', 'pageview');
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">barplot(H,xlab,ylab,main, names.arg,col,horiz=FALSE,density,las)</span><br></pre></td></tr></table></figure>
 <p>H - 用于创建柱状图的矢量或矩阵<br>xlab - X轴标签<br>ylab - Y轴标签<br>main - 柱状图的标题<br>names.arg - 每个柱的名称<br>col - 柱的颜色<br>horiz - 默认为FALSE，即竖直方向<br>density - 条纹密度<br>las - 坐标轴字体方向，las=1为水平方向，las=2为垂直方向</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data &lt;- c(3,5,7) <span class="comment"># 创建数据</span></span><br><span class="line">barplot(data,main=<span class="string">"Expression"</span>,ylab=<span class="string">"gene"</span>,xlab=<span class="string">"relative expresstion level"</span>,names.arg=c(<span class="string">"gene1"</span>,<span class="string">"gene2"</span>,<span class="string">"gene3"</span>),horiz=TRUE,col=<span class="string">"green"</span>,border=<span class="string">"red"</span>,density=c(5,10,15))</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4189810-c43d30e6b6c0c8f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="/images/R/barplot08.png" alt></p>
 <h2 id="二、堆叠图"><a href="#二、堆叠图" class="headerlink" title="二、堆叠图"></a>二、堆叠图</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data &lt;- matrix(c(2,9,3,11,9,4,8,7,3,12,5,2,8,10,11),nrow=3,ncol=5,byrow=TRUE) <span class="comment"># 创建3行5列的向量</span></span><br><span class="line">barplot(data,col=c(<span class="string">"green"</span>,<span class="string">"red"</span>,<span class="string">"blue"</span>),names.arg=c(<span class="string">"J"</span>,<span class="string">"F"</span>,<span class="string">"M"</span>,<span class="string">"A"</span>,<span class="string">"S"</span>)) <span class="comment"># 堆叠图</span></span><br><span class="line">kinds &lt;- c(<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>)</span><br><span class="line">legend(<span class="string">"topleft"</span>,kinds,cex=0.8,fill=c(<span class="string">"green"</span>,<span class="string">"red"</span>,<span class="string">"blue"</span>)) <span class="comment"># 添加图例</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4189810-e89a28945243083a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="/images/R/barplot09.png" alt></p>
 <h2 id="三、分组图"><a href="#三、分组图" class="headerlink" title="三、分组图"></a>三、分组图</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">barplot(data,col=c(<span class="string">"green"</span>,<span class="string">"red"</span>,<span class="string">"blue"</span>),names.arg=c(<span class="string">"J"</span>,<span class="string">"F"</span>,<span class="string">"M"</span>,<span class="string">"A"</span>,<span class="string">"S"</span>),beside=TRUE) <span class="comment"># 添加beside=TRUE即为分组图</span></span><br><span class="line">kinds &lt;- c(<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>)</span><br><span class="line">legend(<span class="string">"topleft"</span>,kinds,cex=0.8,fill=c(<span class="string">"green"</span>,<span class="string">"red"</span>,<span class="string">"blue"</span>)) <span class="comment"># 添加图例</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4189810-2744ba74ff446af4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="/images/R/barplot10.png" alt></p>
 
       
     </div>
@@ -466,7 +466,7 @@ ga('send', 'pageview');
 </li>
 <li class="post-copyright-link">
 <strong>本文链接：</strong>
-<a href="/R/R语言学习笔记9/" title="R语言学习笔记9-绘制barplot">R/R语言学习笔记9/</a>
+<a href="/R/R_learn_9/" title="R语言学习笔记9-绘制barplot">R/R_learn_9/</a>
 </li>
 <li class="post-copyright-license">
 <strong>版权声明： </strong>
@@ -868,8 +868,8 @@ ga('send', 'pageview');
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://uteric.github.io/R/R语言学习笔记9/';
-          this.page.identifier = 'R/R语言学习笔记9/';
+          this.page.url = 'http://uteric.github.io/R/R_learn_9/';
+          this.page.identifier = 'R/R_learn_9/';
           this.page.title = 'R语言学习笔记9-绘制barplot';
         };
         var d = document, s = d.createElement('script');

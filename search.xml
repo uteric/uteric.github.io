@@ -4743,6 +4743,26 @@ See</code>config.log’ for more details<br>ERROR: configuration failed for pack
       </tags>
   </entry>
   <entry>
+    <title>R语言学习笔记9-绘制barplot</title>
+    <url>/R/R_learn_9/</url>
+    <content><![CDATA[<h2 id="一、条形图"><a href="#一、条形图" class="headerlink" title="一、条形图"></a>一、条形图</h2><p>barplot基本语法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">barplot(H,xlab,ylab,main, names.arg,col,horiz=FALSE,density,las)</span><br></pre></td></tr></table></figure>
+<p>H - 用于创建柱状图的矢量或矩阵<br>xlab - X轴标签<br>ylab - Y轴标签<br>main - 柱状图的标题<br>names.arg - 每个柱的名称<br>col - 柱的颜色<br>horiz - 默认为FALSE，即竖直方向<br>density - 条纹密度<br>las - 坐标轴字体方向，las=1为水平方向，las=2为垂直方向</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">data &lt;- c(3,5,7) <span class="comment"># 创建数据</span></span><br><span class="line">barplot(data,main=<span class="string">"Expression"</span>,ylab=<span class="string">"gene"</span>,xlab=<span class="string">"relative expresstion level"</span>,names.arg=c(<span class="string">"gene1"</span>,<span class="string">"gene2"</span>,<span class="string">"gene3"</span>),horiz=TRUE,col=<span class="string">"green"</span>,border=<span class="string">"red"</span>,density=c(5,10,15))</span><br></pre></td></tr></table></figure>
+<p><img src="/images/R/barplot08.png" alt></p>
+<h2 id="二、堆叠图"><a href="#二、堆叠图" class="headerlink" title="二、堆叠图"></a>二、堆叠图</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">data &lt;- matrix(c(2,9,3,11,9,4,8,7,3,12,5,2,8,10,11),nrow=3,ncol=5,byrow=TRUE) <span class="comment"># 创建3行5列的向量</span></span><br><span class="line">barplot(data,col=c(<span class="string">"green"</span>,<span class="string">"red"</span>,<span class="string">"blue"</span>),names.arg=c(<span class="string">"J"</span>,<span class="string">"F"</span>,<span class="string">"M"</span>,<span class="string">"A"</span>,<span class="string">"S"</span>)) <span class="comment"># 堆叠图</span></span><br><span class="line">kinds &lt;- c(<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>)</span><br><span class="line">legend(<span class="string">"topleft"</span>,kinds,cex=0.8,fill=c(<span class="string">"green"</span>,<span class="string">"red"</span>,<span class="string">"blue"</span>)) <span class="comment"># 添加图例</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/R/barplot09.png" alt></p>
+<h2 id="三、分组图"><a href="#三、分组图" class="headerlink" title="三、分组图"></a>三、分组图</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">barplot(data,col=c(<span class="string">"green"</span>,<span class="string">"red"</span>,<span class="string">"blue"</span>),names.arg=c(<span class="string">"J"</span>,<span class="string">"F"</span>,<span class="string">"M"</span>,<span class="string">"A"</span>,<span class="string">"S"</span>),beside=TRUE) <span class="comment"># 添加beside=TRUE即为分组图</span></span><br><span class="line">kinds &lt;- c(<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>)</span><br><span class="line">legend(<span class="string">"topleft"</span>,kinds,cex=0.8,fill=c(<span class="string">"green"</span>,<span class="string">"red"</span>,<span class="string">"blue"</span>)) <span class="comment"># 添加图例</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/R/barplot10.png" alt></p>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+      </categories>
+      <tags>
+        <tag>R语言</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>R可视化-绘制柱形图1</title>
     <url>/R/R_visualize_bar1/</url>
     <content><![CDATA[<h1 id="一、模拟数据-＃"><a href="#一、模拟数据-＃" class="headerlink" title="一、模拟数据 ＃"></a>一、模拟数据 ＃</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">data &lt;- data.frame(</span><br><span class="line">samplename=letters[1:6], <span class="comment"># 变量samplename，赋值从字母A－F；</span></span><br><span class="line">samplevalue=sample(seq(3,12),6) <span class="comment">#变量samplevalue，赋值为3－12之间的随机数；</span></span><br><span class="line">)</span><br><span class="line">data <span class="comment"># 查看data，如下：</span></span><br><span class="line">samplename samplevalue</span><br><span class="line">1          a           6</span><br><span class="line">2          b           7</span><br><span class="line">3          c          10</span><br><span class="line">4          d          12</span><br><span class="line">5          e           4</span><br><span class="line">6          f           9</span><br></pre></td></tr></table></figure>
@@ -5327,26 +5347,6 @@ See</code>config.log’ for more details<br>ERROR: configuration failed for pack
 <h2 id="四、检验集合是否相同"><a href="#四、检验集合是否相同" class="headerlink" title="四、检验集合是否相同"></a>四、检验集合是否相同</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">setequal(x,y)</span><br><span class="line"><span class="comment"># FALSE</span></span><br></pre></td></tr></table></figure>
 <h2 id="五、检验元素是否属于集合"><a href="#五、检验元素是否属于集合" class="headerlink" title="五、检验元素是否属于集合"></a>五、检验元素是否属于集合</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">is.element(5,x)</span><br><span class="line"><span class="comment"># TRUE</span></span><br><span class="line">&gt; is.element(15,x)</span><br><span class="line"><span class="comment"># FALSE</span></span><br></pre></td></tr></table></figure>
 <h2 id="六、检验集合B是否包含于集合A"><a href="#六、检验集合B是否包含于集合A" class="headerlink" title="六、检验集合B是否包含于集合A"></a>六、检验集合B是否包含于集合A</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">all(x%<span class="keyword">in</span>%y)</span><br><span class="line"><span class="comment"># FALSE</span></span><br><span class="line">all(z%<span class="keyword">in</span>%x)</span><br><span class="line"><span class="comment"># TRUE</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>编程语言</category>
-      </categories>
-      <tags>
-        <tag>R语言</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>R语言学习笔记9-绘制barplot</title>
-    <url>/R/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09/</url>
-    <content><![CDATA[<h2 id="一、条形图"><a href="#一、条形图" class="headerlink" title="一、条形图"></a>一、条形图</h2><p>barplot基本语法：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">barplot(H,xlab,ylab,main, names.arg,col,horiz=FALSE,density,las)</span><br></pre></td></tr></table></figure>
-<p>H - 用于创建柱状图的矢量或矩阵<br>xlab - X轴标签<br>ylab - Y轴标签<br>main - 柱状图的标题<br>names.arg - 每个柱的名称<br>col - 柱的颜色<br>horiz - 默认为FALSE，即竖直方向<br>density - 条纹密度<br>las - 坐标轴字体方向，las=1为水平方向，las=2为垂直方向</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">data &lt;- c(3,5,7) <span class="comment"># 创建数据</span></span><br><span class="line">barplot(data,main=<span class="string">"Expression"</span>,ylab=<span class="string">"gene"</span>,xlab=<span class="string">"relative expresstion level"</span>,names.arg=c(<span class="string">"gene1"</span>,<span class="string">"gene2"</span>,<span class="string">"gene3"</span>),horiz=TRUE,col=<span class="string">"green"</span>,border=<span class="string">"red"</span>,density=c(5,10,15))</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4189810-c43d30e6b6c0c8f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="二、堆叠图"><a href="#二、堆叠图" class="headerlink" title="二、堆叠图"></a>二、堆叠图</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">data &lt;- matrix(c(2,9,3,11,9,4,8,7,3,12,5,2,8,10,11),nrow=3,ncol=5,byrow=TRUE) <span class="comment"># 创建3行5列的向量</span></span><br><span class="line">barplot(data,col=c(<span class="string">"green"</span>,<span class="string">"red"</span>,<span class="string">"blue"</span>),names.arg=c(<span class="string">"J"</span>,<span class="string">"F"</span>,<span class="string">"M"</span>,<span class="string">"A"</span>,<span class="string">"S"</span>)) <span class="comment"># 堆叠图</span></span><br><span class="line">kinds &lt;- c(<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>)</span><br><span class="line">legend(<span class="string">"topleft"</span>,kinds,cex=0.8,fill=c(<span class="string">"green"</span>,<span class="string">"red"</span>,<span class="string">"blue"</span>)) <span class="comment"># 添加图例</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4189810-e89a28945243083a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="三、分组图"><a href="#三、分组图" class="headerlink" title="三、分组图"></a>三、分组图</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">barplot(data,col=c(<span class="string">"green"</span>,<span class="string">"red"</span>,<span class="string">"blue"</span>),names.arg=c(<span class="string">"J"</span>,<span class="string">"F"</span>,<span class="string">"M"</span>,<span class="string">"A"</span>,<span class="string">"S"</span>),beside=TRUE) <span class="comment"># 添加beside=TRUE即为分组图</span></span><br><span class="line">kinds &lt;- c(<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>)</span><br><span class="line">legend(<span class="string">"topleft"</span>,kinds,cex=0.8,fill=c(<span class="string">"green"</span>,<span class="string">"red"</span>,<span class="string">"blue"</span>)) <span class="comment"># 添加图例</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4189810-2744ba74ff446af4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-]]></content>
       <categories>
         <category>编程语言</category>
       </categories>
