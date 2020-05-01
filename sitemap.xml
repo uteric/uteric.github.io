@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://uteric.github.io/2/</loc>
+    
+    <lastmod>2020-05-01T02:36:07.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://uteric.github.io/R/R_visualize_plot/</loc>
     
     <lastmod>2020-05-01T02:36:07.000Z</lastmod>

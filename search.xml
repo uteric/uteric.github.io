@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>R���ӻ�����R����ͼ������</title>
+    <url>/2/</url>
+    <content><![CDATA[<p>��R����ͼ��������Ҫ����ͼ���豸������Ҫ����png��ʽͼƬ������Ҫ����pngͼ���豸�����£�</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">png(filename=<span class="string">"filename.png"</span>)</span><br><span class="line">barplot(data)</span><br><span class="line">dev.off()</span><br></pre></td></tr></table></figure>
+<p>ͬ��������ʹ��jpg()������jpgͼƬ������pdf()������pdfͼƬ��</p>
+]]></content>
+      <categories>
+        <category>�������</category>
+      </categories>
+      <tags>
+        <tag>R</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>古人上厕所都有哪些文辞婉约的说法？</title>
     <url>/Articles/%E4%B8%8A%E5%8E%95%E6%89%80%E6%96%87%E8%BE%9E%E5%A9%89%E7%BA%A6%E7%9A%84%E8%AF%B4%E6%B3%95/</url>
     <content><![CDATA[<p>吃、喝、拉、撒、睡，人生五件大事当中，光是上厕所就占了两样，天天都离不开，我们通常将其称之为“上厕所”或者“解手”，虽然通俗然而有欠婉约。那么，古人又是如何表述的呢？</p>
@@ -407,17 +421,212 @@
       </tags>
   </entry>
   <entry>
-    <title>为什么把有心计称为“小九九”？</title>
-    <url>/Articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%8A%E6%9C%89%E5%BF%83%E8%AE%A1%E7%A7%B0%E4%B8%BA%E5%B0%8F%E4%B9%9D%E4%B9%9D/</url>
-    <content><![CDATA[<p>“九九”这个词，来源于《九九乘法歌诀》，与现在不同，在中国古代，歌诀是从“九九八十一”开始，到“二二得四”为止，因为歌诀的前两个字为“九九”，因此也简称为“九九歌”或“九九”。</p>
-<p>首先，因为中国古代用算盘进行数学运算，因此，“九九”也用来代指“算盘”，“小九九”就是“小算盘”的意思，引申为“心里打着小算盘”；</p>
-<p>其次，在中国传统文化中，九为极数，九九更是极言数字之大，因此，“小九九”也代表心眼儿多、鬼点子多。</p>
+    <title>中国外汇储备规模</title>
+    <url>/Articles/%E4%B8%AD%E5%9B%BD%E5%A4%96%E6%B1%87%E5%82%A8%E5%A4%87%E8%A7%84%E6%A8%A1/</url>
+    <content><![CDATA[<h2 id="中国外汇储备规模-（1950年-2016年）单位：亿美元"><a href="#中国外汇储备规模-（1950年-2016年）单位：亿美元" class="headerlink" title="中国外汇储备规模 （1950年-2016年）单位：亿美元"></a>中国外汇储备规模 （1950年-2016年）单位：亿美元</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">年度</th>
+<th style="text-align:center">金额</th>
+<th style="text-align:center">年度</th>
+<th style="text-align:center">金额</th>
+<th style="text-align:center">年度</th>
+<th style="text-align:center">金额</th>
+<th style="text-align:center">年度</th>
+<th style="text-align:center">金额</th>
+<th style="text-align:center">年度</th>
+<th style="text-align:center">金额</th>
+<th style="text-align:center">年度</th>
+<th style="text-align:center">金额</th>
+<th style="text-align:center">年度</th>
+<th style="text-align:center">金额</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>1950</strong></td>
+<td style="text-align:center">1.57</td>
+<td style="text-align:center"><strong>1960</strong></td>
+<td style="text-align:center">0.46</td>
+<td style="text-align:center"><strong>1970</strong></td>
+<td style="text-align:center">0.88</td>
+<td style="text-align:center"><strong>1980</strong></td>
+<td style="text-align:center">-12.96</td>
+<td style="text-align:center"><strong>1990</strong></td>
+<td style="text-align:center">110.93</td>
+<td style="text-align:center"><strong>2000</strong></td>
+<td style="text-align:center">1655.74</td>
+<td style="text-align:center"><strong>2010</strong></td>
+<td style="text-align:center">28473.38</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>1951</strong></td>
+<td style="text-align:center">0.45</td>
+<td style="text-align:center"><strong>1961</strong></td>
+<td style="text-align:center">0.89</td>
+<td style="text-align:center"><strong>1971</strong></td>
+<td style="text-align:center">0.37</td>
+<td style="text-align:center"><strong>1981</strong></td>
+<td style="text-align:center">27.08</td>
+<td style="text-align:center"><strong>1991</strong></td>
+<td style="text-align:center">217.12</td>
+<td style="text-align:center"><strong>2001</strong></td>
+<td style="text-align:center">2121.65</td>
+<td style="text-align:center"><strong>2011</strong></td>
+<td style="text-align:center">31811.48</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>1952</strong></td>
+<td style="text-align:center">1.08</td>
+<td style="text-align:center"><strong>1962</strong></td>
+<td style="text-align:center">0.81</td>
+<td style="text-align:center"><strong>1972</strong></td>
+<td style="text-align:center">2.36</td>
+<td style="text-align:center"><strong>1982</strong></td>
+<td style="text-align:center">69.86</td>
+<td style="text-align:center"><strong>1992</strong></td>
+<td style="text-align:center">194.43</td>
+<td style="text-align:center"><strong>2002</strong></td>
+<td style="text-align:center">2864.07</td>
+<td style="text-align:center"><strong>2012</strong></td>
+<td style="text-align:center">33115.89</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>1953</strong></td>
+<td style="text-align:center">0.90</td>
+<td style="text-align:center"><strong>1963</strong></td>
+<td style="text-align:center">1.19</td>
+<td style="text-align:center"><strong>1973</strong></td>
+<td style="text-align:center">-0.81</td>
+<td style="text-align:center"><strong>1983</strong></td>
+<td style="text-align:center">89.01</td>
+<td style="text-align:center"><strong>1993</strong></td>
+<td style="text-align:center">211.99</td>
+<td style="text-align:center"><strong>2003</strong></td>
+<td style="text-align:center">4032.51</td>
+<td style="text-align:center"><strong>2013</strong></td>
+<td style="text-align:center">38213.15</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>1954</strong></td>
+<td style="text-align:center">0.88</td>
+<td style="text-align:center"><strong>1964</strong></td>
+<td style="text-align:center">1.66</td>
+<td style="text-align:center"><strong>1974</strong></td>
+<td style="text-align:center">0.00</td>
+<td style="text-align:center"><strong>1984</strong></td>
+<td style="text-align:center">82.20</td>
+<td style="text-align:center"><strong>1994</strong></td>
+<td style="text-align:center">516.20</td>
+<td style="text-align:center"><strong>2004</strong></td>
+<td style="text-align:center">6099.32</td>
+<td style="text-align:center"><strong>2014</strong></td>
+<td style="text-align:center">38430.18</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>1955</strong></td>
+<td style="text-align:center">1.80</td>
+<td style="text-align:center"><strong>1965</strong></td>
+<td style="text-align:center">1.05</td>
+<td style="text-align:center"><strong>1975</strong></td>
+<td style="text-align:center">1.83</td>
+<td style="text-align:center"><strong>1985</strong></td>
+<td style="text-align:center">26.44</td>
+<td style="text-align:center"><strong>1995</strong></td>
+<td style="text-align:center">735.97</td>
+<td style="text-align:center"><strong>2005</strong></td>
+<td style="text-align:center">8188.72</td>
+<td style="text-align:center"><strong>2015</strong></td>
+<td style="text-align:center">33303.62</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>1956</strong></td>
+<td style="text-align:center">1.17</td>
+<td style="text-align:center"><strong>1966</strong></td>
+<td style="text-align:center">2.11</td>
+<td style="text-align:center"><strong>1976</strong></td>
+<td style="text-align:center">5.81</td>
+<td style="text-align:center"><strong>1986</strong></td>
+<td style="text-align:center">20.72</td>
+<td style="text-align:center"><strong>1996</strong></td>
+<td style="text-align:center">1050.29</td>
+<td style="text-align:center"><strong>2006</strong></td>
+<td style="text-align:center">10663.44</td>
+<td style="text-align:center"><strong>2016</strong></td>
+<td style="text-align:center">30105.17</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>1957</strong></td>
+<td style="text-align:center">1.23</td>
+<td style="text-align:center"><strong>1967</strong></td>
+<td style="text-align:center">2.15</td>
+<td style="text-align:center"><strong>1977</strong></td>
+<td style="text-align:center">9.52</td>
+<td style="text-align:center"><strong>1987</strong></td>
+<td style="text-align:center">29.23</td>
+<td style="text-align:center"><strong>1997</strong></td>
+<td style="text-align:center">1398.90</td>
+<td style="text-align:center"><strong>2007</strong></td>
+<td style="text-align:center">15282.49</td>
+<td style="text-align:center"><strong>2017</strong></td>
+<td style="text-align:center">—</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>1958</strong></td>
+<td style="text-align:center">0.70</td>
+<td style="text-align:center"><strong>1968</strong></td>
+<td style="text-align:center">2.46</td>
+<td style="text-align:center"><strong>1978</strong></td>
+<td style="text-align:center">1.67</td>
+<td style="text-align:center"><strong>1988</strong></td>
+<td style="text-align:center">33.72</td>
+<td style="text-align:center"><strong>1998</strong></td>
+<td style="text-align:center">1449.59</td>
+<td style="text-align:center"><strong>2008</strong></td>
+<td style="text-align:center">19460.30</td>
+<td style="text-align:center"><strong>2018</strong></td>
+<td style="text-align:center">—</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>1959</strong></td>
+<td style="text-align:center">1.05</td>
+<td style="text-align:center"><strong>1969</strong></td>
+<td style="text-align:center">4.83</td>
+<td style="text-align:center"><strong>1979</strong></td>
+<td style="text-align:center">8.40</td>
+<td style="text-align:center"><strong>1989</strong></td>
+<td style="text-align:center">55.50</td>
+<td style="text-align:center"><strong>1999</strong></td>
+<td style="text-align:center">1546.75</td>
+<td style="text-align:center"><strong>2009</strong></td>
+<td style="text-align:center">23991.52</td>
+<td style="text-align:center"><strong>2019</strong></td>
+<td style="text-align:center">—</td>
+</tr>
+</tbody>
+</table>
+<p>数据来源：<a href="http://www.safe.gov.cn/wps/portal/sy/tjsj_lnwhcb" target="_blank" rel="noopener">国家外汇管理局</a></p>
+<p>由上表可见，中国的外汇储备规模经历了4个阶段：</p>
+<ul>
+<li><p>第一阶段：在1950年至1980年之间，中国的外汇储备体量极小，低于10亿美元，且基本没有正向增长，这也可以解释这30年中国人为什么没钱花；</p>
+</li>
+<li><p>第二阶段：从1981年至1989年，中国的外汇储备维持在10-100亿美元之间，相对于第一阶段有质的飞跃，但有涨有跌，未形成良好的增长态势；</p>
+</li>
+<li><p>第三阶段：从1990年至2014年，中国的外汇储备进入飞速增长期，在短短的25年之间，外汇储备增长了约350倍，致令举世震惊，庞大的外汇储备使得国内市场流通的货币大量增加，这是这段时间中国人突然变得有钱，中国经济高度繁荣的根本原因；</p>
+</li>
+<li><p>第四阶段：从2015年开始，中国的外汇储备进入减持阶段，但外汇储备体量依然极大，高达3万亿美元；</p>
+</li>
+</ul>
+<p>3万亿美元的外汇储备，就意味着21亿元人民币（按美元兑人民币汇率1：7计算）被投放进入国内市场进行流通，促使国内市场高度繁荣，并极大的增强了中国的综合国力和国际信誉。</p>
 ]]></content>
       <categories>
-        <category>文化溯源</category>
+        <category>纵横捭阖</category>
       </categories>
       <tags>
-        <tag>九九</tag>
+        <tag>中国</tag>
+        <tag>外汇储备</tag>
+        <tag>美元</tag>
+        <tag>人民币</tag>
       </tags>
   </entry>
   <entry>
@@ -459,6 +668,20 @@
         <tag>六六大顺</tag>
         <tag>易经</tag>
         <tag>左传</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>为什么把有心计称为“小九九”？</title>
+    <url>/Articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%8A%E6%9C%89%E5%BF%83%E8%AE%A1%E7%A7%B0%E4%B8%BA%E5%B0%8F%E4%B9%9D%E4%B9%9D/</url>
+    <content><![CDATA[<p>“九九”这个词，来源于《九九乘法歌诀》，与现在不同，在中国古代，歌诀是从“九九八十一”开始，到“二二得四”为止，因为歌诀的前两个字为“九九”，因此也简称为“九九歌”或“九九”。</p>
+<p>首先，因为中国古代用算盘进行数学运算，因此，“九九”也用来代指“算盘”，“小九九”就是“小算盘”的意思，引申为“心里打着小算盘”；</p>
+<p>其次，在中国传统文化中，九为极数，九九更是极言数字之大，因此，“小九九”也代表心眼儿多、鬼点子多。</p>
+]]></content>
+      <categories>
+        <category>文化溯源</category>
+      </categories>
+      <tags>
+        <tag>九九</tag>
       </tags>
   </entry>
   <entry>
@@ -530,13 +753,13 @@
         <category>纵横捭阖</category>
       </categories>
       <tags>
-        <tag>外汇</tag>
         <tag>外汇储备</tag>
+        <tag>美元</tag>
+        <tag>人民币</tag>
+        <tag>外汇</tag>
         <tag>汇率</tag>
         <tag>外贸</tag>
         <tag>境外投资</tag>
-        <tag>人民币</tag>
-        <tag>美元</tag>
       </tags>
   </entry>
   <entry>
@@ -987,6 +1210,40 @@
         <tag>礼记</tag>
         <tag>正朔</tag>
         <tag>说文解字</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>你知道在没有拼音的古代，使用什么注音方法吗？｜反切</title>
+    <url>/Articles/%E5%8F%8D%E5%88%87/</url>
+    <content><![CDATA[<p>拼音，是近代以来才开始通行的汉字注音方法，那么，在没有拼音的古代，人们是用什么方法来记录汉字的发音呢？</p>
+<h2 id="什么是反切？"><a href="#什么是反切？" class="headerlink" title="什么是反切？"></a>什么是反切？</h2><p>中国古代使用时间最长也是最为成熟的注音方法，称为“反切”，或“反语”。反切的基本规则是由两个汉字相拼给另一个汉字注音，“上字与所切之字双声，下字与所切之字叠韵”，也就是说，上字取声母，下字取韵母和声调。比如：“东，德红切”，即“东”的声母与“德”的声母相同「d」，而其韵母及声调与“红”字相同「ōng」，故“东”的发音为「dōng」；又如：“反，甫晚切”，即“反”字的声母与“甫”字的声母相同「f」，韵母及声调与“晚”字相同「ǎn」，故“反”的发音为「fǎn」。</p>
+<p>古人切语之法，用二字以求一字之音，上字与所切之字双声，下字与所切之字叠韵；上字以定清浊，下字以定平上去入；如“东，德红切”、“反，甫晚切”。</p>
+<h2 id="为何称作“反切”？"><a href="#为何称作“反切”？" class="headerlink" title="为何称作“反切”？"></a>为何称作“反切”？</h2><p>反切，唐朝以前称为“反”，“反者，覆也”，因避讳而改作“翻”；宋朝开始才称作“切”，“切者，摩也”。因此，反切就是“反”和“切”两种说法的合称，即“反覆切摩”之意。</p>
+<blockquote>
+<p>「反者，覆也，切者，摩也。所谓反切者，盖反覆切摩而成音之义也。」——《李氏音鉴》</p>
+</blockquote>
+<blockquote>
+<p>「音韵辗转相协谓之反，亦作翻，两字相摩以成声韵谓之切。」——《礼部韵略》</p>
+</blockquote>
+<h2 id="反切的有趣例子"><a href="#反切的有趣例子" class="headerlink" title="反切的有趣例子"></a>反切的有趣例子</h2><ul>
+<li><p>「一、二、三、四、五、六、七、八、九、十 」：于悉（一）、而至（二）、稣甘（三）、赛字（四）、歪古（五）、赖舅（六）、浅滴（七）、北瓜（八）、偕柳（九）、赊迟（十）；</p>
+</li>
+<li><p>「天、地、人」：梯颠、道基、日辰；</p>
+</li>
+<li><p>「春、夏、秋、冬」：闯墩、胡雅、巧偷、督工；</p>
+</li>
+<li><p>「上、下、左、右」：时掌、硝大、宗洛、依旧；</p>
+</li>
+<li><p>「东、南、西、北」：杜松、那含、晓鸡、博墨。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>文化溯源</category>
+      </categories>
+      <tags>
+        <tag>反切</tag>
+        <tag>拼音</tag>
       </tags>
   </entry>
   <entry>
@@ -2268,6 +2525,142 @@
       </tags>
   </entry>
   <entry>
+    <title>论语成语典故｜论语教你如何为人处事</title>
+    <url>/Articles/%E8%AE%BA%E8%AF%AD%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E4%B8%BA%E4%BA%BA%E5%A4%84%E4%BA%8B/</url>
+    <content><![CDATA[<h2 id="为人方面，不要做“色厉内荏”，“华而不实”之辈，也不要做“好行小惠”之人；为人气量要广博，不要做“斗筲之器”；"><a href="#为人方面，不要做“色厉内荏”，“华而不实”之辈，也不要做“好行小惠”之人；为人气量要广博，不要做“斗筲之器”；" class="headerlink" title="为人方面，不要做“色厉内荏”，“华而不实”之辈，也不要做“好行小惠”之人；为人气量要广博，不要做“斗筲之器”；"></a>为人方面，不要做“色厉内荏”，“华而不实”之辈，也不要做“好行小惠”之人；为人气量要广博，不要做“斗筲之器”；</h2><p>【色厉内荏】外表强悍，内心虚弱</p>
+<blockquote>
+<p>子曰：“色厉而内荏，譬诸小人，其犹穿窬之盗也与？”——《论语·阳货》</p>
+</blockquote>
+<p>【华而不实】外表好看，内里空虚</p>
+<blockquote>
+<p>子曰：“苗而不秀者有矣夫，秀而不实者有矣夫”。——《论语·子罕》</p>
+</blockquote>
+<p>【好行小惠】喜欢给人小恩小惠</p>
+<blockquote>
+<p>子曰：“群居终日，言不及义，好行小慧，难矣哉！”——《论语·卫灵公》</p>
+</blockquote>
+<p>【斗筲之器】比喻气量狭窄之人</p>
+<blockquote>
+<p>子曰：“噫！斗筲之人，何足算也！”——《论语·子路》</p>
+</blockquote>
+<h2 id="不要“无所用心”，“饱食终日”，否则会“四体不勤，五谷不分”；"><a href="#不要“无所用心”，“饱食终日”，否则会“四体不勤，五谷不分”；" class="headerlink" title="不要“无所用心”，“饱食终日”，否则会“四体不勤，五谷不分”；"></a>不要“无所用心”，“饱食终日”，否则会“四体不勤，五谷不分”；</h2><p>【无所用心】对什么事情都不关心</p>
+<blockquote>
+<p>饱食终日，无所用心，难矣哉！——《论语·阳货》</p>
+</blockquote>
+<p>【饱食终日】成天吃饱喝足，无所事事</p>
+<blockquote>
+<p>饱食终日，无所用心，难矣哉！——《论语·阳货》</p>
+</blockquote>
+<p>【四体不勤，五谷不分】不参加劳动，不能辨别五谷，比喻知识与实践脱离</p>
+<blockquote>
+<p>丈人曰：“四体不勤，五谷不分，孰为夫子？”——《论语·微子》</p>
+</blockquote>
+<h2 id="选择居处时，要以“里仁为美”作为标准"><a href="#选择居处时，要以“里仁为美”作为标准" class="headerlink" title="选择居处时，要以“里仁为美”作为标准"></a>选择居处时，要以“里仁为美”作为标准</h2><p>【里仁为美】居住在有仁者之地为美</p>
+<blockquote>
+<p>子曰：“里仁为美。择不处仁，焉得知？”——《论语·里仁》</p>
+</blockquote>
+<h2 id="要讲信用，不要“大车无輗，小车无軏”，否则难以在社会中立足；"><a href="#要讲信用，不要“大车无輗，小车无軏”，否则难以在社会中立足；" class="headerlink" title="要讲信用，不要“大车无輗，小车无軏”，否则难以在社会中立足；"></a>要讲信用，不要“大车无輗，小车无軏”，否则难以在社会中立足；</h2><p>【大车无輗，小车无軏】輗，古代大车车辕前端与车衡相衔接的部分；軏，古代车上置于辕前端与车横木衔接处的销钉。比喻若言而无信，则无法取信于人，就像大车无輗，小车无軏一般，无法前行。</p>
+<blockquote>
+<p>子曰：“人而无信，不知其可也。大车无輗，小车无軏，其何以行之哉？”——《论语·为政》</p>
+</blockquote>
+<h2 id="处事方面，凡事要“三思而行”，不要“暴虎冯河”；为人要有主张，不要“无可无不可”；"><a href="#处事方面，凡事要“三思而行”，不要“暴虎冯河”；为人要有主张，不要“无可无不可”；" class="headerlink" title="处事方面，凡事要“三思而行”，不要“暴虎冯河”；为人要有主张，不要“无可无不可”；"></a>处事方面，凡事要“三思而行”，不要“暴虎冯河”；为人要有主张，不要“无可无不可”；</h2><p>【三思而行】反复再三考虑，然后再做</p>
+<blockquote>
+<p>季文子三思而后行。子闻之曰：“再，斯可矣。”——《论语·公冶长》</p>
+</blockquote>
+<p>【暴虎冯河】空手打虎，涉水过河，比喻有勇无谋</p>
+<blockquote>
+<p>子曰：“暴虎冯河，死而无悔者，吾不与也“。——《论语·述而》</p>
+</blockquote>
+<p>【无可无不可】怎么办都可以，比喻没有主张</p>
+<blockquote>
+<p>我则异于是，无可无不可。——《论语·微子》</p>
+</blockquote>
+<h2 id="与人相处，要推已及人，“能近取譬”；对于别人的过失，过去了就要“既往不咎”"><a href="#与人相处，要推已及人，“能近取譬”；对于别人的过失，过去了就要“既往不咎”" class="headerlink" title="与人相处，要推已及人，“能近取譬”；对于别人的过失，过去了就要“既往不咎”"></a>与人相处，要推已及人，“能近取譬”；对于别人的过失，过去了就要“既往不咎”</h2><p>【能近取譬】就近以自身作比，推已及人之意</p>
+<blockquote>
+<p>能近取譬，可谓仁之方也已。——《论语·雍也》</p>
+</blockquote>
+<p>【既往不咎】对过去的错误不再责难</p>
+<blockquote>
+<p>子闻之，曰：“成事不说，遂事不谏，既往不咎”。——《论语·八佾》</p>
+</blockquote>
+<h2 id="自己遇到困难之时，不要“怨天尤人”；未雨绸缪，早做打算，须知“人无远虑，必有近忧”；"><a href="#自己遇到困难之时，不要“怨天尤人”；未雨绸缪，早做打算，须知“人无远虑，必有近忧”；" class="headerlink" title="自己遇到困难之时，不要“怨天尤人”；未雨绸缪，早做打算，须知“人无远虑，必有近忧”；"></a>自己遇到困难之时，不要“怨天尤人”；未雨绸缪，早做打算，须知“人无远虑，必有近忧”；</h2><p>【怨天尤人】抱怨上天，责怪别人</p>
+<blockquote>
+<p>子曰：“不怨天，不尤人，下学而上达。知我者其天乎！”——《论语·宪问》</p>
+</blockquote>
+<p>【人无远虑，必有近忧】做事应当有远大的眼光，周密的考虑</p>
+<blockquote>
+<p>子曰：“人无远虑，必有近忧”。——《论语·卫灵公》</p>
+</blockquote>
+<h2 id="别人遇到困难之时，不要“见义不为”，但是“见义勇为”也要把握分寸，须知“过犹不及”，不可盲目行动，“从井救人”，以致自身落入危险的境地；如果条件允许，尽量“成人之美”"><a href="#别人遇到困难之时，不要“见义不为”，但是“见义勇为”也要把握分寸，须知“过犹不及”，不可盲目行动，“从井救人”，以致自身落入危险的境地；如果条件允许，尽量“成人之美”" class="headerlink" title="别人遇到困难之时，不要“见义不为”，但是“见义勇为”也要把握分寸，须知“过犹不及”，不可盲目行动，“从井救人”，以致自身落入危险的境地；如果条件允许，尽量“成人之美”"></a>别人遇到困难之时，不要“见义不为”，但是“见义勇为”也要把握分寸，须知“过犹不及”，不可盲目行动，“从井救人”，以致自身落入危险的境地；如果条件允许，尽量“成人之美”</h2><p>【见义不为】见到应该挺身而出之事却袖手旁观，就是怯懦；相关的成语是“见义勇为”</p>
+<blockquote>
+<p>见义不为，无勇也。——《论语·为政》</p>
+</blockquote>
+<p>【过犹不及】事情做得过头，就跟做得不够一样，都是不好的。</p>
+<blockquote>
+<p>曰：“然则师愈与？”子曰：“过犹不及”。——《论语·先进》</p>
+</blockquote>
+<p>【从井救人】跳进井里救人，比喻冒着极大风险去救人</p>
+<blockquote>
+<p>虽告之曰：‘井有仁焉。’其从之也？”子曰：“何为其然也？君子可逝也，不可陷也；可欺也，不可罔也”。——《论语·雍也》</p>
+</blockquote>
+<p>【成人之美】成全别人的好事，或帮助别人实现其美好的愿望。</p>
+<blockquote>
+<p>子曰：“君子成人之美，不成人之恶。小人反是”。——《论语·颜渊》</p>
+</blockquote>
+<h2 id="言行方面，不要“言过其实”，而要“言必有中”，“言必信，行必果”；与人在一起交谈，要“侃侃而谈”，但不要“言不及义”；"><a href="#言行方面，不要“言过其实”，而要“言必有中”，“言必信，行必果”；与人在一起交谈，要“侃侃而谈”，但不要“言不及义”；" class="headerlink" title="言行方面，不要“言过其实”，而要“言必有中”，“言必信，行必果”；与人在一起交谈，要“侃侃而谈”，但不要“言不及义”；"></a>言行方面，不要“言过其实”，而要“言必有中”，“言必信，行必果”；与人在一起交谈，要“侃侃而谈”，但不要“言不及义”；</h2><p>【言过其实】言语浮夸，超过实际</p>
+<blockquote>
+<p>子曰：“君子耻其言而过其行”。——《论语·宪问》</p>
+</blockquote>
+<p>【言必有中】要么不说，要说就要说到点子上</p>
+<blockquote>
+<p>子曰：“夫人不言，言必有中”。——《论语·先进》</p>
+</blockquote>
+<p>【言必信，行必果】说过的话必定去做，言行一致</p>
+<blockquote>
+<p>曰：“言必信，行必果，踁踁然小人哉！抑亦可以为次矣”。——《论语·子路》</p>
+</blockquote>
+<p>【侃侃而谈】理直气壮、从容不迫地说话</p>
+<blockquote>
+<p>朝，与下大夫言，侃侃如也；与上大夫言，訚訚如也。君在，踧错如也，与与如也。——《论语·乡党》</p>
+</blockquote>
+<p>【言不及义】净说些无聊的话，没有一句正经的</p>
+<blockquote>
+<p>子曰：“群居终日，言不及义，好行小慧，难矣哉！”——《论语·卫灵公》</p>
+</blockquote>
+<h2 id="听别人说话时，不要被别人的“巧言令色”所迷惑，而要”察言观色”，并且“听其言而观其行”；对于听到的事，如果没有切实的根据，不要“道听途说”；"><a href="#听别人说话时，不要被别人的“巧言令色”所迷惑，而要”察言观色”，并且“听其言而观其行”；对于听到的事，如果没有切实的根据，不要“道听途说”；" class="headerlink" title="听别人说话时，不要被别人的“巧言令色”所迷惑，而要”察言观色”，并且“听其言而观其行”；对于听到的事，如果没有切实的根据，不要“道听途说”；"></a>听别人说话时，不要被别人的“巧言令色”所迷惑，而要”察言观色”，并且“听其言而观其行”；对于听到的事，如果没有切实的根据，不要“道听途说”；</h2><p>【巧言令色】花言巧语来取悦他人</p>
+<blockquote>
+<p>子曰：“巧言令色，鲜矣仁！”——《论语·学而》</p>
+</blockquote>
+<p>【察言观色】通过观察别人的言语和脸色来揣摩其心思</p>
+<blockquote>
+<p>子曰：“是闻也，非达也。夫达也者，质直而好义，察言而观色，虑以下人”。——《论语·颜渊》</p>
+</blockquote>
+<p>【听其言而观其行】不要光听言论，还要看其行动</p>
+<blockquote>
+<p>子曰：“始吾于人也，听其言而信其行；今吾于人也，听其言而观其行。于予与改是”。——《论语·公冶长》</p>
+</blockquote>
+<p>【道听途说】指没有根据的传闻</p>
+<blockquote>
+<p>子曰：“道听而涂说，德之弃也”。——《论语·阳货》</p>
+</blockquote>
+<h2 id="对于已逝去的祖先，要“慎终追远”；对于鬼神，要“敬而远之”，存而不论"><a href="#对于已逝去的祖先，要“慎终追远”；对于鬼神，要“敬而远之”，存而不论" class="headerlink" title="对于已逝去的祖先，要“慎终追远”；对于鬼神，要“敬而远之”，存而不论"></a>对于已逝去的祖先，要“慎终追远”；对于鬼神，要“敬而远之”，存而不论</h2><p>【慎终追远】慎重办理父母丧事，虔诚祭祀远代祖先</p>
+<blockquote>
+<p>曾子曰：“慎终追远，民德归厚矣”。——《论语·学而》</p>
+</blockquote>
+<p>【敬而远之】表面尊敬但不去接近</p>
+<blockquote>
+<p>樊迟问知，子曰：“务民之义，敬鬼神而远之，可谓知矣”。——《论语·雍也》</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>诸子百家</category>
+      </categories>
+      <tags>
+        <tag>论语</tag>
+        <tag>孔子</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>论语成语典故| 论语教你如何修身养性</title>
     <url>/Articles/%E8%AE%BA%E8%AF%AD%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E4%BF%AE%E8%BA%AB%E5%85%BB%E6%80%A7/</url>
     <content><![CDATA[<h2 id="举止言行"><a href="#举止言行" class="headerlink" title="举止言行"></a>举止言行</h2><p>举止方面做到“文质彬彬”；言行方面“讷于言而敏于行”，谨记“驷不及舌”，并且恪守礼法，广求学问，即“博文约礼”</p>
@@ -2499,142 +2892,6 @@
       </tags>
   </entry>
   <entry>
-    <title>论语成语典故｜论语教你如何为人处事</title>
-    <url>/Articles/%E8%AE%BA%E8%AF%AD%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E4%B8%BA%E4%BA%BA%E5%A4%84%E4%BA%8B/</url>
-    <content><![CDATA[<h2 id="为人方面，不要做“色厉内荏”，“华而不实”之辈，也不要做“好行小惠”之人；为人气量要广博，不要做“斗筲之器”；"><a href="#为人方面，不要做“色厉内荏”，“华而不实”之辈，也不要做“好行小惠”之人；为人气量要广博，不要做“斗筲之器”；" class="headerlink" title="为人方面，不要做“色厉内荏”，“华而不实”之辈，也不要做“好行小惠”之人；为人气量要广博，不要做“斗筲之器”；"></a>为人方面，不要做“色厉内荏”，“华而不实”之辈，也不要做“好行小惠”之人；为人气量要广博，不要做“斗筲之器”；</h2><p>【色厉内荏】外表强悍，内心虚弱</p>
-<blockquote>
-<p>子曰：“色厉而内荏，譬诸小人，其犹穿窬之盗也与？”——《论语·阳货》</p>
-</blockquote>
-<p>【华而不实】外表好看，内里空虚</p>
-<blockquote>
-<p>子曰：“苗而不秀者有矣夫，秀而不实者有矣夫”。——《论语·子罕》</p>
-</blockquote>
-<p>【好行小惠】喜欢给人小恩小惠</p>
-<blockquote>
-<p>子曰：“群居终日，言不及义，好行小慧，难矣哉！”——《论语·卫灵公》</p>
-</blockquote>
-<p>【斗筲之器】比喻气量狭窄之人</p>
-<blockquote>
-<p>子曰：“噫！斗筲之人，何足算也！”——《论语·子路》</p>
-</blockquote>
-<h2 id="不要“无所用心”，“饱食终日”，否则会“四体不勤，五谷不分”；"><a href="#不要“无所用心”，“饱食终日”，否则会“四体不勤，五谷不分”；" class="headerlink" title="不要“无所用心”，“饱食终日”，否则会“四体不勤，五谷不分”；"></a>不要“无所用心”，“饱食终日”，否则会“四体不勤，五谷不分”；</h2><p>【无所用心】对什么事情都不关心</p>
-<blockquote>
-<p>饱食终日，无所用心，难矣哉！——《论语·阳货》</p>
-</blockquote>
-<p>【饱食终日】成天吃饱喝足，无所事事</p>
-<blockquote>
-<p>饱食终日，无所用心，难矣哉！——《论语·阳货》</p>
-</blockquote>
-<p>【四体不勤，五谷不分】不参加劳动，不能辨别五谷，比喻知识与实践脱离</p>
-<blockquote>
-<p>丈人曰：“四体不勤，五谷不分，孰为夫子？”——《论语·微子》</p>
-</blockquote>
-<h2 id="选择居处时，要以“里仁为美”作为标准"><a href="#选择居处时，要以“里仁为美”作为标准" class="headerlink" title="选择居处时，要以“里仁为美”作为标准"></a>选择居处时，要以“里仁为美”作为标准</h2><p>【里仁为美】居住在有仁者之地为美</p>
-<blockquote>
-<p>子曰：“里仁为美。择不处仁，焉得知？”——《论语·里仁》</p>
-</blockquote>
-<h2 id="要讲信用，不要“大车无輗，小车无軏”，否则难以在社会中立足；"><a href="#要讲信用，不要“大车无輗，小车无軏”，否则难以在社会中立足；" class="headerlink" title="要讲信用，不要“大车无輗，小车无軏”，否则难以在社会中立足；"></a>要讲信用，不要“大车无輗，小车无軏”，否则难以在社会中立足；</h2><p>【大车无輗，小车无軏】輗，古代大车车辕前端与车衡相衔接的部分；軏，古代车上置于辕前端与车横木衔接处的销钉。比喻若言而无信，则无法取信于人，就像大车无輗，小车无軏一般，无法前行。</p>
-<blockquote>
-<p>子曰：“人而无信，不知其可也。大车无輗，小车无軏，其何以行之哉？”——《论语·为政》</p>
-</blockquote>
-<h2 id="处事方面，凡事要“三思而行”，不要“暴虎冯河”；为人要有主张，不要“无可无不可”；"><a href="#处事方面，凡事要“三思而行”，不要“暴虎冯河”；为人要有主张，不要“无可无不可”；" class="headerlink" title="处事方面，凡事要“三思而行”，不要“暴虎冯河”；为人要有主张，不要“无可无不可”；"></a>处事方面，凡事要“三思而行”，不要“暴虎冯河”；为人要有主张，不要“无可无不可”；</h2><p>【三思而行】反复再三考虑，然后再做</p>
-<blockquote>
-<p>季文子三思而后行。子闻之曰：“再，斯可矣。”——《论语·公冶长》</p>
-</blockquote>
-<p>【暴虎冯河】空手打虎，涉水过河，比喻有勇无谋</p>
-<blockquote>
-<p>子曰：“暴虎冯河，死而无悔者，吾不与也“。——《论语·述而》</p>
-</blockquote>
-<p>【无可无不可】怎么办都可以，比喻没有主张</p>
-<blockquote>
-<p>我则异于是，无可无不可。——《论语·微子》</p>
-</blockquote>
-<h2 id="与人相处，要推已及人，“能近取譬”；对于别人的过失，过去了就要“既往不咎”"><a href="#与人相处，要推已及人，“能近取譬”；对于别人的过失，过去了就要“既往不咎”" class="headerlink" title="与人相处，要推已及人，“能近取譬”；对于别人的过失，过去了就要“既往不咎”"></a>与人相处，要推已及人，“能近取譬”；对于别人的过失，过去了就要“既往不咎”</h2><p>【能近取譬】就近以自身作比，推已及人之意</p>
-<blockquote>
-<p>能近取譬，可谓仁之方也已。——《论语·雍也》</p>
-</blockquote>
-<p>【既往不咎】对过去的错误不再责难</p>
-<blockquote>
-<p>子闻之，曰：“成事不说，遂事不谏，既往不咎”。——《论语·八佾》</p>
-</blockquote>
-<h2 id="自己遇到困难之时，不要“怨天尤人”；未雨绸缪，早做打算，须知“人无远虑，必有近忧”；"><a href="#自己遇到困难之时，不要“怨天尤人”；未雨绸缪，早做打算，须知“人无远虑，必有近忧”；" class="headerlink" title="自己遇到困难之时，不要“怨天尤人”；未雨绸缪，早做打算，须知“人无远虑，必有近忧”；"></a>自己遇到困难之时，不要“怨天尤人”；未雨绸缪，早做打算，须知“人无远虑，必有近忧”；</h2><p>【怨天尤人】抱怨上天，责怪别人</p>
-<blockquote>
-<p>子曰：“不怨天，不尤人，下学而上达。知我者其天乎！”——《论语·宪问》</p>
-</blockquote>
-<p>【人无远虑，必有近忧】做事应当有远大的眼光，周密的考虑</p>
-<blockquote>
-<p>子曰：“人无远虑，必有近忧”。——《论语·卫灵公》</p>
-</blockquote>
-<h2 id="别人遇到困难之时，不要“见义不为”，但是“见义勇为”也要把握分寸，须知“过犹不及”，不可盲目行动，“从井救人”，以致自身落入危险的境地；如果条件允许，尽量“成人之美”"><a href="#别人遇到困难之时，不要“见义不为”，但是“见义勇为”也要把握分寸，须知“过犹不及”，不可盲目行动，“从井救人”，以致自身落入危险的境地；如果条件允许，尽量“成人之美”" class="headerlink" title="别人遇到困难之时，不要“见义不为”，但是“见义勇为”也要把握分寸，须知“过犹不及”，不可盲目行动，“从井救人”，以致自身落入危险的境地；如果条件允许，尽量“成人之美”"></a>别人遇到困难之时，不要“见义不为”，但是“见义勇为”也要把握分寸，须知“过犹不及”，不可盲目行动，“从井救人”，以致自身落入危险的境地；如果条件允许，尽量“成人之美”</h2><p>【见义不为】见到应该挺身而出之事却袖手旁观，就是怯懦；相关的成语是“见义勇为”</p>
-<blockquote>
-<p>见义不为，无勇也。——《论语·为政》</p>
-</blockquote>
-<p>【过犹不及】事情做得过头，就跟做得不够一样，都是不好的。</p>
-<blockquote>
-<p>曰：“然则师愈与？”子曰：“过犹不及”。——《论语·先进》</p>
-</blockquote>
-<p>【从井救人】跳进井里救人，比喻冒着极大风险去救人</p>
-<blockquote>
-<p>虽告之曰：‘井有仁焉。’其从之也？”子曰：“何为其然也？君子可逝也，不可陷也；可欺也，不可罔也”。——《论语·雍也》</p>
-</blockquote>
-<p>【成人之美】成全别人的好事，或帮助别人实现其美好的愿望。</p>
-<blockquote>
-<p>子曰：“君子成人之美，不成人之恶。小人反是”。——《论语·颜渊》</p>
-</blockquote>
-<h2 id="言行方面，不要“言过其实”，而要“言必有中”，“言必信，行必果”；与人在一起交谈，要“侃侃而谈”，但不要“言不及义”；"><a href="#言行方面，不要“言过其实”，而要“言必有中”，“言必信，行必果”；与人在一起交谈，要“侃侃而谈”，但不要“言不及义”；" class="headerlink" title="言行方面，不要“言过其实”，而要“言必有中”，“言必信，行必果”；与人在一起交谈，要“侃侃而谈”，但不要“言不及义”；"></a>言行方面，不要“言过其实”，而要“言必有中”，“言必信，行必果”；与人在一起交谈，要“侃侃而谈”，但不要“言不及义”；</h2><p>【言过其实】言语浮夸，超过实际</p>
-<blockquote>
-<p>子曰：“君子耻其言而过其行”。——《论语·宪问》</p>
-</blockquote>
-<p>【言必有中】要么不说，要说就要说到点子上</p>
-<blockquote>
-<p>子曰：“夫人不言，言必有中”。——《论语·先进》</p>
-</blockquote>
-<p>【言必信，行必果】说过的话必定去做，言行一致</p>
-<blockquote>
-<p>曰：“言必信，行必果，踁踁然小人哉！抑亦可以为次矣”。——《论语·子路》</p>
-</blockquote>
-<p>【侃侃而谈】理直气壮、从容不迫地说话</p>
-<blockquote>
-<p>朝，与下大夫言，侃侃如也；与上大夫言，訚訚如也。君在，踧错如也，与与如也。——《论语·乡党》</p>
-</blockquote>
-<p>【言不及义】净说些无聊的话，没有一句正经的</p>
-<blockquote>
-<p>子曰：“群居终日，言不及义，好行小慧，难矣哉！”——《论语·卫灵公》</p>
-</blockquote>
-<h2 id="听别人说话时，不要被别人的“巧言令色”所迷惑，而要”察言观色”，并且“听其言而观其行”；对于听到的事，如果没有切实的根据，不要“道听途说”；"><a href="#听别人说话时，不要被别人的“巧言令色”所迷惑，而要”察言观色”，并且“听其言而观其行”；对于听到的事，如果没有切实的根据，不要“道听途说”；" class="headerlink" title="听别人说话时，不要被别人的“巧言令色”所迷惑，而要”察言观色”，并且“听其言而观其行”；对于听到的事，如果没有切实的根据，不要“道听途说”；"></a>听别人说话时，不要被别人的“巧言令色”所迷惑，而要”察言观色”，并且“听其言而观其行”；对于听到的事，如果没有切实的根据，不要“道听途说”；</h2><p>【巧言令色】花言巧语来取悦他人</p>
-<blockquote>
-<p>子曰：“巧言令色，鲜矣仁！”——《论语·学而》</p>
-</blockquote>
-<p>【察言观色】通过观察别人的言语和脸色来揣摩其心思</p>
-<blockquote>
-<p>子曰：“是闻也，非达也。夫达也者，质直而好义，察言而观色，虑以下人”。——《论语·颜渊》</p>
-</blockquote>
-<p>【听其言而观其行】不要光听言论，还要看其行动</p>
-<blockquote>
-<p>子曰：“始吾于人也，听其言而信其行；今吾于人也，听其言而观其行。于予与改是”。——《论语·公冶长》</p>
-</blockquote>
-<p>【道听途说】指没有根据的传闻</p>
-<blockquote>
-<p>子曰：“道听而涂说，德之弃也”。——《论语·阳货》</p>
-</blockquote>
-<h2 id="对于已逝去的祖先，要“慎终追远”；对于鬼神，要“敬而远之”，存而不论"><a href="#对于已逝去的祖先，要“慎终追远”；对于鬼神，要“敬而远之”，存而不论" class="headerlink" title="对于已逝去的祖先，要“慎终追远”；对于鬼神，要“敬而远之”，存而不论"></a>对于已逝去的祖先，要“慎终追远”；对于鬼神，要“敬而远之”，存而不论</h2><p>【慎终追远】慎重办理父母丧事，虔诚祭祀远代祖先</p>
-<blockquote>
-<p>曾子曰：“慎终追远，民德归厚矣”。——《论语·学而》</p>
-</blockquote>
-<p>【敬而远之】表面尊敬但不去接近</p>
-<blockquote>
-<p>樊迟问知，子曰：“务民之义，敬鬼神而远之，可谓知矣”。——《论语·雍也》</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>诸子百家</category>
-      </categories>
-      <tags>
-        <tag>论语</tag>
-        <tag>孔子</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>问渠那得清如许｜古代汉语之中的“渠”字是什么意思？</title>
     <url>/Articles/%E9%97%AE%E6%B8%A0%E9%82%A3%E5%BE%97%E6%B8%85%E5%A6%82%E8%AE%B8/</url>
     <content><![CDATA[<p>在阅读古汉语的时候，我们可能会经常遇到“渠”这个字，“渠”字除了作水渠之外，经常还作为人称代词，如果不明白这一点，恐怕很难理解文意，今天我们就来分析一下。</p>
@@ -2680,249 +2937,6 @@
       <tags>
         <tag>渠</tag>
         <tag>渠侬</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>中国外汇储备规模</title>
-    <url>/Articles/%E4%B8%AD%E5%9B%BD%E5%A4%96%E6%B1%87%E5%82%A8%E5%A4%87%E8%A7%84%E6%A8%A1/</url>
-    <content><![CDATA[<h2 id="中国外汇储备规模-（1950年-2016年）单位：亿美元"><a href="#中国外汇储备规模-（1950年-2016年）单位：亿美元" class="headerlink" title="中国外汇储备规模 （1950年-2016年）单位：亿美元"></a>中国外汇储备规模 （1950年-2016年）单位：亿美元</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">年度</th>
-<th style="text-align:center">金额</th>
-<th style="text-align:center">年度</th>
-<th style="text-align:center">金额</th>
-<th style="text-align:center">年度</th>
-<th style="text-align:center">金额</th>
-<th style="text-align:center">年度</th>
-<th style="text-align:center">金额</th>
-<th style="text-align:center">年度</th>
-<th style="text-align:center">金额</th>
-<th style="text-align:center">年度</th>
-<th style="text-align:center">金额</th>
-<th style="text-align:center">年度</th>
-<th style="text-align:center">金额</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>1950</strong></td>
-<td style="text-align:center">1.57</td>
-<td style="text-align:center"><strong>1960</strong></td>
-<td style="text-align:center">0.46</td>
-<td style="text-align:center"><strong>1970</strong></td>
-<td style="text-align:center">0.88</td>
-<td style="text-align:center"><strong>1980</strong></td>
-<td style="text-align:center">-12.96</td>
-<td style="text-align:center"><strong>1990</strong></td>
-<td style="text-align:center">110.93</td>
-<td style="text-align:center"><strong>2000</strong></td>
-<td style="text-align:center">1655.74</td>
-<td style="text-align:center"><strong>2010</strong></td>
-<td style="text-align:center">28473.38</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>1951</strong></td>
-<td style="text-align:center">0.45</td>
-<td style="text-align:center"><strong>1961</strong></td>
-<td style="text-align:center">0.89</td>
-<td style="text-align:center"><strong>1971</strong></td>
-<td style="text-align:center">0.37</td>
-<td style="text-align:center"><strong>1981</strong></td>
-<td style="text-align:center">27.08</td>
-<td style="text-align:center"><strong>1991</strong></td>
-<td style="text-align:center">217.12</td>
-<td style="text-align:center"><strong>2001</strong></td>
-<td style="text-align:center">2121.65</td>
-<td style="text-align:center"><strong>2011</strong></td>
-<td style="text-align:center">31811.48</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>1952</strong></td>
-<td style="text-align:center">1.08</td>
-<td style="text-align:center"><strong>1962</strong></td>
-<td style="text-align:center">0.81</td>
-<td style="text-align:center"><strong>1972</strong></td>
-<td style="text-align:center">2.36</td>
-<td style="text-align:center"><strong>1982</strong></td>
-<td style="text-align:center">69.86</td>
-<td style="text-align:center"><strong>1992</strong></td>
-<td style="text-align:center">194.43</td>
-<td style="text-align:center"><strong>2002</strong></td>
-<td style="text-align:center">2864.07</td>
-<td style="text-align:center"><strong>2012</strong></td>
-<td style="text-align:center">33115.89</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>1953</strong></td>
-<td style="text-align:center">0.90</td>
-<td style="text-align:center"><strong>1963</strong></td>
-<td style="text-align:center">1.19</td>
-<td style="text-align:center"><strong>1973</strong></td>
-<td style="text-align:center">-0.81</td>
-<td style="text-align:center"><strong>1983</strong></td>
-<td style="text-align:center">89.01</td>
-<td style="text-align:center"><strong>1993</strong></td>
-<td style="text-align:center">211.99</td>
-<td style="text-align:center"><strong>2003</strong></td>
-<td style="text-align:center">4032.51</td>
-<td style="text-align:center"><strong>2013</strong></td>
-<td style="text-align:center">38213.15</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>1954</strong></td>
-<td style="text-align:center">0.88</td>
-<td style="text-align:center"><strong>1964</strong></td>
-<td style="text-align:center">1.66</td>
-<td style="text-align:center"><strong>1974</strong></td>
-<td style="text-align:center">0.00</td>
-<td style="text-align:center"><strong>1984</strong></td>
-<td style="text-align:center">82.20</td>
-<td style="text-align:center"><strong>1994</strong></td>
-<td style="text-align:center">516.20</td>
-<td style="text-align:center"><strong>2004</strong></td>
-<td style="text-align:center">6099.32</td>
-<td style="text-align:center"><strong>2014</strong></td>
-<td style="text-align:center">38430.18</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>1955</strong></td>
-<td style="text-align:center">1.80</td>
-<td style="text-align:center"><strong>1965</strong></td>
-<td style="text-align:center">1.05</td>
-<td style="text-align:center"><strong>1975</strong></td>
-<td style="text-align:center">1.83</td>
-<td style="text-align:center"><strong>1985</strong></td>
-<td style="text-align:center">26.44</td>
-<td style="text-align:center"><strong>1995</strong></td>
-<td style="text-align:center">735.97</td>
-<td style="text-align:center"><strong>2005</strong></td>
-<td style="text-align:center">8188.72</td>
-<td style="text-align:center"><strong>2015</strong></td>
-<td style="text-align:center">33303.62</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>1956</strong></td>
-<td style="text-align:center">1.17</td>
-<td style="text-align:center"><strong>1966</strong></td>
-<td style="text-align:center">2.11</td>
-<td style="text-align:center"><strong>1976</strong></td>
-<td style="text-align:center">5.81</td>
-<td style="text-align:center"><strong>1986</strong></td>
-<td style="text-align:center">20.72</td>
-<td style="text-align:center"><strong>1996</strong></td>
-<td style="text-align:center">1050.29</td>
-<td style="text-align:center"><strong>2006</strong></td>
-<td style="text-align:center">10663.44</td>
-<td style="text-align:center"><strong>2016</strong></td>
-<td style="text-align:center">30105.17</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>1957</strong></td>
-<td style="text-align:center">1.23</td>
-<td style="text-align:center"><strong>1967</strong></td>
-<td style="text-align:center">2.15</td>
-<td style="text-align:center"><strong>1977</strong></td>
-<td style="text-align:center">9.52</td>
-<td style="text-align:center"><strong>1987</strong></td>
-<td style="text-align:center">29.23</td>
-<td style="text-align:center"><strong>1997</strong></td>
-<td style="text-align:center">1398.90</td>
-<td style="text-align:center"><strong>2007</strong></td>
-<td style="text-align:center">15282.49</td>
-<td style="text-align:center"><strong>2017</strong></td>
-<td style="text-align:center">—</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>1958</strong></td>
-<td style="text-align:center">0.70</td>
-<td style="text-align:center"><strong>1968</strong></td>
-<td style="text-align:center">2.46</td>
-<td style="text-align:center"><strong>1978</strong></td>
-<td style="text-align:center">1.67</td>
-<td style="text-align:center"><strong>1988</strong></td>
-<td style="text-align:center">33.72</td>
-<td style="text-align:center"><strong>1998</strong></td>
-<td style="text-align:center">1449.59</td>
-<td style="text-align:center"><strong>2008</strong></td>
-<td style="text-align:center">19460.30</td>
-<td style="text-align:center"><strong>2018</strong></td>
-<td style="text-align:center">—</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>1959</strong></td>
-<td style="text-align:center">1.05</td>
-<td style="text-align:center"><strong>1969</strong></td>
-<td style="text-align:center">4.83</td>
-<td style="text-align:center"><strong>1979</strong></td>
-<td style="text-align:center">8.40</td>
-<td style="text-align:center"><strong>1989</strong></td>
-<td style="text-align:center">55.50</td>
-<td style="text-align:center"><strong>1999</strong></td>
-<td style="text-align:center">1546.75</td>
-<td style="text-align:center"><strong>2009</strong></td>
-<td style="text-align:center">23991.52</td>
-<td style="text-align:center"><strong>2019</strong></td>
-<td style="text-align:center">—</td>
-</tr>
-</tbody>
-</table>
-<p>数据来源：<a href="http://www.safe.gov.cn/wps/portal/sy/tjsj_lnwhcb" target="_blank" rel="noopener">国家外汇管理局</a></p>
-<p>由上表可见，中国的外汇储备规模经历了4个阶段：</p>
-<ul>
-<li><p>第一阶段：在1950年至1980年之间，中国的外汇储备体量极小，低于10亿美元，且基本没有正向增长，这也可以解释这30年中国人为什么没钱花；</p>
-</li>
-<li><p>第二阶段：从1981年至1989年，中国的外汇储备维持在10-100亿美元之间，相对于第一阶段有质的飞跃，但有涨有跌，未形成良好的增长态势；</p>
-</li>
-<li><p>第三阶段：从1990年至2014年，中国的外汇储备进入飞速增长期，在短短的25年之间，外汇储备增长了约350倍，致令举世震惊，庞大的外汇储备使得国内市场流通的货币大量增加，这是这段时间中国人突然变得有钱，中国经济高度繁荣的根本原因；</p>
-</li>
-<li><p>第四阶段：从2015年开始，中国的外汇储备进入减持阶段，但外汇储备体量依然极大，高达3万亿美元；</p>
-</li>
-</ul>
-<p>3万亿美元的外汇储备，就意味着21亿元人民币（按美元兑人民币汇率1：7计算）被投放进入国内市场进行流通，促使国内市场高度繁荣，并极大的增强了中国的综合国力和国际信誉。</p>
-]]></content>
-      <categories>
-        <category>纵横捭阖</category>
-      </categories>
-      <tags>
-        <tag>中国</tag>
-        <tag>外汇储备</tag>
-        <tag>人民币</tag>
-        <tag>美元</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>你知道在没有拼音的古代，使用什么注音方法吗？｜反切</title>
-    <url>/Articles/%E5%8F%8D%E5%88%87/</url>
-    <content><![CDATA[<p>拼音，是近代以来才开始通行的汉字注音方法，那么，在没有拼音的古代，人们是用什么方法来记录汉字的发音呢？</p>
-<h2 id="什么是反切？"><a href="#什么是反切？" class="headerlink" title="什么是反切？"></a>什么是反切？</h2><p>中国古代使用时间最长也是最为成熟的注音方法，称为“反切”，或“反语”。反切的基本规则是由两个汉字相拼给另一个汉字注音，“上字与所切之字双声，下字与所切之字叠韵”，也就是说，上字取声母，下字取韵母和声调。比如：“东，德红切”，即“东”的声母与“德”的声母相同「d」，而其韵母及声调与“红”字相同「ōng」，故“东”的发音为「dōng」；又如：“反，甫晚切”，即“反”字的声母与“甫”字的声母相同「f」，韵母及声调与“晚”字相同「ǎn」，故“反”的发音为「fǎn」。</p>
-<p>古人切语之法，用二字以求一字之音，上字与所切之字双声，下字与所切之字叠韵；上字以定清浊，下字以定平上去入；如“东，德红切”、“反，甫晚切”。</p>
-<h2 id="为何称作“反切”？"><a href="#为何称作“反切”？" class="headerlink" title="为何称作“反切”？"></a>为何称作“反切”？</h2><p>反切，唐朝以前称为“反”，“反者，覆也”，因避讳而改作“翻”；宋朝开始才称作“切”，“切者，摩也”。因此，反切就是“反”和“切”两种说法的合称，即“反覆切摩”之意。</p>
-<blockquote>
-<p>「反者，覆也，切者，摩也。所谓反切者，盖反覆切摩而成音之义也。」——《李氏音鉴》</p>
-</blockquote>
-<blockquote>
-<p>「音韵辗转相协谓之反，亦作翻，两字相摩以成声韵谓之切。」——《礼部韵略》</p>
-</blockquote>
-<h2 id="反切的有趣例子"><a href="#反切的有趣例子" class="headerlink" title="反切的有趣例子"></a>反切的有趣例子</h2><ul>
-<li><p>「一、二、三、四、五、六、七、八、九、十 」：于悉（一）、而至（二）、稣甘（三）、赛字（四）、歪古（五）、赖舅（六）、浅滴（七）、北瓜（八）、偕柳（九）、赊迟（十）；</p>
-</li>
-<li><p>「天、地、人」：梯颠、道基、日辰；</p>
-</li>
-<li><p>「春、夏、秋、冬」：闯墩、胡雅、巧偷、督工；</p>
-</li>
-<li><p>「上、下、左、右」：时掌、硝大、宗洛、依旧；</p>
-</li>
-<li><p>「东、南、西、北」：杜松、那含、晓鸡、博墨。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>文化溯源</category>
-      </categories>
-      <tags>
-        <tag>反切</tag>
-        <tag>拼音</tag>
       </tags>
   </entry>
   <entry>
@@ -3418,6 +3432,28 @@
       </tags>
   </entry>
   <entry>
+    <title>英语笔记1：like/as though/as if 区别</title>
+    <url>/English%20Notes/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B01/</url>
+    <content><![CDATA[<h2 id="look-like-as-though-as-if"><a href="#look-like-as-though-as-if" class="headerlink" title="look like/as though/as if"></a>look <em>like/as though/as if</em></h2><blockquote>
+<p><em>It <strong>looks as though</strong> there is some DNA contamination in your samples</em></p>
+</blockquote>
+<blockquote>
+<p><em>It <strong>looks as if</strong> it will rain</em></p>
+</blockquote>
+<blockquote>
+<p><em>The girl <strong>looks like</strong> her mother</em></p>
+</blockquote>
+<p><strong>POINT:</strong> <strong> Like</strong> should be used before a noun only, whenever a subject and verb follow, remember to substitute <strong>like</strong> with either <strong>as though</strong> or <strong>as if</strong>.</p>
+<p><strong>like</strong>后面只能跟名词，如果后面是从句，则要将<strong>like</strong>换成<strong>as thouth</strong>或者<strong>as if</strong>。</p>
+]]></content>
+      <categories>
+        <category>英语进阶</category>
+      </categories>
+      <tags>
+        <tag>英语</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>英文邮件：求助试剂</title>
     <url>/English%20Notes/%E8%8B%B1%E6%96%87%E9%82%AE%E4%BB%B6%E6%B1%82%E5%8A%A9%E8%AF%95%E5%89%82/</url>
     <content><![CDATA[<p>作为一名实验工作者，有时难免会遇到急需某种试剂的情况，但又不清楚哪个LAB可能有这种试剂，这时，群发个邮件就是最好的选择，碰到热心人的概率还是很大的。怎么写邮件呢？怎样表述方能得体大方不卑不亢呢？先看看下面这几个例子。</p>
@@ -3446,28 +3482,6 @@
 <blockquote>
 <p>Dear All,<br><em>Sorry for the spam!</em><br>I am looking for ×××. If you happen have it and would like to share few grams, I would really appreciate it!<br><em>Please let me know and <strong>THANKS</strong> in advance!</em><br>Best Wishes</p>
 </blockquote>
-]]></content>
-      <categories>
-        <category>英语进阶</category>
-      </categories>
-      <tags>
-        <tag>英语</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>英语笔记1：like/as though/as if 区别</title>
-    <url>/English%20Notes/%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B01/</url>
-    <content><![CDATA[<h2 id="look-like-as-though-as-if"><a href="#look-like-as-though-as-if" class="headerlink" title="look like/as though/as if"></a>look <em>like/as though/as if</em></h2><blockquote>
-<p><em>It <strong>looks as though</strong> there is some DNA contamination in your samples</em></p>
-</blockquote>
-<blockquote>
-<p><em>It <strong>looks as if</strong> it will rain</em></p>
-</blockquote>
-<blockquote>
-<p><em>The girl <strong>looks like</strong> her mother</em></p>
-</blockquote>
-<p><strong>POINT:</strong> <strong> Like</strong> should be used before a noun only, whenever a subject and verb follow, remember to substitute <strong>like</strong> with either <strong>as though</strong> or <strong>as if</strong>.</p>
-<p><strong>like</strong>后面只能跟名词，如果后面是从句，则要将<strong>like</strong>换成<strong>as thouth</strong>或者<strong>as if</strong>。</p>
 ]]></content>
       <categories>
         <category>英语进阶</category>
