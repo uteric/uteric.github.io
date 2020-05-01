@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-05-01T02:36:07.000Z</updated>
+  <updated>2020-04-30T14:43:15.389Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,32 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>R����ѧϰ�ʼ�9-����barplot</title>
-    <link href="http://uteric.github.io/2/"/>
-    <id>http://uteric.github.io/2/</id>
-    <published>2020-05-01T02:36:07.000Z</published>
-    <updated>2020-05-01T02:36:07.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>��R����ͼ��������Ҫ����ͼ���豸������Ҫ����png��ʽͼƬ������Ҫ����pngͼ���豸�����£�</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">png(filename=<span class="string">"filename.png"</span>)</span><br><span class="line">barplot(data)</span><br><span class="line">dev.off()</span><br></pre></td></tr></table></figure><p>ͬ��������ʹ��jpg()������jpgͼƬ������pdf()������pdfͼƬ��</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;��R����ͼ��������Ҫ����ͼ���豸������Ҫ����png��ʽͼƬ������Ҫ����pngͼ���豸�����£�&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;
-      
-    
-    </summary>
-    
-      <category term="�������" scheme="http://uteric.github.io/categories/%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD/"/>
-    
-    
-      <category term="R" scheme="http://uteric.github.io/tags/R/"/>
-    
-  </entry>
   
   <entry>
     <title>在古代，有哪些著名的骂人的话？</title>
@@ -682,6 +656,64 @@
       <category term="计谋" scheme="http://uteric.github.io/tags/%E8%AE%A1%E8%B0%8B/"/>
     
       <category term="彭越挠楚" scheme="http://uteric.github.io/tags/%E5%BD%AD%E8%B6%8A%E6%8C%A0%E6%A5%9A/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>夜观天象｜慧星名称知多少？</title>
+    <link href="http://uteric.github.io/Articles/%E6%85%A7%E6%98%9F%E5%90%8D%E7%A7%B0%E7%9F%A5%E5%A4%9A%E5%B0%91/"/>
+    <id>http://uteric.github.io/Articles/慧星名称知多少/</id>
+    <published>2020-04-30T14:43:15.385Z</published>
+    <updated>2020-04-30T14:43:15.385Z</updated>
+    
+    <content type="html"><![CDATA[<p>在中国古代，由于时代不同，慧星种类不同，所以慧星在史籍中的名称也不相同。</p><p>慧星最为常见的名称是“慧”或“慧星”，其次也常称为“孛星”或“星孛”；除此之外，还有其他名称，如客星、天欃、星、蓬星、长星、异星、景星、蚩尤旗、天冲、旬始、天狗、白气、含誉、格泽。</p><h2 id="第一类：确定是慧星，称作“慧”、“慧星”、或“孛星”、“星孛”；"><a href="#第一类：确定是慧星，称作“慧”、“慧星”、或“孛星”、“星孛”；" class="headerlink" title="第一类：确定是慧星，称作“慧”、“慧星”、或“孛星”、“星孛”；"></a>第一类：确定是慧星，称作“慧”、“慧星”、或“孛星”、“星孛”；</h2><h3 id="一、慧"><a href="#一、慧" class="headerlink" title="一、慧"></a>一、慧</h3><blockquote><p>「壬申，彗出于张；甲戌， 彗出灵台。」——《新五代史·司天考》</p></blockquote><h3 id="二、彗星"><a href="#二、彗星" class="headerlink" title="二、彗星"></a>二、彗星</h3><blockquote><p>「七年，彗星先出东方，见北方，五月见西方。将军骜死；彗星复见西方十六日。夏太后死。」——《史记·秦始皇本纪》</p></blockquote><blockquote><p>「六年二月丁巳，彗星见东方，长六七尺，色青白，西南指营室及坟墓里。丁丑，彗星在奎一度，长六尺；癸未，昏见，西北历昂、毕；甲申，在东井，遂历舆鬼、柳、七星、张，光炎及三台，至轩辕中灭。营室者，天子常宫。坟墓主死。彗星起而在营室、坟墓，不出五年，天下有大丧。后四年，孝顺帝崩。」——《后汉书·天文志》</p></blockquote><h3 id="三、孛星"><a href="#三、孛星" class="headerlink" title="三、孛星"></a>三、孛星</h3><blockquote><p>「二十三年三月，孛星晨见东方二十余日，夕出西方，犯历五车、东井、五诸侯、文昌、轩辕、后妃、太微，锋炎指帝坐。占曰：“除旧布新之象也。”」——《后汉书·天文志》</p></blockquote><h3 id="四、星孛"><a href="#四、星孛" class="headerlink" title="四、星孛"></a>四、星孛</h3><blockquote><p>「秋七月，有星孛入于北斗。」——《春秋·文公十四年》</p></blockquote><blockquote><p>「有星孛入于北斗，周内史叔服曰：“不出七年，宋、齐、晋之君皆将死乱”。」——《左传》</p></blockquote><blockquote><p>「秋，七月，有星孛入于北斗。孛者何？彗星也。其言入于北斗何？北斗有中也。何以书？记异也。」——《公羊传》</p></blockquote><blockquote><p>「元延元年七月辛未，有星孛于东井，践五诸侯，出河戌北，率行轩辕太微，后六日度有余，晨出东方」——《汉书·五行志》</p></blockquote><h2 id="第二类：可能是慧星、新星、或超新星，如“客星”、“天欃”、“星”、“蓬星”、“长星”、“异星”、“景星”、“蚩尤”、“天冲”、“旬始”、“天狗”、“白气”、“含誉”、“格泽”。"><a href="#第二类：可能是慧星、新星、或超新星，如“客星”、“天欃”、“星”、“蓬星”、“长星”、“异星”、“景星”、“蚩尤”、“天冲”、“旬始”、“天狗”、“白气”、“含誉”、“格泽”。" class="headerlink" title="第二类：可能是慧星、新星、或超新星，如“客星”、“天欃”、“星”、“蓬星”、“长星”、“异星”、“景星”、“蚩尤”、“天冲”、“旬始”、“天狗”、“白气”、“含誉”、“格泽”。"></a>第二类：可能是慧星、新星、或超新星，如“客星”、“天欃”、“星”、“蓬星”、“长星”、“异星”、“景星”、“蚩尤”、“天冲”、“旬始”、“天狗”、“白气”、“含誉”、“格泽”。</h2><h3 id="五、客星"><a href="#五、客星" class="headerlink" title="五、客星"></a>五、客星</h3><blockquote><p>「九年正月戊申，客星出牵牛，长八尺，历建星至房南灭，见至五十日。」——《后汉书·天文志》</p></blockquote><blockquote><p>「三年十月，有客星三，一 大二小，在虚、危间，乍合乍离，相随东行，状如斗，经三日而二小星没，其大星后没。」——《新唐书·志卷二十二》</p></blockquote><h3 id="六、天欃"><a href="#六、天欃" class="headerlink" title="六、天欃"></a>六、天欃</h3><blockquote><p>「孝文后二年正月壬寅，天欃夕出西南。」——《汉书·天文志》</p></blockquote><h3 id="七、星"><a href="#七、星" class="headerlink" title="七、星"></a>七、星</h3><blockquote><p>「光宅元年九月丁丑，有星如半月，见于西方。」——《新唐书·志卷二十二》</p></blockquote><blockquote><p>「十一年九月甲戌，有星见于五车东北，发芒丈余。扫内阶，入紫微宫，扫北极五星，犯东垣少宰，入天市垣，犯天市。至十月己未，阴云不见。」——《明史·志卷三》</p></blockquote><h3 id="八、蓬星"><a href="#八、蓬星" class="headerlink" title="八、蓬星"></a>八、蓬星</h3><blockquote><p>「孝昭始元中，汉宦者梁成恢及燕王候星者吴莫如，见蓬星出西方天市垣东门，行过河鼓，入营室中。」——《汉书·天文志》</p></blockquote><h3 id="九、长星"><a href="#九、长星" class="headerlink" title="九、长星"></a>九、长星</h3><blockquote><p>「大业三年三月辛亥，长星见西方，竟天，干历奎、娄，至角、亢而没；至九月辛未，转见南方，亦竟天，又干角、亢，频扫太微、帝座，干犯列宿，唯不及参、井，经岁乃灭。」——《隋书·天文志》</p></blockquote><blockquote><p>「七年十二月丙寅，有长星于参下。其长亘天。长星，彗属。参，唐星也。」——《新唐书·志卷二十二》</p></blockquote><h3 id="十、异星"><a href="#十、异星" class="headerlink" title="十、异星"></a>十、异星</h3><blockquote><p>「中和元年，有异星出于舆鬼，占者以为恶星。八月己丑夜，星陨如雨，或如杯碗者，交流如织，庚寅夜亦如之，至丁酉止。三年十一月夜，星陨于西北，如雨。」——《新唐书·志卷二十二》</p></blockquote><h3 id="十一、景星"><a href="#十一、景星" class="headerlink" title="十一、景星"></a>十一、景星</h3><blockquote><p>「开宝四年八月癸卯，景星见。」——《宋史·志卷九》</p></blockquote><h3 id="十二、蚩尤旗，或蚩尤之旗"><a href="#十二、蚩尤旗，或蚩尤之旗" class="headerlink" title="十二、蚩尤旗，或蚩尤之旗"></a>十二、蚩尤旗，或蚩尤之旗</h3><blockquote><p>「蚩尤之旗，类彗而后曲，象旗。见则王者征伐四方。」——《史记·天官书》</p></blockquote><blockquote><p>「景福元年五月，蚩尤旗见，初出有白彗，形如发，长二尺许，经数日，乃从中 天下，如匹布，至地如蛇。」——《新唐书·志卷二十二》</p></blockquote><blockquote><p>「十二月壬申，蚩尤旗见。」——《新唐书·志卷二十二》</p></blockquote><h3 id="十三、天冲"><a href="#十三、天冲" class="headerlink" title="十三、天冲"></a>十三、天冲</h3><blockquote><p>「天祐元年四月，有星状如人，首赤身黑，在北斗下紫微中。占曰：“天冲也。 天冲抱极泣帝前，血浊雾下天下冤。」——《新唐书·志卷二十二》</p></blockquote><h3 id="十四、旬始"><a href="#十四、旬始" class="headerlink" title="十四、旬始"></a>十四、旬始</h3><blockquote><p>「旬始，出于北斗旁，状如雄鸡。其怒，青黑，象伏鳖。」——《史记·天官书》</p></blockquote><h3 id="十五、天狗"><a href="#十五、天狗" class="headerlink" title="十五、天狗"></a>十五、天狗</h3><blockquote><p>「四年十月庚戌，天狗见西南。占曰：“有大兵，流血”。」——《晋书·志卷三》</p></blockquote><blockquote><p>「十三年闰月戊辰，天狗东北下，有声。占曰：“有大战，流血”。」——《晋书·志卷三》</p></blockquote><h3 id="十六、白气"><a href="#十六、白气" class="headerlink" title="十六、白气"></a>十六、白气</h3><blockquote><p>「至壬午，星复有芒彗，长丈余，阔三尺余，东北指，历五车，白气为岐横天，贯北河、五诸侯、轩辕、太微五帝坐内五诸侯及角、亢、氐、房宿。」——《宋史·志九》</p></blockquote><blockquote><p>「元丰三年七月癸未，彗出西北太微垣郎位南，白气长一丈，斜指东南，在轸度中。」——《宋史·志卷九》</p></blockquote><blockquote><p>「元嘉二十六年十月，彗星入太微。十一月，白气贯北斗。」——《宋书·志二十六》</p></blockquote><h3 id="十七、含誉"><a href="#十七、含誉" class="headerlink" title="十七、含誉"></a>十七、含誉</h3><blockquote><p>「大中祥符七年正月己酉，含誉星见。其年九月丙戌，又见，似彗有尾而不长。」——《宋史·志卷九》</p></blockquote><blockquote><p>「明道二年二月戊戌，含誉星见东北方，其色黄白，光芒长二尺许。」——《宋史·志卷九》</p></blockquote><h3 id="十八、格泽"><a href="#十八、格泽" class="headerlink" title="十八、格泽"></a>十八、格泽</h3><blockquote><p>「格泽星者，如炎火之状。黄白，起地而上。下大，上兑。其见也，不种而获，不有土功，必有大害。」——《史记·天官书》</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在中国古代，由于时代不同，慧星种类不同，所以慧星在史籍中的名称也不相同。&lt;/p&gt;
+&lt;p&gt;慧星最为常见的名称是“慧”或“慧星”，其次也常称为“孛星”或“星孛”；除此之外，还有其他名称，如客星、天欃、星、蓬星、长星、异星、景星、蚩尤旗、天冲、旬始、天狗、白气、含誉、格泽。&lt;/p
+      
+    
+    </summary>
+    
+      <category term="夜观天象" scheme="http://uteric.github.io/categories/%E5%A4%9C%E8%A7%82%E5%A4%A9%E8%B1%A1/"/>
+    
+    
+      <category term="客星" scheme="http://uteric.github.io/tags/%E5%AE%A2%E6%98%9F/"/>
+    
+      <category term="彗星" scheme="http://uteric.github.io/tags/%E5%BD%97%E6%98%9F/"/>
+    
+      <category term="孛星" scheme="http://uteric.github.io/tags/%E5%AD%9B%E6%98%9F/"/>
+    
+      <category term="星孛" scheme="http://uteric.github.io/tags/%E6%98%9F%E5%AD%9B/"/>
+    
+      <category term="彗" scheme="http://uteric.github.io/tags/%E5%BD%97/"/>
+    
+      <category term="天欃" scheme="http://uteric.github.io/tags/%E5%A4%A9%E6%AC%83/"/>
+    
+      <category term="蓬星" scheme="http://uteric.github.io/tags/%E8%93%AC%E6%98%9F/"/>
+    
+      <category term="长星" scheme="http://uteric.github.io/tags/%E9%95%BF%E6%98%9F/"/>
+    
+      <category term="异星" scheme="http://uteric.github.io/tags/%E5%BC%82%E6%98%9F/"/>
+    
+      <category term="景星" scheme="http://uteric.github.io/tags/%E6%99%AF%E6%98%9F/"/>
+    
+      <category term="蚩尤旗" scheme="http://uteric.github.io/tags/%E8%9A%A9%E5%B0%A4%E6%97%97/"/>
+    
+      <category term="天冲" scheme="http://uteric.github.io/tags/%E5%A4%A9%E5%86%B2/"/>
+    
+      <category term="旬始" scheme="http://uteric.github.io/tags/%E6%97%AC%E5%A7%8B/"/>
+    
+      <category term="天狗" scheme="http://uteric.github.io/tags/%E5%A4%A9%E7%8B%97/"/>
+    
+      <category term="白气" scheme="http://uteric.github.io/tags/%E7%99%BD%E6%B0%94/"/>
+    
+      <category term="含誉" scheme="http://uteric.github.io/tags/%E5%90%AB%E8%AA%89/"/>
+    
+      <category term="格泽" scheme="http://uteric.github.io/tags/%E6%A0%BC%E6%B3%BD/"/>
     
   </entry>
   

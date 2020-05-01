@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>R����ѧϰ�ʼ�9-����barplot</title>
-    <url>/2/</url>
-    <content><![CDATA[<p>��R����ͼ��������Ҫ����ͼ���豸������Ҫ����png��ʽͼƬ������Ҫ����pngͼ���豸�����£�</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">png(filename=<span class="string">"filename.png"</span>)</span><br><span class="line">barplot(data)</span><br><span class="line">dev.off()</span><br></pre></td></tr></table></figure>
-<p>ͬ��������ʹ��jpg()������jpgͼƬ������pdf()������pdfͼƬ��</p>
-]]></content>
-      <categories>
-        <category>�������</category>
-      </categories>
-      <tags>
-        <tag>R</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>古人上厕所都有哪些文辞婉约的说法？</title>
     <url>/Articles/%E4%B8%8A%E5%8E%95%E6%89%80%E6%96%87%E8%BE%9E%E5%A9%89%E7%BA%A6%E7%9A%84%E8%AF%B4%E6%B3%95/</url>
     <content><![CDATA[<p>吃、喝、拉、撒、睡，人生五件大事当中，光是上厕所就占了两样，天天都离不开，我们通常将其称之为“上厕所”或者“解手”，虽然通俗然而有欠婉约。那么，古人又是如何表述的呢？</p>
@@ -5369,256 +5355,6 @@ See</code>config.log’ for more details<br>ERROR: configuration failed for pack
       </tags>
   </entry>
   <entry>
-    <title>美国家庭天燃气收费</title>
-    <url>/USA/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B01/</url>
-    <content><![CDATA[<p>美国的天燃气收费原则有点像国内的固话费，只要你开通这个服务，不管你用不用，基本费用必不可免，这叫做Customer Service Charge（CSC）或者Customer Charge（CC），真的是百分百的霸王条款。</p>
-<p>下面是一个虚拟的<strong>GAS BILL</strong>，由四部分组成。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">CURRENT GAS CHARGE TOTAL</th>
-<th style="text-align:center">20.79</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Customer Charge</td>
-<td style="text-align:center">18.88</td>
-</tr>
-<tr>
-<td style="text-align:left">Consump Chrg 4.000 @ 0.14846</td>
-<td style="text-align:center">0.59</td>
-</tr>
-<tr>
-<td style="text-align:left">Rider GCR 4.000 @ 0.3297</td>
-<td style="text-align:center">1.32</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>TAX/FEE CHARGE TOTAL</strong></td>
-<td style="text-align:center"><strong>1.99</strong></td>
-</tr>
-<tr>
-<td style="text-align:left">Rider FF @0.06323</td>
-<td style="text-align:center">1.31</td>
-</tr>
-<tr>
-<td style="text-align:left">Reimbursement of MGRT</td>
-<td style="text-align:center">0.45</td>
-</tr>
-<tr>
-<td style="text-align:left">City Sales Tax</td>
-<td style="text-align:center">0.23</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>OTHER CHARGE TOTAL</strong></td>
-<td style="text-align:center"><strong>19.00</strong></td>
-</tr>
-<tr>
-<td style="text-align:left">Meter Read Fee</td>
-<td style="text-align:center">19.00</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>CURRENT CHARGES</strong></td>
-<td style="text-align:center"><strong>41.76</strong></td>
-</tr>
-</tbody>
-</table>
-<p><strong>一、客户服务费</strong>，每月$18.88，哪怕你不吃不喝不动，一个月下来也要至少交这么多钱。</p>
-<p><strong>二、消费记录</strong>，由两项组成：<br>1、CONSUMPTION CHARGE，是指公司为你提供供气服务所收取的费用，在本账单中每CCF收取0.14846刀；<br>2、Rider GCR（GAS COST RECOVERY），是天燃气公司向天燃气供货商支付的成本和运输费用，在本账单中每CCF收取0.3297刀，合计0.47816刀/CCF。由此可见，随着天燃气市场价格的波动，你的账单可能也会有较大幅度的变化。</p>
-<p><strong>三、税收</strong>，由三项组成：<br>1、FRANCHISE FEE（RIDER FF），这是市政当局征收的特许经营费；<br>2、Reimbursement of MGRT(Miscellaneous Gross Receipts Tax)，收入税报销；<br>3、City Sales Tax，市销售税。</p>
-<p><strong>四、其他收费</strong>，在本账单中，叫Meter Read Fee，只在开通服务时一次性收取。</p>
-<p><strong>友情提示</strong>：在CC部分，我用了个限定词<strong>“至少”</strong>，说明还有其他的隐性费用，这部分是<strong>Pilot Light</strong>。</p>
-<p><strong>Pilot Light</strong>，是加热器的火焰指示灯，在旧式的加热器中保持常开，作为加热器的点火源（ignition source），每个月也要消耗5CCF的天燃气。现在，新式的加热器只有在启动时才点火，不会有这个隐性费用。</p>
-<p>尽管这是个虚拟账单，但却是根据真实的账单而产生的，因此比较能反映现在的天燃气计价方式。具体的账单，里面的内容可能叫法不同，但是一个母牛生的犊，大同小异，基本都由这几项构成。美国的天燃气消耗是日常支出中的大项，但是好在美国在上世纪末已对天燃气解除管制，尽管有令人无可奈何的霸王条款，但是总得来说价格还算合理。</p>
-<hr>
-<h2 id="附：天燃气计价单位"><a href="#附：天燃气计价单位" class="headerlink" title="附：天燃气计价单位"></a>附：天燃气计价单位</h2><p><strong>一、常用的天燃气单位</strong></p>
-<p><em>Btu  (British Thermal Unit)</em>，英国热量单位，把1磅水从39°F加热到40°F所消耗的热量（英制单位是历史遗留产物，主要特点就是别扭，尽管英国人都改公制了，但美国人还在用，原因是错过了最佳历史机遇，现在想要更改成本太高，国家和人民都承受不起）。</p>
-<p><em>Therm</em>，千卡，=100,000 Btu，热量单位。<br><em>CCF</em>，100立方英尺，2.83立方米，是体积单位，最为常见。<br><em>MCF</em>，1000立方英尺，体积单位。</p>
-<p><strong>二、换算方法</strong></p>
-<p>Therms to Btu:therms × 100,000 = Btu<br>Therms to CCF:therms × 1.037 = CCF<br>Therms to MCF:therms × 10.37 = MCF<br>CCF to Btu:CCF × 103,700 = Btu<br>CCF to Therms:CCF ÷ 1.037 = Therms<br>CCF to MCF:CCF × 10 = MCF<br>MCF to Btu:MCF × 1,037,000 = Btu<br>MCF to Therms:MCF ÷ 10.37 = Therms<br>MCF to CCF:MCF ÷ 10 = CCF</p>
-]]></content>
-      <categories>
-        <category>美国生活</category>
-      </categories>
-      <tags>
-        <tag>美国</tag>
-        <tag>天然气</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>美国家庭电费</title>
-    <url>/USA/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B02/</url>
-    <content><![CDATA[<p>搬新家时，朋友推荐我用RELIANT ENERGY的Reliant Truly Free Nights 12 plan，原因是这个Plan从晚上8:00至早晨6:00免费，我们两口子白天都上班，晚上回家才有时间煮肉炖菜，觉得这个计划比较合适，于是果断加入。</p>
-<p>电费的计算规则如下：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Reliant Charges</th>
-<th style="text-align:left"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Daytime Energy Charge</td>
-<td style="text-align:left">+ 16.8311¢ per kWh</td>
-</tr>
-<tr>
-<td style="text-align:left">Nighttime Energy Charge</td>
-<td style="text-align:left">+ $0.00 per kWh</td>
-</tr>
-<tr>
-<td style="text-align:left">Base Charge</td>
-<td style="text-align:left">+ $0.00 per month</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>TDSP/Utility (ONCOR) Charges</strong></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Monthly Charge</td>
-<td style="text-align:left">+ $3.42 per month</td>
-</tr>
-<tr>
-<td style="text-align:left">Daytime Delivery Charges</td>
-<td style="text-align:left">+ 3.1350¢ per kWh</td>
-</tr>
-<tr>
-<td style="text-align:left">Nighttime Delivery Charges</td>
-<td style="text-align:left">+ $0.00 per kWh</td>
-</tr>
-</tbody>
-</table>
-<p>用了一个星期，收到RELIANT的电费周报，我们一周居然花了25.63刀的电费，吓了一跳，因为我们白天基本不在家，晚上回家就简单做点饭，因为是春天，空调也很少开，觉得非常奇怪。看了一下报告单，说我们晚上用电20度，白天用电110度，开始还以为是电力公司搞错了，后来才发现原来泳池定时在每天上午10：00开始循环，傍晚自动关闭，而当我们回到家时已经停止循环了，因此我们都没发现。发现问题后，把泳池的定时器重设了一下，晚上循环，白天停止，电费一下子就从之前每天2.8刀降到每天0.4刀，整整七倍。</p>
-<p>美国的制度有个好处，就是你可以用各种各样的方法合法规避你的花销，关键看你愿不愿意投入时间和精力去了解它的运行规则。</p>
-]]></content>
-      <categories>
-        <category>美国生活</category>
-      </categories>
-      <tags>
-        <tag>美国</tag>
-        <tag>电费</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>泳池水质检测</title>
-    <url>/USA/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B03/</url>
-    <content><![CDATA[<h2 id="一、水质重要指标"><a href="#一、水质重要指标" class="headerlink" title="一、水质重要指标"></a>一、水质重要指标</h2><p><em>ppm，parts per million，百万分之一</em></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">指标</th>
-<th style="text-align:center">值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">碱度（Alkalinity）</td>
-<td style="text-align:center">80-100 ppm</td>
-</tr>
-<tr>
-<td style="text-align:center">酸碱度（PH）</td>
-<td style="text-align:center">7.2-7.8</td>
-</tr>
-<tr>
-<td style="text-align:center">钙硬度（Calcium）</td>
-<td style="text-align:center">200-500 ppm</td>
-</tr>
-<tr>
-<td style="text-align:center">自由氯（Chlorine）</td>
-<td style="text-align:center">1.0-3.0 ppm</td>
-</tr>
-<tr>
-<td style="text-align:center">盐（Salt）</td>
-<td style="text-align:center">3200 ppm</td>
-</tr>
-<tr>
-<td style="text-align:center">氯稳定剂（Stabilizer）</td>
-<td style="text-align:center">30-50 ppm</td>
-</tr>
-</tbody>
-</table>
-<h2 id="二、水的平衡顺序"><a href="#二、水的平衡顺序" class="headerlink" title="二、水的平衡顺序"></a>二、水的平衡顺序</h2><p>关于水的平衡，最重要的四个指标依次是碱度，酸碱度，钙硬度，自由氯。</p>
-<p>1、碱度（Alkalinity），碱度是水体中碱的含量，影响水体的缓冲能力。碱度的合适范围是80-100 ppm。如果太低，就加Alkalinity Increaser，其实就是碳酸氢钠（NaHCO₃），俗名叫小苏打；如果太高，就加Alkalinity Decreaser，其实就是盐酸（Muriatic Acid）。</p>
-<p><strong>提示：</strong> <del>碱度是最先要调节的，否则影响后面的所有过程。</del></p>
-<p>2、酸碱度（PH），范围是7.2-7.8之间，适合人的皮肤直接接触，低加碱，高加酸。</p>
-<p>3、钙硬度（Calcium Hardness），反映化学试剂在水中的溶解度，合适范围为200-500 ppm。如果偏低，加Calcium Hardness Increaser即可；如果太高，则只能将池水放出一部分，加入新水来稀释。</p>
-<p>4、自由氯（Free Chlorine，FC），氯是强氧化剂，可对池水进行消毒，合适范围是1.0-3.0 ppm。如果太低，需加Pool Shock，如果太高，不用担心，晒几天太阳就降下来了，只是暂时不要游泳。一般来说，一周加1磅shock即可（<em>1LB Shock week/p to pool, No swim 4-6 hr</em>）。此外还有一个概念，叫结合氯（Combined Chlorine，CC），CC仍在水中，但是消毒能力大大减弱，CC要低于0.2 ppm；FC+CC=TC（总氯，Total Chlorine）。</p>
-<p>关于Pool Shock，详见<strong>“三、氯和氯稳定剂”</strong>。</p>
-<p>5、Algeacide，用来抑制藻类（Algae）生长，如果没有藻类生长也可以不加。</p>
-<h2 id="三、氯和氯稳定剂"><a href="#三、氯和氯稳定剂" class="headerlink" title="三、氯和氯稳定剂"></a>三、氯和氯稳定剂</h2><p>在美国，最常见的泳池杀菌药物是TCCA（三氯异氰尿酸，国内商品名叫“强氯精”，trichloroisocyanuric acid或trichloro-s-triazinetrione，TCCA，分子式为C3N3O3Cl3)，TCCA具有多种优点，如杀菌范围广、有效氯含量高、维持时间长，且可灭藻、除臭、净水、漂白，因此，其在池水消毒方面被广泛使用。</p>
-<p>TCCA在消毒的过程中能产生氰尿酸（Cyanuric Acid，CYA），CYA是一种次氯酸的稳定剂，它能使水中的次氯酸浓度维持稳定，从而产生持久的消毒效果。然而，CYA不易分解和去除，因此很容易在水中集聚，当其浓度增高到一定程度时，反而会严重抑制次氯酸的消毒效果，并对人体健康产生危害。</p>
-<p>因此，我们平时也需要检测泳池中CYA的浓度。CYA的浓度应当维持在30-50 ppm，既能稳定次氯酸，又不至于对人体产生危害。</p>
-]]></content>
-      <categories>
-        <category>美国生活</category>
-      </categories>
-      <tags>
-        <tag>美国</tag>
-        <tag>泳池</tag>
-        <tag>水质</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>泳池设备维护</title>
-    <url>/USA/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B04/</url>
-    <content><![CDATA[<p>1、撇渣器（Skimmer），泳池的出水口之一，也是池水的第一道过滤网，水从这里被吸进水泵时会被滤网拦下，因此，需要定期打开盖子，取下滤网，清理滤网中的树叶等漂浮杂物，建议每周一次；如果需要添加药物，一般也要投放在Skimmer中，比如Pool Shock，Algeacide等等。</p>
-<p>2、水泵（Pump），水泵是第二道过滤网，旁边的透明盖子可以打开，需要定期清理滤网中的漂浮杂物。</p>
-<p>3、过滤沙缸（Sand Filter），池水通过水泵后，会进入到Filter中进行过滤，Filter上有个压力表，如果压力高达35 psi，则说明Filter该清理了。</p>
-<p>4、水底吸尘器（Pool Cleaner），放在池底，用于清理池底和池壁的尘土和藻类，使用时请根据需要调节流量，如果流量太低，吸尘器会趴在水底不能移动，如果太高，则会爬出水面，导致水泵大量吸入空气。</p>
-]]></content>
-      <categories>
-        <category>美国生活</category>
-      </categories>
-      <tags>
-        <tag>美国</tag>
-        <tag>泳池</tag>
-        <tag>设备</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>美国垃圾如何分类</title>
-    <url>/USA/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B05/</url>
-    <content><![CDATA[<h2 id="一、独立房屋"><a href="#一、独立房屋" class="headerlink" title="一、独立房屋"></a>一、独立房屋</h2><p>以我家为例，在后院门外有两个高大的回收桶，一个垃圾桶（Trash Bin或Refuse Bin），一个回收桶（Recycle Bin）。</p>
-<p><strong>1、Trash Bin</strong>，适用于各种生活垃圾，瓜果蔬菜，但前提是必须装袋（Trash must be bagged），这个桶每周收一次，具体日期要根据家庭地址查看公告。</p>
-<p><strong>2、Recycle Bin</strong>，隔周回收一次，可以放到回收桶的垃圾有且仅有五类：</p>
-<p>1、纸张（LOOSE PAPER），信件（JUNK MAIL），报纸（NEWSPAPERS），杂志（MAGAZINES）；<br>2、硬纸（CARDBOARD），<strong>必须铺平（FLATTENED）</strong>，不能把纸箱子直接放进去；<br>3、塑料瓶（PLASTIC BOTTLES），塑料容器（PLASTIC CONTANERS）；<br>4、玻璃瓶（GLASS BOTTLES），<strong>去掉盖子（WITHOUT LIDS）</strong>；<br>5、金属罐（METAL CANS）；</p>
-<p>绝对不能放进回收桶的物品归为八类：</p>
-<p>1、食物残渣（FOOD WASTE）；<br>2、后院杂物（YARD DEBRIS）；<br>3、软管（HOSES）；<br>4、泡沫聚苯乙烯（STYROFOAM）；<br>5、电子产品（ELECTRONICS）；<br>6、电池（BATTERIES）；<br>7、衣架（HANGERS）；<br>8、食品袋（GROCERY BAGS），黑色垃圾袋（BLACK TRASH BAGS）；</p>
-<p>另外，还有很多不能放进垃圾桶或者回收桶的物品，需要分别处理：</p>
-<p><strong>3、后院废物（Yard Trimmings）</strong>，每周回收一次，注意事项如下：</p>
-<p>1、剪草（Grass Clipping）和落叶，要装在生物可降解的纸草袋中，这种袋子可以在HOME DEPOT买；<br>2、袋子的重量不能超过50磅，不能太满；</p>
-<p><strong>4、瓦楞纸板（Corrugated Cardboard）</strong>，如果比较小，可以当纸板处理，展开放在回收桶里即可；如果尺寸很大，铺平后与Yard Trimmings放在一起，每周回收一次；</p>
-<p><strong>5、家用化学品（Household chemical）</strong>，包括：涂料（PAINT），农药（PESTICIDES），废油（USED OIL），肥料（FERTILIZERS），清洁用品（CLEANING PRODUCTS），汽车电池（CAR BATTERIES）。需要打电话提前一天预约，注意事项如下：</p>
-<p>1、化学品需盛放在密封的容器中，如果不是原装的容器，需要清楚标记是何种化学品，以方便回收处理；<br>2、每次最多回收15加仑；<br>3、容器密封后要放在箱子里，箱子要标记为Chemical或者HCC（HOUSEHOLD CHEMICAL COLLECTION）。</p>
-<p>6、大件物品（Bulky Items），指的是太大而无法放进68加仑或95加仑垃圾桶的物体，每月回收一次。</p>
-<p>1、主要是指电器（APPLIANCES），床垫（MATTRESSES），家俱（FURNITURE）；<br>2、泥土（DIRT），岩石（RODK），瓷砖（TILE），混凝土（CONCRETE），砖（BRICK），需要盛放在容器中，并且每个容器的重量不能超过50磅。<br>3、如果含有氟利昂（FREON），要交环境费25美元；</p>
-<h2 id="二、公寓"><a href="#二、公寓" class="headerlink" title="二、公寓"></a>二、公寓</h2><p>如果住在公寓，那就简单多了，不需要做垃圾分类，直接扔到指定的垃圾桶里即可。</p>
-]]></content>
-      <categories>
-        <category>美国生活</category>
-      </categories>
-      <tags>
-        <tag>美国</tag>
-        <tag>垃圾</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>GEO数据库测序数据下载位置变更</title>
     <url>/RNASEQ/GEO%20FTP%20address%20change/</url>
     <content><![CDATA[<p><a href="https://www.ncbi.nlm.nih.gov/geo/" target="_blank" rel="noopener">GEO</a>是一个公共基因数据库，包含绝大多数已发表文章的原始测序数据，在学习测序数据分析时，我们需要从GEO数据库来下载原始测序文件。</p>
@@ -7685,6 +7421,256 @@ done
       </categories>
       <tags>
         <tag>RNASEQ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>美国家庭天燃气收费</title>
+    <url>/USA/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B01/</url>
+    <content><![CDATA[<p>美国的天燃气收费原则有点像国内的固话费，只要你开通这个服务，不管你用不用，基本费用必不可免，这叫做Customer Service Charge（CSC）或者Customer Charge（CC），真的是百分百的霸王条款。</p>
+<p>下面是一个虚拟的<strong>GAS BILL</strong>，由四部分组成。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">CURRENT GAS CHARGE TOTAL</th>
+<th style="text-align:center">20.79</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Customer Charge</td>
+<td style="text-align:center">18.88</td>
+</tr>
+<tr>
+<td style="text-align:left">Consump Chrg 4.000 @ 0.14846</td>
+<td style="text-align:center">0.59</td>
+</tr>
+<tr>
+<td style="text-align:left">Rider GCR 4.000 @ 0.3297</td>
+<td style="text-align:center">1.32</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>TAX/FEE CHARGE TOTAL</strong></td>
+<td style="text-align:center"><strong>1.99</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Rider FF @0.06323</td>
+<td style="text-align:center">1.31</td>
+</tr>
+<tr>
+<td style="text-align:left">Reimbursement of MGRT</td>
+<td style="text-align:center">0.45</td>
+</tr>
+<tr>
+<td style="text-align:left">City Sales Tax</td>
+<td style="text-align:center">0.23</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>OTHER CHARGE TOTAL</strong></td>
+<td style="text-align:center"><strong>19.00</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Meter Read Fee</td>
+<td style="text-align:center">19.00</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>CURRENT CHARGES</strong></td>
+<td style="text-align:center"><strong>41.76</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>一、客户服务费</strong>，每月$18.88，哪怕你不吃不喝不动，一个月下来也要至少交这么多钱。</p>
+<p><strong>二、消费记录</strong>，由两项组成：<br>1、CONSUMPTION CHARGE，是指公司为你提供供气服务所收取的费用，在本账单中每CCF收取0.14846刀；<br>2、Rider GCR（GAS COST RECOVERY），是天燃气公司向天燃气供货商支付的成本和运输费用，在本账单中每CCF收取0.3297刀，合计0.47816刀/CCF。由此可见，随着天燃气市场价格的波动，你的账单可能也会有较大幅度的变化。</p>
+<p><strong>三、税收</strong>，由三项组成：<br>1、FRANCHISE FEE（RIDER FF），这是市政当局征收的特许经营费；<br>2、Reimbursement of MGRT(Miscellaneous Gross Receipts Tax)，收入税报销；<br>3、City Sales Tax，市销售税。</p>
+<p><strong>四、其他收费</strong>，在本账单中，叫Meter Read Fee，只在开通服务时一次性收取。</p>
+<p><strong>友情提示</strong>：在CC部分，我用了个限定词<strong>“至少”</strong>，说明还有其他的隐性费用，这部分是<strong>Pilot Light</strong>。</p>
+<p><strong>Pilot Light</strong>，是加热器的火焰指示灯，在旧式的加热器中保持常开，作为加热器的点火源（ignition source），每个月也要消耗5CCF的天燃气。现在，新式的加热器只有在启动时才点火，不会有这个隐性费用。</p>
+<p>尽管这是个虚拟账单，但却是根据真实的账单而产生的，因此比较能反映现在的天燃气计价方式。具体的账单，里面的内容可能叫法不同，但是一个母牛生的犊，大同小异，基本都由这几项构成。美国的天燃气消耗是日常支出中的大项，但是好在美国在上世纪末已对天燃气解除管制，尽管有令人无可奈何的霸王条款，但是总得来说价格还算合理。</p>
+<hr>
+<h2 id="附：天燃气计价单位"><a href="#附：天燃气计价单位" class="headerlink" title="附：天燃气计价单位"></a>附：天燃气计价单位</h2><p><strong>一、常用的天燃气单位</strong></p>
+<p><em>Btu  (British Thermal Unit)</em>，英国热量单位，把1磅水从39°F加热到40°F所消耗的热量（英制单位是历史遗留产物，主要特点就是别扭，尽管英国人都改公制了，但美国人还在用，原因是错过了最佳历史机遇，现在想要更改成本太高，国家和人民都承受不起）。</p>
+<p><em>Therm</em>，千卡，=100,000 Btu，热量单位。<br><em>CCF</em>，100立方英尺，2.83立方米，是体积单位，最为常见。<br><em>MCF</em>，1000立方英尺，体积单位。</p>
+<p><strong>二、换算方法</strong></p>
+<p>Therms to Btu:therms × 100,000 = Btu<br>Therms to CCF:therms × 1.037 = CCF<br>Therms to MCF:therms × 10.37 = MCF<br>CCF to Btu:CCF × 103,700 = Btu<br>CCF to Therms:CCF ÷ 1.037 = Therms<br>CCF to MCF:CCF × 10 = MCF<br>MCF to Btu:MCF × 1,037,000 = Btu<br>MCF to Therms:MCF ÷ 10.37 = Therms<br>MCF to CCF:MCF ÷ 10 = CCF</p>
+]]></content>
+      <categories>
+        <category>美国生活</category>
+      </categories>
+      <tags>
+        <tag>美国</tag>
+        <tag>天然气</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>美国家庭电费</title>
+    <url>/USA/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B02/</url>
+    <content><![CDATA[<p>搬新家时，朋友推荐我用RELIANT ENERGY的Reliant Truly Free Nights 12 plan，原因是这个Plan从晚上8:00至早晨6:00免费，我们两口子白天都上班，晚上回家才有时间煮肉炖菜，觉得这个计划比较合适，于是果断加入。</p>
+<p>电费的计算规则如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Reliant Charges</th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Daytime Energy Charge</td>
+<td style="text-align:left">+ 16.8311¢ per kWh</td>
+</tr>
+<tr>
+<td style="text-align:left">Nighttime Energy Charge</td>
+<td style="text-align:left">+ $0.00 per kWh</td>
+</tr>
+<tr>
+<td style="text-align:left">Base Charge</td>
+<td style="text-align:left">+ $0.00 per month</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>TDSP/Utility (ONCOR) Charges</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">Monthly Charge</td>
+<td style="text-align:left">+ $3.42 per month</td>
+</tr>
+<tr>
+<td style="text-align:left">Daytime Delivery Charges</td>
+<td style="text-align:left">+ 3.1350¢ per kWh</td>
+</tr>
+<tr>
+<td style="text-align:left">Nighttime Delivery Charges</td>
+<td style="text-align:left">+ $0.00 per kWh</td>
+</tr>
+</tbody>
+</table>
+<p>用了一个星期，收到RELIANT的电费周报，我们一周居然花了25.63刀的电费，吓了一跳，因为我们白天基本不在家，晚上回家就简单做点饭，因为是春天，空调也很少开，觉得非常奇怪。看了一下报告单，说我们晚上用电20度，白天用电110度，开始还以为是电力公司搞错了，后来才发现原来泳池定时在每天上午10：00开始循环，傍晚自动关闭，而当我们回到家时已经停止循环了，因此我们都没发现。发现问题后，把泳池的定时器重设了一下，晚上循环，白天停止，电费一下子就从之前每天2.8刀降到每天0.4刀，整整七倍。</p>
+<p>美国的制度有个好处，就是你可以用各种各样的方法合法规避你的花销，关键看你愿不愿意投入时间和精力去了解它的运行规则。</p>
+]]></content>
+      <categories>
+        <category>美国生活</category>
+      </categories>
+      <tags>
+        <tag>美国</tag>
+        <tag>电费</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>泳池水质检测</title>
+    <url>/USA/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B03/</url>
+    <content><![CDATA[<h2 id="一、水质重要指标"><a href="#一、水质重要指标" class="headerlink" title="一、水质重要指标"></a>一、水质重要指标</h2><p><em>ppm，parts per million，百万分之一</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指标</th>
+<th style="text-align:center">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">碱度（Alkalinity）</td>
+<td style="text-align:center">80-100 ppm</td>
+</tr>
+<tr>
+<td style="text-align:center">酸碱度（PH）</td>
+<td style="text-align:center">7.2-7.8</td>
+</tr>
+<tr>
+<td style="text-align:center">钙硬度（Calcium）</td>
+<td style="text-align:center">200-500 ppm</td>
+</tr>
+<tr>
+<td style="text-align:center">自由氯（Chlorine）</td>
+<td style="text-align:center">1.0-3.0 ppm</td>
+</tr>
+<tr>
+<td style="text-align:center">盐（Salt）</td>
+<td style="text-align:center">3200 ppm</td>
+</tr>
+<tr>
+<td style="text-align:center">氯稳定剂（Stabilizer）</td>
+<td style="text-align:center">30-50 ppm</td>
+</tr>
+</tbody>
+</table>
+<h2 id="二、水的平衡顺序"><a href="#二、水的平衡顺序" class="headerlink" title="二、水的平衡顺序"></a>二、水的平衡顺序</h2><p>关于水的平衡，最重要的四个指标依次是碱度，酸碱度，钙硬度，自由氯。</p>
+<p>1、碱度（Alkalinity），碱度是水体中碱的含量，影响水体的缓冲能力。碱度的合适范围是80-100 ppm。如果太低，就加Alkalinity Increaser，其实就是碳酸氢钠（NaHCO₃），俗名叫小苏打；如果太高，就加Alkalinity Decreaser，其实就是盐酸（Muriatic Acid）。</p>
+<p><strong>提示：</strong> <del>碱度是最先要调节的，否则影响后面的所有过程。</del></p>
+<p>2、酸碱度（PH），范围是7.2-7.8之间，适合人的皮肤直接接触，低加碱，高加酸。</p>
+<p>3、钙硬度（Calcium Hardness），反映化学试剂在水中的溶解度，合适范围为200-500 ppm。如果偏低，加Calcium Hardness Increaser即可；如果太高，则只能将池水放出一部分，加入新水来稀释。</p>
+<p>4、自由氯（Free Chlorine，FC），氯是强氧化剂，可对池水进行消毒，合适范围是1.0-3.0 ppm。如果太低，需加Pool Shock，如果太高，不用担心，晒几天太阳就降下来了，只是暂时不要游泳。一般来说，一周加1磅shock即可（<em>1LB Shock week/p to pool, No swim 4-6 hr</em>）。此外还有一个概念，叫结合氯（Combined Chlorine，CC），CC仍在水中，但是消毒能力大大减弱，CC要低于0.2 ppm；FC+CC=TC（总氯，Total Chlorine）。</p>
+<p>关于Pool Shock，详见<strong>“三、氯和氯稳定剂”</strong>。</p>
+<p>5、Algeacide，用来抑制藻类（Algae）生长，如果没有藻类生长也可以不加。</p>
+<h2 id="三、氯和氯稳定剂"><a href="#三、氯和氯稳定剂" class="headerlink" title="三、氯和氯稳定剂"></a>三、氯和氯稳定剂</h2><p>在美国，最常见的泳池杀菌药物是TCCA（三氯异氰尿酸，国内商品名叫“强氯精”，trichloroisocyanuric acid或trichloro-s-triazinetrione，TCCA，分子式为C3N3O3Cl3)，TCCA具有多种优点，如杀菌范围广、有效氯含量高、维持时间长，且可灭藻、除臭、净水、漂白，因此，其在池水消毒方面被广泛使用。</p>
+<p>TCCA在消毒的过程中能产生氰尿酸（Cyanuric Acid，CYA），CYA是一种次氯酸的稳定剂，它能使水中的次氯酸浓度维持稳定，从而产生持久的消毒效果。然而，CYA不易分解和去除，因此很容易在水中集聚，当其浓度增高到一定程度时，反而会严重抑制次氯酸的消毒效果，并对人体健康产生危害。</p>
+<p>因此，我们平时也需要检测泳池中CYA的浓度。CYA的浓度应当维持在30-50 ppm，既能稳定次氯酸，又不至于对人体产生危害。</p>
+]]></content>
+      <categories>
+        <category>美国生活</category>
+      </categories>
+      <tags>
+        <tag>美国</tag>
+        <tag>泳池</tag>
+        <tag>水质</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>泳池设备维护</title>
+    <url>/USA/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B04/</url>
+    <content><![CDATA[<p>1、撇渣器（Skimmer），泳池的出水口之一，也是池水的第一道过滤网，水从这里被吸进水泵时会被滤网拦下，因此，需要定期打开盖子，取下滤网，清理滤网中的树叶等漂浮杂物，建议每周一次；如果需要添加药物，一般也要投放在Skimmer中，比如Pool Shock，Algeacide等等。</p>
+<p>2、水泵（Pump），水泵是第二道过滤网，旁边的透明盖子可以打开，需要定期清理滤网中的漂浮杂物。</p>
+<p>3、过滤沙缸（Sand Filter），池水通过水泵后，会进入到Filter中进行过滤，Filter上有个压力表，如果压力高达35 psi，则说明Filter该清理了。</p>
+<p>4、水底吸尘器（Pool Cleaner），放在池底，用于清理池底和池壁的尘土和藻类，使用时请根据需要调节流量，如果流量太低，吸尘器会趴在水底不能移动，如果太高，则会爬出水面，导致水泵大量吸入空气。</p>
+]]></content>
+      <categories>
+        <category>美国生活</category>
+      </categories>
+      <tags>
+        <tag>美国</tag>
+        <tag>泳池</tag>
+        <tag>设备</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>美国垃圾如何分类</title>
+    <url>/USA/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B05/</url>
+    <content><![CDATA[<h2 id="一、独立房屋"><a href="#一、独立房屋" class="headerlink" title="一、独立房屋"></a>一、独立房屋</h2><p>以我家为例，在后院门外有两个高大的回收桶，一个垃圾桶（Trash Bin或Refuse Bin），一个回收桶（Recycle Bin）。</p>
+<p><strong>1、Trash Bin</strong>，适用于各种生活垃圾，瓜果蔬菜，但前提是必须装袋（Trash must be bagged），这个桶每周收一次，具体日期要根据家庭地址查看公告。</p>
+<p><strong>2、Recycle Bin</strong>，隔周回收一次，可以放到回收桶的垃圾有且仅有五类：</p>
+<p>1、纸张（LOOSE PAPER），信件（JUNK MAIL），报纸（NEWSPAPERS），杂志（MAGAZINES）；<br>2、硬纸（CARDBOARD），<strong>必须铺平（FLATTENED）</strong>，不能把纸箱子直接放进去；<br>3、塑料瓶（PLASTIC BOTTLES），塑料容器（PLASTIC CONTANERS）；<br>4、玻璃瓶（GLASS BOTTLES），<strong>去掉盖子（WITHOUT LIDS）</strong>；<br>5、金属罐（METAL CANS）；</p>
+<p>绝对不能放进回收桶的物品归为八类：</p>
+<p>1、食物残渣（FOOD WASTE）；<br>2、后院杂物（YARD DEBRIS）；<br>3、软管（HOSES）；<br>4、泡沫聚苯乙烯（STYROFOAM）；<br>5、电子产品（ELECTRONICS）；<br>6、电池（BATTERIES）；<br>7、衣架（HANGERS）；<br>8、食品袋（GROCERY BAGS），黑色垃圾袋（BLACK TRASH BAGS）；</p>
+<p>另外，还有很多不能放进垃圾桶或者回收桶的物品，需要分别处理：</p>
+<p><strong>3、后院废物（Yard Trimmings）</strong>，每周回收一次，注意事项如下：</p>
+<p>1、剪草（Grass Clipping）和落叶，要装在生物可降解的纸草袋中，这种袋子可以在HOME DEPOT买；<br>2、袋子的重量不能超过50磅，不能太满；</p>
+<p><strong>4、瓦楞纸板（Corrugated Cardboard）</strong>，如果比较小，可以当纸板处理，展开放在回收桶里即可；如果尺寸很大，铺平后与Yard Trimmings放在一起，每周回收一次；</p>
+<p><strong>5、家用化学品（Household chemical）</strong>，包括：涂料（PAINT），农药（PESTICIDES），废油（USED OIL），肥料（FERTILIZERS），清洁用品（CLEANING PRODUCTS），汽车电池（CAR BATTERIES）。需要打电话提前一天预约，注意事项如下：</p>
+<p>1、化学品需盛放在密封的容器中，如果不是原装的容器，需要清楚标记是何种化学品，以方便回收处理；<br>2、每次最多回收15加仑；<br>3、容器密封后要放在箱子里，箱子要标记为Chemical或者HCC（HOUSEHOLD CHEMICAL COLLECTION）。</p>
+<p>6、大件物品（Bulky Items），指的是太大而无法放进68加仑或95加仑垃圾桶的物体，每月回收一次。</p>
+<p>1、主要是指电器（APPLIANCES），床垫（MATTRESSES），家俱（FURNITURE）；<br>2、泥土（DIRT），岩石（RODK），瓷砖（TILE），混凝土（CONCRETE），砖（BRICK），需要盛放在容器中，并且每个容器的重量不能超过50磅。<br>3、如果含有氟利昂（FREON），要交环境费25美元；</p>
+<h2 id="二、公寓"><a href="#二、公寓" class="headerlink" title="二、公寓"></a>二、公寓</h2><p>如果住在公寓，那就简单多了，不需要做垃圾分类，直接扔到指定的垃圾桶里即可。</p>
+]]></content>
+      <categories>
+        <category>美国生活</category>
+      </categories>
+      <tags>
+        <tag>美国</tag>
+        <tag>垃圾</tag>
       </tags>
   </entry>
 </search>
