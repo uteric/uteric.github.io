@@ -4885,6 +4885,20 @@ See</code>config.log’ for more details<br>ERROR: configuration failed for pack
       </tags>
   </entry>
   <entry>
+    <title>R���ӻ�����R����ͼ������</title>
+    <url>/R/R_visualize_plot/</url>
+    <content><![CDATA[<p>��R����ͼ��������Ҫ����ͼ���豸������Ҫ����png��ʽͼƬ������Ҫ����pngͼ���豸�����£�</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">png(filename=<span class="string">"filename.png"</span>)</span><br><span class="line">barplot(data)</span><br><span class="line">dev.off()</span><br></pre></td></tr></table></figure>
+<p>ͬ��������ʹ��jpg()������jpgͼƬ������pdf()������pdfͼƬ��</p>
+]]></content>
+      <categories>
+        <category>�������</category>
+      </categories>
+      <tags>
+        <tag>R</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>R可视化-雷达图</title>
     <url>/R/R_visualize_radar/</url>
     <content><![CDATA[<p>雷达图（radar, spider, or web plot），可以使用R中的fmsb程序包构建；</p>
