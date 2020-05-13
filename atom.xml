@@ -18,8 +18,8 @@
   
   <entry>
     <title>nvm版本切换</title>
-    <link href="http://uteric.github.io/GIT/nvm%20version/"/>
-    <id>http://uteric.github.io/GIT/nvm version/</id>
+    <link href="http://uteric.github.io/GIT/nvm_version/"/>
+    <id>http://uteric.github.io/GIT/nvm_version/</id>
     <published>2020-05-13T03:36:27.000Z</published>
     <updated>2020-05-13T03:36:27.000Z</updated>
     
@@ -39,6 +39,32 @@
     
     
       <category term="nvm" scheme="http://uteric.github.io/tags/nvm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用R绘制生存曲线</title>
+    <link href="http://uteric.github.io/R/R-survival-curve/"/>
+    <id>http://uteric.github.io/R/R-survival-curve/</id>
+    <published>2020-05-13T00:08:08.000Z</published>
+    <updated>2020-05-13T00:08:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>一、加载程序包</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">library(survival)</span><br><span class="line">library(ggplot2)</span><br><span class="line">library(survminer)</span><br><span class="line">library(dplyr)</span><br></pre></td></tr></table></figure><p>二、加载数据并绘图</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data &lt;- read.delim(<span class="string">'clipboard'</span>,header = T)</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">head(data)</span><br><span class="line">       Patient Days Status Expression Group</span><br><span class="line">1 TCGA-B0-5702 2172  Alive     383.07   Low</span><br><span class="line">2 TCGA-B0-4696  866   Dead     810.35   Low</span><br><span class="line">3 TCGA-B0-4698   42   Dead     849.64   Low</span><br><span class="line">4 TCGA-CJ-4642 3205  Alive    1153.28   Low</span><br><span class="line">5 TCGA-BP-5185 1132  Alive    1197.89   Low</span><br><span class="line">6 TCGA-BP-4337    2   Dead    1223.26   Low</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table(data<span class="variable">$Status</span>)</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Alive  Dead </span><br><span class="line">  349   173</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table(data<span class="variable">$Group</span>,data<span class="variable">$Status</span>)</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">      Alive Dead</span><br><span class="line">High   198   63</span><br><span class="line">Low    151  110</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my.surv &lt;- Surv(data<span class="variable">$Days</span>,data<span class="variable">$Status</span>==<span class="string">'Dead'</span>)</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fit &lt;- survfit(my.surv~data<span class="variable">$Group</span>)</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Call: survfit(formula = my.surv ~ data<span class="variable">$Group</span>)</span><br><span class="line"></span><br><span class="line">                n events median 0.95LCL 0.95UCL</span><br><span class="line">data<span class="variable">$Group</span>=High 261     63     NA    2830      NA</span><br><span class="line">data<span class="variable">$Group</span>=Low  261    110   1980    1620    2601</span><br></pre></td></tr></table></figure><p>绘制最基本的生存曲线<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(fit,col=c(<span class="string">"red"</span>,<span class="string">"blue"</span>))</span><br></pre></td></tr></table></figure></p><p><img src="/images/R/surv01.png" alt></p><p>优化生存曲线</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">plot(kmfit2,col=c(<span class="string">"red"</span>,<span class="string">"blue"</span>),axes=F,xlab=<span class="string">"Days"</span>,ylab=<span class="string">"Survival"</span>,lwd=2,main=<span class="string">"Kidney Renal Clear Cell Carcinoma"</span>)</span><br><span class="line">axis(2,at=c(0,0.5,1),labels=c(0,0.5,1),pos=0,las=2)</span><br><span class="line">axis(1,at=c(0,1000,2000,3000,4000,5000),labels=c(0,1000,2000,3000,4000,5000),pos=0)</span><br><span class="line">segments(2190,0,2190,0.5,lty=2,col=<span class="string">"red"</span>)</span><br><span class="line">segments(0,0.5,3615,0.5,lty=2,col=<span class="string">"grey"</span>)</span><br><span class="line">segments(3615,0,3615,0.5,lty=2,col=<span class="string">"blue"</span>)</span><br><span class="line">text(1500,0.95,<span class="string">"p=0.000598"</span>,cex=0.8)</span><br><span class="line">legend(<span class="string">"topright"</span>,c(<span class="string">"High"</span>,<span class="string">"Low"</span>),fill=c(<span class="string">"red"</span>,<span class="string">"blue"</span>),cex=0.9,bty=<span class="string">"n"</span>,box.lwd=0.2)</span><br></pre></td></tr></table></figure><p><img src="/images/R/surv02.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;一、加载程序包&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="生存曲线" scheme="http://uteric.github.io/tags/%E7%94%9F%E5%AD%98%E6%9B%B2%E7%BA%BF/"/>
     
   </entry>
   
@@ -496,31 +522,6 @@
     
     
       <category term="Ubuntu" scheme="http://uteric.github.io/tags/Ubuntu/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu 18.04上为无线网卡RTL8821CE安装驱动</title>
-    <link href="http://uteric.github.io/Linux/RTL8821CE%E5%AE%89%E8%A3%85%E9%A9%B1%E5%8A%A8/"/>
-    <id>http://uteric.github.io/Linux/RTL8821CE安装驱动/</id>
-    <published>2019-12-25T17:21:15.000Z</published>
-    <updated>2019-12-25T17:21:15.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>今年黑色星期五在网上买了一台联想IdeaPad S145，买回来后，打算安装<strong>Ubuntu 18.04</strong>，万万没想到的是，安装系统后发现找不到无线网卡，使用命令<em>sudo lshw -C network</em>杳看网络信息，发现这台电脑的网卡是RTL8821CE，然而，目前LINUX还没有相应的官方驱动，因此我这个小白花了大把时间来安装网卡驱动，过程可以说是非常艰苦，花了一个星期时间，记录下来或许能帮到后来人。</p><p>但是，如果你的电脑能够联网，整个过程将会非常简单，首先，需要在GITHUB下载并安装<a href="https://github.com/tomaspinho/rtl8821ce" target="_blank" rel="noopener">RTL8821CE</a>驱动。</p><p>安装驱动需要用到<em>dkms</em>和<em>git</em>，在联网的情况下，命令如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install -y dkms git</span><br></pre></td></tr></table></figure><p><em>dkms</em>和<em>git</em>成功安装后，下载并安装驱动程序即可，命令如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/tomaspinho/rtl8821ce</span><br><span class="line">cd rtl8821ce</span><br><span class="line">sudo ./dkms-install.sh</span><br></pre></td></tr></table></figure><p>然而，事情远没那么简单，成功运行前面代码的前提是联网，但我的电脑不能联网。最神奇的是，这台便宜的电脑居然连网线接口都没有，想接有线网都不可能，在这种情况下，安装<em>dkms</em>就难得异乎寻常，因为<em>dkms</em>本身有一堆Dependencies，而每个Dependency又有一堆Dependencies，甚至不同的包之间还彼此互相依赖。</p><p>在这种情况下，我不得不采用迂回的方式来安装<em>dkms</em>。首先，在WINDOWS下安装虚拟机VM，运行Unbuntu 18.04，通过以下命令来获取安装<em>dkms</em>所需的包以及驱动程序：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y git apt-rdepends</span><br><span class="line">git clone https://github.com/tomaspinho/rtl8821ce</span><br><span class="line">mkdir debs</span><br><span class="line">cd debs</span><br><span class="line">apt-get download $(apt-rdepends dkms | grep -v &quot;^ &quot;)</span><br></pre></td></tr></table></figure><p>在运行apt-rdepends过程中，如果lib-dev无法下载，将命令改成如下将其忽略：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get download $(apt-rdepends dkms | grep -v &quot;^ &quot; | grep -v &quot;^lib-dev&quot;)</span><br></pre></td></tr></table></figure><p>将下载到的RTL8821CE和debs文件夹通过U盘拷贝到Unbuntu系统中，下面就可以真正开始安装网卡驱动了，命令如下：</p><p>1）Disable Machine Owner Key，执行代码后需要重启，会出现蓝屏，按照引导操作即可</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mokutil --disable-validation</span><br></pre></td></tr></table></figure><p>2）切换到安装包所在目录，安装dkms及其依赖包</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd debs</span><br><span class="line">sudo dpkg -i *</span><br></pre></td></tr></table></figure><p>3）进入驱动目录，安装驱动</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line">sudo ./dkms-install.sh</span><br></pre></td></tr></table></figure><p>安装完成后，重启即可看到网卡驱动。在此，特别向参考文献中的两位大神致敬。</p><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] <a href="https://xianwen.me/2019/09/04/install-realtek-rtl8821ce-wifi-driver-on-ubuntu-18-04/" target="_blank" rel="noopener">Install Realtek RTL8821CE Wifi Driver on Ubuntu 18.04</a></p><p>[2] <a href="https://askubuntu.com/questions/1071299/how-to-install-wi-fi-driver-for-realtek-rtl8821ce-on-ubuntu-18-04" target="_blank" rel="noopener">How to install Wi-Fi driver for Realtek RTL8821CE on Ubuntu 18.04? </a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;今年黑色星期五在网上买了一台联想IdeaPad S145，买回来后，打算安装&lt;strong&gt;Ubuntu 18.04&lt;/strong&gt;，万万没想到的是，安装系统后发现找不到无线网卡，使用命令&lt;em&gt;sudo lshw -C network&lt;/em&gt;杳看网络信息，发现这台电脑
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="LINUX" scheme="http://uteric.github.io/tags/LINUX/"/>
     
   </entry>
   
