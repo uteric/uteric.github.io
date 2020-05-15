@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-05-13T03:36:27.000Z</updated>
+  <updated>2020-05-15T19:50:51.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux更改文件权限</title>
+    <link href="http://uteric.github.io/Linux/linux_chmod/"/>
+    <id>http://uteric.github.io/Linux/linux_chmod/</id>
+    <published>2020-05-15T19:50:51.000Z</published>
+    <updated>2020-05-15T19:50:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在linux中，可对文件进行操作的有三种用户，即文件所有者，群组用户，及其他用户；对于每个用户而言，都有三种权限，即read, write, execute，因此，rwxrwxrwx代表三种用户都对该文件有完全的权限，即可读、可写、可执行；</p><p>其中，r对应5，w对应2，x对应1，因此，rwxrwxrwx又可以简化为777；</p><p>一般情况，文件所有者需要对文件有完全的控制权限，而对于其他用户则可以考虑给予r–或者r-x，即可读不可写，因此，对应的权限是754或者755；</p><p>在linux中，更改文件权限的命令是chmod，用法如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chomd 755 filename</span><br></pre></td></tr></table></figure><p>注意：在大多数的命令行工具中，拥有可执行权限的文件的颜色与不可执行的文件颜色是不同的，因此，可以根据颜色的不同判断文件的权限类型。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在linux中，可对文件进行操作的有三种用户，即文件所有者，群组用户，及其他用户；对于每个用户而言，都有三种权限，即read, write, execute，因此，rwxrwxrwx代表三种用户都对该文件有完全的权限，即可读、可写、可执行；&lt;/p&gt;
+&lt;p&gt;其中，r对应5，w
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="LINUX" scheme="http://uteric.github.io/tags/LINUX/"/>
+    
+  </entry>
   
   <entry>
     <title>nvm版本切换</title>
@@ -488,32 +514,6 @@
       
       
         &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="Ubuntu" scheme="http://uteric.github.io/tags/Ubuntu/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>编辑sources.list</title>
-    <link href="http://uteric.github.io/Linux/Source%20List/"/>
-    <id>http://uteric.github.io/Linux/Source List/</id>
-    <published>2019-12-25T17:21:23.000Z</published>
-    <updated>2019-12-25T17:21:23.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Ubuntu 的软件源配置文件是 /etc/apt/sources.list，进行修改之前建议将系统自带的该文件做个备份，执行如下命令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak</span><br></pre></td></tr></table></figure><p>打开并编辑</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/apt/sources.list</span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Ubuntu 的软件源配置文件是 /etc/apt/sources.list，进行修改之前建议将系统自带的该文件做个备份，执行如下命令：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;p
       
     
     </summary>
