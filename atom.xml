@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-05-15T19:50:51.000Z</updated>
+  <updated>2020-05-16T03:20:58.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CHIPSEQ分析流程总结</title>
+    <link href="http://uteric.github.io/CHIPSEQ/chip_overview/"/>
+    <id>http://uteric.github.io/CHIPSEQ/chip_overview/</id>
+    <published>2020-05-16T03:20:58.000Z</published>
+    <updated>2020-05-16T03:20:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>CHIPSEQ的分析流程总结如下:</p><p><img src="/images/CHIP/chip01.png" alt></p><p>在以后的文章中，我会对整个分析过程作详细的解释，所谓“他山之石，可以攻玉”，作为后来者攀登的阶梯，不要像我一样走弯路。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;CHIPSEQ的分析流程总结如下:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/CHIP/chip01.png&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;在以后的文章中，我会对整个分析过程作详细的解释，所谓“他山之石，可以攻玉”，作为后来者攀登的阶梯，不要像我一样走弯路。&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="生物信息" scheme="http://uteric.github.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+      <category term="CHIPSEQ" scheme="http://uteric.github.io/tags/CHIPSEQ/"/>
+    
+  </entry>
   
   <entry>
     <title>linux更改文件权限</title>
@@ -497,31 +525,6 @@
     
     
       <category term="YouTube" scheme="http://uteric.github.io/tags/YouTube/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TUNA的镜像源</title>
-    <link href="http://uteric.github.io/Linux/Tuna%E6%BA%90/"/>
-    <id>http://uteric.github.io/Linux/Tuna源/</id>
-    <published>2019-12-25T17:21:27.000Z</published>
-    <updated>2019-12-25T17:21:27.000Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"># 预发布软件源，不建议启用</span><br><span class="line"># deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="Ubuntu" scheme="http://uteric.github.io/tags/Ubuntu/"/>
     
   </entry>
   
