@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-05-16T03:20:58.000Z</updated>
+  <updated>2020-05-19T19:05:24.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,6 +15,84 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用WGET命令下载整个FTP目录</title>
+    <link href="http://uteric.github.io/Linux/wget_download/"/>
+    <id>http://uteric.github.io/Linux/wget_download/</id>
+    <published>2020-05-19T19:05:24.000Z</published>
+    <updated>2020-05-19T19:05:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>一、从FTP上下载整个目录，可以使用WGET命令，命令如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c -r -np -nH --ftp-password=<span class="string">'password'</span> ftp://username@hostname/directory/ -P ./download/</span><br></pre></td></tr></table></figure><p>解释：<br>-c 表示断点续传，如果下载中断，下次再运行相同的命令可以接着下载；<br>-r 递归，遍历所有子目录；<br>-np 不到上一层子目录；<br>-nH 不将文件保存到主机名文件夹；<br>–ftp-password=’password’ 密码，将password替换为相应的密码；<br><a href="ftp://username@hostname/directory/" target="_blank" rel="noopener">ftp://username@hostname/directory/</a> 用户名，主机名，以及下载目录；<br>-P 目标目录，这里注意，如果下载到当前目录下的某个目录，比如我这里是当前目录下的downtest，需要加./，表示当前目录下；如果要引用绝对目录，就是/<em>/</em>/*/这种格式，最前面没有”.”；</p><p>二、从HTTP网站上下载</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c -r -np -nH http://*/*/ -P ./download/</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;一、从FTP上下载整个目录，可以使用WGET命令，命令如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="wget" scheme="http://uteric.github.io/tags/wget/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决Linux报错 module command not found</title>
+    <link href="http://uteric.github.io/Linux/linux_module/"/>
+    <id>http://uteric.github.io/Linux/linux_module/</id>
+    <published>2020-05-19T16:43:45.000Z</published>
+    <updated>2020-05-19T16:43:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>我的系统是Ubuntu 18.04，在终端中输入module，出现错误信息：module: command not found</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ module</span><br><span class="line">module: <span class="built_in">command</span> not found</span><br></pre></td></tr></table></figure><p>尝试了各种方法皆不管用，最后发现了个简单的激活方法，原文网址如下：</p><p><a href="https://www.oden.utexas.edu/sysdocs/linux/ubuntu18.html" target="_blank" rel="noopener">https://www.oden.utexas.edu/sysdocs/linux/ubuntu18.html</a></p><p>方法很简单，直接在终端中输入如下命令即可：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure><p>此时，再在终端中输入module –version，会出现版本信息，说明激活成功</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Modules Release 4.1.1 (2018-02-17)</span><br></pre></td></tr></table></figure><p>输入module avail，则列出可使用的module，</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-------------------------------------------- /usr/share/modules/modulefiles --------------------------------------------</span><br><span class="line">dot  module-git  module-info  modules  null  use.own</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;我的系统是Ubuntu 18.04，在终端中输入module，出现错误信息：module: command not found&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;sp
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="Linux" scheme="http://uteric.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ChIP SEQ分析笔记1-软件安装</title>
+    <link href="http://uteric.github.io/CHIPSEQ/chip_note2_install/"/>
+    <id>http://uteric.github.io/CHIPSEQ/chip_note2_install/</id>
+    <published>2020-05-18T04:26:46.000Z</published>
+    <updated>2020-05-18T04:26:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>ChIP SEQ分析过程中要用到诸多的软件包，在分析之前，确保软件成功地安装，命令如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># install bowtie2</span></span><br><span class="line">sudo apt-get update -y</span><br><span class="line">sudo apt-get install -y bowtie2</span><br><span class="line"></span><br><span class="line"><span class="comment"># install samtools</span></span><br><span class="line">sudo apt install samtools</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;ChIP SEQ分析过程中要用到诸多的软件包，在分析之前，确保软件成功地安装，命令如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/
+      
+    
+    </summary>
+    
+      <category term="生物信息" scheme="http://uteric.github.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+      <category term="ChIP" scheme="http://uteric.github.io/tags/ChIP/"/>
+    
+  </entry>
   
   <entry>
     <title>CHIPSEQ分析流程总结</title>
@@ -448,83 +526,6 @@
     
     
       <category term="GEO" scheme="http://uteric.github.io/tags/GEO/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu系统安装JAVA</title>
-    <link href="http://uteric.github.io/Linux/Ubuntu%20Java%20Install/"/>
-    <id>http://uteric.github.io/Linux/Ubuntu Java Install/</id>
-    <published>2019-12-29T00:08:40.000Z</published>
-    <updated>2019-12-29T00:08:40.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="1、安装系统默认的JAVA"><a href="#1、安装系统默认的JAVA" class="headerlink" title="1、安装系统默认的JAVA"></a>1、安装系统默认的JAVA</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install default-jdk</span><br></pre></td></tr></table></figure><h2 id="2、安装JAVA11或JAVA13"><a href="#2、安装JAVA11或JAVA13" class="headerlink" title="2、安装JAVA11或JAVA13"></a>2、安装JAVA11或JAVA13</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">add-apt-repository ppa:linuxuprising/java</span><br><span class="line">apt-get update</span><br><span class="line">apt-get install oracle-java11-installer</span><br><span class="line">apt-get install oracle-java13-installer</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;1、安装系统默认的JAVA&quot;&gt;&lt;a href=&quot;#1、安装系统默认的JAVA&quot; class=&quot;headerlink&quot; title=&quot;1、安装系统默认的JAVA&quot;&gt;&lt;/a&gt;1、安装系统默认的JAVA&lt;/h2&gt;&lt;figure class=&quot;highlight plai
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="JAVA" scheme="http://uteric.github.io/tags/JAVA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用youtube-dl命令下载youtube视频与音频</title>
-    <link href="http://uteric.github.io/Linux/Youtube%20dl/"/>
-    <id>http://uteric.github.io/Linux/Youtube dl/</id>
-    <published>2019-12-29T00:08:35.000Z</published>
-    <updated>2019-12-29T00:08:35.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="1、安装youtube-dl"><a href="#1、安装youtube-dl" class="headerlink" title="1、安装youtube-dl"></a>1、安装youtube-dl</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl</span><br><span class="line">sudo chmod a+rx /usr/local/bin/youtube-dl</span><br><span class="line">hash -r</span><br></pre></td></tr></table></figure><p>现在，你可以使用如下命令来将youtube-dl更新到最新版本：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo youtube-dl -U # 版本更新</span><br><span class="line">youtube-dl --version # 检查版本</span><br></pre></td></tr></table></figure><p>如果你之前使用apt命令安装youtube-dl但无法正常使用，请使用如下命令卸载并重新安装：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove -y youtube-dl</span><br></pre></td></tr></table></figure><h2 id="2、获取视频与音频信息"><a href="#2、获取视频与音频信息" class="headerlink" title="2、获取视频与音频信息"></a>2、获取视频与音频信息</h2><p>以Jingle Bells这首儿歌为例，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl -F https://www.youtube.com/watch?v=eQ34DSTjsLQ</span><br></pre></td></tr></table></figure><p>返回如下信息：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[youtube] eQ34DSTjsLQ: Downloading webpage</span><br><span class="line">[youtube] eQ34DSTjsLQ: Downloading video info webpage</span><br><span class="line">[info] Available formats for eQ34DSTjsLQ:</span><br><span class="line">format code  extension  resolution note</span><br><span class="line">249          webm       audio only tiny   83k , opus @ 50k (48000Hz), 1.48MiB</span><br><span class="line">250          webm       audio only tiny  104k , opus @ 70k (48000Hz), 1.87MiB</span><br><span class="line">140          m4a        audio only tiny  130k , m4a_dash container, mp4a.40.2@128k (44100Hz), 2.93MiB</span><br><span class="line">251          webm       audio only tiny  178k , opus @160k (48000Hz), 3.46MiB</span><br><span class="line">394          mp4        256x144    144p   80k , av01.0.00M.08, 24fps, video only, 1.64MiB</span><br><span class="line">278          webm       256x144    144p   97k , webm container, vp9, 24fps, video only, 2.08MiB</span><br><span class="line">160          mp4        256x144    144p  109k , avc1.4d400c, 24fps, video only, 2.08MiB</span><br><span class="line">395          mp4        426x240    240p  168k , av01.0.00M.08, 24fps, video only, 3.19MiB</span><br><span class="line">242          webm       426x240    240p  222k , vp9, 24fps, video only, 4.24MiB</span><br><span class="line">133          mp4        426x240    240p  292k , avc1.4d4015, 24fps, video only, 4.61MiB</span><br><span class="line">396          mp4        640x360    360p  299k , av01.0.01M.08, 24fps, video only, 5.49MiB</span><br><span class="line">243          webm       640x360    360p  408k , vp9, 24fps, video only, 7.19MiB</span><br><span class="line">397          mp4        854x480    480p  515k , av01.0.04M.08, 24fps, video only, 9.39MiB</span><br><span class="line">134          mp4        640x360    360p  528k , avc1.4d401e, 24fps, video only, 8.33MiB</span><br><span class="line">244          webm       854x480    480p  751k , vp9, 24fps, video only, 10.84MiB</span><br><span class="line">135          mp4        854x480    480p  800k , avc1.4d401e, 24fps, video only, 11.53MiB</span><br><span class="line">398          mp4        1280x720   720p 1044k , av01.0.05M.08, 24fps, video only, 19.72MiB</span><br><span class="line">136          mp4        1280x720   720p 1098k , avc1.4d401f, 24fps, video only, 16.32MiB</span><br><span class="line">247          webm       1280x720   720p 1297k , vp9, 24fps, video only, 18.38MiB</span><br><span class="line">18           mp4        640x360    360p  667k , avc1.42001E, mp4a.40.2@ 96k (44100Hz), 15.09MiB (best)</span><br></pre></td></tr></table></figure><p>每个视频或音频前都有一个编号，如140代表m4a音频，18代表mp4视频等，现在，可以开始下载了。</p><h2 id="3、下载视频或音频"><a href="#3、下载视频或音频" class="headerlink" title="3、下载视频或音频"></a>3、下载视频或音频</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl -f 140 https://www.youtube.com/watch?v=eQ34DSTjsLQ # 下载m4a音频</span><br><span class="line">youtube-dl -f 18 https://www.youtube.com/watch?v=eQ34DSTjsLQ # 下载mp4视频</span><br></pre></td></tr></table></figure><p>OK，all done!</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;1、安装youtube-dl&quot;&gt;&lt;a href=&quot;#1、安装youtube-dl&quot; class=&quot;headerlink&quot; title=&quot;1、安装youtube-dl&quot;&gt;&lt;/a&gt;1、安装youtube-dl&lt;/h2&gt;&lt;figure class=&quot;highlight 
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="YouTube" scheme="http://uteric.github.io/tags/YouTube/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>免ROOT在小米盒子上看YouTube</title>
-    <link href="http://uteric.github.io/Linux/Youtube%20install/"/>
-    <id>http://uteric.github.io/Linux/Youtube install/</id>
-    <published>2019-12-29T00:08:29.000Z</published>
-    <updated>2019-12-29T00:08:29.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近，小米盒子上的youtube软件打开时总显示“不允许执行此操作”，于是，不得不重新安装youtube软件。</p><p>下面这个方法适合不想ROOT的用户，更不需要安装GOOGLE服务框架。</p><p>需要下载<a href="https://smartyoutubetv.github.io/" target="_blank" rel="noopener">SmartyouTube TV</a>，下载后通过U盘安装到小米盒子。</p><p>安装完成后，打开，选择第一项，然后在手机或者电脑上登录Youtube.com/activate，输入电视上显示的密码，即可用谷歌账号登录YouTube。</p><p>这个方法同样也适用于安装YouTube Kids，控制孩子看电视的时间。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近，小米盒子上的youtube软件打开时总显示“不允许执行此操作”，于是，不得不重新安装youtube软件。&lt;/p&gt;
-&lt;p&gt;下面这个方法适合不想ROOT的用户，更不需要安装GOOGLE服务框架。&lt;/p&gt;
-&lt;p&gt;需要下载&lt;a href=&quot;https://smartyoutu
-      
-    
-    </summary>
-    
-      <category term="美国生活" scheme="http://uteric.github.io/categories/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="YouTube" scheme="http://uteric.github.io/tags/YouTube/"/>
     
   </entry>
   
