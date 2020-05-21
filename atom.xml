@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-05-19T19:05:24.000Z</updated>
+  <updated>2020-05-21T18:30:16.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何从UCSC下载CpG Island数据</title>
+    <link href="http://uteric.github.io/CHIPSEQ/chip_download_cpg/"/>
+    <id>http://uteric.github.io/CHIPSEQ/chip_download_cpg/</id>
+    <published>2020-05-21T18:30:16.000Z</published>
+    <updated>2020-05-21T18:30:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>进入<a href="https://genome.ucsc.edu/" target="_blank" rel="noopener">UCSC</a>主页，点击Tools &gt; Table Brower, 以mouse为例，选择如下：</p><p>genome: Mouse<br>group: Expression and Regulation<br>track: CpG Islands<br>region: genome<br>output format: BED - browser extensible data<br>file type returned: plain text</p><p>点击，get output，即可下载到小鼠全基因组上的CpG Islands数据。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;进入&lt;a href=&quot;https://genome.ucsc.edu/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;UCSC&lt;/a&gt;主页，点击Tools &amp;gt; Table Brower, 以mouse为例，选择如下：&lt;/p&gt;
+&lt;p&gt;genome: M
+      
+    
+    </summary>
+    
+      <category term="生物信息" scheme="http://uteric.github.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+      <category term="CpG Island" scheme="http://uteric.github.io/tags/CpG-Island/"/>
+    
+  </entry>
   
   <entry>
     <title>使用WGET命令下载整个FTP目录</title>
@@ -501,31 +527,6 @@
     
     
       <category term="R语言" scheme="http://uteric.github.io/tags/R%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GEO数据库测序数据下载位置变更</title>
-    <link href="http://uteric.github.io/RNASEQ/GEO%20FTP%20address%20change/"/>
-    <id>http://uteric.github.io/RNASEQ/GEO FTP address change/</id>
-    <published>2019-12-29T00:08:45.000Z</published>
-    <updated>2019-12-29T00:08:45.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://www.ncbi.nlm.nih.gov/geo/" target="_blank" rel="noopener">GEO</a>是一个公共基因数据库，包含绝大多数已发表文章的原始测序数据，在学习测序数据分析时，我们需要从GEO数据库来下载原始测序文件。</p><p>去年我在学习RNA测序分析时，写了几篇RNASEQ分析入门笔记，最近，当我再打开时，发现之前提到的SRA测序文件下载地址发生了变动，因此，特别写下这篇小小笔记以方便初学RNASEQ的朋友们少走弯路。</p><p>在这篇笔记<a href="https://uteric.github.io/RNASEQ%E4%B8%8B%E8%BD%BD%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE/">RNASEQ分析入门笔记2-下载原始数据</a>中，[SRR3589959]的下载地址原本是：<a href="ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589959/SRR3589959.sra，但是，现在这个地址已经打不开了，我仔细查看了FTP文件目录，发现FTP地址发生了变化，但仍然很有规律，可以分为如下两个部分：" target="_blank" rel="noopener">ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByStudy/sra/SRP/SRP075/SRP075747/SRR3589959/SRR3589959.sra，但是，现在这个地址已经打不开了，我仔细查看了FTP文件目录，发现FTP地址发生了变化，但仍然很有规律，可以分为如下两个部分：</a></p><p>1）通用部分：<a href="ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/" target="_blank" rel="noopener">ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/</a><br>2）变动部分：SRR358/SRR3589959/SRR3589959.sra #格式为SRRabc/SRRabcdef/SRRabcdef.sra</p><p>因此，SRR3589959.sra的地址即为：<a href="ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR358/SRR3589959/SRR3589959.sra" target="_blank" rel="noopener">ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR358/SRR3589959/SRR3589959.sra</a></p><p>对于数据下载，使用wget命令即可，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR358/SRR3589959/SRR3589959.sra # -c表示断点续传，以防意外情况导致下载失败</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://www.ncbi.nlm.nih.gov/geo/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GEO&lt;/a&gt;是一个公共基因数据库，包含绝大多数已发表文章的原始测序数据，在学习测序数据分析时，我们需要从GEO数据库来下载
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="GEO" scheme="http://uteric.github.io/tags/GEO/"/>
     
   </entry>
   
