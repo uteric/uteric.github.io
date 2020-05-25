@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-05-25T04:03:02.000Z</updated>
+  <updated>2020-05-25T16:13:29.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>配色网站COLORBREWER</title>
+    <link href="http://uteric.github.io/R/R_palette/"/>
+    <id>http://uteric.github.io/R/R_palette/</id>
+    <published>2020-05-25T16:13:29.000Z</published>
+    <updated>2020-05-25T16:13:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://colorbrewer2.org/" target="_blank" rel="noopener">COLORBREWER</a>，是一个配色网站，其配色方案简约大方，是作图配色的首选。</p><p><img src="/images/R/palette01.png" alt></p><p>常用的配色方案如下：</p><p>五种蓝色的配色方案：”#eff3ff”,”#bdd7e7”,”#6baed6”,”#3182bd”,”#08519c”</p><p>五种绿色的配色方案：”#edf8e9”,”#bae4b3”,”#74c476”,”#31a354”,”#006d2c”</p><p>五种灰色的配色方案：”#f7f7f7”,”#cccccc”,”#969696”,”#636363”,”#252525”</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://colorbrewer2.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;COLORBREWER&lt;/a&gt;，是一个配色网站，其配色方案简约大方，是作图配色的首选。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/R
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="配色" scheme="http://uteric.github.io/tags/%E9%85%8D%E8%89%B2/"/>
+    
+  </entry>
   
   <entry>
     <title>使用subset筛选data.frame数据</title>
@@ -496,31 +522,6 @@
     
     
       <category term="R语言" scheme="http://uteric.github.io/tags/R%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>R可视化-绘制柱形图2</title>
-    <link href="http://uteric.github.io/R/R%E5%8F%AF%E8%A7%86%E5%8C%96-%E7%BB%98%E5%88%B6%E6%9F%B1%E5%BD%A2%E5%9B%BE2/"/>
-    <id>http://uteric.github.io/R/R可视化-绘制柱形图2/</id>
-    <published>2020-02-07T04:37:57.000Z</published>
-    <updated>2020-02-07T04:37:57.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>首先，我们准备绘图数据，数据来源是2018年的一篇研究论文，<em>In Vitro and In Vivo Gene Therapy Vector Evolution via Multispecies Interbreeding and Retargeting of Adeno-Associated Viruses</em>，我们把数据输入到文件AAV infectivity.csv，并保存在工作目录下。</p><p>下面开始正式绘图：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">library(ggplot2) <span class="comment"># 加载ggplot2</span></span><br><span class="line">data1=read.csv(<span class="string">"AAV infectivity.csv"</span>, header=T) <span class="comment"># 加载数据到变量data1</span></span><br><span class="line">head(data1,3) <span class="comment"># 查看data1前三行</span></span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Cell.line Tissue.or.cell.type AAV.1 AAV.2  AAV.3   AAV.4  AAV.5</span><br><span class="line">1     Huh-7            hu liver  4000   500  20000 2000000 400000</span><br><span class="line">2       293           hu kidney  2000   500  20000  700000 400000</span><br><span class="line">3      HeLa           hu cervix 70000  2000 100000 2000000  30000</span><br></pre></td></tr></table></figure><p>以第一列为横坐标，第三列为纵坐标，绘制条形图：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">pbar=ggplot(data1,aes(x=data1[,1],y=data1[,3]))+ <span class="comment"># 调用ggplot函数，以data1的第一列为横坐标，第三列为纵坐标，作为第一图层；</span></span><br><span class="line">geom_bar(<span class="built_in">stat</span>=<span class="string">"identity"</span>,position = <span class="string">"dodge"</span>,width=0.8,fill=<span class="string">"lightblue"</span>,color=<span class="string">"black"</span>)+ <span class="comment"># 第二图层：绘制条形图，位置为肩并肩，柱子的宽度为0.8，填充为浅蓝色，边框为黑色；</span></span><br><span class="line">geom_text(aes(label=paste(as.character(data1[,3]),sep=<span class="string">""</span>)),vjust=-0.5,size=4)+ <span class="comment"># 第三图层：将第三列数据绘制在柱子顶端，字号为4号；</span></span><br><span class="line">ggtitle(label=<span class="string">"In Vitro infectivities of AAV1"</span>,subtitle=<span class="string">"Data midified from [Grimm, D. et al. (2008). J. Virol. 82: 5887-5911]"</span>)+ <span class="comment"># 第四图层：设定标题与副标题；</span></span><br><span class="line">xlab(<span class="string">"Cells"</span>)+ <span class="comment"># 第五图层：X轴标签</span></span><br><span class="line">ylab(<span class="string">"In Vitro Infectivities of AAV1"</span>)+ <span class="comment"># 第六图层：Y轴标签；</span></span><br><span class="line">theme(plot.title = element_text(size=20,face=<span class="string">"bold"</span>,vjust=1,hjust=0.5), <span class="comment"># 第七图层：设定标题，字号20号，粗体，以及对齐方式；</span></span><br><span class="line">axis.title.x = element_text(size=15,face=<span class="string">"bold"</span>,vjust=0.5,hjust=0.5), <span class="comment"># 第七图层：X轴标签，字号15号，粗体，水平垂直居中；</span></span><br><span class="line">axis.title.y = element_text(size=15,face=<span class="string">"bold"</span>,vjust=1,hjust=0.5), <span class="comment"># 第七图层：Y轴标签，字号15号，粗体，水平居中；</span></span><br><span class="line">axis.text.x=element_text(size=12,face=<span class="string">"bold"</span>,vjust=1,hjust=1,angle=45), <span class="comment"># 第七图层：X轴文字，字号12号，粗体，45度倾斜；</span></span><br><span class="line">axis.text.y=element_text(size=12,face=<span class="string">"bold"</span>,vjust=0.5,hjust=0.5), <span class="comment"># 第七图层：Y轴文字，字号12号，粗体，水平垂直居中；</span></span><br><span class="line">panel.background = element_rect(fill=<span class="string">"transparent"</span>,color=<span class="string">"black"</span>), <span class="comment"># 第七图层：背景颜色透明，边框黑色；</span></span><br><span class="line">panel.grid.minor = element_blank(), <span class="comment"># 第七图层：次网格线隐藏；</span></span><br><span class="line">panel.grid.major = element_blank()) <span class="comment"># 第七图层：主网格线隐藏；</span></span><br><span class="line">pbar <span class="comment"># 绘制条形图</span></span><br></pre></td></tr></table></figure><p>如果需要对数据进行排序并绘制条形图，可以首先对第三列从大到小排序，命令如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data1=data1[order(data1[,3],decreasing = T),] <span class="comment"># 对第三列进行降序排列；</span></span><br><span class="line">head(data1,3) <span class="comment"># 查看前三行；</span></span><br></pre></td></tr></table></figure><p>以第三列从大到小排序后的data1如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Cell.line Tissue.or.cell.type   AAV.1 AAV.2  AAV.3    AAV.4   AAV.5</span><br><span class="line">4      HepG2            hu liver 2000000 50000 300000 20000000 3000000</span><br><span class="line">10    NIH3T3      mu fibroblasts  200000 20000 700000   700000 7000000</span><br><span class="line">3       HeLa           hu cervix   70000  2000 100000  2000000   30000</span><br></pre></td></tr></table></figure><p>然而，此时绘制条形图，图形却不会从大到小排列，需要对第一列进行排列，</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data1[,1]=factor(data1[,1],levels=data1[,1],order=T) <span class="comment"># 对第一列排序；</span></span><br></pre></td></tr></table></figure><p>再次调用ggplot作图，就会得到降序排列的条形图。</p><p>最后，保存图片为PDF格式，命令如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ggsave(pbar,filename=<span class="string">"in vitro AAV1-order.pdf"</span>,width=12,height=9)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;首先，我们准备绘图数据，数据来源是2018年的一篇研究论文，&lt;em&gt;In Vitro and In Vivo Gene Therapy Vector Evolution via Multispecies Interbreeding and Retargeting of Ad
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="R可视化" scheme="http://uteric.github.io/tags/R%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
     
   </entry>
   
