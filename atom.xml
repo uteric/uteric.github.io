@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-05-28T15:41:55.000Z</updated>
+  <updated>2020-05-28T17:37:47.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>BAM文件转BED文件</title>
+    <link href="http://uteric.github.io/CHIPSEQ/bamtobed/"/>
+    <id>http://uteric.github.io/CHIPSEQ/bamtobed/</id>
+    <published>2020-05-28T17:37:47.000Z</published>
+    <updated>2020-05-28T17:37:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>有多种方法可以实现从BAM文件到BED文件的转换，比较简单的一种，是使用bedtools bamtobed，语法如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bedtools bamtobed -i ***.bam &gt; ***.bed</span><br></pre></td></tr></table></figure><p>实例如下：</p><p>准备一个BAM文件，targetc.bam</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; samtools view targetc.bam | head</span><br><span class="line"></span><br><span class="line">HWI-ST1113:280:H7KE6ADXX:1:1116:8464:18014      16      chr19   3100027 31      36M     *       0       0       AGGGCAATGGGCCACTGCCTCAGCCAGCTTTTTAGG     JJIJJJIJIJJJGGIJJJJJJJJHHHHHFFFFFCCC     AS:i:0  XS:i:-5 XN:i:0  XM:i:0  XO:i:0  XG:i:0  NM:i:0  MD:Z:36 YT:Z:UU</span><br><span class="line">HWI-ST1113:280:H7KE6ADXX:1:1205:1404:46284      0       chr19   3100235 23      36M     *       0       0       ACATATGTCTTGTGAGTGACTCTCTTTCCTTCCCTT     CCCFFFFFHHHHHIJJHG?&lt;CEFFEHHCEHHIHJIJ     AS:i:-10        XN:i:0  XM:i:2  XO:i:0  XG:i:0  NM:i:2  MD:Z:2G5G27     YT:Z:UU</span><br><span class="line">HWI-ST1113:280:H7KE6ADXX:1:2216:8268:81593      16      chr19   3100237 23      36M     *       0       0       ATATGTCTTGTGAGTGACTCTCTTTCCTTCCCTTTG     JJIJIIGJJIIIGIIHHIJJIHHFHDBHFFDDFC@@     AS:i:-11        XN:i:0  XM:i:2  XO:i:0  XG:i:0  NM:i:2  MD:Z:0G5G29     YT:Z:UU</span><br><span class="line">HWI-ST1113:280:H7KE6ADXX:2:1210:11323:25283     16      chr19   3100240 23      36M     *       0       0       TGTCTTGTGAGTGACTCTCTTTCCTTCCCTTTGCCC     IJJJJJJIJIJJJIJIGIJJJJJHHHHHFFFFFCCC     AS:i:-11        XN:i:0  XM:i:2  XO:i:0  XG:i:0  NM:i:2  MD:Z:3G29T2     YT:Z:UU</span><br><span class="line">HWI-ST1113:280:H7KE6ADXX:1:1206:10953:35815     16      chr19   3100246 40      36M     *       0       0       GTGAGTGACTCTCTTTCCTTCCCTTTGCCCTTCCAT     JJJIJIHHJJIJJJJJJJJJJJJHHHHHFFFFFCCC     AS:i:-5 XN:i:0  XM:i:1  XO:i:0  XG:i:0  NM:i:1  MD:Z:27T8       YT:Z:UU</span><br><span class="line">HWI-ST1113:280:H7KE6ADXX:2:2216:12650:100608    16      chr19   3100250 40      36M     *       0       0       GTGACTCTCTTTCCTTCCCTTTGCCCTTCCATCTTT     JJIHJIJJJJJJJJJJJJJJJJJHHHHHFFFFFCCC     AS:i:-5 XN:i:0  XM:i:1  XO:i:0  XG:i:0  NM:i:1  MD:Z:23T12      YT:Z:UU</span><br></pre></td></tr></table></figure><p>转换为bed文件，targetc.bed</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; bedtools bamtobed -i targetc.bam &gt; targetc.bed</span><br><span class="line">&gt; less targetc.bed</span><br><span class="line"></span><br><span class="line">chr19   3100026 3100062 HWI-ST1113:280:H7KE6ADXX:1:1116:8464:18014      31      -</span><br><span class="line">chr19   3100234 3100270 HWI-ST1113:280:H7KE6ADXX:1:1205:1404:46284      23      +</span><br><span class="line">chr19   3100236 3100272 HWI-ST1113:280:H7KE6ADXX:1:2216:8268:81593      23      -</span><br><span class="line">chr19   3100239 3100275 HWI-ST1113:280:H7KE6ADXX:2:1210:11323:25283     23      -</span><br><span class="line">chr19   3100245 3100281 HWI-ST1113:280:H7KE6ADXX:1:1206:10953:35815     40      -</span><br><span class="line">chr19   3100249 3100285 HWI-ST1113:280:H7KE6ADXX:2:2216:12650:100608    40      -</span><br></pre></td></tr></table></figure><p>两两比较，就会发现BAM文件与BED文件的区别，BED文件有6列：</p><p>第一列：染色体位置<br>第二列：start<br>第三列：end<br>第四列：对应BAM文件的QNAME，包含测序平台，read name等信息<br>第五列：对应BAM文件的MAPQ，即比对质量<br>第六列：正负链</p><p><img src="/images/CHIP/bam01.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;有多种方法可以实现从BAM文件到BED文件的转换，比较简单的一种，是使用bedtools bamtobed，语法如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span c
+      
+    
+    </summary>
+    
+      <category term="生物信息" scheme="http://uteric.github.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+      <category term="BED" scheme="http://uteric.github.io/tags/BED/"/>
+    
+  </entry>
   
   <entry>
     <title>从BAM文件中提取指定区域</title>
@@ -492,31 +518,6 @@
       
         &lt;p&gt;在绘图之前，先谈谈散点图需要的数据类型。散点，顾名思义，就是很多点分散在平面上，而在平面坐标中，确定一个点需要两个坐标值，因此，绘制散点图的数据需要两列，且两列都是数字，对应的每一行都是平面坐标中的一个点。&lt;/p&gt;
 &lt;p&gt;另外，样本大小没有限制，少到一个点，多到成千上万，都
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="R可视化" scheme="http://uteric.github.io/tags/R%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>R可视化-小提琴图</title>
-    <link href="http://uteric.github.io/R/R_visualize_violin/"/>
-    <id>http://uteric.github.io/R/R_visualize_violin/</id>
-    <published>2020-02-10T04:49:49.000Z</published>
-    <updated>2020-02-10T04:49:49.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、简单小提琴图"><a href="#一、简单小提琴图" class="headerlink" title="一、简单小提琴图"></a>一、简单小提琴图</h1><p>小提琴图的作图数据同箱线图，X轴为定性变量，Y轴为定量变量，数据量足够大才有统计意义；</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">library(hrbrthemes)</span><br><span class="line"></span><br><span class="line">name &lt;- c(rep(<span class="string">"A"</span>,300),rep(<span class="string">"B"</span>,300),rep(<span class="string">"C"</span>,100),rep(<span class="string">"C"</span>,200),rep(<span class="string">"D"</span>,300))</span><br><span class="line">value &lt;- c(rnorm(300,10,2),rnorm(300,15,4),rnorm(100,5,1),rnorm(200,12,1),rnorm(300,3,1))</span><br><span class="line">data &lt;- data.frame(name,value)</span><br><span class="line"></span><br><span class="line">pviolin &lt;- ggplot(data,aes(x=name,y=value,fill=name))+</span><br><span class="line">geom_violin()+</span><br><span class="line">geom_jitter(color=<span class="string">"black"</span>, size=0.4, alpha=0.9)+</span><br><span class="line">theme_ipsum()+</span><br><span class="line">theme(legend.position=<span class="string">"none"</span>)+</span><br><span class="line">ggtitle(<span class="string">"violin plot with jitter"</span>) +</span><br><span class="line">xlab(<span class="string">""</span>)</span><br><span class="line">pviolin</span><br></pre></td></tr></table></figure><p><img src="/images/R/violin01.png" alt></p><h1 id="二、小提琴图优化"><a href="#二、小提琴图优化" class="headerlink" title="二、小提琴图优化"></a>二、小提琴图优化</h1><p>2.1 排序</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果要对X轴进行升序排列，使用reorder(x=x,y=y)函数；</span></span><br><span class="line"><span class="comment"># 若要降序排列，则使用reorder(x=x,y=-y)函数；</span></span><br><span class="line">pviolin &lt;- ggplot(data,aes(x=reorder(name,-value),y=value,fill=name))+</span><br><span class="line">geom_violin()+</span><br><span class="line">geom_jitter(color=<span class="string">"black"</span>, size=0.4, alpha=0.9)+</span><br><span class="line">theme_ipsum()+</span><br><span class="line">theme(legend.position=<span class="string">"none"</span>)+</span><br><span class="line">ggtitle(<span class="string">"violin plot with jitter"</span>) +</span><br><span class="line">xlab(<span class="string">""</span>)</span><br><span class="line">pviolin</span><br></pre></td></tr></table></figure><p><img src="/images/R/violin02.png" alt></p><p>2.2 调节Y轴限度，使用ylim()函数</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ggsave(pviolin,filename=<span class="string">"violin4.png"</span>,width=12,height=9)</span><br><span class="line">pviolin &lt;- ggplot(data,aes(x=reorder(name,-value),y=value,fill=name))+</span><br><span class="line">geom_violin()+</span><br><span class="line">geom_boxplot(width=0.1,color=<span class="string">"grey"</span>,alpha=0.3)+</span><br><span class="line">theme_ipsum()+</span><br><span class="line">theme(legend.position=<span class="string">"none"</span>)+</span><br><span class="line">ggtitle(<span class="string">"violin plot with jitter"</span>) +</span><br><span class="line">xlab(<span class="string">""</span>)+</span><br><span class="line">ylim(0,30)</span><br><span class="line">pviolin</span><br></pre></td></tr></table></figure><p><img src="/images/R/violin03.png" alt></p><p>2.3 绘制水平小提琴图，加上coord_flip()函数</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pviolin &lt;- ggplot(data,aes(x=reorder(name,-value),y=value,fill=name))+</span><br><span class="line">geom_violin()+</span><br><span class="line">geom_jitter(color=<span class="string">"black"</span>, size=0.4, alpha=0.9)+</span><br><span class="line">theme_ipsum()+</span><br><span class="line">theme(legend.position=<span class="string">"none"</span>)+</span><br><span class="line">ggtitle(<span class="string">"violin plot with jitter"</span>) +</span><br><span class="line">xlab(<span class="string">""</span>)+</span><br><span class="line">coord_flip()</span><br><span class="line">pviolin</span><br></pre></td></tr></table></figure><p><img src="/images/R/violin04.png" alt></p><p>2.4 同时绘制小提琴图与箱线图</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pviolin &lt;- ggplot(data,aes(x=reorder(name,-value),y=value,fill=name))+</span><br><span class="line">geom_violin()+</span><br><span class="line">geom_boxplot(width=0.1,color=<span class="string">"grey"</span>,alpha=0.3)+</span><br><span class="line">geom_jitter(color=<span class="string">"black"</span>, size=0.4, alpha=0.9)+</span><br><span class="line">theme_ipsum()+</span><br><span class="line">theme(legend.position=<span class="string">"none"</span>)+</span><br><span class="line">ggtitle(<span class="string">"violin plot with jitter"</span>) +</span><br><span class="line">xlab(<span class="string">""</span>)</span><br><span class="line">pviolin</span><br></pre></td></tr></table></figure><p><img src="/images/R/violin05.png" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;一、简单小提琴图&quot;&gt;&lt;a href=&quot;#一、简单小提琴图&quot; class=&quot;headerlink&quot; title=&quot;一、简单小提琴图&quot;&gt;&lt;/a&gt;一、简单小提琴图&lt;/h1&gt;&lt;p&gt;小提琴图的作图数据同箱线图，X轴为定性变量，Y轴为定量变量，数据量足够大才有统计意义；&lt;/p
       
     
     </summary>
