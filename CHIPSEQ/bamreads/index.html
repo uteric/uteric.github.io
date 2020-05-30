@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="通过序列比对得到BAM文件后，常常需要对READS数进行统计，以便进行下游分析与作图，可以说，这是对BAM数据可视化的关键步骤。 一、全局统计 12&amp;gt; samtools view -c heart.bam554420 二、指定区域统计 对于指定区域进行统计，需要用到bedtools multicov，BAM文件可以是一个或多个，语法如下： 12345678910111213&amp;gt; bedt">
+<meta name="description" content="通过序列比对得到BAM文件后，常常需要对READS数进行统计，以便进行下游分析与作图，可以说，这是对BAM数据可视化的关键步骤。 一、全局统计 12&amp;gt; samtools view -c targetc.bam6 二、指定区域统计 对于指定区域进行统计，需要用到bedtools multicov，BAM文件可以是一个或多个，语法如下： 12345678910111213&amp;gt; bedtool">
 <meta name="keywords" content="BAM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从BAM文件中提取指定区域的READS数">
 <meta property="og:url" content="http://uteric.github.io/CHIPSEQ/bamreads/index.html">
 <meta property="og:site_name" content="诸子百家">
-<meta property="og:description" content="通过序列比对得到BAM文件后，常常需要对READS数进行统计，以便进行下游分析与作图，可以说，这是对BAM数据可视化的关键步骤。 一、全局统计 12&amp;gt; samtools view -c heart.bam554420 二、指定区域统计 对于指定区域进行统计，需要用到bedtools multicov，BAM文件可以是一个或多个，语法如下： 12345678910111213&amp;gt; bedt">
+<meta property="og:description" content="通过序列比对得到BAM文件后，常常需要对READS数进行统计，以便进行下游分析与作图，可以说，这是对BAM数据可视化的关键步骤。 一、全局统计 12&amp;gt; samtools view -c targetc.bam6 二、指定区域统计 对于指定区域进行统计，需要用到bedtools multicov，BAM文件可以是一个或多个，语法如下： 12345678910111213&amp;gt; bedtool">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2020-05-28T19:59:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从BAM文件中提取指定区域的READS数">
-<meta name="twitter:description" content="通过序列比对得到BAM文件后，常常需要对READS数进行统计，以便进行下游分析与作图，可以说，这是对BAM数据可视化的关键步骤。 一、全局统计 12&amp;gt; samtools view -c heart.bam554420 二、指定区域统计 对于指定区域进行统计，需要用到bedtools multicov，BAM文件可以是一个或多个，语法如下： 12345678910111213&amp;gt; bedt">
+<meta name="twitter:description" content="通过序列比对得到BAM文件后，常常需要对READS数进行统计，以便进行下游分析与作图，可以说，这是对BAM数据可视化的关键步骤。 一、全局统计 12&amp;gt; samtools view -c targetc.bam6 二、指定区域统计 对于指定区域进行统计，需要用到bedtools multicov，BAM文件可以是一个或多个，语法如下： 12345678910111213&amp;gt; bedtool">
 
 
 
@@ -435,7 +435,7 @@ ga('send', 'pageview');
       
         <p>通过序列比对得到BAM文件后，常常需要对READS数进行统计，以便进行下游分析与作图，可以说，这是对BAM数据可视化的关键步骤。</p>
 <p>一、全局统计</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; samtools view -c heart.bam</span><br><span class="line">554420</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; samtools view -c targetc.bam</span><br><span class="line">6</span><br></pre></td></tr></table></figure>
 <p>二、指定区域统计</p>
 <p>对于指定区域进行统计，需要用到bedtools multicov，BAM文件可以是一个或多个，语法如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; bedtools multicov -bams targetc.bam -bed chr19d.bed </span><br><span class="line">chr19   3100000 3100100 1</span><br><span class="line">chr19   3100100 3100300 5</span><br><span class="line"></span><br><span class="line">&gt; multiBamCov -bams targetc.bam -bed chr19d.bed <span class="comment"># bedtools multicov与multiBamCov效果一致</span></span><br><span class="line">chr19   3100000 3100100 1</span><br><span class="line">chr19   3100100 3100300 5</span><br><span class="line"></span><br><span class="line">&gt; bedtools multicov -bams targetc.bam -bed chr19d.bed &gt; result.bed <span class="comment"># 可以输出到文件</span></span><br><span class="line">&gt; less result.bed</span><br><span class="line"></span><br><span class="line">chr19   3100000 3100100 1</span><br><span class="line">chr19   3100100 3100300 5</span><br></pre></td></tr></table></figure>
@@ -529,6 +529,10 @@ ga('send', 'pageview');
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/R/plot_origin/" rel="prev" title="R设置坐标轴原点">
+                R设置坐标轴原点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -600,7 +604,7 @@ ga('send', 'pageview');
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">147</span>
+                <span class="site-state-item-count">149</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -622,7 +626,7 @@ ga('send', 'pageview');
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">199</span>
+                <span class="site-state-item-count">201</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
