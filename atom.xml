@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-05-30T17:49:22.000Z</updated>
+  <updated>2020-05-30T18:44:31.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>R中的点样式pch</title>
+    <link href="http://uteric.github.io/R/R_pch/"/>
+    <id>http://uteric.github.io/R/R_pch/</id>
+    <published>2020-05-30T18:44:31.000Z</published>
+    <updated>2020-05-30T18:44:31.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>R中使用pch来控制点的样式，可以使用help(pch)来查看其用法</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">help</span>(pch)</span><br></pre></td></tr></table></figure><p><img src="/images/R/pch.png" alt></p><p>如上图，pch共25种，默认为1，其中，15:18是fill形状，但无border；19：25既有fill又有border；比如，pch=16和pch=19，区别在于，19有border，所以比16大。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;R中使用pch来控制点的样式，可以使用help(pch)来查看其用法&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="pch" scheme="http://uteric.github.io/tags/pch/"/>
+    
+  </entry>
   
   <entry>
     <title>R绘图使用abline添加直线</title>
@@ -503,32 +529,6 @@
     
     
       <category term="nvm" scheme="http://uteric.github.io/tags/nvm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用R绘制生存曲线</title>
-    <link href="http://uteric.github.io/R/R_survival_curve/"/>
-    <id>http://uteric.github.io/R/R_survival_curve/</id>
-    <published>2020-05-13T00:08:08.000Z</published>
-    <updated>2020-05-13T00:08:08.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>一、加载程序包</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">library(survival)</span><br><span class="line">library(ggplot2)</span><br><span class="line">library(survminer)</span><br><span class="line">library(dplyr)</span><br></pre></td></tr></table></figure><p>二、加载数据并绘图</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data &lt;- read.delim(<span class="string">'clipboard'</span>,header = T)</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">head(data)</span><br><span class="line">       Patient Days Status Expression Group</span><br><span class="line">1 TCGA-B0-5702 2172  Alive     383.07   Low</span><br><span class="line">2 TCGA-B0-4696  866   Dead     810.35   Low</span><br><span class="line">3 TCGA-B0-4698   42   Dead     849.64   Low</span><br><span class="line">4 TCGA-CJ-4642 3205  Alive    1153.28   Low</span><br><span class="line">5 TCGA-BP-5185 1132  Alive    1197.89   Low</span><br><span class="line">6 TCGA-BP-4337    2   Dead    1223.26   Low</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table(data<span class="variable">$Status</span>)</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Alive  Dead </span><br><span class="line">  349   173</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table(data<span class="variable">$Group</span>,data<span class="variable">$Status</span>)</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">      Alive Dead</span><br><span class="line">High   198   63</span><br><span class="line">Low    151  110</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my.surv &lt;- Surv(data<span class="variable">$Days</span>,data<span class="variable">$Status</span>==<span class="string">'Dead'</span>)</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fit &lt;- survfit(my.surv~data<span class="variable">$Group</span>)</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Call: survfit(formula = my.surv ~ data<span class="variable">$Group</span>)</span><br><span class="line"></span><br><span class="line">                n events median 0.95LCL 0.95UCL</span><br><span class="line">data<span class="variable">$Group</span>=High 261     63     NA    2830      NA</span><br><span class="line">data<span class="variable">$Group</span>=Low  261    110   1980    1620    2601</span><br></pre></td></tr></table></figure><p>绘制最基本的生存曲线<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(fit,col=c(<span class="string">"red"</span>,<span class="string">"blue"</span>))</span><br></pre></td></tr></table></figure></p><p><img src="/images/R/surv01.png" alt></p><p>优化生存曲线</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">plot(kmfit2,col=c(<span class="string">"red"</span>,<span class="string">"blue"</span>),axes=F,xlab=<span class="string">"Days"</span>,ylab=<span class="string">"Survival"</span>,lwd=2,main=<span class="string">"Kidney Renal Clear Cell Carcinoma"</span>)</span><br><span class="line">axis(2,at=c(0,0.5,1),labels=c(0,0.5,1),pos=0,las=2)</span><br><span class="line">axis(1,at=c(0,1000,2000,3000,4000,5000),labels=c(0,1000,2000,3000,4000,5000),pos=0)</span><br><span class="line">segments(2190,0,2190,0.5,lty=2,col=<span class="string">"red"</span>)</span><br><span class="line">segments(0,0.5,3615,0.5,lty=2,col=<span class="string">"grey"</span>)</span><br><span class="line">segments(3615,0,3615,0.5,lty=2,col=<span class="string">"blue"</span>)</span><br><span class="line">text(1500,0.95,<span class="string">"p=0.000598"</span>,cex=0.8)</span><br><span class="line">legend(<span class="string">"topright"</span>,c(<span class="string">"High"</span>,<span class="string">"Low"</span>),fill=c(<span class="string">"red"</span>,<span class="string">"blue"</span>),cex=0.9,bty=<span class="string">"n"</span>,box.lwd=0.2)</span><br></pre></td></tr></table></figure><p><img src="/images/R/surv02.png" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;一、加载程序包&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="生存曲线" scheme="http://uteric.github.io/tags/%E7%94%9F%E5%AD%98%E6%9B%B2%E7%BA%BF/"/>
     
   </entry>
   

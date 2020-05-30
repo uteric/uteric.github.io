@@ -1555,6 +1555,29 @@
       </tags>
   </entry>
   <entry>
+    <title>如何在命令行中运行shell文件</title>
+    <url>/Articles/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E8%BF%90%E8%A1%8Cshell%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<p>使用VIM新建文本一个.sh，比如srawget.sh</p>
+<p>打开终端，进入当前目录，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./srawget.sh <span class="comment">#当前目录下执行srwaget.sh文件</span></span><br></pre></td></tr></table></figure>
+<p>执行后返回：</p>
+<blockquote>
+<p>zsh: permission denied: ./srawget.sh</p>
+</blockquote>
+<p>发现.sh文件不能执行，为什么呢？</p>
+<p>这是因为VIM新建的shell文件默认权限只有–r–w，即只能读写，不能执行，因此出现上述错误，解决办法其实非常简单，只要修改.sh文件的权限即可，在终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod +x srawget.sh <span class="comment">#添加执行权限</span></span><br></pre></td></tr></table></figure>
+<p>我们使用 ls -l 命令来查看一下，发现已经成功添加了执行权限，再次执行此命令即可：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./srawget.sh</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+      </categories>
+      <tags>
+        <tag>命令行</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>姓与氏的学问-如何读懂古人的姓名</title>
     <url>/Articles/%E5%A7%93%E4%B8%8E%E6%B0%8F%E7%9A%84%E5%AD%A6%E9%97%AE/</url>
     <content><![CDATA[<p>我们在阅读古文的时候，经常会被古代复杂的姓氏搞得晕头转向，不知所云。比如姜子牙，姜姓，吕氏，又如管仲，姬姓，管氏，究竟什么是姜姓吕氏，什么又是姬姓管氏呢？姓与氏究竟有什么区别和联系呢？读完本文，你就会有一个大致的了解！</p>
@@ -1583,29 +1606,6 @@
       </categories>
       <tags>
         <tag>姓氏</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何在命令行中运行shell文件</title>
-    <url>/Articles/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E8%BF%90%E8%A1%8Cshell%E6%96%87%E4%BB%B6/</url>
-    <content><![CDATA[<p>使用VIM新建文本一个.sh，比如srawget.sh</p>
-<p>打开终端，进入当前目录，输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./srawget.sh <span class="comment">#当前目录下执行srwaget.sh文件</span></span><br></pre></td></tr></table></figure>
-<p>执行后返回：</p>
-<blockquote>
-<p>zsh: permission denied: ./srawget.sh</p>
-</blockquote>
-<p>发现.sh文件不能执行，为什么呢？</p>
-<p>这是因为VIM新建的shell文件默认权限只有–r–w，即只能读写，不能执行，因此出现上述错误，解决办法其实非常简单，只要修改.sh文件的权限即可，在终端中输入：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod +x srawget.sh <span class="comment">#添加执行权限</span></span><br></pre></td></tr></table></figure>
-<p>我们使用 ls -l 命令来查看一下，发现已经成功添加了执行权限，再次执行此命令即可：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./srawget.sh</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-      </categories>
-      <tags>
-        <tag>命令行</tag>
       </tags>
   </entry>
   <entry>
@@ -2229,75 +2229,6 @@
       </tags>
   </entry>
   <entry>
-    <title>诸子百家｜法家代表人物及其代表著作</title>
-    <url>/Articles/%E6%B3%95%E5%AE%B6%E4%BB%A3%E8%A1%A8%E4%BA%BA%E7%89%A9%E5%8F%8A%E5%85%B6%E4%BB%A3%E8%A1%A8%E8%91%97%E4%BD%9C/</url>
-    <content><![CDATA[<h2 id="法家，是先秦时期的一个思想流派，是诸子百家中的名家"><a href="#法家，是先秦时期的一个思想流派，是诸子百家中的名家" class="headerlink" title="法家，是先秦时期的一个思想流派，是诸子百家中的名家"></a>法家，是先秦时期的一个思想流派，是诸子百家中的名家</h2><p>“法家者流，盖出于理官”，理官，是治理狱讼的官吏，班固认为，法家可能起源于理官，但是其思想源头并不确切。</p>
-<blockquote>
-<p>法家者流，盖出于理官。信赏必罚，以辅礼制。——《汉书·艺文志》</p>
-</blockquote>
-<p>法家主张“不别亲疏，不殊贵贱，一断于法”，其核心在于“信赏必罚”，其目的在于“以辅礼制”。</p>
-<blockquote>
-<p>法家不別亲疏，不殊贵贱，一断于法。——《史记》</p>
-</blockquote>
-<h2 id="法家共十家，分为“法派”、“术派”、“势派”，著作共217篇"><a href="#法家共十家，分为“法派”、“术派”、“势派”，著作共217篇" class="headerlink" title="法家共十家，分为“法派”、“术派”、“势派”，著作共217篇"></a>法家共十家，分为“法派”、“术派”、“势派”，著作共217篇</h2><p>《李子》，三十二篇。作者为李悝（前455年－前395年），是战国时期魏文侯的丞相，提倡“富国强兵”之说。</p>
-<blockquote>
-<p>《李子》三十二篇。名悝，相魏文侯，富国强兵。</p>
-</blockquote>
-<p>《商君》，二十九篇。作者为商鞅（前390年－前338年），姬姓，名鞅，也称卫鞅，或公孙鞅，是卫国国君的后裔。商鞅是战国时期秦孝公的丞相，是法家“法派”的创始人。</p>
-<blockquote>
-<p>《商君》二十九篇。名鞅，姬姓，卫后也，相秦孝公，有《列传》。</p>
-</blockquote>
-<p>《申子》，六篇。作者申不害（前420年－前337年），亦称申子，是郑国京邑人，是法家“术派”的创始人。申不害是韩昭侯的丞相，终其一生，诸侯都不敢侵略韩国，正所谓“终申子之身，国治兵彊，无侵韩者”。</p>
-<blockquote>
-<p>《申子》六篇。名不害，京人，相韩昭侯，终其身诸侯不敢侵韩。</p>
-</blockquote>
-<p>《处子》，九篇。作者应为处子，其人不详。</p>
-<blockquote>
-<p>《处子》九篇。</p>
-</blockquote>
-<p>《慎子》，四十二篇。作者为慎到（约前395年－前315年），赵国邯郸人，是法家”势派”的创始人，早于申不害、韩非，受到申不害和韩非的称赞。</p>
-<blockquote>
-<p>《慎子》四十二篇。名到，先申、韩，申、韩称之。</p>
-</blockquote>
-<p>《韩子》，五十五篇。作者为韩非（约前281年－前233年），战国末期韩国人，是韩国宗室公子。韩非主张“法”、“术”、“势”三者并重，是法家的集大成者。韩非出使秦国时，被李斯杀害。</p>
-<blockquote>
-<p>《韩子》五十五篇。名非，韩诸公子，使秦，李斯害而杀之。</p>
-</blockquote>
-<p>《游棣子》，一篇。作者游棣，其人不详，当是战国晚期与慎到、韩非同时期的法家代表人物之一。</p>
-<blockquote>
-<p>《游棣子》一篇。</p>
-</blockquote>
-<p>《晁错》，三十一篇。作者晁错（前200年－前154年），西汉政治家，主张“重农抑商”、“移民实边”。</p>
-<blockquote>
-<p>《晁错》三十一篇。</p>
-</blockquote>
-<p>《燕十事》，十篇。作者不详。</p>
-<blockquote>
-<p>《燕十事》十篇。不知作者。</p>
-</blockquote>
-<p>《法家言》，二篇。作者不详。</p>
-<blockquote>
-<p>《法家言》二篇。不知作者。</p>
-</blockquote>
-<h2 id="法家的兴起及其缺陷"><a href="#法家的兴起及其缺陷" class="headerlink" title="法家的兴起及其缺陷"></a>法家的兴起及其缺陷</h2><p>战国时期，王权衰落，诸侯争霸，社会的巨变，导致法家思想逐渐兴起，在经过商鞅、慎到、申不害的发展后，逐渐形成以商鞅为代表的“法派”，以申不害为代表的“术派”，和以“慎到”为代表的“势派”三者相结合的学派。到了战国末期，韩非兼取“法”、“术”、“势”三家之长，成为法家的集大成者。至此，法家跻身成为诸子百家中的一大名家！</p>
-<p>然而，法家也有其缺陷，班固引用《周易》中的话感叹说：“古代君王以严明的刑罚来整顿法制，这是他们的长处。然而，如果由刻薄的人来施行法治，就会抛弃教化，放弃仁爱，只通过施行刑法而想达到天下太平，甚至于残害至亲，伤害恩义，刻薄应当亲厚之人”。</p>
-<blockquote>
-<p>《易》曰“先王以明罚饬法”，此其所长也。及刻者为之，则无教化，去仁爱，专任刑法而欲以致治，至于残害至亲，伤恩薄厚。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>诸子百家</category>
-      </categories>
-      <tags>
-        <tag>诸子百家</tag>
-        <tag>先秦</tag>
-        <tag>法家</tag>
-        <tag>法派</tag>
-        <tag>术派</tag>
-        <tag>势派</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在中国古代，男同性恋为什么被叫作“龙阳之好”？</title>
     <url>/Articles/%E7%94%B7%E5%90%8C%E6%80%A7%E6%81%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A2%AB%E5%8F%AB%E4%BD%9C%E9%BE%99%E9%98%B3%E4%B9%8B%E5%A5%BD/</url>
     <content><![CDATA[<p>在中国古代，男子间的同性恋被称作为“龙阳之好”或“龙阳之兴”，这个名称来源于战国时期的一个人，即龙阳君。</p>
@@ -2861,10 +2792,10 @@
         <tag>春秋</tag>
         <tag>诸子百家</tag>
         <tag>先秦</tag>
-        <tag>法家</tag>
         <tag>九流十派</tag>
         <tag>道家</tag>
         <tag>阴阳家</tag>
+        <tag>法家</tag>
         <tag>名家</tag>
         <tag>墨家</tag>
         <tag>纵横家</tag>
@@ -3243,21 +3174,6 @@
       </tags>
   </entry>
   <entry>
-    <title>理解CpG Islands</title>
-    <url>/CHIPSEQ/CpG_Islands/</url>
-    <content><![CDATA[<p>CpG Islands是指CG组合明显高于全基因组平均水平的DNA片段，通常靠近基因的转录起始位点，可以调节基因的转录活性。</p>
-<p>在哺乳动物的DNA中，CG这样的组合十分稀少，原因在于，CG中的C易被甲基化，而甲基化的C由于脱氨作用会转变成T，即CG有转化为TG的倾向，除非因某种原因，CG中的C不被甲基化，CG组合才得以保留。</p>
-<p>一般，CpG Islands有如下特征：</p>
-<p>1）GC含量高于50%；<br>2）片段长度大于200 bp;<br>3）CG组合观测值/预测值 &gt; 0.6；</p>
-]]></content>
-      <categories>
-        <category>生物信息</category>
-      </categories>
-      <tags>
-        <tag>CpG Islands</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PowerPlex 16 Primer Pairs</title>
     <url>/BIO/PowerPlex%2016%20Primer%20Pairs/</url>
     <content><![CDATA[<p>PowerPlex 16 system 是由PROMEGA开发的STR检测试剂盒，用于亲子鉴定（paternity testing）、法医分析（forensic DNA analysis）、身份识别（human identity testing），以及品系鉴定（tissue culture strain identification）。包含全部13个CODIS STR LOCI（TPOX, D3S1358, FGA, CSF1PO, D5S818, D7S820, D8S1179, TH01,VWA, D13S317, D16S539, D18S51, D21S11），  Penta D，Penta E，以及用于性别鉴定的Amelogenin，共计16个位点。</p>
@@ -3382,6 +3298,21 @@
       </tags>
   </entry>
   <entry>
+    <title>理解CpG Islands</title>
+    <url>/CHIPSEQ/CpG_Islands/</url>
+    <content><![CDATA[<p>CpG Islands是指CG组合明显高于全基因组平均水平的DNA片段，通常靠近基因的转录起始位点，可以调节基因的转录活性。</p>
+<p>在哺乳动物的DNA中，CG这样的组合十分稀少，原因在于，CG中的C易被甲基化，而甲基化的C由于脱氨作用会转变成T，即CG有转化为TG的倾向，除非因某种原因，CG中的C不被甲基化，CG组合才得以保留。</p>
+<p>一般，CpG Islands有如下特征：</p>
+<p>1）GC含量高于50%；<br>2）片段长度大于200 bp;<br>3）CG组合观测值/预测值 &gt; 0.6；</p>
+]]></content>
+      <categories>
+        <category>生物信息</category>
+      </categories>
+      <tags>
+        <tag>CpG Islands</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>从BAM文件中提取指定区域的READS数</title>
     <url>/CHIPSEQ/bamreads/</url>
     <content><![CDATA[<p>通过序列比对得到BAM文件后，常常需要对READS数进行统计，以便进行下游分析与作图，可以说，这是对BAM数据可视化的关键步骤。</p>
@@ -3445,18 +3376,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ChIP SEQ分析笔记1-软件安装</title>
-    <url>/CHIPSEQ/chip_note2_install/</url>
-    <content><![CDATA[<p>ChIP SEQ分析过程中要用到诸多的软件包，在分析之前，确保软件成功地安装，命令如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># install bowtie2</span></span><br><span class="line">sudo apt-get update -y</span><br><span class="line">sudo apt-get install -y bowtie2</span><br><span class="line"></span><br><span class="line"><span class="comment"># install samtools</span></span><br><span class="line">sudo apt install samtools</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>生物信息</category>
-      </categories>
-      <tags>
-        <tag>ChIP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CHIPSEQ分析流程总结</title>
     <url>/CHIPSEQ/chip_overview/</url>
     <content><![CDATA[<p>CHIPSEQ的分析流程总结如下:</p>
@@ -3471,25 +3390,15 @@
       </tags>
   </entry>
   <entry>
-    <title>定义并提取基因间区域-INTERGENIC REGION</title>
-    <url>/CHIPSEQ/intergenic/</url>
-    <content><![CDATA[<p>一、定义intergenic </p>
-<p>基因间区域，即intergenic region，可以简单定义为两个相邻基因A和B之间的区域；对于某个基因而言，TSS和TES可以看作是基因的上下边界，但是，由于promoter往往在TSS上游，而TES附近可能有调控元件存在，因此，我们也需要把promoter区域和TES下游也考虑在内。如果我们定义，promoter区域为“TSS-2Kb至TSS+0.5Kb”，下游调控区域为“TES-0.5Kb至TES+0.5Kb”，那么，intergenic region就可以认为是[A]{TES+0.5Kb}至[B]{TSS-2Kb}之间的区域。当然，这样定义intergenic有个根本的缺陷，即如果A与B之间不足2.5Kb，则这两个基因之间的区域会被忽略掉，但是，通盘考虑，由于目前对于基因的调控区域还不精确清楚，可以说，没有任何一种在基因组水平上的操作是绝对准确的。</p>
-<p>二、提取intergenic</p>
-<p>根据上面的定义，如果从全基因组中扣除已知的基因区域”[A]{TES+0.5Kb}-[B]{TSS-2Kb}”，剩下的区域就是intergenic，我们利用bedtools来提取intergenic，以mm10为例，方法如下：</p>
-<p>2.1 创建文件mm10，内容是所有染色体的长度</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt; cat mm10</span><br><span class="line">chr1    195471971</span><br><span class="line">chr2    182113224</span><br><span class="line">chr3    160039680</span><br><span class="line">chr4    156508116</span><br><span class="line">chr5    151834684</span><br><span class="line">chr6    149736546</span><br><span class="line">chr7    145441459</span><br><span class="line">chr8    129401213</span><br><span class="line">chr9    124595110</span><br><span class="line">chr10   130694993</span><br><span class="line">chr11   122082543</span><br><span class="line">chr12   120129022</span><br><span class="line">chr13   120421639</span><br><span class="line">chr14   124902244</span><br><span class="line">chr15   104043685</span><br><span class="line">chr16   98207768</span><br><span class="line">chr17   94987271</span><br><span class="line">chr18   90702639</span><br><span class="line">chr19   61431566</span><br><span class="line">chrX    171031299</span><br><span class="line">chrY    91744698</span><br></pre></td></tr></table></figure>
-<p>2.2 将染色体重新排序，若不排序，后面取补集时会报错</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt; sort -k1,1 -k2,2n mm10 &gt; mm10_sorted</span><br><span class="line">&gt; cat mm10_sorted</span><br><span class="line">chr1    195471971</span><br><span class="line">chr10   130694993</span><br><span class="line">chr11   122082543</span><br><span class="line">chr12   120129022</span><br><span class="line">chr13   120421639</span><br><span class="line">chr14   124902244</span><br><span class="line">chr15   104043685</span><br><span class="line">chr16   98207768</span><br><span class="line">chr17   94987271</span><br><span class="line">chr18   90702639</span><br><span class="line">chr19   61431566</span><br><span class="line">chr2    182113224</span><br><span class="line">chr3    160039680</span><br><span class="line">chr4    156508116</span><br><span class="line">chr5    151834684</span><br><span class="line">chr6    149736546</span><br><span class="line">chr7    145441459</span><br><span class="line">chr8    129401213</span><br><span class="line">chr9    124595110</span><br><span class="line">chrX    171031299</span><br><span class="line">chrY    91744698</span><br></pre></td></tr></table></figure>
-<p>2.3 创建mm10_all_genes.bed，如上定义，基因间区域为”[A]{TES+0.5Kb}-[B]{TSS-2Kb}”，并重新排序</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt; sort -k1,1 -k2,2n mm10_all_genes.bed &gt; mm10_all_sorted.bed</span><br><span class="line">&gt; less mm10_all_sorted.bed</span><br><span class="line">chr1    3071253 3074822 3570    *       4933401J01Rik</span><br><span class="line">chr1    3100016 3102625 2610    *       Gm26206</span><br><span class="line">chr1    3203901 3671998 468098  *       Xkr4</span><br><span class="line">chr1    3250757 3253736 2980    *       Gm18956</span><br><span class="line">chr1    3363731 3369049 5319    *       Gm37180</span><br><span class="line">chr1    3373556 3378288 4733    *       Gm37363</span><br><span class="line">chr1    3462977 3467785 4809    *       Gm37686</span><br><span class="line">chr1    3464587 3514053 49467   *       Gm1992</span><br><span class="line">chr1    3510451 3515007 4557    *       Gm37329</span><br><span class="line">chr1    3529795 3533220 3426    *       Gm7341</span><br><span class="line">chr1    3590892 3596403 5512    *       Gm38148</span><br><span class="line">chr1    3645309 3659404 14096   *       Gm19938</span><br><span class="line">chr1    3678155 3682288 4134    *       Gm10568</span><br><span class="line">chr1    3750010 3754860 4851    *       Gm38385</span><br><span class="line">chr1    3781876 3784433 2558    *       Gm27396</span><br><span class="line">chr1    3903739 3986715 82977   *       Gm37381</span><br><span class="line">chr1    3997557 4409741 412185  *       Rp1</span><br><span class="line">chr1    4254234 4261019 6786    *       Gm6101</span><br><span class="line">chr1    4361346 4365329 3984    *       Gm37483</span><br><span class="line">chr1    4488931 4497854 8924    *       Sox17</span><br><span class="line">chr1    4494551 4500058 5508    *       Gm37587</span><br><span class="line">chr1    4520905 4527237 6333    *       Gm7357</span><br><span class="line">chr1    4527017 4529623 2607    *       Gm22307</span><br><span class="line">chr1    4532837 4535786 2950    *       Gm38076</span><br><span class="line">chr1    4581129 4586752 5624    *       Gm37323</span><br><span class="line">chr1    4608471 4611906 3436    *       Gm7369</span><br></pre></td></tr></table></figure>
-<p>2.4 用bedtoos提取补集，即intergenic</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt; bedtools complement -i mm10_all_sorted.bed -g mm10_sorted &gt; intergenic.bed</span><br><span class="line">&gt; less intergenic.bed</span><br><span class="line">chr1    0       3071253</span><br><span class="line">chr1    3074822 3100016</span><br><span class="line">chr1    3102625 3203901</span><br><span class="line">chr1    3671998 3678155</span><br><span class="line">chr1    3682288 3750010</span><br><span class="line">chr1    3754860 3781876</span><br><span class="line">chr1    3784433 3903739</span><br><span class="line">chr1    3986715 3997557</span><br><span class="line">chr1    4409741 4488931</span><br><span class="line">chr1    4500058 4520905</span><br><span class="line">chr1    4529623 4532837</span><br><span class="line">chr1    4535786 4581129</span><br><span class="line">chr1    4586752 4608471</span><br><span class="line">chr1    4611906 4685934</span><br><span class="line">chr1    4689903 4690219</span><br><span class="line">chr1    4693924 4721277</span><br><span class="line">chr1    4723879 4733046</span><br><span class="line">chr1    4736176 4769131</span><br><span class="line">chr1    4786239 4805788</span><br><span class="line">chr1    4898409 4903751</span><br><span class="line">chr1    4907361 4907576</span><br><span class="line">chr1    5163029 5274106</span><br><span class="line">chr1    5277837 5305739</span><br><span class="line">chr1    5310517 5401547</span><br><span class="line">chr1    5406078 5586466</span><br><span class="line">chr1    5606631 5615837</span><br></pre></td></tr></table></figure>]]></content>
+    <title>ChIP SEQ分析笔记1-软件安装</title>
+    <url>/CHIPSEQ/chip_note2_install/</url>
+    <content><![CDATA[<p>ChIP SEQ分析过程中要用到诸多的软件包，在分析之前，确保软件成功地安装，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># install bowtie2</span></span><br><span class="line">sudo apt-get update -y</span><br><span class="line">sudo apt-get install -y bowtie2</span><br><span class="line"></span><br><span class="line"><span class="comment"># install samtools</span></span><br><span class="line">sudo apt install samtools</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>生物信息</category>
       </categories>
       <tags>
-        <tag>Intergenic</tag>
+        <tag>ChIP</tag>
       </tags>
   </entry>
   <entry>
@@ -3512,6 +3421,28 @@
       </categories>
       <tags>
         <tag>BAM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>定义并提取基因间区域-INTERGENIC REGION</title>
+    <url>/CHIPSEQ/intergenic/</url>
+    <content><![CDATA[<p>一、定义intergenic </p>
+<p>基因间区域，即intergenic region，可以简单定义为两个相邻基因A和B之间的区域；对于某个基因而言，TSS和TES可以看作是基因的上下边界，但是，由于promoter往往在TSS上游，而TES附近可能有调控元件存在，因此，我们也需要把promoter区域和TES下游也考虑在内。如果我们定义，promoter区域为“TSS-2Kb至TSS+0.5Kb”，下游调控区域为“TES-0.5Kb至TES+0.5Kb”，那么，intergenic region就可以认为是[A]{TES+0.5Kb}至[B]{TSS-2Kb}之间的区域。当然，这样定义intergenic有个根本的缺陷，即如果A与B之间不足2.5Kb，则这两个基因之间的区域会被忽略掉，但是，通盘考虑，由于目前对于基因的调控区域还不精确清楚，可以说，没有任何一种在基因组水平上的操作是绝对准确的。</p>
+<p>二、提取intergenic</p>
+<p>根据上面的定义，如果从全基因组中扣除已知的基因区域”[A]{TES+0.5Kb}-[B]{TSS-2Kb}”，剩下的区域就是intergenic，我们利用bedtools来提取intergenic，以mm10为例，方法如下：</p>
+<p>2.1 创建文件mm10，内容是所有染色体的长度</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt; cat mm10</span><br><span class="line">chr1    195471971</span><br><span class="line">chr2    182113224</span><br><span class="line">chr3    160039680</span><br><span class="line">chr4    156508116</span><br><span class="line">chr5    151834684</span><br><span class="line">chr6    149736546</span><br><span class="line">chr7    145441459</span><br><span class="line">chr8    129401213</span><br><span class="line">chr9    124595110</span><br><span class="line">chr10   130694993</span><br><span class="line">chr11   122082543</span><br><span class="line">chr12   120129022</span><br><span class="line">chr13   120421639</span><br><span class="line">chr14   124902244</span><br><span class="line">chr15   104043685</span><br><span class="line">chr16   98207768</span><br><span class="line">chr17   94987271</span><br><span class="line">chr18   90702639</span><br><span class="line">chr19   61431566</span><br><span class="line">chrX    171031299</span><br><span class="line">chrY    91744698</span><br></pre></td></tr></table></figure>
+<p>2.2 将染色体重新排序，若不排序，后面取补集时会报错</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt; sort -k1,1 -k2,2n mm10 &gt; mm10_sorted</span><br><span class="line">&gt; cat mm10_sorted</span><br><span class="line">chr1    195471971</span><br><span class="line">chr10   130694993</span><br><span class="line">chr11   122082543</span><br><span class="line">chr12   120129022</span><br><span class="line">chr13   120421639</span><br><span class="line">chr14   124902244</span><br><span class="line">chr15   104043685</span><br><span class="line">chr16   98207768</span><br><span class="line">chr17   94987271</span><br><span class="line">chr18   90702639</span><br><span class="line">chr19   61431566</span><br><span class="line">chr2    182113224</span><br><span class="line">chr3    160039680</span><br><span class="line">chr4    156508116</span><br><span class="line">chr5    151834684</span><br><span class="line">chr6    149736546</span><br><span class="line">chr7    145441459</span><br><span class="line">chr8    129401213</span><br><span class="line">chr9    124595110</span><br><span class="line">chrX    171031299</span><br><span class="line">chrY    91744698</span><br></pre></td></tr></table></figure>
+<p>2.3 创建mm10_all_genes.bed，如上定义，基因间区域为”[A]{TES+0.5Kb}-[B]{TSS-2Kb}”，并重新排序</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt; sort -k1,1 -k2,2n mm10_all_genes.bed &gt; mm10_all_sorted.bed</span><br><span class="line">&gt; less mm10_all_sorted.bed</span><br><span class="line">chr1    3071253 3074822 3570    *       4933401J01Rik</span><br><span class="line">chr1    3100016 3102625 2610    *       Gm26206</span><br><span class="line">chr1    3203901 3671998 468098  *       Xkr4</span><br><span class="line">chr1    3250757 3253736 2980    *       Gm18956</span><br><span class="line">chr1    3363731 3369049 5319    *       Gm37180</span><br><span class="line">chr1    3373556 3378288 4733    *       Gm37363</span><br><span class="line">chr1    3462977 3467785 4809    *       Gm37686</span><br><span class="line">chr1    3464587 3514053 49467   *       Gm1992</span><br><span class="line">chr1    3510451 3515007 4557    *       Gm37329</span><br><span class="line">chr1    3529795 3533220 3426    *       Gm7341</span><br><span class="line">chr1    3590892 3596403 5512    *       Gm38148</span><br><span class="line">chr1    3645309 3659404 14096   *       Gm19938</span><br><span class="line">chr1    3678155 3682288 4134    *       Gm10568</span><br><span class="line">chr1    3750010 3754860 4851    *       Gm38385</span><br><span class="line">chr1    3781876 3784433 2558    *       Gm27396</span><br><span class="line">chr1    3903739 3986715 82977   *       Gm37381</span><br><span class="line">chr1    3997557 4409741 412185  *       Rp1</span><br><span class="line">chr1    4254234 4261019 6786    *       Gm6101</span><br><span class="line">chr1    4361346 4365329 3984    *       Gm37483</span><br><span class="line">chr1    4488931 4497854 8924    *       Sox17</span><br><span class="line">chr1    4494551 4500058 5508    *       Gm37587</span><br><span class="line">chr1    4520905 4527237 6333    *       Gm7357</span><br><span class="line">chr1    4527017 4529623 2607    *       Gm22307</span><br><span class="line">chr1    4532837 4535786 2950    *       Gm38076</span><br><span class="line">chr1    4581129 4586752 5624    *       Gm37323</span><br><span class="line">chr1    4608471 4611906 3436    *       Gm7369</span><br></pre></td></tr></table></figure>
+<p>2.4 用bedtoos提取补集，即intergenic</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt; bedtools complement -i mm10_all_sorted.bed -g mm10_sorted &gt; intergenic.bed</span><br><span class="line">&gt; less intergenic.bed</span><br><span class="line">chr1    0       3071253</span><br><span class="line">chr1    3074822 3100016</span><br><span class="line">chr1    3102625 3203901</span><br><span class="line">chr1    3671998 3678155</span><br><span class="line">chr1    3682288 3750010</span><br><span class="line">chr1    3754860 3781876</span><br><span class="line">chr1    3784433 3903739</span><br><span class="line">chr1    3986715 3997557</span><br><span class="line">chr1    4409741 4488931</span><br><span class="line">chr1    4500058 4520905</span><br><span class="line">chr1    4529623 4532837</span><br><span class="line">chr1    4535786 4581129</span><br><span class="line">chr1    4586752 4608471</span><br><span class="line">chr1    4611906 4685934</span><br><span class="line">chr1    4689903 4690219</span><br><span class="line">chr1    4693924 4721277</span><br><span class="line">chr1    4723879 4733046</span><br><span class="line">chr1    4736176 4769131</span><br><span class="line">chr1    4786239 4805788</span><br><span class="line">chr1    4898409 4903751</span><br><span class="line">chr1    4907361 4907576</span><br><span class="line">chr1    5163029 5274106</span><br><span class="line">chr1    5277837 5305739</span><br><span class="line">chr1    5310517 5401547</span><br><span class="line">chr1    5406078 5586466</span><br><span class="line">chr1    5606631 5615837</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>生物信息</category>
+      </categories>
+      <tags>
+        <tag>Intergenic</tag>
       </tags>
   </entry>
   <entry>
@@ -3672,6 +3603,75 @@
       <categories>
         <category>英语进阶</category>
       </categories>
+  </entry>
+  <entry>
+    <title>诸子百家｜法家代表人物及其代表著作</title>
+    <url>/Articles/%E6%B3%95%E5%AE%B6%E4%BB%A3%E8%A1%A8%E4%BA%BA%E7%89%A9%E5%8F%8A%E5%85%B6%E4%BB%A3%E8%A1%A8%E8%91%97%E4%BD%9C/</url>
+    <content><![CDATA[<h2 id="法家，是先秦时期的一个思想流派，是诸子百家中的名家"><a href="#法家，是先秦时期的一个思想流派，是诸子百家中的名家" class="headerlink" title="法家，是先秦时期的一个思想流派，是诸子百家中的名家"></a>法家，是先秦时期的一个思想流派，是诸子百家中的名家</h2><p>“法家者流，盖出于理官”，理官，是治理狱讼的官吏，班固认为，法家可能起源于理官，但是其思想源头并不确切。</p>
+<blockquote>
+<p>法家者流，盖出于理官。信赏必罚，以辅礼制。——《汉书·艺文志》</p>
+</blockquote>
+<p>法家主张“不别亲疏，不殊贵贱，一断于法”，其核心在于“信赏必罚”，其目的在于“以辅礼制”。</p>
+<blockquote>
+<p>法家不別亲疏，不殊贵贱，一断于法。——《史记》</p>
+</blockquote>
+<h2 id="法家共十家，分为“法派”、“术派”、“势派”，著作共217篇"><a href="#法家共十家，分为“法派”、“术派”、“势派”，著作共217篇" class="headerlink" title="法家共十家，分为“法派”、“术派”、“势派”，著作共217篇"></a>法家共十家，分为“法派”、“术派”、“势派”，著作共217篇</h2><p>《李子》，三十二篇。作者为李悝（前455年－前395年），是战国时期魏文侯的丞相，提倡“富国强兵”之说。</p>
+<blockquote>
+<p>《李子》三十二篇。名悝，相魏文侯，富国强兵。</p>
+</blockquote>
+<p>《商君》，二十九篇。作者为商鞅（前390年－前338年），姬姓，名鞅，也称卫鞅，或公孙鞅，是卫国国君的后裔。商鞅是战国时期秦孝公的丞相，是法家“法派”的创始人。</p>
+<blockquote>
+<p>《商君》二十九篇。名鞅，姬姓，卫后也，相秦孝公，有《列传》。</p>
+</blockquote>
+<p>《申子》，六篇。作者申不害（前420年－前337年），亦称申子，是郑国京邑人，是法家“术派”的创始人。申不害是韩昭侯的丞相，终其一生，诸侯都不敢侵略韩国，正所谓“终申子之身，国治兵彊，无侵韩者”。</p>
+<blockquote>
+<p>《申子》六篇。名不害，京人，相韩昭侯，终其身诸侯不敢侵韩。</p>
+</blockquote>
+<p>《处子》，九篇。作者应为处子，其人不详。</p>
+<blockquote>
+<p>《处子》九篇。</p>
+</blockquote>
+<p>《慎子》，四十二篇。作者为慎到（约前395年－前315年），赵国邯郸人，是法家”势派”的创始人，早于申不害、韩非，受到申不害和韩非的称赞。</p>
+<blockquote>
+<p>《慎子》四十二篇。名到，先申、韩，申、韩称之。</p>
+</blockquote>
+<p>《韩子》，五十五篇。作者为韩非（约前281年－前233年），战国末期韩国人，是韩国宗室公子。韩非主张“法”、“术”、“势”三者并重，是法家的集大成者。韩非出使秦国时，被李斯杀害。</p>
+<blockquote>
+<p>《韩子》五十五篇。名非，韩诸公子，使秦，李斯害而杀之。</p>
+</blockquote>
+<p>《游棣子》，一篇。作者游棣，其人不详，当是战国晚期与慎到、韩非同时期的法家代表人物之一。</p>
+<blockquote>
+<p>《游棣子》一篇。</p>
+</blockquote>
+<p>《晁错》，三十一篇。作者晁错（前200年－前154年），西汉政治家，主张“重农抑商”、“移民实边”。</p>
+<blockquote>
+<p>《晁错》三十一篇。</p>
+</blockquote>
+<p>《燕十事》，十篇。作者不详。</p>
+<blockquote>
+<p>《燕十事》十篇。不知作者。</p>
+</blockquote>
+<p>《法家言》，二篇。作者不详。</p>
+<blockquote>
+<p>《法家言》二篇。不知作者。</p>
+</blockquote>
+<h2 id="法家的兴起及其缺陷"><a href="#法家的兴起及其缺陷" class="headerlink" title="法家的兴起及其缺陷"></a>法家的兴起及其缺陷</h2><p>战国时期，王权衰落，诸侯争霸，社会的巨变，导致法家思想逐渐兴起，在经过商鞅、慎到、申不害的发展后，逐渐形成以商鞅为代表的“法派”，以申不害为代表的“术派”，和以“慎到”为代表的“势派”三者相结合的学派。到了战国末期，韩非兼取“法”、“术”、“势”三家之长，成为法家的集大成者。至此，法家跻身成为诸子百家中的一大名家！</p>
+<p>然而，法家也有其缺陷，班固引用《周易》中的话感叹说：“古代君王以严明的刑罚来整顿法制，这是他们的长处。然而，如果由刻薄的人来施行法治，就会抛弃教化，放弃仁爱，只通过施行刑法而想达到天下太平，甚至于残害至亲，伤害恩义，刻薄应当亲厚之人”。</p>
+<blockquote>
+<p>《易》曰“先王以明罚饬法”，此其所长也。及刻者为之，则无教化，去仁爱，专任刑法而欲以致治，至于残害至亲，伤恩薄厚。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>诸子百家</category>
+      </categories>
+      <tags>
+        <tag>诸子百家</tag>
+        <tag>先秦</tag>
+        <tag>法家</tag>
+        <tag>法派</tag>
+        <tag>术派</tag>
+        <tag>势派</tag>
+      </tags>
   </entry>
   <entry>
     <title>英语笔记11：GEICO Roadside Assistance</title>
@@ -5069,6 +5069,21 @@ See</code>config.log’ for more details<br>ERROR: configuration failed for pack
       </categories>
       <tags>
         <tag>配色</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>R中的点样式pch</title>
+    <url>/R/R_pch/</url>
+    <content><![CDATA[<p>R中使用pch来控制点的样式，可以使用help(pch)来查看其用法</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">help</span>(pch)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/R/pch.png" alt></p>
+<p>如上图，pch共25种，默认为1，其中，15:18是fill形状，但无border；19：25既有fill又有border；比如，pch=16和pch=19，区别在于，19有border，所以比16大。</p>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+      </categories>
+      <tags>
+        <tag>pch</tag>
       </tags>
   </entry>
   <entry>
@@ -7746,6 +7761,39 @@ done
       </tags>
   </entry>
   <entry>
+    <title>RNASEQ分析入门笔记1-软件安装</title>
+    <url>/RNASEQ/RNASEQ%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<p>RNASEQ的基本软件包括：<em>sra-tools, fastqc, hisat2, samtools, htseq, r, rstudio</em>，建议使用conda命令安装软件，降低出错概率，<em>conda is a tool for managing and deploying applications, environments and packages.</em></p>
+<h2 id="miniconda3"><a href="#miniconda3" class="headerlink" title="miniconda3"></a>miniconda3</h2><p>在官网下载相应的版本，安装即可，<a href="https://conda.io/miniconda.html" target="_blank" rel="noopener">https://conda.io/miniconda.html</a></p>
+<p>安装完成后，需要创建频道，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --add channels conda-forge</span><br><span class="line">conda config --add channels defaults</span><br><span class="line">conda config --add channels r</span><br><span class="line">conda config --add channels bioconda</span><br></pre></td></tr></table></figure>
+<p>如果使用iTerm2作为终端，conda可能无法执行：<em>command not found: conda</em></p>
+<p>原因：终端是 iTerm2，安装了 zsh 和 oh-my-zsh，因此，打开终端时不再执行~/.bash_profile。</p>
+<p>若使该文件有效，需要修改 zsh 的配置文件，方法如下：</p>
+<p>编辑~/.zshrc，在文件末尾加入一行：</p>
+<blockquote>
+<p>source ~/.bash_profile</p>
+</blockquote>
+<p><strong>注意：</strong> .zshrc是一个位于根目录下的隐藏文件，如果要显示隐藏文件，请在终端中输入：</p>
+<p>defaults write com.apple.finder AppleShowAllFiles -bool true;<br>KillAll Finder</p>
+<h2 id="sra-tools"><a href="#sra-tools" class="headerlink" title="sra-tools"></a>sra-tools</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install -c bioconda sra-tools=2.8.1</span><br></pre></td></tr></table></figure>
+<h2 id="fastqc"><a href="#fastqc" class="headerlink" title="fastqc"></a>fastqc</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install fastqc</span><br></pre></td></tr></table></figure>
+<h2 id="hisat2"><a href="#hisat2" class="headerlink" title="hisat2"></a>hisat2</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install hisat2</span><br></pre></td></tr></table></figure>
+<h2 id="samtools"><a href="#samtools" class="headerlink" title="samtools"></a>samtools</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install samtools</span><br></pre></td></tr></table></figure>
+<h2 id="htseq"><a href="#htseq" class="headerlink" title="htseq"></a>htseq</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install -c bioconda htseq</span><br></pre></td></tr></table></figure>
+<h2 id="R"><a href="#R" class="headerlink" title="R"></a>R</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install r</span><br></pre></td></tr></table></figure>
+<h2 id="Rstudio"><a href="#Rstudio" class="headerlink" title="Rstudio"></a>Rstudio</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install rstudio</span><br></pre></td></tr></table></figure>
+<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p>另外，下载NCBI上的原始数据（SRA文件），还需要用到wget，安装语法为：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install wget</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+      </categories>
+      <tags>
+        <tag>RNASEQ</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>美国家庭天燃气收费</title>
     <url>/USA/%E7%BE%8E%E5%9B%BD%E7%94%9F%E6%B4%BB%E6%97%A5%E8%AE%B01/</url>
     <content><![CDATA[<p>美国的天燃气收费原则有点像国内的固话费，只要你开通这个服务，不管你用不用，基本费用必不可免，这叫做Customer Service Charge（CSC）或者Customer Charge（CC），真的是百分百的霸王条款。</p>
@@ -7832,39 +7880,6 @@ done
       <tags>
         <tag>美国</tag>
         <tag>天然气</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RNASEQ分析入门笔记1-软件安装</title>
-    <url>/RNASEQ/RNASEQ%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<p>RNASEQ的基本软件包括：<em>sra-tools, fastqc, hisat2, samtools, htseq, r, rstudio</em>，建议使用conda命令安装软件，降低出错概率，<em>conda is a tool for managing and deploying applications, environments and packages.</em></p>
-<h2 id="miniconda3"><a href="#miniconda3" class="headerlink" title="miniconda3"></a>miniconda3</h2><p>在官网下载相应的版本，安装即可，<a href="https://conda.io/miniconda.html" target="_blank" rel="noopener">https://conda.io/miniconda.html</a></p>
-<p>安装完成后，需要创建频道，命令如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --add channels conda-forge</span><br><span class="line">conda config --add channels defaults</span><br><span class="line">conda config --add channels r</span><br><span class="line">conda config --add channels bioconda</span><br></pre></td></tr></table></figure>
-<p>如果使用iTerm2作为终端，conda可能无法执行：<em>command not found: conda</em></p>
-<p>原因：终端是 iTerm2，安装了 zsh 和 oh-my-zsh，因此，打开终端时不再执行~/.bash_profile。</p>
-<p>若使该文件有效，需要修改 zsh 的配置文件，方法如下：</p>
-<p>编辑~/.zshrc，在文件末尾加入一行：</p>
-<blockquote>
-<p>source ~/.bash_profile</p>
-</blockquote>
-<p><strong>注意：</strong> .zshrc是一个位于根目录下的隐藏文件，如果要显示隐藏文件，请在终端中输入：</p>
-<p>defaults write com.apple.finder AppleShowAllFiles -bool true;<br>KillAll Finder</p>
-<h2 id="sra-tools"><a href="#sra-tools" class="headerlink" title="sra-tools"></a>sra-tools</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install -c bioconda sra-tools=2.8.1</span><br></pre></td></tr></table></figure>
-<h2 id="fastqc"><a href="#fastqc" class="headerlink" title="fastqc"></a>fastqc</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install fastqc</span><br></pre></td></tr></table></figure>
-<h2 id="hisat2"><a href="#hisat2" class="headerlink" title="hisat2"></a>hisat2</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install hisat2</span><br></pre></td></tr></table></figure>
-<h2 id="samtools"><a href="#samtools" class="headerlink" title="samtools"></a>samtools</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install samtools</span><br></pre></td></tr></table></figure>
-<h2 id="htseq"><a href="#htseq" class="headerlink" title="htseq"></a>htseq</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install -c bioconda htseq</span><br></pre></td></tr></table></figure>
-<h2 id="R"><a href="#R" class="headerlink" title="R"></a>R</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install r</span><br></pre></td></tr></table></figure>
-<h2 id="Rstudio"><a href="#Rstudio" class="headerlink" title="Rstudio"></a>Rstudio</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install rstudio</span><br></pre></td></tr></table></figure>
-<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p>另外，下载NCBI上的原始数据（SRA文件），还需要用到wget，安装语法为：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install wget</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-      </categories>
-      <tags>
-        <tag>RNASEQ</tag>
       </tags>
   </entry>
   <entry>
