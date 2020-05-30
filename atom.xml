@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-05-30T18:44:31.000Z</updated>
+  <updated>2020-05-30T19:36:02.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用mfrow和mfcol实现R的图形排版</title>
+    <link href="http://uteric.github.io/R/R_mfrow/"/>
+    <id>http://uteric.github.io/R/R_mfrow/</id>
+    <published>2020-05-30T19:36:02.000Z</published>
+    <updated>2020-05-30T19:36:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在R绘图中，可以使用mfrow=c(nrows, ncols)或mfcol=c(nrows, ncols)配合par()来实现图形排版。mfrow=c(nrows, ncols)是按行排列，mfcol=c(nrows, ncols)是按列排列。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; attach(mtcars)</span><br><span class="line">&gt; par(mfrow=c(2,2))</span><br><span class="line">&gt; hist(wt)</span><br><span class="line">&gt; hist(cyl)</span><br><span class="line">&gt; hist(disp)</span><br><span class="line">&gt; hist(hp)</span><br></pre></td></tr></table></figure><p><img src="/images/R/mfrow01.png" alt></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">par(mfcol=c(2,2))</span><br><span class="line">hist(wt)</span><br><span class="line">hist(cyl)</span><br><span class="line">hist(disp)</span><br><span class="line">hist(hp)</span><br></pre></td></tr></table></figure><p><img src="/images/R/mfrow02.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在R绘图中，可以使用mfrow=c(nrows, ncols)或mfcol=c(nrows, ncols)配合par()来实现图形排版。mfrow=c(nrows, ncols)是按行排列，mfcol=c(nrows, ncols)是按列排列。&lt;/p&gt;
+&lt;figure cl
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="mfrow" scheme="http://uteric.github.io/tags/mfrow/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>R绘图使用pin控制图形大小</title>
+    <link href="http://uteric.github.io/R/R_pinsize/"/>
+    <id>http://uteric.github.io/R/R_pinsize/</id>
+    <published>2020-05-30T19:23:34.000Z</published>
+    <updated>2020-05-30T19:23:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用R绘图时，可以使用pin控制图形大小，语法如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">par(pin=c(3,3))</span><br><span class="line">plot(data<span class="variable">$V1</span>,data<span class="variable">$V2</span>,pch=20,xlab=<span class="string">""</span>,ylab=<span class="string">""</span>,xlim=c(0,1),ylim=c(0,1),xaxs=<span class="string">"i"</span>,yaxs=<span class="string">"i"</span>)</span><br></pre></td></tr></table></figure><p><img src="/images/R/pin01.png" alt></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">par(pin=c(5,3))</span><br><span class="line">plot(data<span class="variable">$V1</span>,data<span class="variable">$V2</span>,pch=20,xlab=<span class="string">""</span>,ylab=<span class="string">""</span>,xlim=c(0,1),ylim=c(0,1),xaxs=<span class="string">"i"</span>,yaxs=<span class="string">"i"</span>)</span><br></pre></td></tr></table></figure><p><img src="/images/R/pin02.png" alt></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">par(pin=c(2,3))</span><br><span class="line">plot(data<span class="variable">$V1</span>,data<span class="variable">$V2</span>,pch=20,xlab=<span class="string">""</span>,ylab=<span class="string">""</span>,xlim=c(0,1),ylim=c(0,1),xaxs=<span class="string">"i"</span>,yaxs=<span class="string">"i"</span>)</span><br></pre></td></tr></table></figure><p><img src="/images/R/pin03.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;使用R绘图时，可以使用pin控制图形大小，语法如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span cla
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="pin" scheme="http://uteric.github.io/tags/pin/"/>
+    
+  </entry>
   
   <entry>
     <title>R中的点样式pch</title>
@@ -477,58 +529,6 @@
     
     
       <category term="CHIPSEQ" scheme="http://uteric.github.io/tags/CHIPSEQ/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux更改文件权限</title>
-    <link href="http://uteric.github.io/Linux/linux_chmod/"/>
-    <id>http://uteric.github.io/Linux/linux_chmod/</id>
-    <published>2020-05-15T19:50:51.000Z</published>
-    <updated>2020-05-15T19:50:51.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在linux中，可对文件进行操作的有三种用户，即文件所有者，群组用户，及其他用户；对于每个用户而言，都有三种权限，即read, write, execute，因此，rwxrwxrwx代表三种用户都对该文件有完全的权限，即可读、可写、可执行；</p><p>其中，r对应5，w对应2，x对应1，因此，rwxrwxrwx又可以简化为777；</p><p>一般情况，文件所有者需要对文件有完全的控制权限，而对于其他用户则可以考虑给予r–或者r-x，即可读不可写，因此，对应的权限是754或者755；</p><p>在linux中，更改文件权限的命令是chmod，用法如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chomd 755 filename</span><br></pre></td></tr></table></figure><p>注意：在大多数的命令行工具中，拥有可执行权限的文件的颜色与不可执行的文件颜色是不同的，因此，可以根据颜色的不同判断文件的权限类型。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;在linux中，可对文件进行操作的有三种用户，即文件所有者，群组用户，及其他用户；对于每个用户而言，都有三种权限，即read, write, execute，因此，rwxrwxrwx代表三种用户都对该文件有完全的权限，即可读、可写、可执行；&lt;/p&gt;
-&lt;p&gt;其中，r对应5，w
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="LINUX" scheme="http://uteric.github.io/tags/LINUX/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nvm版本切换</title>
-    <link href="http://uteric.github.io/GIT/nvm_version/"/>
-    <id>http://uteric.github.io/GIT/nvm_version/</id>
-    <published>2020-05-13T03:36:27.000Z</published>
-    <updated>2020-05-13T03:36:27.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>1、查看当前nvm版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm ls</span><br></pre></td></tr></table></figure><p>2、安装指定版本，如安装12.5.0</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install 12.5.0</span><br></pre></td></tr></table></figure><p>3、使用指定版本，如使用12.5.0</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm use 12.5.0</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;1、查看当前nvm版本&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;co
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="nvm" scheme="http://uteric.github.io/tags/nvm/"/>
     
   </entry>
   
