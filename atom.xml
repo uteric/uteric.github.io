@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-05-30T19:36:02.000Z</updated>
+  <updated>2020-05-30T22:54:57.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用layout定义图形排版</title>
+    <link href="http://uteric.github.io/R/R_layout/"/>
+    <id>http://uteric.github.io/R/R_layout/</id>
+    <published>2020-05-30T22:54:57.000Z</published>
+    <updated>2020-05-30T22:54:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">layout(matrix(c(1,1,2,3),2,2,byrow=T))</span><br><span class="line">layout.show(3)</span><br></pre></td></tr></table></figure><p><img src="/images/R/layout01.png" alt></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">layout(matrix(c(1,0,2,2,3,4),3,2,byrow=T))</span><br><span class="line">layout.show(4)</span><br></pre></td></tr></table></figure><p><img src="/images/R/layout02.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="layout" scheme="http://uteric.github.io/tags/layout/"/>
+    
+  </entry>
   
   <entry>
     <title>使用mfrow和mfcol实现R的图形排版</title>
@@ -501,34 +526,6 @@
     
     
       <category term="ChIP" scheme="http://uteric.github.io/tags/ChIP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CHIPSEQ分析流程总结</title>
-    <link href="http://uteric.github.io/CHIPSEQ/chip_overview/"/>
-    <id>http://uteric.github.io/CHIPSEQ/chip_overview/</id>
-    <published>2020-05-16T03:20:58.000Z</published>
-    <updated>2020-05-16T03:20:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>CHIPSEQ的分析流程总结如下:</p><p><img src="/images/CHIP/chip01.png" alt></p><p>在以后的文章中，我会对整个分析过程作详细的解释，所谓“他山之石，可以攻玉”，作为后来者攀登的阶梯，不要像我一样走弯路。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;CHIPSEQ的分析流程总结如下:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/CHIP/chip01.png&quot; alt&gt;&lt;/p&gt;
-&lt;p&gt;在以后的文章中，我会对整个分析过程作详细的解释，所谓“他山之石，可以攻玉”，作为后来者攀登的阶梯，不要像我一样走弯路。&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-      <category term="生物信息" scheme="http://uteric.github.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
-    
-    
-      <category term="CHIPSEQ" scheme="http://uteric.github.io/tags/CHIPSEQ/"/>
     
   </entry>
   
