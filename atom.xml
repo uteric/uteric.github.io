@@ -17,7 +17,7 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>wilcoxtest</title>
+    <title>在R中使用wilcox.test做非正态分布检验</title>
     <link href="http://uteric.github.io/R/R_wilcoxtest/"/>
     <id>http://uteric.github.io/R/R_wilcoxtest/</id>
     <published>2020-06-01T03:03:00.000Z</published>
@@ -35,6 +35,10 @@
     
     </summary>
     
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R" scheme="http://uteric.github.io/tags/R/"/>
     
   </entry>
   
