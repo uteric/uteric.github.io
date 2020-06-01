@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-05-31T20:04:01.000Z</updated>
+  <updated>2020-06-01T03:03:00.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,6 +15,106 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>wilcoxtest</title>
+    <link href="http://uteric.github.io/R/R_wilcoxtest/"/>
+    <id>http://uteric.github.io/R/R_wilcoxtest/</id>
+    <published>2020-06-01T03:03:00.000Z</published>
+    <updated>2020-06-01T03:03:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>对于符合正态分布的两个样本进行显著性检验时，可以使用t.test()；若是不确定两个样本是否符合正态分布假设时，可以执行Mann-Whitney-Wilcoxon Test，函数为</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wilcox.test(x,y,paired = TRUE, alternative = <span class="string">"two.sided"</span>)</span><br></pre></td></tr></table></figure><p>例如：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; wilcox.test(mtcars<span class="variable">$gear</span>,mtcars<span class="variable">$carb</span>,paired = TRUE, alternative = <span class="string">"two.sided"</span>)</span><br><span class="line"></span><br><span class="line">Wilcoxon signed rank <span class="built_in">test</span> with continuity correction</span><br><span class="line"></span><br><span class="line">data:  mtcars<span class="variable">$gear</span> and mtcars<span class="variable">$carb</span></span><br><span class="line">V = 267, p-value = 0.004493</span><br><span class="line">alternative hypothesis: <span class="literal">true</span> location <span class="built_in">shift</span> is not equal to 0</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;对于符合正态分布的两个样本进行显著性检验时，可以使用t.test()；若是不确定两个样本是否符合正态分布假设时，可以执行Mann-Whitney-Wilcoxon Test，函数为&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>在R中计算标准差与方差</title>
+    <link href="http://uteric.github.io/R/R_variance/"/>
+    <id>http://uteric.github.io/R/R_variance/</id>
+    <published>2020-05-31T21:41:13.000Z</published>
+    <updated>2020-05-31T21:41:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>标准差（standard deviation）和方差（variance），都是表示数据点的离散程度，它们的值越接近0表示离散程度越小，值越大表示离散程度越大。</p><p>对方差进行开平方运算，得到的就是标准差。标准差的优势在于，其单位与数据本身单位一致，所以更加直观。</p><p>在R中，计算方差的函数为var()，计算标准差的函数为sd()，例如：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; x=rnorm(10,mean=3,sd=0.5)</span><br><span class="line">&gt; x</span><br><span class="line"> [1] 3.459304 3.176322 3.417269 3.477847 3.458249 2.290683 3.087733 2.796081 3.147183 3.164584</span><br><span class="line">&gt; var(x)</span><br><span class="line">[1] 0.1375574</span><br><span class="line">&gt; sd(x)</span><br><span class="line">[1] 0.3708872</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;标准差（standard deviation）和方差（variance），都是表示数据点的离散程度，它们的值越接近0表示离散程度越小，值越大表示离散程度越大。&lt;/p&gt;
+&lt;p&gt;对方差进行开平方运算，得到的就是标准差。标准差的优势在于，其单位与数据本身单位一致，所以更加直观。&lt;
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R" scheme="http://uteric.github.io/tags/R/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在R中使用查看数据范围</title>
+    <link href="http://uteric.github.io/R/R_range/"/>
+    <id>http://uteric.github.io/R/R_range/</id>
+    <published>2020-05-31T21:14:52.000Z</published>
+    <updated>2020-05-31T21:14:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>方法一：range()</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; x &lt;- c(23,12,3,45,25,31,17)</span><br><span class="line">&gt; range(x)</span><br><span class="line">[1]  3 45</span><br><span class="line"></span><br><span class="line">&gt; x &lt;- c(23,12,3,45,25,31,17,NA) <span class="comment"># 若数据中含有NA，则会报错</span></span><br><span class="line">&gt; range(x)</span><br><span class="line">[1] NA NA</span><br></pre></td></tr></table></figure><p>方法二：min()与max()</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; min(x)</span><br><span class="line">[1] 3</span><br><span class="line">&gt; max(x)</span><br><span class="line">[1] 45</span><br><span class="line"></span><br><span class="line">&gt; x &lt;- c(23,12,3,45,25,31,17,NA) <span class="comment"># 若数据中含有NA，则会报错</span></span><br><span class="line">&gt; min(x)</span><br><span class="line">[1] NA</span><br><span class="line">&gt; max(x)</span><br><span class="line">[1] NA</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;方法一：range()&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/sp
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R" scheme="http://uteric.github.io/tags/R/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用na.omit()删除缺失值</title>
+    <link href="http://uteric.github.io/R/R_naomit/"/>
+    <id>http://uteric.github.io/R/R_naomit/</id>
+    <published>2020-05-31T20:21:40.000Z</published>
+    <updated>2020-05-31T20:21:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在R中，如果数据中存在缺失值（NA），在进行数值计算或统计时会报错，因此，需要将NA去掉，可以使用na.omit()，例如：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- c(23,12,3,45,25,31,17,NA)</span><br><span class="line">&gt; mean(x)</span><br><span class="line">[1] NA</span><br><span class="line"></span><br><span class="line">&gt; x &lt;- na.omit(x)</span><br><span class="line">&gt; x</span><br><span class="line">[1] 23 12  3 45 25 31 17</span><br><span class="line">attr(,<span class="string">"na.action"</span>)</span><br><span class="line">[1] 8</span><br><span class="line">attr(,<span class="string">"class"</span>)</span><br><span class="line">[1] <span class="string">"omit"</span></span><br><span class="line"></span><br><span class="line">&gt; x &lt;- as.vector(x)</span><br><span class="line">&gt; x</span><br><span class="line">[1] 23 12  3 45 25 31 17</span><br><span class="line"></span><br><span class="line">&gt; mean(x)</span><br><span class="line">[1] 22.28571</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在R中，如果数据中存在缺失值（NA），在进行数值计算或统计时会报错，因此，需要将NA去掉，可以使用na.omit()，例如：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;spa
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R" scheme="http://uteric.github.io/tags/R/"/>
+    
+  </entry>
   
   <entry>
     <title>在R中求平均数与中位数</title>
@@ -426,106 +526,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>用DiffBind自带数据包做ChIP SEQ差异分析</title>
-    <link href="http://uteric.github.io/CHIPSEQ/chip_diffBind/"/>
-    <id>http://uteric.github.io/CHIPSEQ/chip_diffBind/</id>
-    <published>2020-05-22T03:29:22.000Z</published>
-    <updated>2020-05-22T03:29:22.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在做完peak calling之后，我们就可以做样品间的差异分析了，常用的包是DiffBind，现在，先用自带的数据包做一个差异分析。</p><p>一、加载软件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">library(DiffBind)</span><br><span class="line">library(tidyverse)</span><br></pre></td></tr></table></figure></p><p>二、工作路径</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">setwd(system.file(<span class="string">"extra"</span>, package=<span class="string">"DiffBind"</span>)) <span class="comment"># 设置工作路径，在软件包DiffBind下的extra文件夹；</span></span><br><span class="line">list.files() <span class="comment"># 这是工作目录，其中，peaks和testdata是文件夹； </span></span><br><span class="line">[1] <span class="string">"config.csv"</span>              <span class="string">"peaks"</span>                   <span class="string">"tamoxifen.csv"</span>          </span><br><span class="line">[4] <span class="string">"tamoxifen_allfields.csv"</span> <span class="string">"tamoxifen_GEO.csv"</span>       <span class="string">"tamoxifen_GEO.R"</span>        </span><br><span class="line">[7] <span class="string">"testdata"</span></span><br><span class="line">getwd()</span><br><span class="line">[1] <span class="string">"C:/Users/***/Documents/R/win-library/3.6/DiffBind/extra"</span></span><br></pre></td></tr></table></figure><p>三、样品信息与文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&gt; read.csv(<span class="string">"tamoxifen.csv"</span>)</span><br><span class="line">   SampleID Tissue Factor  Condition  Treatment Replicate                     bamReads ControlID                  bamControl</span><br><span class="line">1    BT4741  BT474     ER  Resistant Full-Media         1  reads/Chr18_BT474_ER_1.bam    BT474c reads/Chr18_BT474_input.bam</span><br><span class="line">2    BT4742  BT474     ER  Resistant Full-Media         2  reads/Chr18_BT474_ER_2.bam    BT474c reads/Chr18_BT474_input.bam</span><br><span class="line">3     MCF71   MCF7     ER Responsive Full-Media         1   reads/Chr18_MCF7_ER_1.bam     MCF7c  reads/Chr18_MCF7_input.bam</span><br><span class="line">4     MCF72   MCF7     ER Responsive Full-Media         2   reads/Chr18_MCF7_ER_2.bam     MCF7c  reads/Chr18_MCF7_input.bam</span><br><span class="line">5     MCF73   MCF7     ER Responsive Full-Media         3   reads/Chr18_MCF7_ER_3.bam     MCF7c  reads/Chr18_MCF7_input.bam</span><br><span class="line">6     T47D1   T47D     ER Responsive Full-Media         1   reads/Chr18_T47D_ER_1.bam     T47Dc  reads/Chr18_T47D_input.bam</span><br><span class="line">7     T47D2   T47D     ER Responsive Full-Media         2   reads/Chr18_T47D_ER_2.bam     T47Dc  reads/Chr18_T47D_input.bam</span><br><span class="line">8    MCF7r1   MCF7     ER  Resistant Full-Media         1   reads/Chr18_TAMR_ER_1.bam     TAMRc  reads/Chr18_TAMR_input.bam</span><br><span class="line">9    MCF7r2   MCF7     ER  Resistant Full-Media         2   reads/Chr18_TAMR_ER_2.bam     TAMRc  reads/Chr18_TAMR_input.bam</span><br><span class="line">10    ZR751   ZR75     ER Responsive Full-Media         1  reads/Chr18_ZR75_ER_1.bam     ZR75c  reads/Chr18_ZR75_input.bam</span><br><span class="line">11    ZR752   ZR75     ER Responsive Full-Media         2  reads/Chr18_ZR75_ER_2.bam     ZR75c  reads/Chr18_ZR75_input.bam</span><br><span class="line">                     Peaks PeakCaller</span><br><span class="line">1  peaks/BT474_ER_1.bed.gz        bed</span><br><span class="line">2  peaks/BT474_ER_2.bed.gz        bed</span><br><span class="line">3   peaks/MCF7_ER_1.bed.gz        bed</span><br><span class="line">4   peaks/MCF7_ER_2.bed.gz        bed</span><br><span class="line">5   peaks/MCF7_ER_3.bed.gz        bed</span><br><span class="line">6   peaks/T47D_ER_1.bed.gz        bed</span><br><span class="line">7   peaks/T47D_ER_2.bed.gz        bed</span><br><span class="line">8   peaks/TAMR_ER_1.bed.gz        bed</span><br><span class="line">9   peaks/TAMR_ER_2.bed.gz        bed</span><br><span class="line">10  peaks/ZR75_ER_1.bed.gz        bed</span><br><span class="line">11  peaks/ZR75_ER_2.bed.gz        bed</span><br><span class="line"></span><br><span class="line">&gt; list.files(<span class="string">"peaks"</span>)</span><br><span class="line"> [1] <span class="string">"BT474_ER_1.bed.gz"</span> <span class="string">"BT474_ER_2.bed.gz"</span> <span class="string">"MCF7_ER_1.bed.gz"</span> </span><br><span class="line"> [4] <span class="string">"MCF7_ER_2.bed.gz"</span>  <span class="string">"MCF7_ER_3.bed.gz"</span>  <span class="string">"T47D_ER_1.bed.gz"</span> </span><br><span class="line"> [7] <span class="string">"T47D_ER_2.bed.gz"</span>  <span class="string">"TAMR_ER_1.bed.gz"</span>  <span class="string">"TAMR_ER_2.bed.gz"</span> </span><br><span class="line">[10] <span class="string">"ZR75_ER_1.bed.gz"</span>  <span class="string">"ZR75_ER_2.bed.gz"</span></span><br></pre></td></tr></table></figure><p>dba函数用于创建DBA（Differential Binding Affinity）对象</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&gt; ta &lt;- dba(sampleSheet=<span class="string">"tamoxifen.csv"</span>)</span><br><span class="line">BT4741 BT474 ER Resistant Full-Media 1 bed</span><br><span class="line">BT4742 BT474 ER Resistant Full-Media 2 bed</span><br><span class="line">MCF71 MCF7 ER Responsive Full-Media 1 bed</span><br><span class="line">MCF72 MCF7 ER Responsive Full-Media 2 bed</span><br><span class="line">MCF73 MCF7 ER Responsive Full-Media 3 bed</span><br><span class="line">T47D1 T47D ER Responsive Full-Media 1 bed</span><br><span class="line">T47D2 T47D ER Responsive Full-Media 2 bed</span><br><span class="line">MCF7r1 MCF7 ER Resistant Full-Media 1 bed</span><br><span class="line">MCF7r2 MCF7 ER Resistant Full-Media 2 bed</span><br><span class="line">ZR751 ZR75 ER Responsive Full-Media 1 bed</span><br><span class="line">ZR752 ZR75 ER Responsive Full-Media 2 bed</span><br><span class="line"></span><br><span class="line">&gt; ta</span><br><span class="line">11 Samples, 2845 sites <span class="keyword">in</span> matrix (3795 total): <span class="comment"># 在11个样品中，总计3795个unique peaks，其中，2602个sites overlap in at least two of the samples</span></span><br><span class="line">       ID Tissue Factor  Condition  Treatment Replicate Caller Intervals</span><br><span class="line">1  BT4741  BT474     ER  Resistant Full-Media         1    bed      1080</span><br><span class="line">2  BT4742  BT474     ER  Resistant Full-Media         2    bed      1122</span><br><span class="line">3   MCF71   MCF7     ER Responsive Full-Media         1    bed      1556</span><br><span class="line">4   MCF72   MCF7     ER Responsive Full-Media         2    bed      1046</span><br><span class="line">5   MCF73   MCF7     ER Responsive Full-Media         3    bed      1339</span><br><span class="line">6   T47D1   T47D     ER Responsive Full-Media         1    bed       527</span><br><span class="line">7   T47D2   T47D     ER Responsive Full-Media         2    bed       373</span><br><span class="line">8  MCF7r1   MCF7     ER  Resistant Full-Media         1    bed      1438</span><br><span class="line">9  MCF7r2   MCF7     ER  Resistant Full-Media         2    bed       930</span><br><span class="line">10  ZR751   ZR75     ER Responsive Full-Media         1    bed      2346</span><br><span class="line">11  ZR752   ZR75     ER Responsive Full-Media         2    bed      2345</span><br><span class="line"></span><br><span class="line">&gt; names(ta)</span><br><span class="line"> [1] <span class="string">"config"</span>      <span class="string">"chrmap"</span>      <span class="string">"peaks"</span>       <span class="string">"class"</span>       <span class="string">"masks"</span>      </span><br><span class="line"> [6] <span class="string">"samples"</span>     <span class="string">"called"</span>      <span class="string">"totalMerged"</span> <span class="string">"merged"</span>      <span class="string">"binding"</span>    </span><br><span class="line">[11] <span class="string">"attributes"</span>  <span class="string">"minOverlap"</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;在做完peak calling之后，我们就可以做样品间的差异分析了，常用的包是DiffBind，现在，先用自带的数据包做一个差异分析。&lt;/p&gt;
-&lt;p&gt;一、加载软件&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>理解CpG Islands</title>
-    <link href="http://uteric.github.io/CHIPSEQ/CpG_Islands/"/>
-    <id>http://uteric.github.io/CHIPSEQ/CpG_Islands/</id>
-    <published>2020-05-22T03:05:49.000Z</published>
-    <updated>2020-05-22T03:05:49.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>CpG Islands是指CG组合明显高于全基因组平均水平的DNA片段，通常靠近基因的转录起始位点，可以调节基因的转录活性。</p><p>在哺乳动物的DNA中，CG这样的组合十分稀少，原因在于，CG中的C易被甲基化，而甲基化的C由于脱氨作用会转变成T，即CG有转化为TG的倾向，除非因某种原因，CG中的C不被甲基化，CG组合才得以保留。</p><p>一般，CpG Islands有如下特征：</p><p>1）GC含量高于50%；<br>2）片段长度大于200 bp;<br>3）CG组合观测值/预测值 &gt; 0.6；</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;CpG Islands是指CG组合明显高于全基因组平均水平的DNA片段，通常靠近基因的转录起始位点，可以调节基因的转录活性。&lt;/p&gt;
-&lt;p&gt;在哺乳动物的DNA中，CG这样的组合十分稀少，原因在于，CG中的C易被甲基化，而甲基化的C由于脱氨作用会转变成T，即CG有转化为TG的
-      
-    
-    </summary>
-    
-      <category term="生物信息" scheme="http://uteric.github.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
-    
-    
-      <category term="CpG Islands" scheme="http://uteric.github.io/tags/CpG-Islands/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何从UCSC下载CpG Island数据</title>
-    <link href="http://uteric.github.io/CHIPSEQ/chip_download_cpg/"/>
-    <id>http://uteric.github.io/CHIPSEQ/chip_download_cpg/</id>
-    <published>2020-05-21T18:30:16.000Z</published>
-    <updated>2020-05-21T18:30:16.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>进入<a href="https://genome.ucsc.edu/" target="_blank" rel="noopener">UCSC</a>主页，点击Tools &gt; Table Brower, 以mouse为例，选择如下：</p><p>genome: Mouse<br>group: Expression and Regulation<br>track: CpG Islands<br>region: genome<br>output format: BED - browser extensible data<br>file type returned: plain text</p><p>点击，get output，即可下载到小鼠全基因组上的CpG Islands数据。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;进入&lt;a href=&quot;https://genome.ucsc.edu/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;UCSC&lt;/a&gt;主页，点击Tools &amp;gt; Table Brower, 以mouse为例，选择如下：&lt;/p&gt;
-&lt;p&gt;genome: M
-      
-    
-    </summary>
-    
-      <category term="生物信息" scheme="http://uteric.github.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
-    
-    
-      <category term="CpG Island" scheme="http://uteric.github.io/tags/CpG-Island/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用WGET命令下载整个FTP目录</title>
-    <link href="http://uteric.github.io/Linux/wget_download/"/>
-    <id>http://uteric.github.io/Linux/wget_download/</id>
-    <published>2020-05-19T19:05:24.000Z</published>
-    <updated>2020-05-19T19:05:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>一、从FTP上下载整个目录，可以使用WGET命令，命令如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c -r -np -nH --ftp-password=<span class="string">'password'</span> ftp://username@hostname/directory/ -P ./download/</span><br></pre></td></tr></table></figure><p>解释：<br>-c 表示断点续传，如果下载中断，下次再运行相同的命令可以接着下载；<br>-r 递归，遍历所有子目录；<br>-np 不到上一层子目录；<br>-nH 不将文件保存到主机名文件夹；<br>–ftp-password=’password’ 密码，将password替换为相应的密码；<br><a href="ftp://username@hostname/directory/" target="_blank" rel="noopener">ftp://username@hostname/directory/</a> 用户名，主机名，以及下载目录；<br>-P 目标目录，这里注意，如果下载到当前目录下的某个目录，比如我这里是当前目录下的downtest，需要加./，表示当前目录下；如果要引用绝对目录，就是/<em>/</em>/*/这种格式，最前面没有”.”；</p><p>二、从HTTP网站上下载</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c -r -np -nH http://*/*/ -P ./download/</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;一、从FTP上下载整个目录，可以使用WGET命令，命令如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="wget" scheme="http://uteric.github.io/tags/wget/"/>
     
   </entry>
   
