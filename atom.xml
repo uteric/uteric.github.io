@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-06-01T03:03:00.000Z</updated>
+  <updated>2020-06-02T16:41:48.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在R中计算四分位数</title>
+    <link href="http://uteric.github.io/R/R_quantile/"/>
+    <id>http://uteric.github.io/R/R_quantile/</id>
+    <published>2020-06-02T16:41:48.000Z</published>
+    <updated>2020-06-02T16:41:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在统计中，方差或标准差是最常使用的衡量数据离散程度的指标，但是方差或标准差有其固有缺陷，当数据中存在离群值（outlier）时，即使outlier数量极少，也会使方差或标准差极度偏移，因此，我们需要一种统计工具来反映大部分数据分布在哪里，最常用的方法是计算75%与25%之间的差别，这称为四分位间距（interquartile range）。在R中，可以使用IQR()计算四分位间距，使用quantile()来计算向量的所有分位数。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&gt; x &lt;- rnorm(100,mean=5,sd=1.2)</span><br><span class="line">&gt; x</span><br><span class="line">  [1] 3.344860 4.314303 5.259742 6.642526 6.458214 5.030996 5.526538 3.866030 5.152883 5.135912 6.010579</span><br><span class="line"> [12] 5.199178 4.673258 5.563149 5.663807 2.268774 3.974171 7.570706 5.354230 3.441178 5.336142 5.397549</span><br><span class="line"> [23] 6.295206 5.978662 5.389794 5.133840 5.752089 4.971203 5.146819 4.765819 7.122367 5.416928 5.400580</span><br><span class="line"> [34] 2.070468 4.243874 6.995033 5.854267 6.015518 5.375023 5.161929 2.867692 4.602293 4.931720 3.562440</span><br><span class="line"> [45] 5.203235 5.592098 5.646586 7.694937 4.820110 6.684675 4.165650 5.176470 5.430320 5.406880 6.836335</span><br><span class="line"> [56] 5.699121 6.424420 3.639120 6.670612 3.697681 2.813417 3.199165 4.858059 6.516864 4.165146 5.899056</span><br><span class="line"> [67] 4.145372 5.538209 5.269511 6.678199 4.815026 4.617706 4.923228 4.281446 4.346960 6.630204 4.452420</span><br><span class="line"> [78] 4.746863 4.586939 4.630323 4.922966 5.327350 3.658732 5.610512 3.980912 6.549318 7.398793 6.176837</span><br><span class="line"> [89] 4.913479 4.437707 6.204448 4.120004 5.745570 4.143726 3.151242 4.422654 5.892240 5.678614 3.890303</span><br><span class="line">[100] 5.226019</span><br><span class="line"></span><br><span class="line">&gt; IQR(x)</span><br><span class="line">[1] 1.343469</span><br><span class="line"></span><br><span class="line">&gt; quantile(x)</span><br><span class="line">      0%      25%      50%      75%     100% </span><br><span class="line">2.070468 4.403730 5.187824 5.747200 7.694937</span><br><span class="line"></span><br><span class="line">&gt; boxplot(x,horizontal = T)</span><br></pre></td></tr></table></figure><p><img src="/images/R/quantile01.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在统计中，方差或标准差是最常使用的衡量数据离散程度的指标，但是方差或标准差有其固有缺陷，当数据中存在离群值（outlier）时，即使outlier数量极少，也会使方差或标准差极度偏移，因此，我们需要一种统计工具来反映大部分数据分布在哪里，最常用的方法是计算75%与25%之间
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R" scheme="http://uteric.github.io/tags/R/"/>
+    
+  </entry>
   
   <entry>
     <title>在R中使用wilcox.test做非正态分布检验</title>
@@ -408,7 +433,7 @@
   </entry>
   
   <entry>
-    <title>T.TEST in R</title>
+    <title>在R中做T.TEST检验</title>
     <link href="http://uteric.github.io/R/R_ttest/"/>
     <id>http://uteric.github.io/R/R_ttest/</id>
     <published>2020-05-25T16:31:49.000Z</published>
@@ -509,27 +534,6 @@
     
     
       <category term="Intergenic" scheme="http://uteric.github.io/tags/Intergenic/"/>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://uteric.github.io/CHIPSEQ/promoter/"/>
-    <id>http://uteric.github.io/CHIPSEQ/promoter/</id>
-    <published>2020-05-23T16:58:40.857Z</published>
-    <updated>2020-05-24T21:28:39.190Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="1-Load-Packages"><a href="#1-Load-Packages" class="headerlink" title="1.Load Packages"></a>1.Load Packages</h1><p>library(GenomicRanges)<br>library(rtracklayer)<br>library(IRanges)<br>library(DiffBind)<br>library(tidyverse)<br>library(chipseq)<br>library(Gviz)<br>library(VennDiagram)<br>library(BSgenome.Mmusculus.UCSC.mm10)<br>library(biomaRt)<br>library(ggplot2)<br>setwd(“D:/CHIP/promoter”)</p><p>##########################################################################</p><h1 id="Prepare-Mm10-gene-Annotation-file"><a href="#Prepare-Mm10-gene-Annotation-file" class="headerlink" title="Prepare Mm10 gene Annotation file"></a>Prepare Mm10 gene Annotation file</h1><p>mart = useMart(biomart = “ensembl”,<br>               dataset = “mmusculus_gene_ensembl”,<br>               host=”uswest.ensembl.org”)<br>listAttributes(mart)[1:30,1]<br>chroms=c(1:19,’X’,’Y’)<br>Mm10Annot &lt;- getBM(attributes = c(‘ensembl_gene_id’,’external_gene_name’,<br>                                  ‘chromosome_name’,’start_position’,<br>                                  ‘end_position’,’strand’),<br>                   filters=’chromosome_name’,<br>                   values=chroms,<br>                   mart=mart)<br>save(Mm10Annot,file=”Mm10Annot.RData”)</p><p>#####################################################################</p><h1 id="Load-Mm10Annot"><a href="#Load-Mm10Annot" class="headerlink" title="Load Mm10Annot"></a>Load Mm10Annot</h1><p>load(“./Mm10Annot.RData”)<br>head(Mm10Annot)<br>Mm10Annot$TSS = ifelse(Mm10Annot$strand == “1”,Mm10Annot$start_position,Mm10Annot$end_position )<br>head(Mm10Annot)<br>promoter_regions = GRanges(seqnames = Rle( paste0(‘chr’, Mm10Annot$chromosome_name) ),<br>                           ranges = IRanges( start = Mm10Annot$TSS -2000,<br>                                             end = Mm10Annot$TSS + 500),<br>                           strand = Rle( rep(“*”, nrow(Mm10Annot)) ),<br>                           gene = Mm10Annot$external_gene_name)<br>promoter_regions<br>save(Mm10Annot,file=”promoter_regions.RData”)</p><p>#####################################################################</p><h1 id="Load-promoter-regions"><a href="#Load-promoter-regions" class="headerlink" title="Load promoter_regions"></a>Load promoter_regions</h1><p>load(“./promoter_regions.RData”)<br>head(promoter_regions)</p><p>#####################################################################</p><h1 id="Load-bed-files"><a href="#Load-bed-files" class="headerlink" title="Load bed files"></a>Load bed files</h1><p>flag_wt_rep1 &lt;- import.bed(“./WT_FLAG.core1.bed”)<br>flag_wt_rep2 &lt;- import.bed(“./WT_FLAG.core2.bed”)</p><p>#####################################################################<br>target &lt;- import.bed(“./core.region.5k.bed”)<br>target</p><p>#####################################################################<br>load(“./siMm10.RData”)<br>siMm10</p><p>#####################################################################<br>center &lt;- (start(target)+end(target))/2<br>name &lt;- rep(paste0(‘S’, 1:length(target)))<br>chr &lt;- seqnames(target)<br>value &lt;- rep(1,length(target))<br>pos.center &lt;- data.frame(name,center,value,chr)<br>pos.center[1:3,]<br>tiles = sapply( 1:nrow(pos.center), function(i)<br>  if( pos.center$value[i] == “1” )<br>    pos.center$center[i] + seq( -10000, 9900, length.out=200 )<br>  else<br>    pos.center$center[i] + seq( 9900, -10000, length.out=200 ) )<br>tiles = GRanges(tilename = paste(rep(pos.center$name, each=200), 1:200, sep=”_” ),<br>                seqnames = Rle(rep(pos.center$chr,each=200)),<br>                ranges = IRanges(start = as.vector(tiles),<br>                                 width = 100),<br>                strand = Rle(rep(“*”, length(as.vector(tiles)))),<br>                seqinfo = siMm10)<br>tiles</p><p>#####################################################################<br>flag.WT.p = countOverlaps(tiles,flag_wt_rep1) +<br>  countOverlaps(tiles,flag_wt_rep2)<br>flag.WT.p.matrix = matrix(flag.WT.p, nrow=nrow(pos.center),<br>                          ncol=200, byrow=TRUE )<br>x &lt;- flag.WT.p.matrix<br>rowSums(x)</p><p>#####################################################################<br>library(tidyverse)<br>library(hrbrthemes)<br>library(viridis)</p><p>#####################################################################<br>name &lt;- c(rep(“A”,4537),rep(“B”,4537))<br>value &lt;- c(x,x)<br>data &lt;- data.frame(name,value)<br>pbox &lt;- ggplot(data,aes(x=name,y=value,fill=name))+<br>  geom_boxplot()<br>pbox</p><p>#####################################################################</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;1-Load-Packages&quot;&gt;&lt;a href=&quot;#1-Load-Packages&quot; class=&quot;headerlink&quot; title=&quot;1.Load Packages&quot;&gt;&lt;/a&gt;1.Load Packages&lt;/h1&gt;&lt;p&gt;library(GenomicRan
-      
-    
-    </summary>
-    
     
   </entry>
   
