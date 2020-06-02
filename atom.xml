@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-06-02T16:41:48.000Z</updated>
+  <updated>2020-06-02T17:31:44.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在R中使用runif()生成随机数</title>
+    <link href="http://uteric.github.io/R/R_runif/"/>
+    <id>http://uteric.github.io/R/R_runif/</id>
+    <published>2020-06-02T17:31:44.000Z</published>
+    <updated>2020-06-02T17:31:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在R中，可以使用runif()来生成随机数，并且，可以通过使用set.seed()设置随机数种子来生成相同的随机数。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; runif(10)</span><br><span class="line"> [1] 0.88128755 0.05515884 0.49174723 0.58947710 0.26055370 0.42419775 0.91291115 0.53224161 0.59857483</span><br><span class="line">[10] 0.45912772</span><br><span class="line">&gt; runif(10)</span><br><span class="line"> [1] 0.11450970 0.43747334 0.42295942 0.97372512 0.08007066 0.42114884 0.65166254 0.63352907 0.46452289</span><br><span class="line">[10] 0.55470857</span><br><span class="line"></span><br><span class="line">&gt; set.seed(25)</span><br><span class="line">&gt; runif(10)</span><br><span class="line"> [1] 0.41611843 0.69476365 0.14880064 0.89738505 0.12439208 0.98511572 0.62609617 0.33753837 0.06679038</span><br><span class="line">[10] 0.28214161</span><br><span class="line"></span><br><span class="line">&gt; set.seed(25)</span><br><span class="line">&gt; runif(10)</span><br><span class="line"> [1] 0.41611843 0.69476365 0.14880064 0.89738505 0.12439208 0.98511572 0.62609617 0.33753837 0.06679038</span><br><span class="line">[10] 0.28214161</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在R中，可以使用runif()来生成随机数，并且，可以通过使用set.seed()设置随机数种子来生成相同的随机数。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span cl
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R" scheme="http://uteric.github.io/tags/R/"/>
+    
+  </entry>
   
   <entry>
     <title>在R中计算四分位数</title>
@@ -508,32 +534,6 @@
     
     
       <category term="data frame" scheme="http://uteric.github.io/tags/data-frame/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>定义并提取基因间区域-INTERGENIC REGION</title>
-    <link href="http://uteric.github.io/CHIPSEQ/intergenic/"/>
-    <id>http://uteric.github.io/CHIPSEQ/intergenic/</id>
-    <published>2020-05-24T21:26:05.000Z</published>
-    <updated>2020-05-24T21:26:05.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>一、定义intergenic </p><p>基因间区域，即intergenic region，可以简单定义为两个相邻基因A和B之间的区域；对于某个基因而言，TSS和TES可以看作是基因的上下边界，但是，由于promoter往往在TSS上游，而TES附近可能有调控元件存在，因此，我们也需要把promoter区域和TES下游也考虑在内。如果我们定义，promoter区域为“TSS-2Kb至TSS+0.5Kb”，下游调控区域为“TES-0.5Kb至TES+0.5Kb”，那么，intergenic region就可以认为是[A]{TES+0.5Kb}至[B]{TSS-2Kb}之间的区域。当然，这样定义intergenic有个根本的缺陷，即如果A与B之间不足2.5Kb，则这两个基因之间的区域会被忽略掉，但是，通盘考虑，由于目前对于基因的调控区域还不精确清楚，可以说，没有任何一种在基因组水平上的操作是绝对准确的。</p><p>二、提取intergenic</p><p>根据上面的定义，如果从全基因组中扣除已知的基因区域”[A]{TES+0.5Kb}-[B]{TSS-2Kb}”，剩下的区域就是intergenic，我们利用bedtools来提取intergenic，以mm10为例，方法如下：</p><p>2.1 创建文件mm10，内容是所有染色体的长度</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&gt; cat mm10</span><br><span class="line">chr1    195471971</span><br><span class="line">chr2    182113224</span><br><span class="line">chr3    160039680</span><br><span class="line">chr4    156508116</span><br><span class="line">chr5    151834684</span><br><span class="line">chr6    149736546</span><br><span class="line">chr7    145441459</span><br><span class="line">chr8    129401213</span><br><span class="line">chr9    124595110</span><br><span class="line">chr10   130694993</span><br><span class="line">chr11   122082543</span><br><span class="line">chr12   120129022</span><br><span class="line">chr13   120421639</span><br><span class="line">chr14   124902244</span><br><span class="line">chr15   104043685</span><br><span class="line">chr16   98207768</span><br><span class="line">chr17   94987271</span><br><span class="line">chr18   90702639</span><br><span class="line">chr19   61431566</span><br><span class="line">chrX    171031299</span><br><span class="line">chrY    91744698</span><br></pre></td></tr></table></figure><p>2.2 将染色体重新排序，若不排序，后面取补集时会报错</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&gt; sort -k1,1 -k2,2n mm10 &gt; mm10_sorted</span><br><span class="line">&gt; cat mm10_sorted</span><br><span class="line">chr1    195471971</span><br><span class="line">chr10   130694993</span><br><span class="line">chr11   122082543</span><br><span class="line">chr12   120129022</span><br><span class="line">chr13   120421639</span><br><span class="line">chr14   124902244</span><br><span class="line">chr15   104043685</span><br><span class="line">chr16   98207768</span><br><span class="line">chr17   94987271</span><br><span class="line">chr18   90702639</span><br><span class="line">chr19   61431566</span><br><span class="line">chr2    182113224</span><br><span class="line">chr3    160039680</span><br><span class="line">chr4    156508116</span><br><span class="line">chr5    151834684</span><br><span class="line">chr6    149736546</span><br><span class="line">chr7    145441459</span><br><span class="line">chr8    129401213</span><br><span class="line">chr9    124595110</span><br><span class="line">chrX    171031299</span><br><span class="line">chrY    91744698</span><br></pre></td></tr></table></figure><p>2.3 创建mm10_all_genes.bed，如上定义，基因间区域为”[A]{TES+0.5Kb}-[B]{TSS-2Kb}”，并重新排序</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&gt; sort -k1,1 -k2,2n mm10_all_genes.bed &gt; mm10_all_sorted.bed</span><br><span class="line">&gt; less mm10_all_sorted.bed</span><br><span class="line">chr1    3071253 3074822 3570    *       4933401J01Rik</span><br><span class="line">chr1    3100016 3102625 2610    *       Gm26206</span><br><span class="line">chr1    3203901 3671998 468098  *       Xkr4</span><br><span class="line">chr1    3250757 3253736 2980    *       Gm18956</span><br><span class="line">chr1    3363731 3369049 5319    *       Gm37180</span><br><span class="line">chr1    3373556 3378288 4733    *       Gm37363</span><br><span class="line">chr1    3462977 3467785 4809    *       Gm37686</span><br><span class="line">chr1    3464587 3514053 49467   *       Gm1992</span><br><span class="line">chr1    3510451 3515007 4557    *       Gm37329</span><br><span class="line">chr1    3529795 3533220 3426    *       Gm7341</span><br><span class="line">chr1    3590892 3596403 5512    *       Gm38148</span><br><span class="line">chr1    3645309 3659404 14096   *       Gm19938</span><br><span class="line">chr1    3678155 3682288 4134    *       Gm10568</span><br><span class="line">chr1    3750010 3754860 4851    *       Gm38385</span><br><span class="line">chr1    3781876 3784433 2558    *       Gm27396</span><br><span class="line">chr1    3903739 3986715 82977   *       Gm37381</span><br><span class="line">chr1    3997557 4409741 412185  *       Rp1</span><br><span class="line">chr1    4254234 4261019 6786    *       Gm6101</span><br><span class="line">chr1    4361346 4365329 3984    *       Gm37483</span><br><span class="line">chr1    4488931 4497854 8924    *       Sox17</span><br><span class="line">chr1    4494551 4500058 5508    *       Gm37587</span><br><span class="line">chr1    4520905 4527237 6333    *       Gm7357</span><br><span class="line">chr1    4527017 4529623 2607    *       Gm22307</span><br><span class="line">chr1    4532837 4535786 2950    *       Gm38076</span><br><span class="line">chr1    4581129 4586752 5624    *       Gm37323</span><br><span class="line">chr1    4608471 4611906 3436    *       Gm7369</span><br></pre></td></tr></table></figure><p>2.4 用bedtoos提取补集，即intergenic</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&gt; bedtools complement -i mm10_all_sorted.bed -g mm10_sorted &gt; intergenic.bed</span><br><span class="line">&gt; less intergenic.bed</span><br><span class="line">chr1    0       3071253</span><br><span class="line">chr1    3074822 3100016</span><br><span class="line">chr1    3102625 3203901</span><br><span class="line">chr1    3671998 3678155</span><br><span class="line">chr1    3682288 3750010</span><br><span class="line">chr1    3754860 3781876</span><br><span class="line">chr1    3784433 3903739</span><br><span class="line">chr1    3986715 3997557</span><br><span class="line">chr1    4409741 4488931</span><br><span class="line">chr1    4500058 4520905</span><br><span class="line">chr1    4529623 4532837</span><br><span class="line">chr1    4535786 4581129</span><br><span class="line">chr1    4586752 4608471</span><br><span class="line">chr1    4611906 4685934</span><br><span class="line">chr1    4689903 4690219</span><br><span class="line">chr1    4693924 4721277</span><br><span class="line">chr1    4723879 4733046</span><br><span class="line">chr1    4736176 4769131</span><br><span class="line">chr1    4786239 4805788</span><br><span class="line">chr1    4898409 4903751</span><br><span class="line">chr1    4907361 4907576</span><br><span class="line">chr1    5163029 5274106</span><br><span class="line">chr1    5277837 5305739</span><br><span class="line">chr1    5310517 5401547</span><br><span class="line">chr1    5406078 5586466</span><br><span class="line">chr1    5606631 5615837</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;一、定义intergenic &lt;/p&gt;
-&lt;p&gt;基因间区域，即intergenic region，可以简单定义为两个相邻基因A和B之间的区域；对于某个基因而言，TSS和TES可以看作是基因的上下边界，但是，由于promoter往往在TSS上游，而TES附近可能有调控元件存在，
-      
-    
-    </summary>
-    
-      <category term="生物信息" scheme="http://uteric.github.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
-    
-    
-      <category term="Intergenic" scheme="http://uteric.github.io/tags/Intergenic/"/>
     
   </entry>
   
