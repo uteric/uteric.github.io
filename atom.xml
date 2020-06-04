@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-06-03T03:27:19.000Z</updated>
+  <updated>2020-06-04T15:05:59.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在R中使用dnorm()作正态分布曲线</title>
+    <link href="http://uteric.github.io/R/R_dnorm/"/>
+    <id>http://uteric.github.io/R/R_dnorm/</id>
+    <published>2020-06-04T15:05:59.000Z</published>
+    <updated>2020-06-04T15:05:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在R中，dnorm()是正态分布的概率密度函数，d代表density，norm代表正态分布，返回给定x在标准正态分布下的概率密度。</p><p>对于一个给定的正态分布，X ∼ N(μ,σ2)，μ代表均值，σ2代表方差，dnorm()可以计算给定x下的概率密度，即P(X&lt;=x|μ=a,σ=b)，比如，对于标准正态分布 X ∼ N(0,1)，要计算x=1时的概率密度，即dnorm(1)=P(X&lt;=1|μ=0,σ=1)</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; dnorm(1) <span class="comment"># 默认为标准正态分布，故亦可以写作下面这种形式</span></span><br><span class="line">[1] 0.2419707</span><br><span class="line">&gt; dnorm(1,mean=0,sd=1)</span><br><span class="line">[1] 0.2419707</span><br></pre></td></tr></table></figure><p>根据dnorm()的性质，我们可以利用dnorm()来绘制正态分布曲线。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- rnorm(100)</span><br><span class="line">x</span><br><span class="line">x &lt;- x[order(x)]</span><br><span class="line">y &lt;- dnorm(x)</span><br><span class="line">y</span><br><span class="line">plot(x,y,<span class="built_in">type</span>=<span class="string">"l"</span>)</span><br></pre></td></tr></table></figure><p><img src="/images/R/dnorm01.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在R中，dnorm()是正态分布的概率密度函数，d代表density，norm代表正态分布，返回给定x在标准正态分布下的概率密度。&lt;/p&gt;
+&lt;p&gt;对于一个给定的正态分布，X ∼ N(μ,σ2)，μ代表均值，σ2代表方差，dnorm()可以计算给定x下的概率密度，即P(X&amp;l
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R" scheme="http://uteric.github.io/tags/R/"/>
+    
+  </entry>
   
   <entry>
     <title>在R中绘制正态分布曲线</title>
@@ -507,32 +533,6 @@
     
     
       <category term="T.TEST" scheme="http://uteric.github.io/tags/T-TEST/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>配色网站COLORBREWER</title>
-    <link href="http://uteric.github.io/R/R_palette/"/>
-    <id>http://uteric.github.io/R/R_palette/</id>
-    <published>2020-05-25T16:13:29.000Z</published>
-    <updated>2020-05-25T16:13:29.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://colorbrewer2.org/" target="_blank" rel="noopener">COLORBREWER</a>，是一个配色网站，其配色方案简约大方，是作图配色的首选。</p><p><img src="/images/R/palette01.png" alt></p><p>常用的配色方案如下：</p><p>五种蓝色的配色方案：”#eff3ff”,”#bdd7e7”,”#6baed6”,”#3182bd”,”#08519c”</p><p>五种绿色的配色方案：”#edf8e9”,”#bae4b3”,”#74c476”,”#31a354”,”#006d2c”</p><p>五种灰色的配色方案：”#f7f7f7”,”#cccccc”,”#969696”,”#636363”,”#252525”</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://colorbrewer2.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;COLORBREWER&lt;/a&gt;，是一个配色网站，其配色方案简约大方，是作图配色的首选。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/R
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="配色" scheme="http://uteric.github.io/tags/%E9%85%8D%E8%89%B2/"/>
     
   </entry>
   
