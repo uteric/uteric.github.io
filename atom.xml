@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-06-06T16:58:18.000Z</updated>
+  <updated>2020-06-12T21:49:57.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>高通量测序NGS</title>
+    <link href="http://uteric.github.io/CHIPSEQ/nextgenseq/"/>
+    <id>http://uteric.github.io/CHIPSEQ/nextgenseq/</id>
+    <published>2020-06-12T21:49:57.000Z</published>
+    <updated>2020-06-12T21:49:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>第一代测序技术称作sanger sequencing，第二代测序技术（Second-generation sequencing），或下一代测序技术（Next-generation sequencing，NGS），或称作高通量测序，是诸多第二代测序技术的统称，主要技术有三种，即Illumina(Solexa)，Roche 454，Ion Torrent。</p><h2 id="一、Illumina-Solexa-sequencing"><a href="#一、Illumina-Solexa-sequencing" class="headerlink" title="一、Illumina(Solexa) sequencing"></a>一、Illumina(Solexa) sequencing</h2><p>Illumina测序，是一种边合成边测序的技术，使用荧光信号来标记不同的碱基，因此，可以同时识别数以亿计的碱基。如下图所示，Illumina测序的过程就是个PCR的过程，每个反应添加一个荧光标记的ddNTPs，并读取荧光信号，由于ddNTPs会终止链式反应，因此，新链的合成是同步等长的；而且，这种终止是可逆的（reversible termination），ddNTP在酶的作用下转化为dNTP并启动下一个反应，每个反应需要耗时数分钟。</p><p>Illumina测序也可能会引入测序错误，例如，当某些序列在反应中由于没有ddNTP的加入而被读取两次，或者反应液中的dNTP取代ddNTP与模板结合，都会导致测序出错。</p><p>在Illumina测序中，由于读长取决于测序的循环数，因此，所有序列的读长都是一致的，一般的读长为100-150bp。</p><p><img src="/images/CHIP/nextgenseq01.png" alt></p><h2 id="二、Roche-454-sequencing"><a href="#二、Roche-454-sequencing" class="headerlink" title="二、Roche 454 sequencing"></a>二、Roche 454 sequencing</h2><p>在454测序中，DNA末端加上Generic adaptors后与beads连接，每个beads对应一个DNA片段，并进行PCR扩增，之后，每个beads放入一个single well中，并进行测序。</p><p>与Illumina不同的是，454采用的是光信号而非荧光信号，具体来讲，每个PCR反应只加入一种dNTP，以dGTP为例，若与模板结合，则会放出光信号，若有两个连续的GG结合，则会放出更强的光信号，之后，dGTP被洗脱，再进行下一个dCTP的循环，之后是dATP,dTTP，如此反复。光信号的强度经计算机转换后就成为碱基在对应位置的数目。</p><p>与Illumina相比，454的读长可以更长，可以长达1000bp。另外，由于每个循环在不同序列上加入的碱基数不同，因此，454得到的读长是不一致的。</p><p><img src="/images/CHIP/nextgenseq02.png" alt></p><h2 id="三、Ion-Torrent-Proton-PGM-sequencing"><a href="#三、Ion-Torrent-Proton-PGM-sequencing" class="headerlink" title="三、Ion Torrent: Proton / PGM sequencing"></a>三、Ion Torrent: Proton / PGM sequencing</h2><p>Ion Torrent的测序原理与454很相似，唯一的不同是，Ion Torrent不检测光信号，而是检测PH，因为当dNTP与模板结合后，会释放出一个H+，进而导致溶液的PH降低，而PH的变化程度则用于确定在该循环中有多少碱基被加入。</p><p>Ion Torrent的读长是200bp，而且，与454一样，读长也是不一致的。</p><p><img src="/images/CHIP/nextgenseq03.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;第一代测序技术称作sanger sequencing，第二代测序技术（Second-generation sequencing），或下一代测序技术（Next-generation sequencing，NGS），或称作高通量测序，是诸多第二代测序技术的统称，主要技术有三种，
+      
+    
+    </summary>
+    
+      <category term="生物信息" scheme="http://uteric.github.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+      <category term="NGS" scheme="http://uteric.github.io/tags/NGS/"/>
+    
+  </entry>
   
   <entry>
     <title>在R中使用listOrganisms()查询物种名称</title>
@@ -506,33 +531,6 @@
     
     
       <category term="abline" scheme="http://uteric.github.io/tags/abline/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>R设置坐标轴原点</title>
-    <link href="http://uteric.github.io/R/plot_origin/"/>
-    <id>http://uteric.github.io/R/plot_origin/</id>
-    <published>2020-05-30T17:33:28.000Z</published>
-    <updated>2020-05-30T17:33:28.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>使用R绘图时，默认的坐标轴交点并不是X和Y的最小值，我们可以通过xaxs=”i”和yaxs=”i”来进行设置。</p><p>使用默认设置，生成图形如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(data<span class="variable">$V1</span>,data<span class="variable">$V2</span>,pch=20,xlab=<span class="string">""</span>,ylab=<span class="string">""</span>,xlim=c(0,1),ylim=c(0,1))</span><br></pre></td></tr></table></figure><p><img src="/images/R/origin01.png" alt></p><p>设置之后，图形如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(data<span class="variable">$V1</span>,data<span class="variable">$V2</span>,pch=20,xlab=<span class="string">""</span>,ylab=<span class="string">""</span>,xlim=c(0,1),ylim=c(0,1),xaxs=<span class="string">"i"</span>,yaxs=<span class="string">"i"</span>)</span><br></pre></td></tr></table></figure><p><img src="/images/R/origin02.png" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;使用R绘图时，默认的坐标轴交点并不是X和Y的最小值，我们可以通过xaxs=”i”和yaxs=”i”来进行设置。&lt;/p&gt;
-&lt;p&gt;使用默认设置，生成图形如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gu
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="R" scheme="http://uteric.github.io/tags/R/"/>
     
   </entry>
   
