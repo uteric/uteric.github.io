@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="TCGA,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="诸子百家" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="R语言中的RTCGA包用于下载并分析TCGA上的数据，如要查看RTCGA的示例用法，可以使用如下命令打开”RTCGA package workflow” 1234&amp;gt; browseVignettes(&quot;RTCGA&quot;)# 运行之后打开下面这个页面：[RTCGA package workflow](http://127.0.0.1:14929/session/Rvig.2eb41b5b1ec3.h">
+<meta name="keywords" content="TCGA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R语言中RTCGA包的基本用法">
+<meta property="og:url" content="http://uteric.github.io/TCGA/RTCGAbasic/index.html">
+<meta property="og:site_name" content="诸子百家">
+<meta property="og:description" content="R语言中的RTCGA包用于下载并分析TCGA上的数据，如要查看RTCGA的示例用法，可以使用如下命令打开”RTCGA package workflow” 1234&amp;gt; browseVignettes(&quot;RTCGA&quot;)# 运行之后打开下面这个页面：[RTCGA package workflow](http://127.0.0.1:14929/session/Rvig.2eb41b5b1ec3.h">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-06-15T03:09:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R语言中RTCGA包的基本用法">
+<meta name="twitter:description" content="R语言中的RTCGA包用于下载并分析TCGA上的数据，如要查看RTCGA的示例用法，可以使用如下命令打开”RTCGA package workflow” 1234&amp;gt; browseVignettes(&quot;RTCGA&quot;)# 运行之后打开下面这个页面：[RTCGA package workflow](http://127.0.0.1:14929/session/Rvig.2eb41b5b1ec3.h">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '9e233f3fa2f200ca831529de7ba10253',
+      indexName: 'uteric',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://uteric.github.io/TCGA/RTCGAbasic/">
+
+
+
+
+
+  <title>R语言中RTCGA包的基本用法 | 诸子百家</title>
+  
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104081724-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <meta name="baidu-site-verification" content="bfQpbnNmEL">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诸子百家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+<div class="local-search-header clearfix">
+<span class="search-icon">
+<i class="fa fa-search"></i>
+</span>
+<span class="popup-btn-close">
+<i class="fa fa-times-circle"></i>
+</span>
+<div class="local-search-input-wrapper">
+<input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+</div>
+</div>
+<div id="local-search-result"></div>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/TCGA/RTCGAbasic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="括囊无誉">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸子百家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">R语言中RTCGA包的基本用法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-14T22:09:37-05:00">
+                2020-06-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/生物信息/" itemprop="url" rel="index">
+                    <span itemprop="name">生物信息</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/TCGA/RTCGAbasic/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="TCGA/RTCGAbasic/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>°C
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>R语言中的RTCGA包用于下载并分析TCGA上的数据，如要查看RTCGA的示例用法，可以使用如下命令打开”RTCGA package workflow”</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; browseVignettes(<span class="string">"RTCGA"</span>)</span><br><span class="line"><span class="comment"># 运行之后打开下面这个页面：[RTCGA package workflow](http://127.0.0.1:14929/session/Rvig.2eb41b5b1ec3.html)</span></span><br><span class="line"><span class="comment"># 如果要查看RTCGA.rnaseq的示例，则使用如下命令：</span></span><br><span class="line">&gt; browseVignettes(<span class="string">"RTCGA.rnaseq"</span>)</span><br></pre></td></tr></table></figure>
+<p>一、查看可用数据集</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">&gt; library(RTCGA)</span><br><span class="line">&gt; x &lt;- infoTCGA() </span><br><span class="line">&gt; class(x)</span><br><span class="line">[1] <span class="string">"data.frame"</span></span><br><span class="line">&gt; nrow(x)</span><br><span class="line">[1] 38</span><br><span class="line">&gt; x</span><br><span class="line">                  Cohort  BCR Clinical   CN LowP Methylation mRNA mRNASeq miR miRSeq</span><br><span class="line">ACC-counts           ACC   92       92   90    0          80    0      79   0     80</span><br><span class="line">BLCA-counts         BLCA  412      412  410  112         412    0     408   0    409</span><br><span class="line">BRCA-counts         BRCA 1098     1097 1089   19        1097  526    1093   0   1078</span><br><span class="line">CESC-counts         CESC  307      307  295   50         307    0     304   0    307</span><br><span class="line">CHOL-counts         CHOL   51       45   36    0          36    0      36   0     36</span><br><span class="line">COAD-counts         COAD  460      458  451   69         457  153     457   0    406</span><br><span class="line">COADREAD-counts COADREAD  631      629  616  104         622  222     623   0    549</span><br><span class="line">DLBC-counts         DLBC   58       48   48    0          48    0      48   0     47</span><br><span class="line">ESCA-counts         ESCA  185      185  184   51         185    0     184   0    184</span><br><span class="line">FPPP-counts         FPPP   38       38    0    0           0    0       0   0     23</span><br><span class="line">GBM-counts           GBM  613      595  577    0         420  540     160 565      0</span><br><span class="line">GBMLGG-counts     GBMLGG 1129     1110 1090   52         936  567     676 565    512</span><br><span class="line">HNSC-counts         HNSC  528      528  522  108         528    0     520   0    523</span><br><span class="line">KICH-counts         KICH  113      113   66    0          66    0      66   0     66</span><br><span class="line">KIPAN-counts       KIPAN  973      941  883    0         892   88     889   0    873</span><br><span class="line">KIRC-counts         KIRC  537      537  528    0         535   72     533   0    516</span><br><span class="line">KIRP-counts         KIRP  323      291  289    0         291   16     290   0    291</span><br><span class="line">LAML-counts         LAML  200      200  197    0         194    0     179   0    188</span><br><span class="line">LGG-counts           LGG  516      515  513   52         516   27     516   0    512</span><br><span class="line">LIHC-counts         LIHC  377      377  370    0         377    0     371   0    372</span><br><span class="line">LUAD-counts         LUAD  585      522  516  120         578   32     515   0    513</span><br><span class="line">LUSC-counts         LUSC  504      504  501    0         503  154     501   0    478</span><br><span class="line">MESO-counts         MESO   87       87   87    0          87    0      87   0     87</span><br><span class="line">OV-counts             OV  602      591  586    0         594  574     304 570    453</span><br><span class="line">PAAD-counts         PAAD  185      185  184    0         184    0     178   0    178</span><br><span class="line">PCPG-counts         PCPG  179      179  175    0         179    0     179   0    179</span><br><span class="line">PRAD-counts         PRAD  499      499  492  115         498    0     497   0    494</span><br><span class="line">READ-counts         READ  171      171  165   35         165   69     166   0    143</span><br><span class="line">SARC-counts         SARC  261      261  257    0         261    0     259   0    259</span><br><span class="line">SKCM-counts         SKCM  470      470  469  118         470    0     469   0    448</span><br><span class="line">STAD-counts         STAD  443      443  442  107         443    0     415   0    436</span><br><span class="line">STES-counts         STES  628      628  626  158         628    0     599   0    620</span><br><span class="line">TGCT-counts         TGCT  150      134  150    0         150    0     150   0    150</span><br><span class="line">THCA-counts         THCA  503      503  499   98         503    0     501   0    502</span><br><span class="line">THYM-counts         THYM  124      124  123    0         124    0     120   0    124</span><br><span class="line">UCEC-counts         UCEC  560      548  540  106         547   54     545   0    538</span><br><span class="line">UCS-counts           UCS   57       57   56    0          57    0      57   0     56</span><br><span class="line">UVM-counts           UVM   80       80   80   51          80    0      80   0     80</span><br><span class="line">                RPPA MAF rawMAF</span><br><span class="line">ACC-counts        46  90      0</span><br><span class="line">BLCA-counts      344 130    395</span><br><span class="line">BRCA-counts      887 977      0</span><br><span class="line">CESC-counts      173 194      0</span><br><span class="line">CHOL-counts       30  35      0</span><br><span class="line">COAD-counts      360 154    367</span><br><span class="line">COADREAD-counts  491 223    489</span><br><span class="line">DLBC-counts       33  48      0</span><br><span class="line">ESCA-counts      126 185      0</span><br><span class="line">FPPP-counts        0   0      0</span><br><span class="line">GBM-counts       238 290    290</span><br><span class="line">GBMLGG-counts    668 576    806</span><br><span class="line">HNSC-counts      212 279    510</span><br><span class="line">KICH-counts       63  66     66</span><br><span class="line">KIPAN-counts     756 644    799</span><br><span class="line">KIRC-counts      478 417    451</span><br><span class="line">KIRP-counts      215 161    282</span><br><span class="line">LAML-counts        0 197      0</span><br><span class="line">LGG-counts       430 286    516</span><br><span class="line">LIHC-counts       63 198    373</span><br><span class="line">LUAD-counts      365 230    542</span><br><span class="line">LUSC-counts      328 178      0</span><br><span class="line">MESO-counts       63   0      0</span><br><span class="line">OV-counts        426 316    469</span><br><span class="line">PAAD-counts      123 150    184</span><br><span class="line">PCPG-counts       80 179      0</span><br><span class="line">PRAD-counts      352 332    498</span><br><span class="line">READ-counts      131  69    122</span><br><span class="line">SARC-counts      223 247      0</span><br><span class="line">SKCM-counts      353 343    366</span><br><span class="line">STAD-counts      357 289    395</span><br><span class="line">STES-counts      483 474    395</span><br><span class="line">TGCT-counts      118 149      0</span><br><span class="line">THCA-counts      222 402    496</span><br><span class="line">THYM-counts       90 123      0</span><br><span class="line">UCEC-counts      440 248      0</span><br><span class="line">UCS-counts        48  57      0</span><br><span class="line">UVM-counts        12  80      0</span><br></pre></td></tr></table></figure>
+<p>如上信息也可以在<a href="http://gdac.broadinstitute.org/" target="_blank" rel="noopener">Broad GDAC Firehose</a>的网页中找到。</p>
+<p>如果只想查看肿瘤名称，则使用如下语法提取行名，共38种。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; cohorts &lt;- infoTCGA() %&gt;% </span><br><span class="line">+     rownames() %&gt;% </span><br><span class="line">+     sub(<span class="string">'-counts'</span>, <span class="string">''</span>, x=.)</span><br><span class="line">&gt; cohorts</span><br><span class="line"> [1] <span class="string">"ACC"</span>      <span class="string">"BLCA"</span>     <span class="string">"BRCA"</span>     <span class="string">"CESC"</span>     <span class="string">"CHOL"</span>     <span class="string">"COAD"</span>     <span class="string">"COADREAD"</span></span><br><span class="line"> [8] <span class="string">"DLBC"</span>     <span class="string">"ESCA"</span>     <span class="string">"FPPP"</span>     <span class="string">"GBM"</span>      <span class="string">"GBMLGG"</span>   <span class="string">"HNSC"</span>     <span class="string">"KICH"</span>    </span><br><span class="line">[15] <span class="string">"KIPAN"</span>    <span class="string">"KIRC"</span>     <span class="string">"KIRP"</span>     <span class="string">"LAML"</span>     <span class="string">"LGG"</span>      <span class="string">"LIHC"</span>     <span class="string">"LUAD"</span>    </span><br><span class="line">[22] <span class="string">"LUSC"</span>     <span class="string">"MESO"</span>     <span class="string">"OV"</span>       <span class="string">"PAAD"</span>     <span class="string">"PCPG"</span>     <span class="string">"PRAD"</span>     <span class="string">"READ"</span>    </span><br><span class="line">[29] <span class="string">"SARC"</span>     <span class="string">"SKCM"</span>     <span class="string">"STAD"</span>     <span class="string">"STES"</span>     <span class="string">"TGCT"</span>     <span class="string">"THCA"</span>     <span class="string">"THYM"</span>    </span><br><span class="line">[36] <span class="string">"UCEC"</span>     <span class="string">"UCS"</span>      <span class="string">"UVM"</span></span><br></pre></td></tr></table></figure>
+<p>二、数据集发布日期</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; checkTCGA(<span class="string">'Dates'</span>)</span><br><span class="line"> [1] <span class="string">"2011-10-26"</span> <span class="string">"2011-11-15"</span> <span class="string">"2011-11-28"</span> <span class="string">"2011-12-06"</span> <span class="string">"2011-12-30"</span> <span class="string">"2012-01-10"</span></span><br><span class="line"> [7] <span class="string">"2012-01-24"</span> <span class="string">"2012-02-17"</span> <span class="string">"2012-03-06"</span> <span class="string">"2012-03-21"</span> <span class="string">"2012-04-12"</span> <span class="string">"2012-04-25"</span></span><br><span class="line">[13] <span class="string">"2012-05-15"</span> <span class="string">"2012-05-25"</span> <span class="string">"2012-06-06"</span> <span class="string">"2012-06-23"</span> <span class="string">"2012-07-07"</span> <span class="string">"2012-07-25"</span></span><br><span class="line">[19] <span class="string">"2012-08-04"</span> <span class="string">"2012-08-25"</span> <span class="string">"2012-09-13"</span> <span class="string">"2012-10-04"</span> <span class="string">"2012-10-18"</span> <span class="string">"2012-10-20"</span></span><br><span class="line">[25] <span class="string">"2012-10-24"</span> <span class="string">"2012-11-02"</span> <span class="string">"2012-11-14"</span> <span class="string">"2012-12-06"</span> <span class="string">"2012-12-21"</span> <span class="string">"2013-01-16"</span></span><br><span class="line">[31] <span class="string">"2013-02-03"</span> <span class="string">"2013-02-22"</span> <span class="string">"2013-03-09"</span> <span class="string">"2013-03-26"</span> <span class="string">"2013-04-06"</span> <span class="string">"2013-04-21"</span></span><br><span class="line">[37] <span class="string">"2013-05-08"</span> <span class="string">"2013-05-23"</span> <span class="string">"2013-06-06"</span> <span class="string">"2013-06-23"</span> <span class="string">"2013-07-15"</span> <span class="string">"2013-08-09"</span></span><br><span class="line">[43] <span class="string">"2013-09-23"</span> <span class="string">"2013-10-10"</span> <span class="string">"2013-11-14"</span> <span class="string">"2013-12-10"</span> <span class="string">"2014-01-15"</span> <span class="string">"2014-02-15"</span></span><br><span class="line">[49] <span class="string">"2014-03-16"</span> <span class="string">"2014-04-16"</span> <span class="string">"2014-05-18"</span> <span class="string">"2014-06-14"</span> <span class="string">"2014-07-15"</span> <span class="string">"2014-09-02"</span></span><br><span class="line">[55] <span class="string">"2014-10-17"</span> <span class="string">"2014-12-06"</span> <span class="string">"2015-02-02"</span> <span class="string">"2015-02-04"</span> <span class="string">"2015-04-02"</span> <span class="string">"2015-06-01"</span></span><br><span class="line">[61] <span class="string">"2015-08-21"</span> <span class="string">"2015-11-01"</span> <span class="string">"2016-01-28"</span></span><br></pre></td></tr></table></figure>
+<p>三、查看特定肿瘤类型的数据集名称和大小</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">&gt; checkTCGA(<span class="string">'DataSets'</span>,</span><br><span class="line">+           cancerType = <span class="string">'BRCA'</span>,</span><br><span class="line">+           date = <span class="string">'2016-01-28'</span>) %&gt;% dim</span><br><span class="line">[1] 43  2</span><br><span class="line">&gt; checkTCGA(<span class="string">'DataSets'</span>,</span><br><span class="line">+           cancerType = <span class="string">'BRCA'</span>,</span><br><span class="line">+           date = <span class="string">'2016-01-28'</span>)</span><br><span class="line">   Size</span><br><span class="line">1   37M</span><br><span class="line">2   50K</span><br><span class="line">3  723K</span><br><span class="line">4  135K</span><br><span class="line">5  135K</span><br><span class="line">6   77K</span><br><span class="line">7   78K</span><br><span class="line">8  1.5M</span><br><span class="line">9   57K</span><br><span class="line">10 1.2K</span><br><span class="line">11 160K</span><br><span class="line">12 3.4M</span><br><span class="line">13  86K</span><br><span class="line">14  83M</span><br><span class="line">15 3.2G</span><br><span class="line">16 1.1M</span><br><span class="line">17  15M</span><br><span class="line">18 2.9M</span><br><span class="line">19  44M</span><br><span class="line">20 1.3M</span><br><span class="line">21 2.6G</span><br><span class="line">22 277M</span><br><span class="line">23 195M</span><br><span class="line">24 298M</span><br><span class="line">25  93M</span><br><span class="line">26 869M</span><br><span class="line">27 249M</span><br><span class="line">28 2.8G</span><br><span class="line">29 243M</span><br><span class="line">30  18M</span><br><span class="line">31  18M</span><br><span class="line">32 5.3M</span><br><span class="line">33 4.6M</span><br><span class="line">34  37M</span><br><span class="line">35 399M</span><br><span class="line">36  10M</span><br><span class="line">37 1.1G</span><br><span class="line">38  81M</span><br><span class="line">39 1.9M</span><br><span class="line">40  37M</span><br><span class="line">41 1.5G</span><br><span class="line">42 6.6M</span><br><span class="line">43 7.4M</span><br><span class="line">                                                                                                                                            Name</span><br><span class="line">1  BRCA-FFPE.Merge_methylation__humanmethylation450__jhu_usc_edu__Level_3__within_bioassay_data_set_function__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">2                   BRCA-FFPE.Merge_mirnaseq__illuminahiseq_mirnaseq__bcgsc_ca__Level_3__miR_gene_expression__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">3                BRCA-FFPE.Merge_mirnaseq__illuminahiseq_mirnaseq__bcgsc_ca__Level_3__miR_isoform_expression__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">4                         BRCA-FFPE.Merge_snp__genome_wide_snp_6__broad_mit_edu__Level_3__segmented_scna_hg18__seg.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">5                         BRCA-FFPE.Merge_snp__genome_wide_snp_6__broad_mit_edu__Level_3__segmented_scna_hg19__seg.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">6      BRCA-FFPE.Merge_snp__genome_wide_snp_6__broad_mit_edu__Level_3__segmented_scna_minus_germline_cnv_hg18__seg.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">7      BRCA-FFPE.Merge_snp__genome_wide_snp_6__broad_mit_edu__Level_3__segmented_scna_minus_germline_cnv_hg19__seg.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">8                                                                                 BRCA-FFPE.Methylation_Preprocess.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">9                                                                               BRCA-FFPE.miRseq_Mature_Preprocess.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">10                                                                                     BRCA-FFPE.miRseq_Preprocess.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">11                                                                                        BRCA.Clinical_Pick_Tier1.Level_4.2016012800.0.0.tar.gz</span><br><span class="line">12                                                                                             BRCA.Merge_Clinical.Level_1.2016012800.0.0.tar.gz</span><br><span class="line">13                              BRCA.Merge_cna__illuminahiseq_dnaseqc__hms_harvard_edu__Level_3__segmentation__seg.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">14       BRCA.Merge_methylation__humanmethylation27__jhu_usc_edu__Level_3__within_bioassay_data_set_function__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">15      BRCA.Merge_methylation__humanmethylation450__jhu_usc_edu__Level_3__within_bioassay_data_set_function__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">16                          BRCA.Merge_mirnaseq__illuminaga_mirnaseq__bcgsc_ca__Level_3__miR_gene_expression__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">17                       BRCA.Merge_mirnaseq__illuminaga_mirnaseq__bcgsc_ca__Level_3__miR_isoform_expression__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">18                       BRCA.Merge_mirnaseq__illuminahiseq_mirnaseq__bcgsc_ca__Level_3__miR_gene_expression__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">19                    BRCA.Merge_mirnaseq__illuminahiseq_mirnaseq__bcgsc_ca__Level_3__miR_isoform_expression__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">20                     BRCA.Merge_protein_exp__mda_rppa_core__mdanderson_org__Level_3__protein_normalization__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">21                                BRCA.Merge_rnaseq__illuminahiseq_rnaseq__unc_edu__Level_3__exon_expression__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">22                                BRCA.Merge_rnaseq__illuminahiseq_rnaseq__unc_edu__Level_3__gene_expression__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">23                     BRCA.Merge_rnaseq__illuminahiseq_rnaseq__unc_edu__Level_3__splice_junction_expression__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">24                                 BRCA.Merge_rnaseqv2__illuminahiseq_rnaseqv2__unc_edu__Level_3__RSEM_genes__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">25                      BRCA.Merge_rnaseqv2__illuminahiseq_rnaseqv2__unc_edu__Level_3__RSEM_genes_normalized__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">26                              BRCA.Merge_rnaseqv2__illuminahiseq_rnaseqv2__unc_edu__Level_3__RSEM_isoforms__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">27                   BRCA.Merge_rnaseqv2__illuminahiseq_rnaseqv2__unc_edu__Level_3__RSEM_isoforms_normalized__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">28                        BRCA.Merge_rnaseqv2__illuminahiseq_rnaseqv2__unc_edu__Level_3__exon_quantification__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">29                    BRCA.Merge_rnaseqv2__illuminahiseq_rnaseqv2__unc_edu__Level_3__junction_quantification__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">30                             BRCA.Merge_snp__genome_wide_snp_6__broad_mit_edu__Level_3__segmented_scna_hg18__seg.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">31                             BRCA.Merge_snp__genome_wide_snp_6__broad_mit_edu__Level_3__segmented_scna_hg19__seg.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">32          BRCA.Merge_snp__genome_wide_snp_6__broad_mit_edu__Level_3__segmented_scna_minus_germline_cnv_hg18__seg.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">33          BRCA.Merge_snp__genome_wide_snp_6__broad_mit_edu__Level_3__segmented_scna_minus_germline_cnv_hg19__seg.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">34       BRCA.Merge_transcriptome__agilentg4502a_07_3__unc_edu__Level_3__unc_lowess_normalization_gene_level__data.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">35                                                                                     BRCA.Methylation_Preprocess.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">36                                                                                    BRCA.Mutation_Packager_Calls.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">37                                                                                 BRCA.Mutation_Packager_Coverage.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">38                                                                          BRCA.Mutation_Packager_Oncotated_Calls.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">39                                                                                      BRCA.RPPA_AnnotateWithGene.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">40                                                                                     BRCA.mRNA_Preprocess_Median.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">41                                                                                         BRCA.mRNAseq_Preprocess.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">42                                                                                   BRCA.miRseq_Mature_Preprocess.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">43                                                                                          BRCA.miRseq_Preprocess.Level_3.2016012800.0.0.tar.gz</span><br></pre></td></tr></table></figure>
+<p>四、数据下载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; downloadTCGA(</span><br><span class="line">+   cancerTypes = <span class="string">"BRCA"</span>,</span><br><span class="line">+   dataSet = <span class="string">"Merge_Clinical.Level_1"</span>,</span><br><span class="line">+   destDir = <span class="string">"./"</span></span><br><span class="line">+ )</span><br><span class="line">trying URL <span class="string">'http://gdac.broadinstitute.org/runs/stddata__2016_01_28/data/BRCA/20160128/gdac.broadinstitute.org_BRCA.Merge_Clinical.Level_1.2016012800.0.0.tar.gz'</span></span><br><span class="line">Content <span class="built_in">type</span> <span class="string">'application/x-gzip'</span> length 3615793 bytes (3.4 MB)</span><br><span class="line">downloaded 3.4 MB</span><br><span class="line"><span class="comment"># 这里是下载到了当前工作目录下，也可选择其他文件夹，当然，首先得新建目的目录，使用dir.create("download_folder")</span></span><br></pre></td></tr></table></figure>
+<p>五、读取数据 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readTCGA(path, dataType, ...)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+<div>
+
+
+<ul class="post-copyright">
+<li class="post-copyright-author">
+<strong>本文作者：</strong>括囊无誉
+</li>
+<li class="post-copyright-link">
+<strong>本文链接：</strong>
+<a href="/TCGA/RTCGAbasic/" title="R语言中RTCGA包的基本用法">TCGA/RTCGAbasic/</a>
+</li>
+<li class="post-copyright-license">
+<strong>版权声明： </strong>
+本博客所有文章均为原创作品，转载请注明出处！
+</li>
+</ul>
+
+</div>
+
+    
+    
+    
+
+
+<div>
+
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创文章分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="括囊无誉 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TCGA/" rel="tag"># TCGA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/TCGA/TCGAName/" rel="next" title="TCGA数据库中的癌症全称">
+                <i class="fa fa-chevron-left"></i> TCGA数据库中的癌症全称
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="括囊无誉">
+          <p class="site-author-name" itemprop="name">括囊无誉</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">171</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">211</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/75d3f95b058e" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-http://www.jianshu.com/u/75d3f95b058e"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">括囊无誉</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://uteric-1.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://uteric.github.io/TCGA/RTCGAbasic/';
+          this.page.identifier = 'TCGA/RTCGAbasic/';
+          this.page.title = 'R语言中RTCGA包的基本用法';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://uteric-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

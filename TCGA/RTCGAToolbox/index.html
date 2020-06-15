@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="TCGA,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="诸子百家" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="Firehose是由Broad institute开发的，提供经过预处理后的TCGA数据，在R语言中，RTCGAToolbox可用于查询、下载和分析Firehose的数据。 12345if (!requireNamespace(&quot;BiocManager&quot;))    install.packages(&quot;BiocManager&quot;)BiocManager::install(&quot;RTCGAToolbox&quot;)">
+<meta name="keywords" content="TCGA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCGA学习笔记-使用R语言中的RTCGAToolbox分析TCGA数据">
+<meta property="og:url" content="http://uteric.github.io/TCGA/RTCGAToolbox/index.html">
+<meta property="og:site_name" content="诸子百家">
+<meta property="og:description" content="Firehose是由Broad institute开发的，提供经过预处理后的TCGA数据，在R语言中，RTCGAToolbox可用于查询、下载和分析Firehose的数据。 12345if (!requireNamespace(&quot;BiocManager&quot;))    install.packages(&quot;BiocManager&quot;)BiocManager::install(&quot;RTCGAToolbox&quot;)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://uteric.github.io/images/TCGA/TCGA01.png">
+<meta property="og:updated_time" content="2020-06-13T16:05:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TCGA学习笔记-使用R语言中的RTCGAToolbox分析TCGA数据">
+<meta name="twitter:description" content="Firehose是由Broad institute开发的，提供经过预处理后的TCGA数据，在R语言中，RTCGAToolbox可用于查询、下载和分析Firehose的数据。 12345if (!requireNamespace(&quot;BiocManager&quot;))    install.packages(&quot;BiocManager&quot;)BiocManager::install(&quot;RTCGAToolbox&quot;)">
+<meta name="twitter:image" content="http://uteric.github.io/images/TCGA/TCGA01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '9e233f3fa2f200ca831529de7ba10253',
+      indexName: 'uteric',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://uteric.github.io/TCGA/RTCGAToolbox/">
+
+
+
+
+
+  <title>TCGA学习笔记-使用R语言中的RTCGAToolbox分析TCGA数据 | 诸子百家</title>
+  
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104081724-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <meta name="baidu-site-verification" content="bfQpbnNmEL">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诸子百家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+<div class="local-search-header clearfix">
+<span class="search-icon">
+<i class="fa fa-search"></i>
+</span>
+<span class="popup-btn-close">
+<i class="fa fa-times-circle"></i>
+</span>
+<div class="local-search-input-wrapper">
+<input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+</div>
+</div>
+<div id="local-search-result"></div>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/TCGA/RTCGAToolbox/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="括囊无誉">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸子百家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TCGA学习笔记-使用R语言中的RTCGAToolbox分析TCGA数据</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-13T11:05:33-05:00">
+                2020-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/生物信息/" itemprop="url" rel="index">
+                    <span itemprop="name">生物信息</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/TCGA/RTCGAToolbox/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="TCGA/RTCGAToolbox/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>°C
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Firehose是由Broad institute开发的，提供经过预处理后的TCGA数据，在R语言中，RTCGAToolbox可用于查询、下载和分析Firehose的数据。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!requireNamespace(<span class="string">"BiocManager"</span>))</span><br><span class="line">    install.packages(<span class="string">"BiocManager"</span>)</span><br><span class="line">BiocManager::install(<span class="string">"RTCGAToolbox"</span>)</span><br><span class="line"></span><br><span class="line">library(RTCGAToolbox)</span><br></pre></td></tr></table></figure>
+<p>在通过Firehose获取数据之前，需要检查有效的数据集，“getFirehoseDatasets”可以列出所有的数据集，而“getFirehoseRunningDates”与“getFirehoseAnalyzeDates”给出数据库更新日期。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&gt; getFirehoseDatasets()</span><br><span class="line"> [1] <span class="string">"ACC"</span>      <span class="string">"BLCA"</span>     <span class="string">"BRCA"</span>     <span class="string">"CESC"</span>     <span class="string">"CHOL"</span>     <span class="string">"COADREAD"</span> <span class="string">"COAD"</span>    </span><br><span class="line"> [8] <span class="string">"DLBC"</span>     <span class="string">"ESCA"</span>     <span class="string">"FPPP"</span>     <span class="string">"GBMLGG"</span>   <span class="string">"GBM"</span>      <span class="string">"HNSC"</span>     <span class="string">"KICH"</span>    </span><br><span class="line">[15] <span class="string">"KIPAN"</span>    <span class="string">"KIRC"</span>     <span class="string">"KIRP"</span>     <span class="string">"LAML"</span>     <span class="string">"LGG"</span>      <span class="string">"LIHC"</span>     <span class="string">"LUAD"</span>    </span><br><span class="line">[22] <span class="string">"LUSC"</span>     <span class="string">"MESO"</span>     <span class="string">"OV"</span>       <span class="string">"PAAD"</span>     <span class="string">"PCPG"</span>     <span class="string">"PRAD"</span>     <span class="string">"READ"</span>    </span><br><span class="line">[29] <span class="string">"SARC"</span>     <span class="string">"SKCM"</span>     <span class="string">"STAD"</span>     <span class="string">"STES"</span>     <span class="string">"TGCT"</span>     <span class="string">"THCA"</span>     <span class="string">"THYM"</span>    </span><br><span class="line">[36] <span class="string">"UCEC"</span>     <span class="string">"UCS"</span>      <span class="string">"UVM"</span>     </span><br><span class="line">&gt; getFirehoseRunningDates()</span><br><span class="line"> [1] <span class="string">"20160128"</span> <span class="string">"20151101"</span> <span class="string">"20150821"</span> <span class="string">"20150601"</span> <span class="string">"20150402"</span> <span class="string">"20150204"</span> <span class="string">"20141206"</span></span><br><span class="line"> [8] <span class="string">"20141017"</span> <span class="string">"20140902"</span> <span class="string">"20140715"</span> <span class="string">"20140614"</span> <span class="string">"20140518"</span> <span class="string">"20140416"</span> <span class="string">"20140316"</span></span><br><span class="line">[15] <span class="string">"20140215"</span> <span class="string">"20140115"</span> <span class="string">"20131210"</span> <span class="string">"20131114"</span> <span class="string">"20131010"</span> <span class="string">"20130923"</span> <span class="string">"20130809"</span></span><br><span class="line">[22] <span class="string">"20130715"</span> <span class="string">"20130623"</span> <span class="string">"20130606"</span> <span class="string">"20130523"</span> <span class="string">"20130508"</span> <span class="string">"20130421"</span> <span class="string">"20130406"</span></span><br><span class="line">[29] <span class="string">"20130326"</span> <span class="string">"20130309"</span> <span class="string">"20130222"</span> <span class="string">"20130203"</span> <span class="string">"20130116"</span> <span class="string">"20121221"</span> <span class="string">"20121206"</span></span><br><span class="line">[36] <span class="string">"20121114"</span> <span class="string">"20121102"</span> <span class="string">"20121024"</span> <span class="string">"20121020"</span> <span class="string">"20121018"</span> <span class="string">"20121004"</span> <span class="string">"20120913"</span></span><br><span class="line">[43] <span class="string">"20120825"</span> <span class="string">"20120804"</span> <span class="string">"20120725"</span> <span class="string">"20120707"</span> <span class="string">"20120623"</span> <span class="string">"20120606"</span> <span class="string">"20120525"</span></span><br><span class="line">[50] <span class="string">"20120515"</span> <span class="string">"20120425"</span> <span class="string">"20120412"</span> <span class="string">"20120321"</span> <span class="string">"20120306"</span> <span class="string">"20120217"</span> <span class="string">"20120124"</span></span><br><span class="line">[57] <span class="string">"20120110"</span> <span class="string">"20111230"</span> <span class="string">"20111206"</span> <span class="string">"20111128"</span> <span class="string">"20111115"</span> <span class="string">"20111026"</span></span><br><span class="line">&gt; getFirehoseAnalyzeDates()</span><br><span class="line"> [1] <span class="string">"20160128"</span> <span class="string">"20150821"</span> <span class="string">"20150402"</span> <span class="string">"20141017"</span> <span class="string">"20140715"</span> <span class="string">"20140416"</span> <span class="string">"20140115"</span></span><br><span class="line"> [8] <span class="string">"20130923"</span> <span class="string">"20130523"</span> <span class="string">"20130421"</span> <span class="string">"20130326"</span> <span class="string">"20130222"</span> <span class="string">"20130116"</span> <span class="string">"20121221"</span></span><br><span class="line">[15] <span class="string">"20121024"</span> <span class="string">"20120913"</span> <span class="string">"20120825"</span> <span class="string">"20120725"</span> <span class="string">"20120623"</span> <span class="string">"20120525"</span> <span class="string">"20120425"</span></span><br><span class="line">[22] <span class="string">"20120321"</span> <span class="string">"20120217"</span> <span class="string">"20120124"</span> <span class="string">"20111230"</span> <span class="string">"20111128"</span> <span class="string">"20111026"</span> <span class="string">"20110921"</span></span><br><span class="line">[29] <span class="string">"20110728"</span> <span class="string">"20110525"</span> <span class="string">"20110421"</span> <span class="string">"20110327"</span> <span class="string">"20110217"</span> <span class="string">"20110114"</span> <span class="string">"20101223"</span></span><br></pre></td></tr></table></figure>
+<p>在确定数据集名称与更新日期后，就可以使用“getFirehoseData()”来获取数据了，下面来下载数据，以READ（直肠腺癌）为例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&gt; brcaData &lt;- getFirehoseData(dataset=<span class="string">"READ"</span>, runDate=<span class="string">"20160128"</span>,</span><br><span class="line">                            forceDownload=TRUE, clinical=TRUE, Mutation=TRUE)</span><br><span class="line"></span><br><span class="line">gdac.broadinstitute.org_READ.Clinical_Pick_Tier1.Level_4.2016012800.0.0.tar.gz</span><br><span class="line">trying URL <span class="string">'http://gdac.broadinstitute.org/runs/stddata__2016_01_28/data/READ/20160128/gdac.broadinstitute.org_READ.Clinical_Pick_Tier1.Level_4.2016012800.0.0.tar.gz'</span></span><br><span class="line">Content <span class="built_in">type</span> <span class="string">'application/x-gzip'</span> length 31541 bytes (30 KB)</span><br><span class="line">downloaded 30 KB</span><br><span class="line"></span><br><span class="line">gdac.broadinstitute.org_READ.Clinical_Pick_Tier1.Level_4.2016012800.0.0</span><br><span class="line">gdac.broadinstitute.org_READ.Mutation_Packager_Calls.Level_3.2016012800.0.0.tar.gz</span><br><span class="line">trying URL <span class="string">'http://gdac.broadinstitute.org/runs/stddata__2016_01_28/data/READ/20160128/gdac.broadinstitute.org_READ.Mutation_Packager_Calls.Level_3.2016012800.0.0.tar.gz'</span></span><br><span class="line">Content <span class="built_in">type</span> <span class="string">'application/x-gzip'</span> length 896526 bytes (875 KB)</span><br><span class="line">downloaded 875 KB</span><br><span class="line"></span><br><span class="line">&gt; brcaData</span><br><span class="line">READ FirehoseData objectStandard run date: 20160128 </span><br><span class="line">Analysis running date: NA </span><br><span class="line">Available data types: </span><br><span class="line">  clinical: A data frame of phenotype data, dim:  171 x 19 </span><br><span class="line">  Mutation: A data.frame, dim:  22075 x 39 </span><br><span class="line">To <span class="built_in">export</span> data, use the <span class="string">'getData'</span> <span class="keyword">function</span>.</span><br></pre></td></tr></table></figure>
+<p>对于getFirehoseData()，以下几个参数是必选的：</p>
+<p>1）dataset，可以通过getFirehoseDatasets() 获取；<br>2）tunData，可以通过getFirehoseRunningDates()获取；<br>3）gistic2Date，如要获取copy number data，则必须设定这个参数，可以通过getFirehoseAnalyzeDates()获取；</p>
+<p>可选参数如下：</p>
+<p>1）forceDownload，是否强制下载或使用工作目录中以前下载的旧数据；<br>2）fileSizeLimit，默认为500MB；<br>3）getUUIDs，获取UUIDs条形码；</p>
+<p>除Clinical之外，还有如下参数可选：</p>
+<p>RNAseqGene<br>clinical<br>miRNASeqGene<br>RNAseq2GeneNorm<br>CNASNP<br>CNVSNP<br>CNASeq<br>CNACGH<br>Methylation<br>Mutation<br>mRNAArray<br>miRNAArray<br>RPPAArray</p>
+<p>下载完成后，可以使用biocExtract()来提取数据，如提取clinical data,</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&gt; clinicData=biocExtract(brcaData,<span class="string">'clinical'</span>)</span><br><span class="line">working on: clinical</span><br><span class="line"></span><br><span class="line">&gt; head(clinicData,3)</span><br><span class="line">             Composite Element REF years_to_birth vital_status days_to_death</span><br><span class="line">tcga.af.3913                 value             60            1           316</span><br><span class="line">tcga.ag.3580                 value             67            0          &lt;NA&gt;</span><br><span class="line">tcga.ag.3611                 value             72            0          &lt;NA&gt;</span><br><span class="line">             days_to_last_followup tumor_tissue_site pathologic_stage pathology_T_stage</span><br><span class="line">tcga.af.3913                  &lt;NA&gt;            rectum         stage iv                t3</span><br><span class="line">tcga.ag.3580                   244            rectum          stage i                t1</span><br><span class="line">tcga.ag.3611                   424            rectum        stage iia                t3</span><br><span class="line">             pathology_N_stage pathology_M_stage gender</span><br><span class="line">tcga.af.3913                n1                m1   male</span><br><span class="line">tcga.ag.3580                n0                m0   male</span><br><span class="line">tcga.ag.3611                n0                m0   male</span><br><span class="line">             date_of_initial_pathologic_diagnosis days_to_last_known_alive</span><br><span class="line">tcga.af.3913                                 2009                     &lt;NA&gt;</span><br><span class="line">tcga.ag.3580                                 2007                     &lt;NA&gt;</span><br><span class="line">tcga.ag.3611                                 2009                       31</span><br><span class="line">             radiation_therapy     histological_type tumor_stage residual_tumor</span><br><span class="line">tcga.af.3913                no rectal adenocarcinoma        &lt;NA&gt;             r0</span><br><span class="line">tcga.ag.3580                no rectal adenocarcinoma        &lt;NA&gt;             r0</span><br><span class="line">tcga.ag.3611                no rectal adenocarcinoma        &lt;NA&gt;             r0</span><br><span class="line">             number_of_lymph_nodes              ethnicity</span><br><span class="line">tcga.af.3913                     1 not hispanic or latino</span><br><span class="line">tcga.ag.3580                     0                   &lt;NA&gt;</span><br><span class="line">tcga.ag.3611                     0                   &lt;NA&gt;</span><br><span class="line"></span><br><span class="line">&gt; colnames(clinicData) <span class="comment">#查看列名</span></span><br><span class="line"> [1] <span class="string">"Composite Element REF"</span>                <span class="string">"years_to_birth"</span>                      </span><br><span class="line"> [3] <span class="string">"vital_status"</span>                         <span class="string">"days_to_death"</span>                       </span><br><span class="line"> [5] <span class="string">"days_to_last_followup"</span>                <span class="string">"tumor_tissue_site"</span>                   </span><br><span class="line"> [7] <span class="string">"pathologic_stage"</span>                     <span class="string">"pathology_T_stage"</span>                   </span><br><span class="line"> [9] <span class="string">"pathology_N_stage"</span>                    <span class="string">"pathology_M_stage"</span>                   </span><br><span class="line">[11] <span class="string">"gender"</span>                               <span class="string">"date_of_initial_pathologic_diagnosis"</span></span><br><span class="line">[13] <span class="string">"days_to_last_known_alive"</span>             <span class="string">"radiation_therapy"</span>                   </span><br><span class="line">[15] <span class="string">"histological_type"</span>                    <span class="string">"tumor_stage"</span>                         </span><br><span class="line">[17] <span class="string">"residual_tumor"</span>                       <span class="string">"number_of_lymph_nodes"</span>               </span><br><span class="line">[19] <span class="string">"ethnicity"</span></span><br><span class="line"></span><br><span class="line">&gt; length(clinicData) <span class="comment">#查看长度</span></span><br><span class="line">[1] 19</span><br><span class="line"></span><br><span class="line">&gt; class(clinicData) <span class="comment">#数据类型是data frame</span></span><br><span class="line">[1] <span class="string">"data.frame"</span></span><br></pre></td></tr></table></figure>
+<p>下面提取mutation data</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&gt; mutationData  = biocExtract(brcaData,<span class="string">'Mutation'</span>)</span><br><span class="line">working on: Mutation</span><br><span class="line"></span><br><span class="line">&gt; head(mutationData,3)</span><br><span class="line">class: RaggedExperiment </span><br><span class="line">dim: 3 69 </span><br><span class="line">assays(34): Hugo_Symbol Entrez_Gene_Id ... COSMIC_Gene Drug_Target</span><br><span class="line">rownames: NULL</span><br><span class="line">colnames(69): TCGA-AF-2689-01A-01W-0831-10 TCGA-AF-2691-01A-01W-0831-10 ...</span><br><span class="line">  TCGA-AG-A032-01 TCGA-AG-A036-01</span><br><span class="line">colData names(0):</span><br><span class="line"></span><br><span class="line">&gt; colnames(mutationData)</span><br><span class="line"> [1] <span class="string">"TCGA-AF-2689-01A-01W-0831-10"</span> <span class="string">"TCGA-AF-2691-01A-01W-0831-10"</span></span><br><span class="line"> [3] <span class="string">"TCGA-AF-2692-01A-01W-0831-10"</span> <span class="string">"TCGA-AF-3400-01A-01W-0831-10"</span></span><br><span class="line"> [5] <span class="string">"TCGA-AF-3913-01"</span>              <span class="string">"TCGA-AG-3574-01A-01W-0831-10"</span></span><br><span class="line"> [7] <span class="string">"TCGA-AG-3575-01A-01W-0831-10"</span> <span class="string">"TCGA-AG-3578-01A-01W-0831-10"</span></span><br><span class="line"> [9] <span class="string">"TCGA-AG-3580-01A-01W-0831-10"</span> <span class="string">"TCGA-AG-3581-01A-01W-0831-10"</span></span><br><span class="line">[11] <span class="string">"TCGA-AG-3582-01A-01W-0831-10"</span> <span class="string">"TCGA-AG-3583-01A-01W-0831-10"</span></span><br><span class="line">[13] <span class="string">"TCGA-AG-3584-01A-01W-0831-10"</span> <span class="string">"TCGA-AG-3586-01A-02W-0831-10"</span></span><br><span class="line">[15] <span class="string">"TCGA-AG-3587-01A-01W-0831-10"</span> <span class="string">"TCGA-AG-3593-01A-01W-0831-10"</span></span><br><span class="line">[17] <span class="string">"TCGA-AG-3594-01A-02W-0831-10"</span> <span class="string">"TCGA-AG-3598-01A-01W-0833-10"</span></span><br><span class="line">[19] <span class="string">"TCGA-AG-3599-01A-02W-0833-10"</span> <span class="string">"TCGA-AG-3600-01A-01W-0833-10"</span></span><br><span class="line">[21] <span class="string">"TCGA-AG-3601-01A-01W-0833-10"</span> <span class="string">"TCGA-AG-3602-01A-02W-0833-10"</span></span><br><span class="line">[23] <span class="string">"TCGA-AG-3605-01A-01W-0833-10"</span> <span class="string">"TCGA-AG-3608-01A-01W-0833-10"</span></span><br><span class="line">[25] <span class="string">"TCGA-AG-3609-01A-02W-0833-10"</span> <span class="string">"TCGA-AG-3611-01A-01W-0833-10"</span></span><br><span class="line">[27] <span class="string">"TCGA-AG-3612-01A-01W-0833-10"</span> <span class="string">"TCGA-AG-3726-01"</span>             </span><br><span class="line">[29] <span class="string">"TCGA-AG-3727-01"</span>              <span class="string">"TCGA-AG-3878-01"</span>             </span><br><span class="line">[31] <span class="string">"TCGA-AG-3881-01"</span>              <span class="string">"TCGA-AG-3882-01"</span>             </span><br><span class="line">[33] <span class="string">"TCGA-AG-3883-01"</span>              <span class="string">"TCGA-AG-3887-01"</span>             </span><br><span class="line">[35] <span class="string">"TCGA-AG-3890-01"</span>              <span class="string">"TCGA-AG-3892-01"</span>             </span><br><span class="line">[37] <span class="string">"TCGA-AG-3893-01"</span>              <span class="string">"TCGA-AG-3894-01"</span>             </span><br><span class="line">[39] <span class="string">"TCGA-AG-3896-01"</span>              <span class="string">"TCGA-AG-3898-01"</span>             </span><br><span class="line">[41] <span class="string">"TCGA-AG-3901-01"</span>              <span class="string">"TCGA-AG-3902-01"</span>             </span><br><span class="line">[43] <span class="string">"TCGA-AG-3909-01"</span>              <span class="string">"TCGA-AG-3999-01"</span>             </span><br><span class="line">[45] <span class="string">"TCGA-AG-4001-01"</span>              <span class="string">"TCGA-AG-4005-01"</span>             </span><br><span class="line">[47] <span class="string">"TCGA-AG-4007-01"</span>              <span class="string">"TCGA-AG-4008-01"</span>             </span><br><span class="line">[49] <span class="string">"TCGA-AG-4015-01"</span>              <span class="string">"TCGA-AG-A002-01"</span>             </span><br><span class="line">[51] <span class="string">"TCGA-AG-A008-01A-01W-A005-10"</span> <span class="string">"TCGA-AG-A00C-01A-01W-A005-10"</span></span><br><span class="line">[53] <span class="string">"TCGA-AG-A00H-01"</span>              <span class="string">"TCGA-AG-A00Y-01A-02W-A005-10"</span></span><br><span class="line">[55] <span class="string">"TCGA-AG-A011-01"</span>              <span class="string">"TCGA-AG-A014-01"</span>             </span><br><span class="line">[57] <span class="string">"TCGA-AG-A015-01A-01W-A005-10"</span> <span class="string">"TCGA-AG-A016-01A-01W-A005-10"</span></span><br><span class="line">[59] <span class="string">"TCGA-AG-A01L-01"</span>              <span class="string">"TCGA-AG-A01W-01"</span>             </span><br><span class="line">[61] <span class="string">"TCGA-AG-A01Y-01"</span>              <span class="string">"TCGA-AG-A020-01"</span>             </span><br><span class="line">[63] <span class="string">"TCGA-AG-A025-01"</span>              <span class="string">"TCGA-AG-A026-01"</span>             </span><br><span class="line">[65] <span class="string">"TCGA-AG-A02G-01"</span>              <span class="string">"TCGA-AG-A02N-01"</span>             </span><br><span class="line">[67] <span class="string">"TCGA-AG-A02X-01"</span>              <span class="string">"TCGA-AG-A032-01"</span>             </span><br><span class="line">[69] <span class="string">"TCGA-AG-A036-01"</span>    </span><br><span class="line"></span><br><span class="line">&gt; length(mutationData)</span><br><span class="line">[1] 22075</span><br><span class="line"></span><br><span class="line">&gt; class(mutationData)</span><br><span class="line">[1] <span class="string">"RaggedExperiment"</span></span><br><span class="line">attr(,<span class="string">"package"</span>)</span><br><span class="line">[1] <span class="string">"RaggedExperiment"</span></span><br></pre></td></tr></table></figure>
+<p>下面，可以先看一下突变情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&gt; mt=getMutationRate(brcaData)</span><br><span class="line"></span><br><span class="line">&gt; head(mt)</span><br><span class="line">          Genes MutationRatio</span><br><span class="line">OR5B12   OR5B12    0.04347826</span><br><span class="line">KRT17     KRT17    0.02898551</span><br><span class="line">SLC10A4 SLC10A4    0.01449275</span><br><span class="line">C7orf58 C7orf58    0.04347826</span><br><span class="line">KLF14     KLF14    0.02898551</span><br><span class="line">ZNF133   ZNF133    0.01449275</span><br><span class="line"></span><br><span class="line">&gt; class(mt)</span><br><span class="line">[1] <span class="string">"data.frame"</span></span><br><span class="line"></span><br><span class="line">&gt; tail(mt[order(mt<span class="variable">$MutationRatio</span>),])</span><br><span class="line">      Genes MutationRatio</span><br><span class="line">MUC16 MUC16     0.1884058</span><br><span class="line">SYNE1 SYNE1     0.2028986</span><br><span class="line">TTN     TTN     0.3043478</span><br><span class="line">KRAS   KRAS     0.5507246</span><br><span class="line">TP53   TP53     0.6666667</span><br><span class="line">APC     APC     0.8405797</span><br><span class="line"><span class="comment">#APC，KRAS和TP53在READ中的突变率是真的高</span></span><br></pre></td></tr></table></figure>
+<p>绘制生存曲线</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br></pre></td><td class="code"><pre><span class="line">&gt; survData &lt;- data.frame(Samples=rownames(clinicData),</span><br><span class="line">+                        Time=as.numeric(clinicData[,4]),</span><br><span class="line">+                        Censor=as.numeric(clinicData[,3])</span><br><span class="line">+ )</span><br><span class="line"></span><br><span class="line">&gt; class(survData)</span><br><span class="line">[1] <span class="string">"data.frame"</span></span><br><span class="line"></span><br><span class="line">&gt; nrow(survData)</span><br><span class="line">[1] 171</span><br><span class="line"></span><br><span class="line">&gt; survData</span><br><span class="line">         Samples Time Censor</span><br><span class="line">1   tcga.af.3913  316      1</span><br><span class="line">2   tcga.ag.3580   NA      0</span><br><span class="line">3   tcga.ag.3611   NA      0</span><br><span class="line">4   tcga.ag.3612   NA      0</span><br><span class="line">5   tcga.ag.3890   NA      0</span><br><span class="line">6   tcga.ag.4008   NA      0</span><br><span class="line">7   tcga.ag.a00h   NA      0</span><br><span class="line">8   tcga.ag.a014   NA      0</span><br><span class="line">9   tcga.ag.a015   NA      0</span><br><span class="line">10  tcga.ag.a01n   NA      0</span><br><span class="line">11  tcga.ag.a023 1581      1</span><br><span class="line">12  tcga.bm.6198   NA      0</span><br><span class="line">13  tcga.g5.6233  556      1</span><br><span class="line">14  tcga.g5.6235   NA      0</span><br><span class="line">15  tcga.g5.6641   NA      0</span><br><span class="line">16  tcga.af.2687   NA      0</span><br><span class="line">17  tcga.af.2689 1201      1</span><br><span class="line">18  tcga.af.2690  524      1</span><br><span class="line">19  tcga.af.2691   NA      0</span><br><span class="line">20  tcga.af.2692   NA      0</span><br><span class="line">21  tcga.af.2693   NA      0</span><br><span class="line">22  tcga.af.3400   NA      0</span><br><span class="line">23  tcga.af.3911   NA      0</span><br><span class="line">24  tcga.af.3914   NA      0</span><br><span class="line">25  tcga.af.4110   NA      0</span><br><span class="line">26  tcga.af.5654  512      1</span><br><span class="line">27  tcga.af.6136   NA      0</span><br><span class="line">28  tcga.af.6655   NA      0</span><br><span class="line">29  tcga.af.6672   NA      0</span><br><span class="line">30  tcga.af.a56k   NA      0</span><br><span class="line">31  tcga.af.a56l   NA      0</span><br><span class="line">32  tcga.af.a56n   NA      0</span><br><span class="line">33  tcga.ag.3574 1096      1</span><br><span class="line">34  tcga.ag.3575   NA      0</span><br><span class="line">35  tcga.ag.3578   NA      0</span><br><span class="line">36  tcga.ag.3581   NA      0</span><br><span class="line">37  tcga.ag.3582 1096      1</span><br><span class="line">38  tcga.ag.3583  610      1</span><br><span class="line">39  tcga.ag.3584  730      1</span><br><span class="line">40  tcga.ag.3586   NA      0</span><br><span class="line">41  tcga.ag.3587   NA      0</span><br><span class="line">42  tcga.ag.3591   NA      0</span><br><span class="line">43  tcga.ag.3592   NA      0</span><br><span class="line">44  tcga.ag.3593   NA      0</span><br><span class="line">45  tcga.ag.3594   61      1</span><br><span class="line">46  tcga.ag.3598   NA      0</span><br><span class="line">47  tcga.ag.3599   NA      0</span><br><span class="line">48  tcga.ag.3600   NA      0</span><br><span class="line">49  tcga.ag.3601   NA      0</span><br><span class="line">50  tcga.ag.3602   NA      0</span><br><span class="line">51  tcga.ag.3605   NA      0</span><br><span class="line">52  tcga.ag.3608   NA      0</span><br><span class="line">53  tcga.ag.3609   NA      0</span><br><span class="line">54  tcga.ag.3725   NA      0</span><br><span class="line">55  tcga.ag.3726   NA      0</span><br><span class="line">56  tcga.ag.3727   NA      0</span><br><span class="line">57  tcga.ag.3728   NA      0</span><br><span class="line">58  tcga.ag.3731   NA      0</span><br><span class="line">59  tcga.ag.3732   NA      0</span><br><span class="line">60  tcga.ag.3742   NA      0</span><br><span class="line">61  tcga.ag.3878   NA      0</span><br><span class="line">62  tcga.ag.3881   NA      0</span><br><span class="line">63  tcga.ag.3882   NA      0</span><br><span class="line">64  tcga.ag.3883   NA      0</span><br><span class="line">65  tcga.ag.3885   NA      0</span><br><span class="line">66  tcga.ag.3887   NA      0</span><br><span class="line">67  tcga.ag.3891   NA      0</span><br><span class="line">68  tcga.ag.3892   NA      0</span><br><span class="line">69  tcga.ag.3893   NA      0</span><br><span class="line">70  tcga.ag.3894   NA      0</span><br><span class="line">71  tcga.ag.3896   NA      0</span><br><span class="line">72  tcga.ag.3898   NA      0</span><br><span class="line">73  tcga.ag.3901   NA      0</span><br><span class="line">74  tcga.ag.3902   NA      0</span><br><span class="line">75  tcga.ag.3906   NA      0</span><br><span class="line">76  tcga.ag.3909   NA      0</span><br><span class="line">77  tcga.ag.3999   NA      0</span><br><span class="line">78  tcga.ag.4001   NA      0</span><br><span class="line">79  tcga.ag.4005   NA      0</span><br><span class="line">80  tcga.ag.4007   NA      0</span><br><span class="line">81  tcga.ag.4009   NA      0</span><br><span class="line">82  tcga.ag.4015   NA      0</span><br><span class="line">83  tcga.ag.4021  121      1</span><br><span class="line">84  tcga.ag.4022   NA      0</span><br><span class="line">85  tcga.ag.a002   NA      0</span><br><span class="line">86  tcga.ag.a008   NA      0</span><br><span class="line">87  tcga.ag.a00c   NA      0</span><br><span class="line">88  tcga.ag.a00y   NA      0</span><br><span class="line">89  tcga.ag.a011   NA      0</span><br><span class="line">90  tcga.ag.a016   NA      0</span><br><span class="line">91  tcga.ag.a01j   NA      0</span><br><span class="line">92  tcga.ag.a01l   NA      0</span><br><span class="line">93  tcga.ag.a01w   NA      0</span><br><span class="line">94  tcga.ag.a01y   NA      0</span><br><span class="line">95  tcga.ag.a020   NA      0</span><br><span class="line">96  tcga.ag.a025   NA      0</span><br><span class="line">97  tcga.ag.a026   59      1</span><br><span class="line">98  tcga.ag.a02g 1185      1</span><br><span class="line">99  tcga.ag.a02n   NA      0</span><br><span class="line">100 tcga.ag.a02x   NA      0</span><br><span class="line">101 tcga.ag.a032   NA      0</span><br><span class="line">102 tcga.ag.a036   NA      0</span><br><span class="line">103 tcga.ah.6544   NA      0</span><br><span class="line">104 tcga.ah.6547   76      1</span><br><span class="line">105 tcga.ah.6549   NA      0</span><br><span class="line">106 tcga.ah.6643 1314      1</span><br><span class="line">107 tcga.ah.6644   NA      0</span><br><span class="line">108 tcga.ah.6897   NA      0</span><br><span class="line">109 tcga.ah.6903   NA      0</span><br><span class="line">110 tcga.ci.6619   NA      0</span><br><span class="line">111 tcga.ci.6620   NA      0</span><br><span class="line">112 tcga.ci.6621   NA      0</span><br><span class="line">113 tcga.ci.6622   NA      0</span><br><span class="line">114 tcga.ci.6623   NA      0</span><br><span class="line">115 tcga.ci.6624   NA      0</span><br><span class="line">116 tcga.cl.4957   NA      1</span><br><span class="line">117 tcga.cl.5917   NA      0</span><br><span class="line">118 tcga.cl.5918   NA      0</span><br><span class="line">119 tcga.dc.4745   NA      0</span><br><span class="line">120 tcga.dc.4749   NA      0</span><br><span class="line">121 tcga.dc.5337   NA      0</span><br><span class="line">122 tcga.dc.5869   NA      0</span><br><span class="line">123 tcga.dc.6154   NA      0</span><br><span class="line">124 tcga.dc.6155   NA      0</span><br><span class="line">125 tcga.dc.6156   NA      0</span><br><span class="line">126 tcga.dc.6157   NA      0</span><br><span class="line">127 tcga.dc.6158  334      1</span><br><span class="line">128 tcga.dc.6160   NA      0</span><br><span class="line">129 tcga.dc.6681   NA      0</span><br><span class="line">130 tcga.dc.6682   NA      0</span><br><span class="line">131 tcga.dc.6683   NA      0</span><br><span class="line">132 tcga.dt.5265   NA      0</span><br><span class="line">133 tcga.dy.a0xa   NA      0</span><br><span class="line">134 tcga.dy.a1dc 1258      1</span><br><span class="line">135 tcga.dy.a1dd 1741      1</span><br><span class="line">136 tcga.dy.a1de   NA      0</span><br><span class="line">137 tcga.dy.a1df  734      1</span><br><span class="line">138 tcga.dy.a1dg 1566      1</span><br><span class="line">139 tcga.dy.a1h8  992      1</span><br><span class="line">140 tcga.ef.5830   NA      0</span><br><span class="line">141 tcga.ef.5831   NA      0</span><br><span class="line">142 tcga.ei.6506   NA      0</span><br><span class="line">143 tcga.ei.6507   NA      0</span><br><span class="line">144 tcga.ei.6508   NA      0</span><br><span class="line">145 tcga.ei.6509   NA      0</span><br><span class="line">146 tcga.ei.6510   NA      0</span><br><span class="line">147 tcga.ei.6511   NA      0</span><br><span class="line">148 tcga.ei.6512   NA      0</span><br><span class="line">149 tcga.ei.6513   NA      0</span><br><span class="line">150 tcga.ei.6514   NA      0</span><br><span class="line">151 tcga.ei.6881   NA      0</span><br><span class="line">152 tcga.ei.6882   NA      0</span><br><span class="line">153 tcga.ei.6883   NA      0</span><br><span class="line">154 tcga.ei.6884   NA      0</span><br><span class="line">155 tcga.ei.6885   NA      0</span><br><span class="line">156 tcga.ei.6917   NA      0</span><br><span class="line">157 tcga.ei.7002   NA      0</span><br><span class="line">158 tcga.ei.7004   NA      0</span><br><span class="line">159 tcga.f5.6464  303      1</span><br><span class="line">160 tcga.f5.6465   NA      0</span><br><span class="line">161 tcga.f5.6571   NA      0</span><br><span class="line">162 tcga.f5.6702  869      1</span><br><span class="line">163 tcga.f5.6810   NA      0</span><br><span class="line">164 tcga.f5.6811   NA      0</span><br><span class="line">165 tcga.f5.6812   NA      0</span><br><span class="line">166 tcga.f5.6813  598      1</span><br><span class="line">167 tcga.f5.6814   NA      0</span><br><span class="line">168 tcga.f5.6861   NA      0</span><br><span class="line">169 tcga.f5.6863  361      1</span><br><span class="line">170 tcga.f5.6864   NA      0</span><br><span class="line">171 tcga.g5.6572 1432      1</span><br><span class="line"></span><br><span class="line">&gt; library(survival) </span><br><span class="line">Warning message:</span><br><span class="line">package ‘survival’ was built under R version 3.6.3 </span><br><span class="line"></span><br><span class="line">&gt; table(survData<span class="variable">$Censor</span>)</span><br><span class="line"></span><br><span class="line">  0   1 </span><br><span class="line">143  28</span><br><span class="line"></span><br><span class="line">&gt; attach(survData) </span><br><span class="line"></span><br><span class="line">&gt; my.surv &lt;- Surv(Time,Censor) </span><br><span class="line"></span><br><span class="line">&gt; my.surv</span><br><span class="line">  [1]  316    NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+ 1581    NA+  556    NA+</span><br><span class="line"> [15]   NA+   NA+ 1201   524    NA+   NA+   NA+   NA+   NA+   NA+   NA+  512    NA+   NA+</span><br><span class="line"> [29]   NA+   NA+   NA+   NA+ 1096    NA+   NA+   NA+ 1096   610   730    NA+   NA+   NA+</span><br><span class="line"> [43]   NA+   NA+   61    NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+</span><br><span class="line"> [57]   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+</span><br><span class="line"> [71]   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+  121    NA+</span><br><span class="line"> [85]   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   59  1185 </span><br><span class="line"> [99]   NA+   NA+   NA+   NA+   NA+   76    NA+ 1314    NA+   NA+   NA+   NA+   NA+   NA+</span><br><span class="line">[113]   NA+   NA+   NA+   NA    NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+</span><br><span class="line">[127]  334    NA+   NA+   NA+   NA+   NA+   NA+ 1258  1741    NA+  734  1566   992    NA+</span><br><span class="line">[141]   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+   NA+</span><br><span class="line">[155]   NA+   NA+   NA+   NA+  303    NA+   NA+  869    NA+   NA+   NA+  598    NA+   NA+</span><br><span class="line">[169]  361    NA+ 1432 </span><br><span class="line"></span><br><span class="line">&gt; kmfit1 &lt;- survfit(my.surv~1) </span><br><span class="line"></span><br><span class="line">&gt; plot(kmfit1)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/TCGA/TCGA01.png" alt></p>
+
+      
+    </div>
+
+<div>
+
+
+<ul class="post-copyright">
+<li class="post-copyright-author">
+<strong>本文作者：</strong>括囊无誉
+</li>
+<li class="post-copyright-link">
+<strong>本文链接：</strong>
+<a href="/TCGA/RTCGAToolbox/" title="TCGA学习笔记-使用R语言中的RTCGAToolbox分析TCGA数据">TCGA/RTCGAToolbox/</a>
+</li>
+<li class="post-copyright-license">
+<strong>版权声明： </strong>
+本博客所有文章均为原创作品，转载请注明出处！
+</li>
+</ul>
+
+</div>
+
+    
+    
+    
+
+
+<div>
+
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创文章分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="括囊无誉 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TCGA/" rel="tag"># TCGA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/CHIPSEQ/nextgenseq/" rel="next" title="高通量测序NGS">
+                <i class="fa fa-chevron-left"></i> 高通量测序NGS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/TCGA/TCGAName/" rel="prev" title="TCGA数据库中的癌症全称">
+                TCGA数据库中的癌症全称 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="括囊无誉">
+          <p class="site-author-name" itemprop="name">括囊无誉</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">171</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">211</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/75d3f95b058e" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-http://www.jianshu.com/u/75d3f95b058e"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">括囊无誉</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://uteric-1.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://uteric.github.io/TCGA/RTCGAToolbox/';
+          this.page.identifier = 'TCGA/RTCGAToolbox/';
+          this.page.title = 'TCGA学习笔记-使用R语言中的RTCGAToolbox分析TCGA数据';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://uteric-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
