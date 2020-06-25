@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-06-15T03:09:37.000Z</updated>
+  <updated>2020-06-23T03:59:04.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何从TCGA下载数据</title>
+    <link href="http://uteric.github.io/TCGA/TCGAdownload/"/>
+    <id>http://uteric.github.io/TCGA/TCGAdownload/</id>
+    <published>2020-06-23T03:59:04.000Z</published>
+    <updated>2020-06-23T03:59:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>TCGA是由National Cancer Institute创建的肿瘤基因组数据库，截至目前（2020年6月），共收录65个PROJECTS，67个PRIMARY SITES，84031个CASES，涉及22872个基因。</p><p><img src="/images/TCGA/TCGA02.png" alt></p><p>TCGA数据库的大部分数据可以下载，在网站上直接下载方法如下：</p><p>以胃癌为例，点击[REPOSITORY]，左侧有[FILES]和[CASES]，点击[CASES]，选择[PRIMARY SITE]下的[STOMACH]，再选择[PROGRAM]下的[TCGA]，[PROJECT]选择[TCGA-STAD]，[DISEASE TYPE]选择[ADENOMAS AND ADENOCARCINOMAS]，此时，数据总量为18.84TB。回到[FILES]下，[EXPERIMENTAL STRATEGY]选择[RNA SEQ]，[WORKFLOW TYPE]选择[HTSEQ COUNTS]，[DATA FORMAT]选择[TXT]，此时，数据总量为96.8MB，点[ADD FILES TO CART]，就可以下载了。</p><p><img src="/images/TCGA/TCGA03.png" alt></p><p>进入[CART]，共包含373个FILES，348个CASES，FILE SIZE为96.8MB，全部数据都是开源可供下载的，点击[DOWNLOAD]下的[MANIFEST]，可以下载gdc_manifest.txt，这是用于下载的样本信息文件；点击[CLINICAL]下的[JSON]，可以下载临床的分类数据；点击[METADATA]，可以下载样本的具体信息。</p><p><img src="/images/TCGA/TCGA04.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;TCGA是由National Cancer Institute创建的肿瘤基因组数据库，截至目前（2020年6月），共收录65个PROJECTS，67个PRIMARY SITES，84031个CASES，涉及22872个基因。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images
+      
+    
+    </summary>
+    
+      <category term="生物信息" scheme="http://uteric.github.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+      <category term="TCGA" scheme="http://uteric.github.io/tags/TCGA/"/>
+    
+  </entry>
   
   <entry>
     <title>R语言中RTCGA包的基本用法</title>
@@ -512,32 +538,6 @@
     
     
       <category term="layout" scheme="http://uteric.github.io/tags/layout/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用mfrow和mfcol实现R的图形排版</title>
-    <link href="http://uteric.github.io/R/R_mfrow/"/>
-    <id>http://uteric.github.io/R/R_mfrow/</id>
-    <published>2020-05-30T19:36:02.000Z</published>
-    <updated>2020-05-30T19:36:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在R绘图中，可以使用mfrow=c(nrows, ncols)或mfcol=c(nrows, ncols)配合par()来实现图形排版。mfrow=c(nrows, ncols)是按行排列，mfcol=c(nrows, ncols)是按列排列。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; attach(mtcars)</span><br><span class="line">&gt; par(mfrow=c(2,2))</span><br><span class="line">&gt; hist(wt)</span><br><span class="line">&gt; hist(cyl)</span><br><span class="line">&gt; hist(disp)</span><br><span class="line">&gt; hist(hp)</span><br></pre></td></tr></table></figure><p><img src="/images/R/mfrow01.png" alt></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">par(mfcol=c(2,2))</span><br><span class="line">hist(wt)</span><br><span class="line">hist(cyl)</span><br><span class="line">hist(disp)</span><br><span class="line">hist(hp)</span><br></pre></td></tr></table></figure><p><img src="/images/R/mfrow02.png" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;在R绘图中，可以使用mfrow=c(nrows, ncols)或mfcol=c(nrows, ncols)配合par()来实现图形排版。mfrow=c(nrows, ncols)是按行排列，mfcol=c(nrows, ncols)是按列排列。&lt;/p&gt;
-&lt;figure cl
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="mfrow" scheme="http://uteric.github.io/tags/mfrow/"/>
     
   </entry>
   
