@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://uteric.github.io/TCGA/TCGA3metadata/</loc>
+    
+    <lastmod>2020-06-27T22:40:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://uteric.github.io/TCGA/TCGA2move/</loc>
     
     <lastmod>2020-06-27T21:13:59.000Z</lastmod>
