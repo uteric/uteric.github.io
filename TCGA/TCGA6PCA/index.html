@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="TCGA,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="诸子百家" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="上面，我们对RNA表达数据进行了差异分析，下面，我们将进行主成份分析（PCA），用于对数据进行区分和归类。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777">
+<meta name="keywords" content="TCGA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCGA学习笔记6-主成份分析PCA">
+<meta property="og:url" content="http://uteric.github.io/TCGA/TCGA6PCA/index.html">
+<meta property="og:site_name" content="诸子百家">
+<meta property="og:description" content="上面，我们对RNA表达数据进行了差异分析，下面，我们将进行主成份分析（PCA），用于对数据进行区分和归类。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://uteric.github.io/images/TCGA/TCGA06.png">
+<meta property="og:image" content="http://uteric.github.io/images/TCGA/TCGA07.png">
+<meta property="og:updated_time" content="2020-07-01T04:15:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TCGA学习笔记6-主成份分析PCA">
+<meta name="twitter:description" content="上面，我们对RNA表达数据进行了差异分析，下面，我们将进行主成份分析（PCA），用于对数据进行区分和归类。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777">
+<meta name="twitter:image" content="http://uteric.github.io/images/TCGA/TCGA06.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '9e233f3fa2f200ca831529de7ba10253',
+      indexName: 'uteric',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://uteric.github.io/TCGA/TCGA6PCA/">
+
+
+
+
+
+  <title>TCGA学习笔记6-主成份分析PCA | 诸子百家</title>
+  
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104081724-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <meta name="baidu-site-verification" content="bfQpbnNmEL">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诸子百家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+<div class="local-search-header clearfix">
+<span class="search-icon">
+<i class="fa fa-search"></i>
+</span>
+<span class="popup-btn-close">
+<i class="fa fa-times-circle"></i>
+</span>
+<div class="local-search-input-wrapper">
+<input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+</div>
+</div>
+<div id="local-search-result"></div>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/TCGA/TCGA6PCA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="括囊无誉">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸子百家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TCGA学习笔记6-主成份分析PCA</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-30T23:15:19-05:00">
+                2020-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/生物信息/" itemprop="url" rel="index">
+                    <span itemprop="name">生物信息</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/TCGA/TCGA6PCA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="TCGA/TCGA6PCA/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>°C
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>上面，我们对RNA表达数据进行了差异分析，下面，我们将进行主成份分析（PCA），用于对数据进行区分和归类。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br></pre></td><td class="code"><pre><span class="line">&gt; pcaData &lt;- data[rownames(result_select),] <span class="comment"># 这里，首先使用差异表达数据，即筛选出来的4913个基因在611个样本中的表达水平</span></span><br><span class="line">&gt; class(pcaData)</span><br><span class="line">[1] <span class="string">"data.frame"</span></span><br><span class="line">&gt; dim(pcaData)</span><br><span class="line">[1] 4913  611</span><br><span class="line">&gt; head(pcaData)[,1:3]</span><br><span class="line">                TCGA-CZ-5465-01A-01R-1503 TCGA-BP-4355-01A-01R-1289</span><br><span class="line">ENSG00000000938                       899                      1211</span><br><span class="line">ENSG00000001617                     16862                     10888</span><br><span class="line">ENSG00000001630                       310                        77</span><br><span class="line">ENSG00000002586                     10729                      8611</span><br><span class="line">ENSG00000002746                         7                        37</span><br><span class="line">ENSG00000002933                     60355                     29448</span><br><span class="line">                TCGA-CZ-5451-01A-01R-1503</span><br><span class="line">ENSG00000000938                      1100</span><br><span class="line">ENSG00000001617                      9299</span><br><span class="line">ENSG00000001630                       305</span><br><span class="line">ENSG00000002586                      7618</span><br><span class="line">ENSG00000002746                         7</span><br><span class="line">ENSG00000002933                     47857</span><br><span class="line">&gt; pcaDataT &lt;- as.data.frame(t(pcaData)) <span class="comment"># 行列转置，每行一个样本，每列一个基因</span></span><br><span class="line">&gt; class(pcaDataT)</span><br><span class="line">[1] <span class="string">"data.frame"</span></span><br><span class="line">&gt; dim(pcaDataT)</span><br><span class="line">[1]  611 4913</span><br><span class="line">&gt; head(pcaDataT)[,1:3]</span><br><span class="line">                          ENSG00000000938 ENSG00000001617 ENSG00000001630</span><br><span class="line">TCGA-CZ-5465-01A-01R-1503             899           16862             310</span><br><span class="line">TCGA-BP-4355-01A-01R-1289            1211           10888              77</span><br><span class="line">TCGA-CZ-5451-01A-01R-1503            1100            9299             305</span><br><span class="line">TCGA-B0-5081-01A-01R-1334            2065            9886             103</span><br><span class="line">TCGA-CZ-5454-11A-01R-1503             783            7150             815</span><br><span class="line">TCGA-B0-5697-01A-11R-1541            1857            5288             146</span><br><span class="line">&gt; pcaDataTGroup &lt;- data.frame(pcaDataT,Group=group) <span class="comment"># 将分类信息加上，方便后面作图时颜色来区分</span></span><br><span class="line">&gt; dim(pcaDataTGroup)</span><br><span class="line">[1]  611 4914</span><br><span class="line">&gt; head(pcaDataTGroup)[,4912:4914]</span><br><span class="line">                          ENSG00000281404 ENSG00000281490  Group</span><br><span class="line">TCGA-CZ-5465-01A-01R-1503              73             446 cancer</span><br><span class="line">TCGA-BP-4355-01A-01R-1289             209            1208 cancer</span><br><span class="line">TCGA-CZ-5451-01A-01R-1503              17             126 cancer</span><br><span class="line">TCGA-B0-5081-01A-01R-1334             180             626 cancer</span><br><span class="line">TCGA-CZ-5454-11A-01R-1503              36             240 normal</span><br><span class="line">TCGA-B0-5697-01A-11R-1541              42             232 cancer</span><br><span class="line"></span><br><span class="line">&gt; pca &lt;- prcomp(pcaDataT,scale=TRUE) <span class="comment"># 使用R自带的prcomp()函数</span></span><br><span class="line">&gt; summary(pca)</span><br><span class="line">Importance of components:</span><br><span class="line">                           PC1      PC2      PC3      PC4      PC5      PC6      PC7</span><br><span class="line">Standard deviation     30.5406 21.06796 17.82409 15.56497 13.67455 11.96656 11.39468</span><br><span class="line">                            PC8     PC9    PC10    PC11    PC12    PC13    PC14    PC15</span><br><span class="line">Standard deviation     10.52719 9.12744 8.76353 7.25503 6.82239 6.62584 6.35338 6.16851</span><br><span class="line">                          PC16    PC17    PC18    PC19    PC20    PC21    PC22    PC23</span><br><span class="line">Standard deviation     6.10537 5.99082 5.87263 5.73438 5.61851 5.53551 5.40397 5.20705</span><br><span class="line">                          PC24    PC25    PC26    PC27    PC28    PC29    PC30    PC31</span><br><span class="line">Standard deviation     5.07502 4.94755 4.77045 4.73712 4.66466 4.60046 4.50403 4.48497</span><br><span class="line">                          PC32    PC33    PC34    PC35    PC36    PC37    PC38    PC39</span><br><span class="line">Standard deviation     4.41300 4.40078 4.24311 4.21938 4.11894 4.10427 4.03498 4.00425</span><br><span class="line">                          PC40    PC41    PC42    PC43    PC44    PC45    PC46    PC47</span><br><span class="line">Standard deviation     3.95901 3.92036 3.85311 3.81686 3.76335 3.72471 3.67439 3.65233</span><br><span class="line">                          PC48    PC49    PC50    PC51    PC52    PC53    PC54    PC55</span><br><span class="line">Standard deviation     3.62492 3.58215 3.53086 3.51850 3.49220 3.46807 3.40228 3.38611</span><br><span class="line">                          PC56    PC57    PC58   PC59    PC60    PC61    PC62    PC63</span><br><span class="line">Standard deviation     3.34341 3.33820 3.32907 3.2906 3.26280 3.23725 3.22031 3.19124</span><br><span class="line">                          PC64    PC65    PC66    PC67    PC68    PC69    PC70    PC71</span><br><span class="line">Standard deviation     3.14392 3.10767 3.09295 3.07358 3.02365 3.01153 2.99903 2.98530</span><br><span class="line">                          PC72    PC73    PC74    PC75    PC76   PC77    PC78    PC79</span><br><span class="line">Standard deviation     2.96770 2.95324 2.94226 2.92450 2.91141 2.8906 2.87615 2.84936</span><br><span class="line">                          PC80    PC81    PC82    PC83    PC84    PC85    PC86    PC87</span><br><span class="line">Standard deviation     2.82099 2.78651 2.78489 2.77050 2.76802 2.74951 2.73087 2.72602</span><br><span class="line">                          PC88    PC89    PC90    PC91    PC92   PC93    PC94    PC95</span><br><span class="line">Standard deviation     2.70287 2.69798 2.66500 2.65009 2.62908 2.6260 2.61238 2.59281</span><br><span class="line">                          PC96    PC97    PC98    PC99   PC100  PC101   PC102   PC103</span><br><span class="line">Standard deviation     2.59100 2.57340 2.55959 2.54633 2.53601 2.5261 2.50279 2.48348</span><br><span class="line">                         PC104   PC105   PC106  PC107   PC108   PC109   PC110   PC111</span><br><span class="line">Standard deviation     2.47543 2.45592 2.45236 2.4317 2.41468 2.41164 2.38742 2.37613</span><br><span class="line">                         PC112   PC113   PC114  PC115  PC116   PC117   PC118   PC119   PC120</span><br><span class="line">Standard deviation     2.35853 2.35056 2.33463 2.3295 2.3250 2.30730 2.30597 2.29750 2.29033</span><br><span class="line">                         PC121   PC122   PC123   PC124   PC125  PC126   PC127   PC128</span><br><span class="line">Standard deviation     2.26585 2.25312 2.24279 2.23134 2.22793 2.2158 2.20129 2.19728</span><br><span class="line">                         PC129   PC130   PC131   PC132   PC133   PC134   PC135  PC136  PC137</span><br><span class="line">Standard deviation     2.19296 2.17398 2.16039 2.14977 2.14574 2.13250 2.11185 2.1077 2.1031</span><br><span class="line">                         PC138   PC139   PC140   PC141   PC142   PC143   PC144   PC145</span><br><span class="line">Standard deviation     2.08261 2.07534 2.07042 2.05222 2.04793 2.04577 2.03694 2.02771</span><br><span class="line">                         PC146   PC147   PC148   PC149  PC150  PC151   PC152   PC153   PC154</span><br><span class="line">Standard deviation     2.01782 2.00092 1.99539 1.98983 1.9861 1.9781 1.96918 1.95985 1.95552</span><br><span class="line">                         PC155   PC156   PC157   PC158   PC159   PC160   PC161   PC162</span><br><span class="line">Standard deviation     1.94804 1.94291 1.93641 1.92242 1.92021 1.90568 1.89667 1.89451</span><br><span class="line">                         PC163   PC164   PC165   PC166   PC167  PC168  PC169   PC170   PC171</span><br><span class="line">Standard deviation     1.88673 1.88252 1.87848 1.87202 1.86426 1.8584 1.8548 1.84692 1.84509</span><br><span class="line">                         PC172   PC173   PC174   PC175   PC176   PC177   PC178   PC179</span><br><span class="line">Standard deviation     1.83931 1.83135 1.82669 1.82031 1.81080 1.80627 1.80070 1.79712</span><br><span class="line">                         PC180   PC181   PC182   PC183   PC184   PC185   PC186   PC187</span><br><span class="line">Standard deviation     1.78550 1.77936 1.77550 1.76623 1.75981 1.75181 1.74749 1.74488</span><br><span class="line">                         PC188   PC189  PC190   PC191   PC192   PC193   PC194   PC195</span><br><span class="line">Standard deviation     1.73577 1.73361 1.7181 1.70630 1.70290 1.69972 1.69536 1.68780</span><br><span class="line">                         PC196   PC197   PC198   PC199   PC200   PC201   PC202   PC203</span><br><span class="line">Standard deviation     1.67993 1.67835 1.67086 1.66480 1.66048 1.65500 1.65183 1.64799</span><br><span class="line">                         PC204   PC205   PC206   PC207   PC208   PC209   PC210   PC211</span><br><span class="line">Standard deviation     1.64225 1.64076 1.63780 1.63251 1.62520 1.61368 1.61132 1.60909</span><br><span class="line">                         PC212   PC213   PC214   PC215   PC216   PC217  PC218  PC219  PC220</span><br><span class="line">Standard deviation     1.60139 1.59764 1.59602 1.59042 1.58228 1.57580 1.5733 1.5654 1.5610</span><br><span class="line">                         PC221   PC222   PC223   PC224   PC225   PC226   PC227   PC228</span><br><span class="line">Standard deviation     1.55563 1.55465 1.54655 1.54196 1.53549 1.53234 1.52645 1.52422</span><br><span class="line">                         PC229   PC230   PC231   PC232   PC233   PC234   PC235   PC236</span><br><span class="line">Standard deviation     1.51790 1.51457 1.51286 1.50343 1.50315 1.49795 1.49454 1.48776</span><br><span class="line">                         PC237   PC238   PC239   PC240   PC241   PC242   PC243   PC244</span><br><span class="line">Standard deviation     1.48438 1.47875 1.47257 1.46959 1.46717 1.45983 1.45757 1.45308</span><br><span class="line">                         PC245   PC246   PC247   PC248   PC249   PC250   PC251   PC252</span><br><span class="line">Standard deviation     1.44916 1.44823 1.44553 1.44368 1.43596 1.42866 1.42567 1.42135</span><br><span class="line">                         PC253   PC254   PC255  PC256  PC257  PC258  PC259   PC260   PC261</span><br><span class="line">Standard deviation     1.41682 1.41351 1.41118 1.4086 1.4026 1.3972 1.3949 1.38863 1.38630</span><br><span class="line">                         PC262   PC263   PC264   PC265   PC266   PC267   PC268   PC269</span><br><span class="line">Standard deviation     1.38335 1.37999 1.37650 1.37295 1.36460 1.36280 1.35885 1.35620</span><br><span class="line">                         PC270   PC271   PC272   PC273   PC274   PC275   PC276   PC277</span><br><span class="line">Standard deviation     1.34918 1.34286 1.34120 1.33772 1.33425 1.32969 1.32843 1.32246</span><br><span class="line">                         PC278   PC279   PC280   PC281   PC282   PC283   PC284   PC285</span><br><span class="line">Standard deviation     1.32087 1.32038 1.31198 1.30642 1.30391 1.30088 1.29874 1.29487</span><br><span class="line">                         PC286   PC287   PC288   PC289   PC290   PC291   PC292   PC293</span><br><span class="line">Standard deviation     1.29066 1.28536 1.28144 1.27949 1.27251 1.27007 1.26710 1.26414</span><br><span class="line">                         PC294   PC295   PC296   PC297   PC298   PC299   PC300   PC301</span><br><span class="line">Standard deviation     1.26220 1.26014 1.25852 1.25420 1.25096 1.24993 1.24498 1.23962</span><br><span class="line">                         PC302   PC303   PC304  PC305  PC306  PC307  PC308  PC309  PC310</span><br><span class="line">Standard deviation     1.23400 1.23255 1.22667 1.2240 1.2231 1.2229 1.2214 1.2143 1.2102</span><br><span class="line">                        PC311  PC312   PC313   PC314   PC315   PC316   PC317   PC318   PC319</span><br><span class="line">Standard deviation     1.2100 1.2048 1.19990 1.19701 1.19515 1.18987 1.18491 1.18245 1.18014</span><br><span class="line">                         PC320   PC321   PC322   PC323   PC324   PC325   PC326   PC327</span><br><span class="line">Standard deviation     1.17643 1.17621 1.17231 1.16879 1.16163 1.16122 1.15969 1.15713</span><br><span class="line">                         PC328   PC329   PC330   PC331   PC332   PC333   PC334   PC335</span><br><span class="line">Standard deviation     1.15556 1.15240 1.14952 1.14577 1.14304 1.14126 1.13763 1.13693</span><br><span class="line">                         PC336   PC337   PC338   PC339   PC340   PC341   PC342   PC343</span><br><span class="line">Standard deviation     1.13375 1.13120 1.12788 1.12463 1.12139 1.11960 1.11934 1.11628</span><br><span class="line">                         PC344   PC345   PC346   PC347   PC348   PC349   PC350   PC351</span><br><span class="line">Standard deviation     1.11177 1.10918 1.10520 1.10440 1.10241 1.09819 1.09693 1.09243</span><br><span class="line">                         PC352   PC353   PC354   PC355   PC356   PC357   PC358   PC359</span><br><span class="line">Standard deviation     1.08730 1.08648 1.08409 1.08042 1.07850 1.07407 1.07129 1.06942</span><br><span class="line">                         PC360   PC361   PC362   PC363   PC364   PC365   PC366   PC367</span><br><span class="line">Standard deviation     1.06691 1.06346 1.06228 1.05964 1.05558 1.05401 1.05002 1.04714</span><br><span class="line">                         PC368   PC369   PC370   PC371   PC372   PC373   PC374   PC375</span><br><span class="line">Standard deviation     1.04667 1.04370 1.04314 1.03839 1.03722 1.03520 1.02846 1.02695</span><br><span class="line">                         PC376   PC377   PC378   PC379   PC380   PC381   PC382   PC383</span><br><span class="line">Standard deviation     1.02537 1.02305 1.02137 1.02052 1.01721 1.01152 1.01111 1.00876</span><br><span class="line">                         PC384   PC385  PC386  PC387  PC388  PC389  PC390  PC391  PC392</span><br><span class="line">Standard deviation     1.00659 1.00372 1.0015 1.0003 0.9959 0.9945 0.9933 0.9895 0.9853</span><br><span class="line">                        PC393  PC394   PC395   PC396   PC397   PC398   PC399   PC400   PC401</span><br><span class="line">Standard deviation     0.9813 0.9801 0.97715 0.97527 0.97116 0.96965 0.96598 0.96351 0.96042</span><br><span class="line">                         PC402   PC403   PC404   PC405   PC406   PC407   PC408   PC409</span><br><span class="line">Standard deviation     0.95959 0.95777 0.95501 0.95072 0.94820 0.94598 0.94302 0.94201</span><br><span class="line">                         PC410   PC411   PC412   PC413   PC414   PC415   PC416   PC417</span><br><span class="line">Standard deviation     0.93933 0.93682 0.93610 0.93316 0.93053 0.92868 0.92602 0.92544</span><br><span class="line">                         PC418   PC419   PC420   PC421   PC422   PC423   PC424   PC425</span><br><span class="line">Standard deviation     0.91855 0.91759 0.91581 0.91240 0.91112 0.91077 0.90678 0.90618</span><br><span class="line">                         PC426   PC427   PC428   PC429   PC430   PC431   PC432   PC433</span><br><span class="line">Standard deviation     0.90249 0.89949 0.89669 0.89384 0.89288 0.88850 0.88718 0.88584</span><br><span class="line">                         PC434   PC435   PC436   PC437   PC438   PC439   PC440   PC441</span><br><span class="line">Standard deviation     0.88341 0.87924 0.87845 0.87462 0.87209 0.86974 0.86603 0.86518</span><br><span class="line">                         PC442   PC443   PC444   PC445   PC446   PC447   PC448   PC449</span><br><span class="line">Standard deviation     0.86083 0.86061 0.85783 0.85555 0.85338 0.85200 0.85090 0.84969</span><br><span class="line">                         PC450   PC451   PC452   PC453   PC454   PC455   PC456   PC457</span><br><span class="line">Standard deviation     0.84627 0.84291 0.84245 0.83924 0.83537 0.83425 0.83233 0.82828</span><br><span class="line">                         PC458   PC459   PC460   PC461   PC462   PC463   PC464   PC465</span><br><span class="line">Standard deviation     0.82678 0.82414 0.82309 0.82012 0.81847 0.81767 0.81494 0.81351</span><br><span class="line">                         PC466   PC467   PC468   PC469   PC470   PC471   PC472   PC473</span><br><span class="line">Standard deviation     0.80988 0.80492 0.80108 0.80043 0.79918 0.79730 0.79388 0.79141</span><br><span class="line">                         PC474   PC475   PC476   PC477   PC478   PC479   PC480   PC481</span><br><span class="line">Standard deviation     0.78887 0.78738 0.78554 0.78497 0.78066 0.78024 0.77470 0.77313</span><br><span class="line">                         PC482   PC483   PC484   PC485   PC486   PC487   PC488   PC489</span><br><span class="line">Standard deviation     0.77203 0.77000 0.76624 0.76326 0.76087 0.75905 0.75893 0.75472</span><br><span class="line">                         PC490   PC491   PC492   PC493   PC494   PC495   PC496   PC497</span><br><span class="line">Standard deviation     0.75419 0.75251 0.74832 0.74672 0.74510 0.74337 0.74174 0.74037</span><br><span class="line">                         PC498   PC499   PC500   PC501   PC502   PC503   PC504   PC505</span><br><span class="line">Standard deviation     0.73802 0.73601 0.73324 0.73171 0.72897 0.72684 0.72589 0.72385</span><br><span class="line">                         PC506  PC507  PC508  PC509  PC510  PC511  PC512  PC513  PC514</span><br><span class="line">Standard deviation     0.72215 0.7172 0.7142 0.7132 0.7091 0.7087 0.7080 0.7049 0.7013</span><br><span class="line">                        PC515  PC516  PC517  PC518  PC519  PC520  PC521   PC522   PC523</span><br><span class="line">Standard deviation     0.6982 0.6953 0.6942 0.6924 0.6904 0.6880 0.6864 0.68305 0.68213</span><br><span class="line">                         PC524   PC525   PC526   PC527   PC528   PC529   PC530   PC531</span><br><span class="line">Standard deviation     0.67959 0.67589 0.67421 0.67178 0.66804 0.66633 0.66601 0.66377</span><br><span class="line">                         PC532   PC533   PC534   PC535   PC536   PC537   PC538   PC539</span><br><span class="line">Standard deviation     0.66191 0.65937 0.65725 0.65584 0.65419 0.65095 0.64724 0.64534</span><br><span class="line">                         PC540   PC541   PC542   PC543   PC544   PC545   PC546   PC547</span><br><span class="line">Standard deviation     0.64276 0.63951 0.63786 0.63523 0.63117 0.62784 0.62692 0.62319</span><br><span class="line">                         PC548   PC549   PC550   PC551   PC552   PC553   PC554   PC555</span><br><span class="line">Standard deviation     0.62051 0.61775 0.61483 0.61238 0.61000 0.60674 0.60389 0.60303</span><br><span class="line">                         PC556   PC557   PC558   PC559   PC560   PC561   PC562   PC563</span><br><span class="line">Standard deviation     0.60151 0.60121 0.59484 0.59220 0.58997 0.58819 0.58589 0.58175</span><br><span class="line">                         PC564   PC565   PC566   PC567   PC568   PC569   PC570   PC571</span><br><span class="line">Standard deviation     0.57990 0.57774 0.57318 0.57104 0.56929 0.56368 0.56112 0.55675</span><br><span class="line">                         PC572   PC573   PC574   PC575   PC576   PC577   PC578   PC579</span><br><span class="line">Standard deviation     0.55548 0.55188 0.55145 0.54780 0.54517 0.53832 0.53484 0.53255</span><br><span class="line">                         PC580   PC581   PC582   PC583   PC584   PC585   PC586   PC587</span><br><span class="line">Standard deviation     0.52787 0.52379 0.52309 0.51867 0.51252 0.51120 0.50921 0.50802</span><br><span class="line">                         PC588   PC589   PC590   PC591   PC592   PC593   PC594   PC595</span><br><span class="line">Standard deviation     0.50304 0.49706 0.49622 0.48912 0.48581 0.48163 0.48029 0.47163</span><br><span class="line">                         PC596   PC597   PC598   PC599   PC600   PC601   PC602   PC603</span><br><span class="line">Standard deviation     0.46913 0.46281 0.45966 0.45449 0.45346 0.44524 0.44136 0.43279</span><br><span class="line">                         PC604   PC605   PC606   PC607   PC608   PC609   PC610     PC611</span><br><span class="line">Standard deviation     0.41556 0.39920 0.39283 0.38120 0.37238 0.35365 0.31898 6.713e-15</span><br><span class="line"> [ reached getOption(<span class="string">"max.print"</span>) -- omitted 2 rows ]</span><br><span class="line"></span><br><span class="line">&gt; plot(pca,<span class="built_in">type</span>=<span class="string">"l"</span>) <span class="comment"># 作图，看一下各个PC的权重，可见，PC1和PC2占了绝大多数权重</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/TCGA/TCGA06.png" alt></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&gt; str(pca) <span class="comment"># 看一下数据结构</span></span><br><span class="line">List of 5</span><br><span class="line"> $ sdev    : num [1:611] 30.5 21.1 17.8 15.6 13.7 ...</span><br><span class="line"> $ rotation: num [1:4913, 1:611] -0.0177 -0.0113 0.0172 -0.0142 0.0154 ...</span><br><span class="line">  ..- attr(*, <span class="string">"dimnames"</span>)=List of 2</span><br><span class="line">  .. ..$ : chr [1:4913] <span class="string">"ENSG00000000938"</span> <span class="string">"ENSG00000001617"</span> <span class="string">"ENSG00000001630"</span> <span class="string">"ENSG00000002586"</span> ...</span><br><span class="line">  .. ..$ : chr [1:611] <span class="string">"PC1"</span> <span class="string">"PC2"</span> <span class="string">"PC3"</span> <span class="string">"PC4"</span> ...</span><br><span class="line"> $ center  : Named num [1:4913] 1086 6694 235 9934 241 ...</span><br><span class="line">  ..- attr(*, <span class="string">"names"</span>)= chr [1:4913] <span class="string">"ENSG00000000938"</span> <span class="string">"ENSG00000001617"</span> <span class="string">"ENSG00000001630"</span> <span class="string">"ENSG00000002586"</span> ...</span><br><span class="line"> $ scale   : Named num [1:4913] 743 3689 183 5885 619 ...</span><br><span class="line">  ..- attr(*, <span class="string">"names"</span>)= chr [1:4913] <span class="string">"ENSG00000000938"</span> <span class="string">"ENSG00000001617"</span> <span class="string">"ENSG00000001630"</span> <span class="string">"ENSG00000002586"</span> ...</span><br><span class="line"> $ x       : num [1:611, 1:611] -19.09 -35.24 9.44 -58.72 91.79 ...</span><br><span class="line">  ..- attr(*, <span class="string">"dimnames"</span>)=List of 2</span><br><span class="line">  .. ..$ : chr [1:611] <span class="string">"TCGA-CZ-5465-01A-01R-1503"</span> <span class="string">"TCGA-BP-4355-01A-01R-1289"</span> <span class="string">"TCGA-CZ-5451-01A-01R-1503"</span> <span class="string">"TCGA-B0-5081-01A-01R-1334"</span> ...</span><br><span class="line">  .. ..$ : chr [1:611] <span class="string">"PC1"</span> <span class="string">"PC2"</span> <span class="string">"PC3"</span> <span class="string">"PC4"</span> ...</span><br><span class="line"> - attr(*, <span class="string">"class"</span>)= chr <span class="string">"prcomp"</span></span><br><span class="line"></span><br><span class="line">&gt; data_pca &lt;- cbind(pcaDataTGroup,pca<span class="variable">$x</span>[,1:2]) <span class="comment"># 将PC1与PC2加进去</span></span><br><span class="line">&gt; dim(data_pca)</span><br><span class="line">[1]  611 4916</span><br><span class="line">&gt; head(data_pca)[,4913:4916]</span><br><span class="line">                          ENSG00000281490  Group        PC1        PC2</span><br><span class="line">TCGA-CZ-5465-01A-01R-1503             446 cancer -19.085520  10.325704</span><br><span class="line">TCGA-BP-4355-01A-01R-1289            1208 cancer -35.244522  34.570355</span><br><span class="line">TCGA-CZ-5451-01A-01R-1503             126 cancer   9.439234 -23.982777</span><br><span class="line">TCGA-B0-5081-01A-01R-1334             626 cancer -58.723514  23.949627</span><br><span class="line">TCGA-CZ-5454-11A-01R-1503             240 normal  91.788022  78.416490</span><br><span class="line">TCGA-B0-5697-01A-11R-1541             232 cancer  -1.465493  -2.567302</span><br><span class="line"></span><br><span class="line"><span class="comment"># PLOT WITH GGPLOT -----</span></span><br><span class="line">&gt; library(ggplot2)</span><br><span class="line">&gt; ggplot(data_pca,aes(PC1,PC2,col=Group,fill=Group))+</span><br><span class="line">+   stat_ellipse(geom=<span class="string">"polygon"</span>,col=<span class="string">"black"</span>,alpha=0.5)+</span><br><span class="line">+   geom_point(shape=21,col=<span class="string">"black"</span>,size=1.2)+</span><br><span class="line">+   theme(panel.background = element_rect(fill=<span class="string">"transparent"</span>,color=<span class="string">"black"</span>),</span><br><span class="line">+         panel.grid.minor = element_blank(), </span><br><span class="line">+         panel.grid.major = element_blank())</span><br></pre></td></tr></table></figure>
+<p><img src="/images/TCGA/TCGA07.png" alt></p>
+<p>如图，肿瘤样本与正常样本被很好地分为两组，可以明确区分，这也可被用于预测一个未知样本是否是肿瘤样本或是正常样本。</p>
+
+      
+    </div>
+
+<div>
+
+
+<ul class="post-copyright">
+<li class="post-copyright-author">
+<strong>本文作者：</strong>括囊无誉
+</li>
+<li class="post-copyright-link">
+<strong>本文链接：</strong>
+<a href="/TCGA/TCGA6PCA/" title="TCGA学习笔记6-主成份分析PCA">TCGA/TCGA6PCA/</a>
+</li>
+<li class="post-copyright-license">
+<strong>版权声明： </strong>
+本博客所有文章均为原创作品，转载请注明出处！
+</li>
+</ul>
+
+</div>
+
+    
+    
+    
+
+
+<div>
+
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创文章分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="括囊无誉 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TCGA/" rel="tag"># TCGA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/TCGA/TCGA5Diff/" rel="next" title="TCGA学习笔记5-差异表达分析">
+                <i class="fa fa-chevron-left"></i> TCGA学习笔记5-差异表达分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="括囊无誉">
+          <p class="site-author-name" itemprop="name">括囊无誉</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">177</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">211</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/75d3f95b058e" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-http://www.jianshu.com/u/75d3f95b058e"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">括囊无誉</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://uteric-1.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://uteric.github.io/TCGA/TCGA6PCA/';
+          this.page.identifier = 'TCGA/TCGA6PCA/';
+          this.page.title = 'TCGA学习笔记6-主成份分析PCA';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://uteric-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
