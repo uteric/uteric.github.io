@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://uteric.github.io/TCGA/TCGA10Roc/</loc>
+    
+    <lastmod>2020-07-05T04:16:52.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://uteric.github.io/TCGA/TCGA9Annot/</loc>
+    
+    <lastmod>2020-07-04T22:15:27.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://uteric.github.io/TCGA/TCGA8Clinic/</loc>
+    
+    <lastmod>2020-07-04T21:39:03.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://uteric.github.io/TCGA/TCGA7Heatmap/</loc>
     
     <lastmod>2020-07-04T18:58:47.000Z</lastmod>
@@ -345,14 +366,14 @@
   </url>
   
   <url>
-    <loc>http://uteric.github.io/about/index.html</loc>
+    <loc>http://uteric.github.io/categories/index.html</loc>
     
     <lastmod>2020-04-30T14:43:15.389Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://uteric.github.io/categories/index.html</loc>
+    <loc>http://uteric.github.io/about/index.html</loc>
     
     <lastmod>2020-04-30T14:43:15.389Z</lastmod>
     
@@ -1087,13 +1108,6 @@
   </url>
   
   <url>
-    <loc>http://uteric.github.io/Articles/%E4%B8%8A%E5%8E%95%E6%89%80%E6%96%87%E8%BE%9E%E5%A9%89%E7%BA%A6%E7%9A%84%E8%AF%B4%E6%B3%95/</loc>
-    
-    <lastmod>2017-08-06T20:34:29.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://uteric.github.io/Articles/%E4%BA%BA%E5%A6%82%E5%85%B6%E5%90%8D/</loc>
     
     <lastmod>2017-08-06T20:34:29.000Z</lastmod>
@@ -1101,14 +1115,14 @@
   </url>
   
   <url>
-    <loc>http://uteric.github.io/Articles/%E4%BB%80%E4%B9%88%E6%98%AF%E5%AE%A2%E6%98%9F/</loc>
+    <loc>http://uteric.github.io/Articles/%E5%84%92%E5%AE%B6%E5%85%AD%E8%89%BA%E4%B8%8E%E5%91%A8%E7%A4%BC%E5%85%AD%E8%89%BA%E6%9C%89%E4%BD%95%E5%8C%BA%E5%88%AB/</loc>
     
     <lastmod>2017-08-06T20:34:29.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://uteric.github.io/Articles/%E5%84%92%E5%AE%B6%E5%85%AD%E8%89%BA%E4%B8%8E%E5%91%A8%E7%A4%BC%E5%85%AD%E8%89%BA%E6%9C%89%E4%BD%95%E5%8C%BA%E5%88%AB/</loc>
+    <loc>http://uteric.github.io/Articles/%E4%BB%80%E4%B9%88%E6%98%AF%E5%AE%A2%E6%98%9F/</loc>
     
     <lastmod>2017-08-06T20:34:29.000Z</lastmod>
     
@@ -1150,7 +1164,7 @@
   </url>
   
   <url>
-    <loc>http://uteric.github.io/Articles/%E6%85%A7%E6%98%9F%E5%90%8D%E7%A7%B0%E7%9F%A5%E5%A4%9A%E5%B0%91/</loc>
+    <loc>http://uteric.github.io/Articles/%E4%B8%8A%E5%8E%95%E6%89%80%E6%96%87%E8%BE%9E%E5%A9%89%E7%BA%A6%E7%9A%84%E8%AF%B4%E6%B3%95/</loc>
     
     <lastmod>2017-08-06T20:34:29.000Z</lastmod>
     
@@ -1158,6 +1172,13 @@
   
   <url>
     <loc>http://uteric.github.io/Articles/%E6%96%87%E4%BA%BA%E4%B9%8B%E6%AD%BB/</loc>
+    
+    <lastmod>2017-08-06T20:34:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://uteric.github.io/Articles/%E6%85%A7%E6%98%9F%E5%90%8D%E7%A7%B0%E7%9F%A5%E5%A4%9A%E5%B0%91/</loc>
     
     <lastmod>2017-08-06T20:34:29.000Z</lastmod>
     
@@ -1185,14 +1206,14 @@
   </url>
   
   <url>
-    <loc>http://uteric.github.io/Articles/%E8%91%97%E5%90%8D%E9%AA%82%E4%BA%BA%E7%9A%84%E8%AF%9D/</loc>
+    <loc>http://uteric.github.io/Articles/%E7%9B%90%E6%9E%AD%E4%B8%80%E8%AF%8D%E7%9A%84%E6%9D%A5%E5%8E%86/</loc>
     
     <lastmod>2017-08-06T20:34:29.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://uteric.github.io/Articles/%E7%9B%90%E6%9E%AD%E4%B8%80%E8%AF%8D%E7%9A%84%E6%9D%A5%E5%8E%86/</loc>
+    <loc>http://uteric.github.io/Articles/%E8%91%97%E5%90%8D%E9%AA%82%E4%BA%BA%E7%9A%84%E8%AF%9D/</loc>
     
     <lastmod>2017-08-06T20:34:29.000Z</lastmod>
     
