@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="TCGA,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="诸子百家" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="前面，我们以padj或FoldChange为依据筛选了TOP10基因，并进行了生存分析，但效果并不理想，原因很简单，因为不论是P值还是变化倍数，其实都与病例生存时间没有必然关联。这次，我们来对所有差异表达基因批量进行生存分析，看有多少基因影响病例生存，并且找找规律。 123456789101112131415161718192021222324252627282930313233343536373">
+<meta name="keywords" content="TCGA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCGA学习笔记13-对所有差异表达基因进行生存分析">
+<meta property="og:url" content="http://uteric.github.io/TCGA/TCGA13Survival/index.html">
+<meta property="og:site_name" content="诸子百家">
+<meta property="og:description" content="前面，我们以padj或FoldChange为依据筛选了TOP10基因，并进行了生存分析，但效果并不理想，原因很简单，因为不论是P值还是变化倍数，其实都与病例生存时间没有必然关联。这次，我们来对所有差异表达基因批量进行生存分析，看有多少基因影响病例生存，并且找找规律。 123456789101112131415161718192021222324252627282930313233343536373">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-07-05T21:37:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TCGA学习笔记13-对所有差异表达基因进行生存分析">
+<meta name="twitter:description" content="前面，我们以padj或FoldChange为依据筛选了TOP10基因，并进行了生存分析，但效果并不理想，原因很简单，因为不论是P值还是变化倍数，其实都与病例生存时间没有必然关联。这次，我们来对所有差异表达基因批量进行生存分析，看有多少基因影响病例生存，并且找找规律。 123456789101112131415161718192021222324252627282930313233343536373">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '9e233f3fa2f200ca831529de7ba10253',
+      indexName: 'uteric',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://uteric.github.io/TCGA/TCGA13Survival/">
+
+
+
+
+
+  <title>TCGA学习笔记13-对所有差异表达基因进行生存分析 | 诸子百家</title>
+  
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104081724-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <meta name="baidu-site-verification" content="bfQpbnNmEL">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诸子百家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+<div class="local-search-header clearfix">
+<span class="search-icon">
+<i class="fa fa-search"></i>
+</span>
+<span class="popup-btn-close">
+<i class="fa fa-times-circle"></i>
+</span>
+<div class="local-search-input-wrapper">
+<input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+</div>
+</div>
+<div id="local-search-result"></div>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/TCGA/TCGA13Survival/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="括囊无誉">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸子百家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TCGA学习笔记13-对所有差异表达基因进行生存分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-05T16:37:58-05:00">
+                2020-07-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/生物信息/" itemprop="url" rel="index">
+                    <span itemprop="name">生物信息</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/TCGA/TCGA13Survival/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="TCGA/TCGA13Survival/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>°C
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前面，我们以padj或FoldChange为依据筛选了TOP10基因，并进行了生存分析，但效果并不理想，原因很简单，因为不论是P值还是变化倍数，其实都与病例生存时间没有必然关联。这次，我们来对所有差异表达基因批量进行生存分析，看有多少基因影响病例生存，并且找找规律。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br></pre></td><td class="code"><pre><span class="line">&gt; dim(result_select_annot) <span class="comment"># 注释后的4863个基因</span></span><br><span class="line">[1] 4863    8</span><br><span class="line">&gt; head(result_select_annot)</span><br><span class="line">  ensembl_gene_id   baseMean log2FoldChange      lfcSE       <span class="built_in">stat</span></span><br><span class="line">1 ENSG00000000938  1056.5419       1.507987 0.09991137  15.093251</span><br><span class="line">2 ENSG00000001617  6403.7959       1.138046 0.08970727  12.686216</span><br><span class="line">3 ENSG00000001630   218.0296      -1.154463 0.12005336  -9.616248</span><br><span class="line">4 ENSG00000002586  9712.0493       1.265136 0.08533961  14.824725</span><br><span class="line">5 ENSG00000002746   240.4362      -3.725467 0.22413035 -16.621875</span><br><span class="line">6 ENSG00000002933 29346.9573       1.273440 0.12591051  10.113849</span><br><span class="line">        pvalue         padj hgnc_symbol</span><br><span class="line">1 1.793827e-51 2.147972e-50         FGR</span><br><span class="line">2 7.051123e-37 4.970055e-36      SEMA3F</span><br><span class="line">3 6.827609e-22 2.563747e-21     CYP51A1</span><br><span class="line">4 1.013943e-49 1.138895e-48        CD99</span><br><span class="line">5 4.839515e-62 8.093687e-61       HECW1</span><br><span class="line">6 4.796218e-24 1.976151e-23    TMEM176A</span><br><span class="line"></span><br><span class="line">&gt; annot_symbol &lt;- result_select_annot<span class="variable">$hgnc_symbol</span></span><br><span class="line">&gt; length(annot_symbol)</span><br><span class="line">[1] 4863</span><br><span class="line">&gt; annot_id &lt;- result_select_annot<span class="variable">$ensembl_gene_id</span></span><br><span class="line">&gt; length(annot_id)</span><br><span class="line">[1] 4863</span><br><span class="line">&gt; annot_data &lt;- data_select[match(result_select_annot<span class="variable">$ensembl_gene_id</span>,rownames(data_select)),]</span><br><span class="line">&gt; colnames(annot_data) &lt;- substr(colnames(annot_data),1,15)</span><br><span class="line">&gt; head(annot_data)[,1:3]</span><br><span class="line">                TCGA-CZ-5465-01 TCGA-BP-4355-01 TCGA-CZ-5451-01</span><br><span class="line">ENSG00000000938             899            1211            1100</span><br><span class="line">ENSG00000001617           16862           10888            9299</span><br><span class="line">ENSG00000001630             310              77             305</span><br><span class="line">ENSG00000002586           10729            8611            7618</span><br><span class="line">ENSG00000002746               7              37               7</span><br><span class="line">ENSG00000002933           60355           29448           47857</span><br><span class="line">&gt; dim(annot_data)</span><br><span class="line">[1] 4863  611 <span class="comment"># 数据准备就绪</span></span><br><span class="line"></span><br><span class="line">&gt; kidney_clinic<span class="variable">$newID</span> &lt;- gsub(<span class="string">"\\_diagnosis"</span>,<span class="string">"\\-01"</span>,kidney_clinic<span class="variable">$id</span>)</span><br><span class="line">&gt; dim(kidney_clinic)</span><br><span class="line">[1] 530  14</span><br><span class="line">&gt; head(kidney_clinic)</span><br><span class="line">                      id classification_of_tumor tumor_stage gender</span><br><span class="line">1 TCGA-CZ-5986_diagnosis            not reported     stage i   male</span><br><span class="line">2 TCGA-CZ-4858_diagnosis            not reported    stage ii   male</span><br><span class="line">3 TCGA-B8-5551_diagnosis            not reported     stage i female</span><br><span class="line">4 TCGA-B0-4817_diagnosis            not reported   stage iii   male</span><br><span class="line">5 TCGA-BP-4325_diagnosis            not reported     stage i female</span><br><span class="line">6 TCGA-B0-4698_diagnosis            not reported    stage iv   male</span><br><span class="line">  year_of_birth year_of_death year_of_diagnosis days_to_death age</span><br><span class="line">1          1945  not reported              2006  not reported  61</span><br><span class="line">2          1966  not reported              2005          2105  39</span><br><span class="line">3          1945  not reported              2010  not reported  65</span><br><span class="line">4          1921          2004              2002          1019  81</span><br><span class="line">5          1937  not reported              2001  not reported  64</span><br><span class="line">6          1928          2003              2003            42  75</span><br><span class="line">  deadORlive                      race      alcohol years_smoked</span><br><span class="line">1      Alive                     white Not Reported not reported</span><br><span class="line">2       Dead                     white Not Reported not reported</span><br><span class="line">3      Alive black or african american Not Reported not reported</span><br><span class="line">4       Dead                     white Not Reported not reported</span><br><span class="line">5      Alive                     white Not Reported not reported</span><br><span class="line">6       Dead                     white Not Reported not reported</span><br><span class="line">            newID</span><br><span class="line">1 TCGA-CZ-5986-01</span><br><span class="line">2 TCGA-CZ-4858-01</span><br><span class="line">3 TCGA-B8-5551-01</span><br><span class="line">4 TCGA-B0-4817-01</span><br><span class="line">5 TCGA-BP-4325-01</span><br><span class="line">6 TCGA-B0-4698-01</span><br><span class="line">&gt; km_plot &lt;- apply(annot_data,1,<span class="keyword">function</span>(x)&#123;ifelse(x&gt;median(x),<span class="string">"up"</span>,<span class="string">"down"</span>)&#125;)</span><br><span class="line">&gt; dim(km_plot)</span><br><span class="line">[1]  611 4863</span><br><span class="line">&gt; head(km_plot)[,1:3]</span><br><span class="line">                ENSG00000000938 ENSG00000001617 ENSG00000001630</span><br><span class="line">TCGA-CZ-5465-01 <span class="string">"down"</span>          <span class="string">"up"</span>            <span class="string">"up"</span>           </span><br><span class="line">TCGA-BP-4355-01 <span class="string">"up"</span>            <span class="string">"up"</span>            <span class="string">"down"</span>         </span><br><span class="line">TCGA-CZ-5451-01 <span class="string">"up"</span>            <span class="string">"up"</span>            <span class="string">"up"</span>           </span><br><span class="line">TCGA-B0-5081-01 <span class="string">"up"</span>            <span class="string">"up"</span>            <span class="string">"down"</span>         </span><br><span class="line">TCGA-CZ-5454-11 <span class="string">"down"</span>          <span class="string">"up"</span>            <span class="string">"up"</span>           </span><br><span class="line">TCGA-B0-5697-01 <span class="string">"up"</span>            <span class="string">"down"</span>          <span class="string">"down"</span>    </span><br><span class="line">&gt; km_plot_cancer &lt;- km_plot[grepl(<span class="string">"TCGA\\S&#123;9&#125;01"</span>,rownames(km_plot)),]</span><br><span class="line">&gt; dim(km_plot_cancer)</span><br><span class="line">[1]  538 4863</span><br><span class="line">&gt; head(km_plot_cancer)[,1:3]</span><br><span class="line">                ENSG00000000938 ENSG00000001617 ENSG00000001630</span><br><span class="line">TCGA-CZ-5465-01 <span class="string">"down"</span>          <span class="string">"up"</span>            <span class="string">"up"</span>           </span><br><span class="line">TCGA-BP-4355-01 <span class="string">"up"</span>            <span class="string">"up"</span>            <span class="string">"down"</span>         </span><br><span class="line">TCGA-CZ-5451-01 <span class="string">"up"</span>            <span class="string">"up"</span>            <span class="string">"up"</span>           </span><br><span class="line">TCGA-B0-5081-01 <span class="string">"up"</span>            <span class="string">"up"</span>            <span class="string">"down"</span>         </span><br><span class="line">TCGA-B0-5697-01 <span class="string">"up"</span>            <span class="string">"down"</span>          <span class="string">"down"</span>         </span><br><span class="line">TCGA-A3-A8OV-01 <span class="string">"up"</span>            <span class="string">"down"</span>          <span class="string">"up"</span>   </span><br><span class="line">&gt; kidney_clinic_km &lt;- kidney_clinic[match(rownames(km_plot_cancer),kidney_clinic<span class="variable">$newID</span>),]</span><br><span class="line">&gt; dim(kidney_clinic_km)</span><br><span class="line">[1] 538  14</span><br><span class="line">&gt; head(kidney_clinic_km)</span><br><span class="line">                        id classification_of_tumor tumor_stage gender</span><br><span class="line">274 TCGA-CZ-5465_diagnosis            not reported   stage iii female</span><br><span class="line">358 TCGA-BP-4355_diagnosis            not reported   stage iii female</span><br><span class="line">517 TCGA-CZ-5451_diagnosis            not reported    stage ii   male</span><br><span class="line">119 TCGA-B0-5081_diagnosis            not reported   stage iii female</span><br><span class="line">201 TCGA-B0-5697_diagnosis            not reported     stage i   male</span><br><span class="line">484 TCGA-A3-A8OV_diagnosis            not reported     stage i   male</span><br><span class="line">    year_of_birth year_of_death year_of_diagnosis days_to_death age</span><br><span class="line">274          1931  not reported              2007          2564  76</span><br><span class="line">358          1949          2010              2008           953  59</span><br><span class="line">517          1932  not reported              2006  not reported  74</span><br><span class="line">119          1926          2005              2005           362  79</span><br><span class="line">201          1957  not reported              2007  not reported  50</span><br><span class="line">484          1936  not reported              2011  not reported  75</span><br><span class="line">    deadORlive                      race      alcohol years_smoked</span><br><span class="line">274       Dead              not reported Not Reported not reported</span><br><span class="line">358       Dead                     white Not Reported not reported</span><br><span class="line">517      Alive                     white Not Reported not reported</span><br><span class="line">119       Dead                     white Not Reported not reported</span><br><span class="line">201      Alive                     white Not Reported not reported</span><br><span class="line">484      Alive black or african american Not Reported           65</span><br><span class="line">              newID</span><br><span class="line">274 TCGA-CZ-5465-01</span><br><span class="line">358 TCGA-BP-4355-01</span><br><span class="line">517 TCGA-CZ-5451-01</span><br><span class="line">119 TCGA-B0-5081-01</span><br><span class="line">201 TCGA-B0-5697-01</span><br><span class="line">484 TCGA-A3-A8OV-01</span><br><span class="line">&gt; daysToDeath &lt;- as.numeric(as.character(kidney_clinic_km<span class="variable">$days_to_death</span>))</span><br><span class="line">&gt; daysToDeath</span><br><span class="line">  [1] 2564  953   NA  362   NA   NA   62 1493   51   NA   NA   NA 1588</span><br><span class="line"> [14]   NA  885 2227  137   NA   NA 1432   NA   NA   NA   NA   NA   NA</span><br><span class="line"> [27] 1657   NA   18   NA 1964   NA  109   NA 1661   NA   NA   NA   NA</span><br><span class="line"> [40]   NA   NA   NA   NA 1315 1404  562  445   NA   NA   NA   NA 1238</span><br><span class="line"> [53]  182 1912   NA   NA   NA   NA 2454  344   NA 1913 1111   NA 1980</span><br><span class="line"> [66]   NA  600 1003   NA   NA   NA   NA 2105 1371  334   NA 1337   NA</span><br><span class="line"> [79]   NA   NA   NA   NA   NA   NA  727   NA   NA 2256   NA   NA   NA</span><br><span class="line"> [92]  782   NA   NA   NA   NA   NA   NA   NA 1625   NA   NA   NA   NA</span><br><span class="line">[105]   NA   NA  768   NA   NA   NA   NA   NA  563   NA 2145   NA   NA</span><br><span class="line">[118]   NA  561   NA   NA   NA   NA   NA   NA   NA   NA 1200   NA   NA</span><br><span class="line">[131]   NA   NA   NA   NA   NA   NA 1317   NA   NA   NA   NA   NA   NA</span><br><span class="line">[144]  329   NA   NA   NA   NA  242   NA   NA  646   NA   NA   NA   NA</span><br><span class="line">[157]  683  587  952    0   NA  320 1092   NA   NA   68  510   NA   NA</span><br><span class="line">[170]  245    2   NA  793   NA   NA   NA 2601   NA   NA   NA 1714   NA</span><br><span class="line">[183]   NA   NA 1230 1170 2386   NA  571  883 1912   NA   NA   NA 1986</span><br><span class="line">[196]   NA 1091   NA   NA   NA   NA   NA 1417   NA   NA   65   NA   NA</span><br><span class="line">[209]   NA   NA   NA   NA 1378   NA   NA   NA   NA   NA   NA   NA   NA</span><br><span class="line">[222]   NA   NA  679  866   NA   NA   NA   NA   NA  330   NA   NA  885</span><br><span class="line">[235]   NA  946   NA   NA  375   NA   NA   NA 1133   NA   NA  561   NA</span><br><span class="line">[248]  431   NA 2764   NA   NA   NA   NA 1696   NA   42   NA   59    0</span><br><span class="line">[261]   NA   NA   NA   NA   NA 1034 1270 1200 2241  333   NA   NA   NA</span><br><span class="line">[274]   NA  342   NA  722   NA   NA 1075   NA   NA   NA   NA  709   NA</span><br><span class="line">[287]   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA   NA  164</span><br><span class="line">[300]   NA   NA   NA   NA   NA  701   69   NA   NA  574  106   NA   NA</span><br><span class="line">[313]   NA   NA  475 1019   NA   NA   NA  162  845   NA   NA  552  139</span><br><span class="line">[326]   NA   NA   NA   NA 1589   NA 1045  735   NA   NA   NA   NA   NA</span><br><span class="line">[339]   NA   NA 1972  459   NA 2299   NA   NA   NA  819 1463   NA   NA</span><br><span class="line">[352] 1724   NA   NA  313   NA   NA   NA  183   NA   NA   NA   NA   NA</span><br><span class="line">[365]   NA   NA 1626  822   NA  206  932 1097   NA   NA   NA   NA   NA</span><br><span class="line">[378]   NA   NA   NA  166  478   NA 1584   NA   NA   NA   NA  480   NA</span><br><span class="line">[391]   NA  311   NA   NA   NA   NA  202   NA  927 1343 1590  454   NA</span><br><span class="line">[404]  834   NA   NA   NA 2090 1598   NA 1639  878  992   NA   NA   NA</span><br><span class="line">[417]   NA   43   NA 2419   NA   NA   NA   NA 1121   NA   NA   NA   NA</span><br><span class="line">[430] 2343  485  110   NA   NA  313  204   NA   NA   NA  238   NA   NA</span><br><span class="line">[443]   NA   NA   NA   NA  480   NA  168   NA   73   NA   NA  101   NA</span><br><span class="line">[456]   NA   NA   NA  446 3615   NA  645   NA 1567   NA 3554   NA   NA</span><br><span class="line">[469]   NA   NA   NA  139   NA   NA   NA  841   NA   NA  336   NA   NA</span><br><span class="line">[482]   NA   99   NA   NA   NA   NA  637   NA   NA   NA   NA 1111   NA</span><br><span class="line">[495]   NA   NA   77  770   NA   NA   NA   NA  222   NA   NA   NA   NA</span><br><span class="line">[508]   41   NA   NA   NA   NA   NA   NA   NA   NA 1610  224   NA 1191</span><br><span class="line">[521]   NA   93   NA   NA  307   NA  211   NA   NA 1625   NA  578   NA</span><br><span class="line">[534]   NA   NA   NA   NA   NA</span><br><span class="line">&gt; daysToDeathN  &lt;- ifelse(is.na(daysToDeath),max(na.omit(daysToDeath)),daysToDeath)</span><br><span class="line">&gt; daysToDeathN</span><br><span class="line">  [1] 2564  953 3615  362 3615 3615   62 1493   51 3615 3615 3615 1588</span><br><span class="line"> [14] 3615  885 2227  137 3615 3615 1432 3615 3615 3615 3615 3615 3615</span><br><span class="line"> [27] 1657 3615   18 3615 1964 3615  109 3615 1661 3615 3615 3615 3615</span><br><span class="line"> [40] 3615 3615 3615 3615 1315 1404  562  445 3615 3615 3615 3615 1238</span><br><span class="line"> [53]  182 1912 3615 3615 3615 3615 2454  344 3615 1913 1111 3615 1980</span><br><span class="line"> [66] 3615  600 1003 3615 3615 3615 3615 2105 1371  334 3615 1337 3615</span><br><span class="line"> [79] 3615 3615 3615 3615 3615 3615  727 3615 3615 2256 3615 3615 3615</span><br><span class="line"> [92]  782 3615 3615 3615 3615 3615 3615 3615 1625 3615 3615 3615 3615</span><br><span class="line">[105] 3615 3615  768 3615 3615 3615 3615 3615  563 3615 2145 3615 3615</span><br><span class="line">[118] 3615  561 3615 3615 3615 3615 3615 3615 3615 3615 1200 3615 3615</span><br><span class="line">[131] 3615 3615 3615 3615 3615 3615 1317 3615 3615 3615 3615 3615 3615</span><br><span class="line">[144]  329 3615 3615 3615 3615  242 3615 3615  646 3615 3615 3615 3615</span><br><span class="line">[157]  683  587  952    0 3615  320 1092 3615 3615   68  510 3615 3615</span><br><span class="line">[170]  245    2 3615  793 3615 3615 3615 2601 3615 3615 3615 1714 3615</span><br><span class="line">[183] 3615 3615 1230 1170 2386 3615  571  883 1912 3615 3615 3615 1986</span><br><span class="line">[196] 3615 1091 3615 3615 3615 3615 3615 1417 3615 3615   65 3615 3615</span><br><span class="line">[209] 3615 3615 3615 3615 1378 3615 3615 3615 3615 3615 3615 3615 3615</span><br><span class="line">[222] 3615 3615  679  866 3615 3615 3615 3615 3615  330 3615 3615  885</span><br><span class="line">[235] 3615  946 3615 3615  375 3615 3615 3615 1133 3615 3615  561 3615</span><br><span class="line">[248]  431 3615 2764 3615 3615 3615 3615 1696 3615   42 3615   59    0</span><br><span class="line">[261] 3615 3615 3615 3615 3615 1034 1270 1200 2241  333 3615 3615 3615</span><br><span class="line">[274] 3615  342 3615  722 3615 3615 1075 3615 3615 3615 3615  709 3615</span><br><span class="line">[287] 3615 3615 3615 3615 3615 3615 3615 3615 3615 3615 3615 3615  164</span><br><span class="line">[300] 3615 3615 3615 3615 3615  701   69 3615 3615  574  106 3615 3615</span><br><span class="line">[313] 3615 3615  475 1019 3615 3615 3615  162  845 3615 3615  552  139</span><br><span class="line">[326] 3615 3615 3615 3615 1589 3615 1045  735 3615 3615 3615 3615 3615</span><br><span class="line">[339] 3615 3615 1972  459 3615 2299 3615 3615 3615  819 1463 3615 3615</span><br><span class="line">[352] 1724 3615 3615  313 3615 3615 3615  183 3615 3615 3615 3615 3615</span><br><span class="line">[365] 3615 3615 1626  822 3615  206  932 1097 3615 3615 3615 3615 3615</span><br><span class="line">[378] 3615 3615 3615  166  478 3615 1584 3615 3615 3615 3615  480 3615</span><br><span class="line">[391] 3615  311 3615 3615 3615 3615  202 3615  927 1343 1590  454 3615</span><br><span class="line">[404]  834 3615 3615 3615 2090 1598 3615 1639  878  992 3615 3615 3615</span><br><span class="line">[417] 3615   43 3615 2419 3615 3615 3615 3615 1121 3615 3615 3615 3615</span><br><span class="line">[430] 2343  485  110 3615 3615  313  204 3615 3615 3615  238 3615 3615</span><br><span class="line">[443] 3615 3615 3615 3615  480 3615  168 3615   73 3615 3615  101 3615</span><br><span class="line">[456] 3615 3615 3615  446 3615 3615  645 3615 1567 3615 3554 3615 3615</span><br><span class="line">[469] 3615 3615 3615  139 3615 3615 3615  841 3615 3615  336 3615 3615</span><br><span class="line">[482] 3615   99 3615 3615 3615 3615  637 3615 3615 3615 3615 1111 3615</span><br><span class="line">[495] 3615 3615   77  770 3615 3615 3615 3615  222 3615 3615 3615 3615</span><br><span class="line">[508]   41 3615 3615 3615 3615 3615 3615 3615 3615 1610  224 3615 1191</span><br><span class="line">[521] 3615   93 3615 3615  307 3615  211 3615 3615 1625 3615  578 3615</span><br><span class="line">[534] 3615 3615 3615 3615 3615</span><br><span class="line">&gt; fit &lt;- Surv(daysToDeathN,ifelse(kidney_clinic_km<span class="variable">$deadORlive</span>==<span class="string">"Dead"</span>,1,0)==1)</span><br><span class="line">&gt; p &lt;- rep(0,length(annot_id)) <span class="comment"># 定义变量p，放p value</span></span><br><span class="line">&gt; s &lt;- rep(0,length(annot_id)) <span class="comment"># 定义变量s，放surv，即生存预期</span></span><br><span class="line">&gt; <span class="keyword">for</span>(i <span class="keyword">in</span> 1:length(annot_id))&#123;</span><br><span class="line">+   m &lt;- survdiff(fit~km_plot_cancer[,i])</span><br><span class="line">+   p[i] &lt;- 1 - pchisq(m<span class="variable">$chisq</span>, length(m<span class="variable">$n</span>) -1)</span><br><span class="line">+   s[i] &lt;- ifelse(m<span class="variable">$obs</span>[1]/m<span class="variable">$n</span>[[1]] &gt; m<span class="variable">$obs</span>[2]/m<span class="variable">$n</span>[[2]],0,1) <span class="comment"># 0=低表达生存预期差，高表达生存预期好；1=低表达生存预期好，高表达生存预期差；</span></span><br><span class="line">+ &#125;</span><br><span class="line">&gt; class(p)</span><br><span class="line">[1] <span class="string">"numeric"</span></span><br><span class="line">&gt; length(p)</span><br><span class="line">[1] 4863</span><br><span class="line">&gt; class(s)</span><br><span class="line">[1] <span class="string">"numeric"</span></span><br><span class="line">&gt; length(s)</span><br><span class="line">[1] 4863</span><br><span class="line">&gt; table(s)</span><br><span class="line">s</span><br><span class="line">   0    1 </span><br><span class="line">2245 2618 <span class="comment"># 大致各一半</span></span><br><span class="line"></span><br><span class="line">&gt; result_select_annot<span class="variable">$survP</span> &lt;- p</span><br><span class="line">&gt; dim(result_select_annot)</span><br><span class="line">[1] 4863    9 <span class="comment"># 多出新的一列</span></span><br><span class="line">&gt; head(result_select_annot)</span><br><span class="line">  ensembl_gene_id   baseMean log2FoldChange      lfcSE       <span class="built_in">stat</span></span><br><span class="line">1 ENSG00000000938  1056.5419       1.507987 0.09991137  15.093251</span><br><span class="line">2 ENSG00000001617  6403.7959       1.138046 0.08970727  12.686216</span><br><span class="line">3 ENSG00000001630   218.0296      -1.154463 0.12005336  -9.616248</span><br><span class="line">4 ENSG00000002586  9712.0493       1.265136 0.08533961  14.824725</span><br><span class="line">5 ENSG00000002746   240.4362      -3.725467 0.22413035 -16.621875</span><br><span class="line">6 ENSG00000002933 29346.9573       1.273440 0.12591051  10.113849</span><br><span class="line">        pvalue         padj hgnc_symbol        survP</span><br><span class="line">1 1.793827e-51 2.147972e-50         FGR 9.088360e-01</span><br><span class="line">2 7.051123e-37 4.970055e-36      SEMA3F 2.033993e-03</span><br><span class="line">3 6.827609e-22 2.563747e-21     CYP51A1 1.373636e-05</span><br><span class="line">4 1.013943e-49 1.138895e-48        CD99 3.377814e-01</span><br><span class="line">5 4.839515e-62 8.093687e-61       HECW1 7.404867e-01</span><br><span class="line">6 4.796218e-24 1.976151e-23    TMEM176A 7.017783e-01</span><br><span class="line">&gt; result_select_annot<span class="variable">$surv</span> &lt;- s</span><br><span class="line">&gt; dim(result_select_annot)</span><br><span class="line">[1] 4863   10 <span class="comment"># 又多出一列</span></span><br><span class="line">&gt; head(result_select_annot)</span><br><span class="line">  ensembl_gene_id   baseMean log2FoldChange      lfcSE       <span class="built_in">stat</span></span><br><span class="line">1 ENSG00000000938  1056.5419       1.507987 0.09991137  15.093251</span><br><span class="line">2 ENSG00000001617  6403.7959       1.138046 0.08970727  12.686216</span><br><span class="line">3 ENSG00000001630   218.0296      -1.154463 0.12005336  -9.616248</span><br><span class="line">4 ENSG00000002586  9712.0493       1.265136 0.08533961  14.824725</span><br><span class="line">5 ENSG00000002746   240.4362      -3.725467 0.22413035 -16.621875</span><br><span class="line">6 ENSG00000002933 29346.9573       1.273440 0.12591051  10.113849</span><br><span class="line">        pvalue         padj hgnc_symbol        survP surv</span><br><span class="line">1 1.793827e-51 2.147972e-50         FGR 9.088360e-01    0</span><br><span class="line">2 7.051123e-37 4.970055e-36      SEMA3F 2.033993e-03    0</span><br><span class="line">3 6.827609e-22 2.563747e-21     CYP51A1 1.373636e-05    0</span><br><span class="line">4 1.013943e-49 1.138895e-48        CD99 3.377814e-01    1</span><br><span class="line">5 4.839515e-62 8.093687e-61       HECW1 7.404867e-01    0</span><br><span class="line">6 4.796218e-24 1.976151e-23    TMEM176A 7.017783e-01    0</span><br><span class="line">&gt; result_survP &lt;- result_select_annot[result_select_annot<span class="variable">$survP</span> &lt; 0.001,] <span class="comment"># 筛选survP&lt;0.001的基因，共922个 </span></span><br><span class="line">&gt; dim(result_survP)</span><br><span class="line">[1] 922   9</span><br><span class="line">&gt; head(result_survP)</span><br><span class="line">   ensembl_gene_id   baseMean log2FoldChange     lfcSE       <span class="built_in">stat</span></span><br><span class="line">3  ENSG00000001630   218.0296      -1.154463 0.1200534  -9.616248</span><br><span class="line">20 ENSG00000005108  2576.9645      -1.624881 0.1633055  -9.949951</span><br><span class="line">36 ENSG00000007314   397.9782       1.635177 0.1774570   9.214498</span><br><span class="line">47 ENSG00000008988 45747.5469       1.061020 0.0931570  11.389586</span><br><span class="line">49 ENSG00000009765   462.9210      -4.288686 0.2380812 -18.013543</span><br><span class="line">54 ENSG00000010319  2118.5841      -1.634110 0.1484228 -11.009836</span><br><span class="line">         pvalue         padj hgnc_symbol        survP surv</span><br><span class="line">3  6.827609e-22 2.563747e-21     CYP51A1 1.373636e-05    0</span><br><span class="line">20 2.523085e-23 1.004634e-22      THSD7A 2.232279e-04    0</span><br><span class="line">36 3.127375e-20 1.092412e-19       SCN4A 3.566491e-05    0</span><br><span class="line">47 4.712258e-30 2.505970e-29       RPS20 1.083688e-04    1</span><br><span class="line">49 1.525459e-72 3.707111e-71         IYD 2.896293e-04    0</span><br><span class="line">54 3.426265e-28 1.691118e-27      SEMA3G 4.535900e-08    0</span><br></pre></td></tr></table></figure>
+<p>最终筛选出来的这922个基因，符合FoldChange &gt; 2 &amp;&amp; pvalue &lt; 0.001 &amp;&amp; survP &lt; 0.001，下面，我们给这些基因分个组，</p>
+<p>1）HG，在肿瘤中表达上调，且高表达生存预期好；log2FoldChange &gt; 1 &amp;&amp; surv = 0<br>2）HB，在肿瘤中表达上调，且高表达生存预期坏，暂且认为是原癌基因；log2FoldChange &gt; 1 &amp;&amp; surv = 1<br>3）LG，在肿瘤中表达下调，且高表达生存预期好，暂且认为是抑癌基因；log2FoldChange &lt; -1 &amp;&amp; surv = 0<br>4）LB，在肿瘤中表达下调，且高表达生存预期坏；log2FoldChange &lt; -1 &amp;&amp; surv = 1</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; result_survP_HG &lt;- result_survP[result_survP<span class="variable">$log2FoldChange</span> &gt; 1 &amp; result_survP<span class="variable">$surv</span> == 0,]</span><br><span class="line">&gt; result_survP_HB &lt;- result_survP[result_survP<span class="variable">$log2FoldChange</span> &gt; 1 &amp; result_survP<span class="variable">$surv</span> == 1,]</span><br><span class="line">&gt; result_survP_LG &lt;- result_survP[result_survP<span class="variable">$log2FoldChange</span> &lt; -1 &amp; result_survP<span class="variable">$surv</span> == 0,]</span><br><span class="line">&gt; result_survP_LB &lt;- result_survP[result_survP<span class="variable">$log2FoldChange</span> &lt; -1 &amp; result_survP<span class="variable">$surv</span> == 1,]</span><br><span class="line"></span><br><span class="line">&gt; dim(result_survP_HG)</span><br><span class="line">[1] 141  10</span><br><span class="line">&gt; dim(result_survP_HB)</span><br><span class="line">[1] 416  10</span><br><span class="line">&gt; dim(result_survP_LG)</span><br><span class="line">[1] 314  10</span><br><span class="line">&gt; dim(result_survP_LB)</span><br><span class="line">[1] 51 10</span><br></pre></td></tr></table></figure>
+<p>看一下这四个集合的基因</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br></pre></td><td class="code"><pre><span class="line">&gt; result_survP_HG<span class="variable">$hgnc_symbol</span></span><br><span class="line">  [1] <span class="string">"SCN4A"</span>       <span class="string">"NRXN3"</span>       <span class="string">"TLL1"</span>        <span class="string">"ATP11A"</span>     </span><br><span class="line">  [5] <span class="string">"VASH1"</span>       <span class="string">"ADCY2"</span>       <span class="string">"SCGN"</span>        <span class="string">"NRP1"</span>       </span><br><span class="line">  [9] <span class="string">"SLC5A1"</span>      <span class="string">"BMX"</span>         <span class="string">"FLT1"</span>        <span class="string">"RGCC"</span>       </span><br><span class="line"> [13] <span class="string">"GRB10"</span>       <span class="string">"PRUNE2"</span>      <span class="string">"DOCK8"</span>       <span class="string">"LIPA"</span>       </span><br><span class="line"> [17] <span class="string">"VWF"</span>         <span class="string">"SLC17A2"</span>     <span class="string">"HAVCR1"</span>      <span class="string">"HHLA2"</span>      </span><br><span class="line"> [21] <span class="string">"SLC1A4"</span>      <span class="string">"PCDH17"</span>      <span class="string">"TEX11"</span>       <span class="string">"IQSEC3"</span>     </span><br><span class="line"> [25] <span class="string">"TMEM131L"</span>    <span class="string">"PREX1"</span>       <span class="string">"COL21A1"</span>     <span class="string">"CD93"</span>       </span><br><span class="line"> [29] <span class="string">"MCF2L"</span>       <span class="string">"MASP1"</span>       <span class="string">"F2RL3"</span>       <span class="string">"FBXL16"</span>     </span><br><span class="line"> [33] <span class="string">"KDR"</span>         <span class="string">"ACLY"</span>        <span class="string">"PER2"</span>        <span class="string">"ETS1"</span>       </span><br><span class="line"> [37] <span class="string">"DYSF"</span>        <span class="string">"TM6SF1"</span>      <span class="string">"HECW2"</span>       <span class="string">"CLEC18B"</span>    </span><br><span class="line"> [41] <span class="string">"CDH13"</span>       <span class="string">"RGS5"</span>        <span class="string">"HMCN1"</span>       <span class="string">"RIT1"</span>       </span><br><span class="line"> [45] <span class="string">"MALL"</span>        <span class="string">"MARCHF4"</span>     <span class="string">"SLC10A6"</span>     <span class="string">"ARHGAP26"</span>   </span><br><span class="line"> [49] <span class="string">"GFOD1"</span>       <span class="string">"SLC17A4"</span>     <span class="string">"DIAPH2"</span>      <span class="string">"PLIN2"</span>      </span><br><span class="line"> [53] <span class="string">"CDKN2B"</span>      <span class="string">"ANO4"</span>        <span class="string">"PDK1"</span>        <span class="string">"PTPRR"</span>      </span><br><span class="line"> [57] <span class="string">"LURAP1L"</span>     <span class="string">"ENPP3"</span>       <span class="string">"PIEZO2"</span>      <span class="string">"SLC28A1"</span>    </span><br><span class="line"> [61] <span class="string">"FZD1"</span>        <span class="string">"TSPAN18"</span>     <span class="string">"GALNT14"</span>     <span class="string">"ABCG1"</span>      </span><br><span class="line"> [65] <span class="string">"ADGRL4"</span>      <span class="string">"SPATA18"</span>     <span class="string">"TGFA"</span>        <span class="string">"SPRY1"</span>      </span><br><span class="line"> [69] <span class="string">"TLR3"</span>        <span class="string">"TMEM200A"</span>    <span class="string">"SLC18A2"</span>     <span class="string">"BTNL9"</span>      </span><br><span class="line"> [73] <span class="string">"ARHGAP42"</span>    <span class="string">"GALR1"</span>       <span class="string">"KCNAB1"</span>      <span class="string">"DPY19L2P2"</span>  </span><br><span class="line"> [77] <span class="string">"PDGFD"</span>       <span class="string">"INSR"</span>        <span class="string">"CYSLTR1"</span>     <span class="string">"ARL10"</span>      </span><br><span class="line"> [81] <span class="string">"BNIP3"</span>       <span class="string">"CLEC14A"</span>     <span class="string">""</span>            <span class="string">"SCN4B"</span>      </span><br><span class="line"> [85] <span class="string">"RIMKLA"</span>      <span class="string">"DNAJC22"</span>     <span class="string">"APOLD1"</span>      <span class="string">"EXOC3L1"</span>    </span><br><span class="line"> [89] <span class="string">"CDH4"</span>        <span class="string">"CDH5"</span>        <span class="string">"NLRP11"</span>      <span class="string">"P2RY8"</span>      </span><br><span class="line"> [93] <span class="string">""</span>            <span class="string">"F8"</span>          <span class="string">"QRFPR"</span>       <span class="string">"ZNF395"</span>     </span><br><span class="line"> [97] <span class="string">"C3orf70"</span>     <span class="string">"SPRY4"</span>       <span class="string">"PEAK3"</span>       <span class="string">"LRRK2"</span>      </span><br><span class="line">[101] <span class="string">"CTSE"</span>        <span class="string">"GIMAP5"</span>      <span class="string">"SLC22A4"</span>     <span class="string">"BNIP3P1"</span>    </span><br><span class="line">[105] <span class="string">"AVPR1B"</span>      <span class="string">"TRIM15"</span>      <span class="string">"INSYN2B"</span>     <span class="string">"C17orf107"</span>  </span><br><span class="line">[109] <span class="string">""</span>            <span class="string">""</span>            <span class="string">"LDHAP4"</span>      <span class="string">"ZNF812P"</span>    </span><br><span class="line">[113] <span class="string">"NPY6R"</span>       <span class="string">"LINC01738"</span>   <span class="string">"UBTFL6"</span>      <span class="string">"PRKAR1B-AS2"</span></span><br><span class="line">[117] <span class="string">""</span>            <span class="string">"HS1BP3-IT1"</span>  <span class="string">""</span>            <span class="string">""</span>           </span><br><span class="line">[121] <span class="string">"LDHAP3"</span>      <span class="string">"GGT8P"</span>       <span class="string">"LILRA4"</span>      <span class="string">"ACAD11"</span>     </span><br><span class="line">[125] <span class="string">"VWFP1"</span>       <span class="string">""</span>            <span class="string">""</span>            <span class="string">""</span>           </span><br><span class="line">[129] <span class="string">""</span>            <span class="string">"LINC01843"</span>   <span class="string">"SHANK3"</span>      <span class="string">"PTP4A2P2"</span>   </span><br><span class="line">[133] <span class="string">"PABPC4L"</span>     <span class="string">"LINC02747"</span>   <span class="string">"SLC5A8"</span>      <span class="string">""</span>           </span><br><span class="line">[137] <span class="string">""</span>            <span class="string">"PECAM1"</span>      <span class="string">""</span>            <span class="string">""</span>           </span><br><span class="line">[141] <span class="string">""</span>           </span><br><span class="line">&gt; result_survP_HB<span class="variable">$hgnc_symbol</span></span><br><span class="line">  [1] <span class="string">"RPS20"</span>        <span class="string">"PLAUR"</span>        <span class="string">"DDX11"</span>        <span class="string">"TACC3"</span>       </span><br><span class="line">  [5] <span class="string">"SLC38A5"</span>      <span class="string">"SLC11A1"</span>      <span class="string">"DEF6"</span>         <span class="string">"TYMP"</span>        </span><br><span class="line">  [9] <span class="string">"RNASET2"</span>      <span class="string">"SH2D2A"</span>       <span class="string">"POU2F2"</span>       <span class="string">"RTN4R"</span>       </span><br><span class="line"> [13] <span class="string">"FOXP3"</span>        <span class="string">"CYBA"</span>         <span class="string">"YBX3"</span>         <span class="string">"COL11A1"</span>     </span><br><span class="line"> [17] <span class="string">"VMP1"</span>         <span class="string">"CHI3L2"</span>       <span class="string">"CACNB1"</span>       <span class="string">"CLEC2D"</span>      </span><br><span class="line"> [21] <span class="string">"TRIP13"</span>       <span class="string">"GSDMB"</span>        <span class="string">"PPP2R2C"</span>      <span class="string">"GTSE1"</span>       </span><br><span class="line"> [25] <span class="string">"ACTN2"</span>        <span class="string">"NDC80"</span>        <span class="string">"CXCL2"</span>        <span class="string">"RAD54L"</span>      </span><br><span class="line"> [29] <span class="string">"PPEF1"</span>        <span class="string">"ACHE"</span>         <span class="string">"TPX2"</span>         <span class="string">"BIRC5"</span>       </span><br><span class="line"> [33] <span class="string">"LAG3"</span>         <span class="string">"DTX2"</span>         <span class="string">"TF"</span>           <span class="string">"ORC6"</span>        </span><br><span class="line"> [37] <span class="string">"RGS17"</span>        <span class="string">"UNC13D"</span>       <span class="string">"HSD3B7"</span>       <span class="string">"DERL3"</span>       </span><br><span class="line"> [41] <span class="string">"OSM"</span>          <span class="string">"LGALS1"</span>       <span class="string">"CENPM"</span>        <span class="string">"HDAC10"</span>      </span><br><span class="line"> [45] <span class="string">"POLE2"</span>        <span class="string">"CDKN3"</span>        <span class="string">"MMP9"</span>         <span class="string">"MYBL2"</span>       </span><br><span class="line"> [49] <span class="string">"PABPC1L"</span>      <span class="string">"SLC17A9"</span>      <span class="string">"PTK6"</span>         <span class="string">"TRIB3"</span>       </span><br><span class="line"> [53] <span class="string">"PIM2"</span>         <span class="string">"TAZ"</span>          <span class="string">"TIMP1"</span>        <span class="string">"RRN3P2"</span>      </span><br><span class="line"> [57] <span class="string">"PYCARD"</span>       <span class="string">"AQP9"</span>         <span class="string">"IGDCC4"</span>       <span class="string">"PDGFRL"</span>      </span><br><span class="line"> [61] <span class="string">"KCNN4"</span>        <span class="string">"GRIN2D"</span>       <span class="string">"JAK3"</span>         <span class="string">"HAMP"</span>        </span><br><span class="line"> [65] <span class="string">"PBX4"</span>         <span class="string">"HOXA13"</span>       <span class="string">"NSUN5P2"</span>      <span class="string">"TFR2"</span>        </span><br><span class="line"> [69] <span class="string">"RAPGEFL1"</span>     <span class="string">"KAT2A"</span>        <span class="string">"CNTNAP1"</span>      <span class="string">"DLX4"</span>        </span><br><span class="line"> [73] <span class="string">"NEIL3"</span>        <span class="string">"HPX"</span>          <span class="string">"MDK"</span>          <span class="string">"TCIRG1"</span>      </span><br><span class="line"> [77] <span class="string">"CDCA3"</span>        <span class="string">"KIF20A"</span>       <span class="string">"STEAP3"</span>       <span class="string">"CENPA"</span>       </span><br><span class="line"> [81] <span class="string">"TPSG1"</span>        <span class="string">"KIAA1324"</span>     <span class="string">"OPRD1"</span>        <span class="string">"CDC20"</span>       </span><br><span class="line"> [85] <span class="string">"NEK2"</span>         <span class="string">"CCDC18"</span>       <span class="string">"DDX39A"</span>       <span class="string">"CENPK"</span>       </span><br><span class="line"> [89] <span class="string">"HJURP"</span>        <span class="string">"BATF3"</span>        <span class="string">"WFDC3"</span>        <span class="string">"TNFSF14"</span>     </span><br><span class="line"> [93] <span class="string">"RBCK1"</span>        <span class="string">"IGFLR1"</span>       <span class="string">"HCST"</span>         <span class="string">"IDUA"</span>        </span><br><span class="line"> [97] <span class="string">"PKMYT1"</span>       <span class="string">"CHTF18"</span>       <span class="string">"LRFN1"</span>        <span class="string">"CPA4"</span>        </span><br><span class="line">[101] <span class="string">"ATP8B3"</span>       <span class="string">"FCHO1"</span>        <span class="string">"C1QL1"</span>        <span class="string">"THOC6"</span>       </span><br><span class="line">[105] <span class="string">"PODNL1"</span>       <span class="string">"SERPINF1"</span>     <span class="string">"C1QTNF6"</span>      <span class="string">"FKBP11"</span>      </span><br><span class="line">[109] <span class="string">"IL15RA"</span>       <span class="string">"SPOCD1"</span>       <span class="string">"CDCA8"</span>        <span class="string">"SLC43A3"</span>     </span><br><span class="line">[113] <span class="string">"OASL"</span>         <span class="string">"TROAP"</span>        <span class="string">"SLC9A5"</span>       <span class="string">"CCM2"</span>        </span><br><span class="line">[117] <span class="string">"LIMD2"</span>        <span class="string">"CD72"</span>         <span class="string">"SLCO5A1"</span>      <span class="string">"ITPKA"</span>       </span><br><span class="line">[121] <span class="string">"CEP55"</span>        <span class="string">"ZNF365"</span>       <span class="string">"ADAMTS14"</span>     <span class="string">"INHBE"</span>       </span><br><span class="line">[125] <span class="string">"GPR84"</span>        <span class="string">"MAP3K12"</span>      <span class="string">"BCL2A1"</span>       <span class="string">"PIF1"</span>        </span><br><span class="line">[129] <span class="string">"TICRR"</span>        <span class="string">"PRELID3A"</span>     <span class="string">"ASGR1"</span>        <span class="string">"CARD14"</span>      </span><br><span class="line">[133] <span class="string">"FKBP10"</span>       <span class="string">"EMP3"</span>         <span class="string">"SH3BGRL3"</span>     <span class="string">"KIF2C"</span>       </span><br><span class="line">[137] <span class="string">"NUF2"</span>         <span class="string">"TMEM44"</span>       <span class="string">"DOK3"</span>         <span class="string">"NFKBIE"</span>      </span><br><span class="line">[141] <span class="string">"MTFR2"</span>        <span class="string">"SLC25A37"</span>     <span class="string">"PRSS53"</span>       <span class="string">"ADAM8"</span>       </span><br><span class="line">[145] <span class="string">"CCDC74B"</span>      <span class="string">"SPC25"</span>        <span class="string">"TRIM36"</span>       <span class="string">"SKA1"</span>        </span><br><span class="line">[149] <span class="string">"GOLGA7B"</span>      <span class="string">"BATF"</span>         <span class="string">"BUB1B"</span>        <span class="string">"ZFHX2-AS1"</span>   </span><br><span class="line">[153] <span class="string">"CDC25C"</span>       <span class="string">"DUSP23"</span>       <span class="string">"NBL1"</span>         <span class="string">"RUNX1"</span>       </span><br><span class="line">[157] <span class="string">"C1R"</span>          <span class="string">"PPP1R35"</span>      <span class="string">"HK3"</span>          <span class="string">"SYCE2"</span>       </span><br><span class="line">[161] <span class="string">"SPC24"</span>        <span class="string">"CCDC78"</span>       <span class="string">"TEDC2"</span>        <span class="string">"LBHD1"</span>       </span><br><span class="line">[165] <span class="string">"CCDC74A"</span>      <span class="string">"DCST2"</span>        <span class="string">"TRIM46"</span>       <span class="string">"RPL22L1"</span>     </span><br><span class="line">[169] <span class="string">"CXCL1"</span>        <span class="string">"UCN"</span>          <span class="string">"SPDYA"</span>        <span class="string">"PTTG1"</span>       </span><br><span class="line">[173] <span class="string">"AGBL2"</span>        <span class="string">"PLEKHF1"</span>      <span class="string">"MSS51"</span>        <span class="string">"PKD1L2"</span>      </span><br><span class="line">[177] <span class="string">"FAM86GP"</span>      <span class="string">"CATSPER2"</span>     <span class="string">"PCLAF"</span>        <span class="string">"PLK1"</span>        </span><br><span class="line">[181] <span class="string">"MEI1"</span>         <span class="string">"PRRX2"</span>        <span class="string">"ENGASE"</span>       <span class="string">"TEPSIN"</span>      </span><br><span class="line">[185] <span class="string">"VKORC1"</span>       <span class="string">"JSRP1"</span>        <span class="string">"CORO6"</span>        <span class="string">"TTYH1"</span>       </span><br><span class="line">[189] <span class="string">"TRPV3"</span>        <span class="string">"CCDC88B"</span>      <span class="string">"REEP4"</span>        <span class="string">"THBS3"</span>       </span><br><span class="line">[193] <span class="string">"NPIPB3"</span>       <span class="string">"RNASE2"</span>       <span class="string">"BUB1"</span>         <span class="string">"CHRNA5"</span>      </span><br><span class="line">[197] <span class="string">"MZB1"</span>         <span class="string">"OSCAR"</span>        <span class="string">"ZNF692"</span>       <span class="string">"RRM2"</span>        </span><br><span class="line">[201] <span class="string">"LRRC15"</span>       <span class="string">"CEBPB"</span>        <span class="string">"MZT2A"</span>        <span class="string">"SAA1"</span>        </span><br><span class="line">[205] <span class="string">"NABP1"</span>        <span class="string">"CD7"</span>          <span class="string">"C1QTNF1"</span>      <span class="string">"IL20RB"</span>      </span><br><span class="line">[209] <span class="string">"RIN1"</span>         <span class="string">"CNIH2"</span>        <span class="string">"UBE2C"</span>        <span class="string">"GOLGA8A"</span>     </span><br><span class="line">[213] <span class="string">"CATSPER1"</span>     <span class="string">"B3GNTL1"</span>      <span class="string">"SPHK1"</span>        <span class="string">"CLK2"</span>        </span><br><span class="line">[217] <span class="string">"C8G"</span>          <span class="string">"LRRN4CL"</span>      <span class="string">"CPNE7"</span>        <span class="string">"MSC"</span>         </span><br><span class="line">[221] <span class="string">"RFLNA"</span>        <span class="string">"AURKB"</span>        <span class="string">"LBX2"</span>         <span class="string">"DNHD1"</span>       </span><br><span class="line">[225] <span class="string">"TMEM86B"</span>      <span class="string">"MAP6D1"</span>       <span class="string">"ARL6IP4"</span>      <span class="string">"B4GALNT4"</span>    </span><br><span class="line">[229] <span class="string">"KCNJ14"</span>       <span class="string">"FBXL6"</span>        <span class="string">"C1S"</span>          <span class="string">"CCNYL2"</span>      </span><br><span class="line">[233] <span class="string">"PYCR1"</span>        <span class="string">"GPR19"</span>        <span class="string">"NPIPA1"</span>       <span class="string">"BMP8A"</span>       </span><br><span class="line">[237] <span class="string">"CHEK2"</span>        <span class="string">"IQGAP3"</span>       <span class="string">"DUSP5P1"</span>      <span class="string">"STAC3"</span>       </span><br><span class="line">[241] <span class="string">"IRF7"</span>         <span class="string">"PRAME"</span>        <span class="string">"KIF18B"</span>       <span class="string">"TNFRSF18"</span>    </span><br><span class="line">[245] <span class="string">"PLEKHN1"</span>      <span class="string">"ISG15"</span>        <span class="string">"FANCA"</span>        <span class="string">"EIF4EBP1"</span>    </span><br><span class="line">[249] <span class="string">"TPRG1"</span>        <span class="string">"RUFY4"</span>        <span class="string">"ZP3"</span>          <span class="string">"NPIPP1"</span>      </span><br><span class="line">[253] <span class="string">"SLC4A5"</span>       <span class="string">"FAM78B"</span>       <span class="string">"SNHG17"</span>       <span class="string">"PDLIM7"</span>      </span><br><span class="line">[257] <span class="string">"ADAM32"</span>       <span class="string">"RAD54B"</span>       <span class="string">"ELOVL2"</span>       <span class="string">"GOLGA6L9"</span>    </span><br><span class="line">[261] <span class="string">"FCGR1B"</span>       <span class="string">"MMP17"</span>        <span class="string">"RYR2"</span>         <span class="string">"PLXNB3"</span>      </span><br><span class="line">[265] <span class="string">""</span>             <span class="string">"AGAP6"</span>        <span class="string">"LILRB3"</span>       <span class="string">"GABBR1"</span>      </span><br><span class="line">[269] <span class="string">"SYCE1L"</span>       <span class="string">"MUC12"</span>        <span class="string">"DUXAP8"</span>       <span class="string">"IGKC"</span>        </span><br><span class="line">[273] <span class="string">"IGLV1-47"</span>     <span class="string">"IGLV1-44"</span>     <span class="string">"IGLV3-19"</span>     <span class="string">"IGLC2"</span>       </span><br><span class="line">[277] <span class="string">"IGLC3"</span>        <span class="string">"IGHG4"</span>        <span class="string">"IGHG2"</span>        <span class="string">"IGHA1"</span>       </span><br><span class="line">[281] <span class="string">"IGHG1"</span>        <span class="string">"IGHG3"</span>        <span class="string">"CRYGS"</span>        <span class="string">"ASIC3"</span>       </span><br><span class="line">[285] <span class="string">"MXD3"</span>         <span class="string">"RPLP1P6"</span>      <span class="string">"LAT"</span>          <span class="string">"RPL17P50"</span>    </span><br><span class="line">[289] <span class="string">"PPM1N"</span>        <span class="string">"LTB4R"</span>        <span class="string">"NPEPL1"</span>       <span class="string">"IFI30"</span>       </span><br><span class="line">[293] <span class="string">"PRELID1P1"</span>    <span class="string">"PAM16"</span>        <span class="string">""</span>             <span class="string">"ZGLP1"</span>       </span><br><span class="line">[297] <span class="string">"FADS3"</span>        <span class="string">"CYTOR"</span>        <span class="string">"TSSC2"</span>        <span class="string">""</span>            </span><br><span class="line">[301] <span class="string">"C5orf66"</span>      <span class="string">"ZMIZ1-AS1"</span>    <span class="string">"MIAT"</span>         <span class="string">"LINC00115"</span>   </span><br><span class="line">[305] <span class="string">""</span>             <span class="string">""</span>             <span class="string">"SLC16A1-AS1"</span>  <span class="string">"LINC00511"</span>   </span><br><span class="line">[309] <span class="string">"LTB"</span>          <span class="string">""</span>             <span class="string">"MELTF-AS1"</span>    <span class="string">"DPY19L1P1"</span>   </span><br><span class="line">[313] <span class="string">""</span>             <span class="string">""</span>             <span class="string">"CYP21A2"</span>      <span class="string">"SNHG15"</span>      </span><br><span class="line">[317] <span class="string">"LINC02609"</span>    <span class="string">"YEATS2-AS1"</span>   <span class="string">""</span>             <span class="string">""</span>            </span><br><span class="line">[321] <span class="string">"LINC01871"</span>    <span class="string">"KDM4A-AS1"</span>    <span class="string">"MAP3K2-DT"</span>    <span class="string">"PRKAR1B-AS1"</span> </span><br><span class="line">[325] <span class="string">"FOXD2-AS1"</span>    <span class="string">"PCDHGC5"</span>      <span class="string">"CFB"</span>          <span class="string">"NPIPB5"</span>      </span><br><span class="line">[329] <span class="string">"APOBEC3D"</span>     <span class="string">""</span>             <span class="string">"IGKV3-15"</span>     <span class="string">""</span>            </span><br><span class="line">[333] <span class="string">""</span>             <span class="string">""</span>             <span class="string">"LINC00926"</span>    <span class="string">"TNXA"</span>        </span><br><span class="line">[337] <span class="string">"LUCAT1"</span>       <span class="string">""</span>             <span class="string">"SRD5A3-AS1"</span>   <span class="string">"PVT1"</span>        </span><br><span class="line">[341] <span class="string">""</span>             <span class="string">""</span>             <span class="string">"IGHGP"</span>        <span class="string">""</span>            </span><br><span class="line">[345] <span class="string">"IGLL5"</span>        <span class="string">"AGAP2-AS1"</span>    <span class="string">""</span>             <span class="string">""</span>            </span><br><span class="line">[349] <span class="string">"KLRA1P"</span>       <span class="string">"PPP1R14B-AS1"</span> <span class="string">"HP"</span>           <span class="string">""</span>            </span><br><span class="line">[353] <span class="string">"IFITM3P6"</span>     <span class="string">"LINC02328"</span>    <span class="string">"MC1R"</span>         <span class="string">"ZHX1-C8orf76"</span></span><br><span class="line">[357] <span class="string">""</span>             <span class="string">""</span>             <span class="string">"LINC01355"</span>    <span class="string">"VPS9D1-AS1"</span>  </span><br><span class="line">[361] <span class="string">""</span>             <span class="string">"SMG1P7"</span>       <span class="string">"H2BC20P"</span>      <span class="string">""</span>            </span><br><span class="line">[365] <span class="string">"CORO7"</span>        <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>            </span><br><span class="line">[369] <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>            </span><br><span class="line">[373] <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>            </span><br><span class="line">[377] <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>            </span><br><span class="line">[381] <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>            </span><br><span class="line">[385] <span class="string">"GTF2IP20"</span>     <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>            </span><br><span class="line">[389] <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>            </span><br><span class="line">[393] <span class="string">""</span>             <span class="string">"EPOP"</span>         <span class="string">""</span>             <span class="string">"NOL12"</span>       </span><br><span class="line">[397] <span class="string">"LINC01138"</span>    <span class="string">""</span>             <span class="string">"TBC1D3L"</span>      <span class="string">""</span>            </span><br><span class="line">[401] <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>            </span><br><span class="line">[405] <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>            </span><br><span class="line">[409] <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>            </span><br><span class="line">[413] <span class="string">""</span>             <span class="string">""</span>             <span class="string">""</span>             <span class="string">"HELLPAR"</span>     </span><br><span class="line">&gt; result_survP_LG<span class="variable">$hgnc_symbol</span></span><br><span class="line">  [1] <span class="string">"CYP51A1"</span>    <span class="string">"THSD7A"</span>     <span class="string">"IYD"</span>        <span class="string">"SEMA3G"</span>     <span class="string">"CHDH"</span>      </span><br><span class="line">  [6] <span class="string">"SLC7A9"</span>     <span class="string">"NDUFS1"</span>     <span class="string">"USP2"</span>       <span class="string">"VPS13D"</span>     <span class="string">"KITLG"</span>     </span><br><span class="line"> [11] <span class="string">"NEDD4L"</span>     <span class="string">"FSTL4"</span>      <span class="string">"AP5M1"</span>      <span class="string">"SYNE2"</span>      <span class="string">"CYFIP2"</span>    </span><br><span class="line"> [16] <span class="string">"ZMYND12"</span>    <span class="string">"MPPED2"</span>     <span class="string">"FECH"</span>       <span class="string">"PTPN3"</span>      <span class="string">"RPS6KA6"</span>   </span><br><span class="line"> [21] <span class="string">"LNX1"</span>       <span class="string">"MPP5"</span>       <span class="string">"EVC"</span>        <span class="string">"FRY"</span>        <span class="string">"NTN4"</span>      </span><br><span class="line"> [26] <span class="string">"ACAT1"</span>      <span class="string">"FMO4"</span>       <span class="string">"NEBL"</span>       <span class="string">"CEACAM1"</span>    <span class="string">"FDFT1"</span>     </span><br><span class="line"> [31] <span class="string">"OPHN1"</span>      <span class="string">"MAGI3"</span>      <span class="string">"COL4A4"</span>     <span class="string">"CADPS2"</span>     <span class="string">"COBLL1"</span>    </span><br><span class="line"> [36] <span class="string">"TRPM3"</span>      <span class="string">"ABCB1"</span>      <span class="string">"L2HGDH"</span>     <span class="string">"PTPN4"</span>      <span class="string">"JPH4"</span>      </span><br><span class="line"> [41] <span class="string">"XYLB"</span>       <span class="string">"SMIM24"</span>     <span class="string">"ERMP1"</span>      <span class="string">"MIOX"</span>       <span class="string">"CDKL1"</span>     </span><br><span class="line"> [46] <span class="string">"DCAF11"</span>     <span class="string">"MCF2"</span>       <span class="string">"CAB39L"</span>     <span class="string">"VWA8"</span>       <span class="string">"TOX3"</span>      </span><br><span class="line"> [51] <span class="string">"CA2"</span>        <span class="string">"SH2D4A"</span>     <span class="string">"DHDH"</span>       <span class="string">"COBL"</span>       <span class="string">"TMEM245"</span>   </span><br><span class="line"> [56] <span class="string">"BAG1"</span>       <span class="string">"CPEB3"</span>      <span class="string">"PBLD"</span>       <span class="string">"TBC1D9"</span>     <span class="string">"TRIM2"</span>     </span><br><span class="line"> [61] <span class="string">"PPARGC1A"</span>   <span class="string">"AKAP3"</span>      <span class="string">"FRK"</span>        <span class="string">"NCOA7"</span>      <span class="string">"EPM2A"</span>     </span><br><span class="line"> [66] <span class="string">"SEMA5A"</span>     <span class="string">"NNT"</span>        <span class="string">"AGXT2"</span>      <span class="string">"CPEB4"</span>      <span class="string">"HYAL1"</span>     </span><br><span class="line"> [71] <span class="string">"ATP6V1A"</span>    <span class="string">"EPB41L5"</span>    <span class="string">"TACR1"</span>      <span class="string">"PLCL1"</span>      <span class="string">"PARD3B"</span>    </span><br><span class="line"> [76] <span class="string">"WLS"</span>        <span class="string">"AGMAT"</span>      <span class="string">"HAO2"</span>       <span class="string">"ACADM"</span>      <span class="string">"ABCD3"</span>     </span><br><span class="line"> [81] <span class="string">"IRF6"</span>       <span class="string">"TREH"</span>       <span class="string">"ECRG4"</span>      <span class="string">"BSPRY"</span>      <span class="string">"ALDH6A1"</span>   </span><br><span class="line"> [86] <span class="string">"GOT1"</span>       <span class="string">"TEK"</span>        <span class="string">"EPHX2"</span>      <span class="string">"PDZRN3"</span>     <span class="string">"CAT"</span>       </span><br><span class="line"> [91] <span class="string">"PLG"</span>        <span class="string">"PCK1"</span>       <span class="string">"SCGB1D2"</span>    <span class="string">"FLRT3"</span>      <span class="string">"PLEKHG3"</span>   </span><br><span class="line"> [96] <span class="string">"PODXL"</span>      <span class="string">"HOXD1"</span>      <span class="string">"HOXD3"</span>      <span class="string">"SYNE1"</span>      <span class="string">"SLC34A1"</span>   </span><br><span class="line">[101] <span class="string">"NAPSA"</span>      <span class="string">"G6PC"</span>       <span class="string">"FMO5"</span>       <span class="string">"ZNF132"</span>     <span class="string">"DDC"</span>       </span><br><span class="line">[106] <span class="string">"ENAM"</span>       <span class="string">"ANGPTL3"</span>    <span class="string">"MYH10"</span>      <span class="string">"KL"</span>         <span class="string">"BEX2"</span>      </span><br><span class="line">[111] <span class="string">"GSTM3"</span>      <span class="string">"VAV3"</span>       <span class="string">"HMGCS2"</span>     <span class="string">"MYCN"</span>       <span class="string">"CLDN10"</span>    </span><br><span class="line">[116] <span class="string">"FBXO21"</span>     <span class="string">"EDAR"</span>       <span class="string">"TBC1D4"</span>     <span class="string">"SUCLA2"</span>     <span class="string">"LMO7"</span>      </span><br><span class="line">[121] <span class="string">"ALDOB"</span>      <span class="string">"BPHL"</span>       <span class="string">"SORL1"</span>      <span class="string">"PAQR5"</span>      <span class="string">"SEMA6D"</span>    </span><br><span class="line">[126] <span class="string">"DBT"</span>        <span class="string">"ARHGAP24"</span>   <span class="string">"GPAT3"</span>      <span class="string">"FRAS1"</span>      <span class="string">"CDKL2"</span>     </span><br><span class="line">[131] <span class="string">"SHROOM3"</span>    <span class="string">"HADH"</span>       <span class="string">"PELI2"</span>      <span class="string">"SLC27A2"</span>    <span class="string">"SLC14A1"</span>   </span><br><span class="line">[136] <span class="string">"ERBB2"</span>      <span class="string">"CGN"</span>        <span class="string">"GDF7"</span>       <span class="string">"CTDSPL"</span>     <span class="string">"ALDH1L1"</span>   </span><br><span class="line">[141] <span class="string">"SCD5"</span>       <span class="string">"USP53"</span>      <span class="string">"UGT3A1"</span>     <span class="string">"BHMT"</span>       <span class="string">"IQGAP2"</span>    </span><br><span class="line">[146] <span class="string">"CRHBP"</span>      <span class="string">"SLC25A48"</span>   <span class="string">"MMUT"</span>       <span class="string">"CYP39A1"</span>    <span class="string">"MFHAS1"</span>    </span><br><span class="line">[151] <span class="string">"AK3"</span>        <span class="string">"AUH"</span>        <span class="string">"ALAD"</span>       <span class="string">"SLC25A25"</span>   <span class="string">"CNNM2"</span>     </span><br><span class="line">[156] <span class="string">"SLC5A12"</span>    <span class="string">"GLYAT"</span>      <span class="string">"SLC22A8"</span>    <span class="string">"TMEM25"</span>     <span class="string">"MPP7"</span>      </span><br><span class="line">[161] <span class="string">"DLG2"</span>       <span class="string">"FREM2"</span>      <span class="string">"THRB"</span>       <span class="string">"ANK3"</span>       <span class="string">"NR3C2"</span>     </span><br><span class="line">[166] <span class="string">"ASAP2"</span>      <span class="string">"SLC25A4"</span>    <span class="string">"GPD1L"</span>      <span class="string">"SLC16A12"</span>   <span class="string">"PANK1"</span>     </span><br><span class="line">[171] <span class="string">"MARVELD2"</span>   <span class="string">"FRMD1"</span>      <span class="string">"KCNJ16"</span>     <span class="string">"PGM5"</span>       <span class="string">"SFXN2"</span>     </span><br><span class="line">[176] <span class="string">"FUT6"</span>       <span class="string">"DHRS4"</span>      <span class="string">"KCNJ15"</span>     <span class="string">"PAFAH2"</span>     <span class="string">"WNT9B"</span>     </span><br><span class="line">[181] <span class="string">"CPAMD8"</span>     <span class="string">"PTH1R"</span>      <span class="string">"MYL3"</span>       <span class="string">"CYP3A7"</span>     <span class="string">"NAPEPLD"</span>   </span><br><span class="line">[186] <span class="string">"TMEM82"</span>     <span class="string">"AKR7A3"</span>     <span class="string">"CDS1"</span>       <span class="string">"PTPN13"</span>     <span class="string">"DNASE1L3"</span>  </span><br><span class="line">[191] <span class="string">"RBM47"</span>      <span class="string">"EMCN"</span>       <span class="string">"HPGD"</span>       <span class="string">"ADGRV1"</span>     <span class="string">"TMEM174"</span>   </span><br><span class="line">[196] <span class="string">"RAET1E"</span>     <span class="string">"FREM1"</span>      <span class="string">"MYORG"</span>      <span class="string">"FBP1"</span>       <span class="string">"SLC16A9"</span>   </span><br><span class="line">[201] <span class="string">"CRYL1"</span>      <span class="string">"EML5"</span>       <span class="string">"NDRG2"</span>      <span class="string">"CCDC186"</span>    <span class="string">"OTOGL"</span>     </span><br><span class="line">[206] <span class="string">"CLMN"</span>       <span class="string">"WDR72"</span>      <span class="string">"CDH16"</span>      <span class="string">"LDHD"</span>       <span class="string">"GLYATL1"</span>   </span><br><span class="line">[211] <span class="string">"MTMR10"</span>     <span class="string">"CA4"</span>        <span class="string">"ACOX2"</span>      <span class="string">"GJB1"</span>       <span class="string">"PKHD1"</span>     </span><br><span class="line">[216] <span class="string">"FUT3"</span>       <span class="string">"UGT2B7"</span>     <span class="string">"CLCN5"</span>      <span class="string">"GPHN"</span>       <span class="string">"GATM"</span>      </span><br><span class="line">[221] <span class="string">"TLN2"</span>       <span class="string">"SUCLG2"</span>     <span class="string">"SLC22A13"</span>   <span class="string">"NUDT4"</span>      <span class="string">"JUP"</span>       </span><br><span class="line">[226] <span class="string">"SLC25A30"</span>   <span class="string">"ZHX3"</span>       <span class="string">"SLC6A19"</span>    <span class="string">"MFSD4A"</span>     <span class="string">"PCCA"</span>      </span><br><span class="line">[231] <span class="string">"TOM1L2"</span>     <span class="string">"KDF1"</span>       <span class="string">"MSRA"</span>       <span class="string">"HSD11B2"</span>    <span class="string">"GNG7"</span>      </span><br><span class="line">[236] <span class="string">"RNF152"</span>     <span class="string">"GCNT4"</span>      <span class="string">"SHMT1"</span>      <span class="string">"GRAMD1C"</span>    <span class="string">""</span>          </span><br><span class="line">[241] <span class="string">"KLHDC7A"</span>    <span class="string">"TCAIM"</span>      <span class="string">"MTURN"</span>      <span class="string">"WDFY3-AS2"</span>  <span class="string">"PAQR7"</span>     </span><br><span class="line">[246] <span class="string">"C11orf54"</span>   <span class="string">"SLC8A1"</span>     <span class="string">"ZNRF3"</span>      <span class="string">"LRRC55"</span>     <span class="string">"ST6GALNAC3"</span></span><br><span class="line">[251] <span class="string">"PRKD1"</span>      <span class="string">"CCSER1"</span>     <span class="string">"LRRC19"</span>     <span class="string">"ROBO2"</span>      <span class="string">"HS6ST3"</span>    </span><br><span class="line">[256] <span class="string">"PBX1"</span>       <span class="string">"SYN3"</span>       <span class="string">"SOWAHB"</span>     <span class="string">"PPARA"</span>      <span class="string">"AKR1C1"</span>    </span><br><span class="line">[261] <span class="string">"TSPYL4"</span>     <span class="string">"TCL6"</span>       <span class="string">"MEIS3P2"</span>    <span class="string">"SHISA6"</span>     <span class="string">"TSPYL1"</span>    </span><br><span class="line">[266] <span class="string">"KAZN"</span>       <span class="string">"ACADSB"</span>     <span class="string">"AJAP1"</span>      <span class="string">"MYO6"</span>       <span class="string">"SMIM10L2B"</span> </span><br><span class="line">[271] <span class="string">"OGDHL"</span>      <span class="string">"OCLN"</span>       <span class="string">"SLC22A12"</span>   <span class="string">"KIF13B"</span>     <span class="string">"SLC22A6"</span>   </span><br><span class="line">[276] <span class="string">"HIBCH"</span>      <span class="string">"PEG3"</span>       <span class="string">"ARC"</span>        <span class="string">"LRBA"</span>       <span class="string">"ECI2"</span>      </span><br><span class="line">[281] <span class="string">"MTOR"</span>       <span class="string">"BHLHB9"</span>     <span class="string">"SLC44A4"</span>    <span class="string">"ZNF204P"</span>    <span class="string">"CYS1"</span>      </span><br><span class="line">[286] <span class="string">"SYNJ2BP"</span>    <span class="string">"B3GNT10"</span>    <span class="string">"TTC3P1"</span>     <span class="string">"ZNF844"</span>     <span class="string">"PSMG3-AS1"</span> </span><br><span class="line">[291] <span class="string">"LINC00271"</span>  <span class="string">""</span>           <span class="string">"RAP2C-AS1"</span>  <span class="string">""</span>           <span class="string">""</span>          </span><br><span class="line">[296] <span class="string">"RPL34-AS1"</span>  <span class="string">""</span>           <span class="string">"MKLN1-AS"</span>   <span class="string">"SUCLG2-AS1"</span> <span class="string">"LINC02027"</span> </span><br><span class="line">[301] <span class="string">"C1orf210"</span>   <span class="string">""</span>           <span class="string">""</span>           <span class="string">""</span>           <span class="string">""</span>          </span><br><span class="line">[306] <span class="string">""</span>           <span class="string">""</span>           <span class="string">""</span>           <span class="string">"DYNLL2"</span>     <span class="string">""</span>          </span><br><span class="line">[311] <span class="string">""</span>           <span class="string">""</span>           <span class="string">""</span>           <span class="string">"PWAR5"</span>     </span><br><span class="line">&gt; result_survP_LB<span class="variable">$hgnc_symbol</span></span><br><span class="line"> [1] <span class="string">"CLDN11"</span>   <span class="string">"GPRC5A"</span>   <span class="string">"GYG2"</span>     <span class="string">"STYK1"</span>    <span class="string">"BCAS1"</span>    <span class="string">"IGF2BP2"</span> </span><br><span class="line"> [7] <span class="string">"SULT2B1"</span>  <span class="string">"EPB41L4B"</span> <span class="string">"CAPS"</span>     <span class="string">"PTGDS"</span>    <span class="string">"DNAJC12"</span>  <span class="string">"VTN"</span>     </span><br><span class="line">[13] <span class="string">"SLPI"</span>     <span class="string">"CHAC1"</span>    <span class="string">"PSAT1"</span>    <span class="string">"PPP1R1A"</span>  <span class="string">"KCNH3"</span>    <span class="string">"WNT10A"</span>  </span><br><span class="line">[19] <span class="string">"TFAP2A"</span>   <span class="string">"CILP"</span>     <span class="string">"BMPR1B"</span>   <span class="string">"NECTIN4"</span>  <span class="string">"SUSD4"</span>    <span class="string">"ATP6V1C2"</span></span><br><span class="line">[25] <span class="string">"SSC4D"</span>    <span class="string">"PLEKHG4B"</span> <span class="string">"FAM167A"</span>  <span class="string">"PROM2"</span>    <span class="string">"PPM1J"</span>    <span class="string">"SIM2"</span>    </span><br><span class="line">[31] <span class="string">"TLCD1"</span>    <span class="string">"BNIPL"</span>    <span class="string">"LIPH"</span>     <span class="string">"MELTF"</span>    <span class="string">"SHOC1"</span>    <span class="string">"SCNN1B"</span>  </span><br><span class="line">[37] <span class="string">"PHYHIP"</span>   <span class="string">"LRRN2"</span>    <span class="string">"HOXB9"</span>    <span class="string">"CEL"</span>      <span class="string">"MUC13"</span>    <span class="string">"B3GNT8"</span>  </span><br><span class="line">[43] <span class="string">"SMCO3"</span>    <span class="string">"WT1"</span>      <span class="string">"CLCNKA"</span>   <span class="string">"DNER"</span>     <span class="string">"SERPINA5"</span> <span class="string">"L1CAM"</span>   </span><br><span class="line">[49] <span class="string">"GEMIN8P4"</span> <span class="string">"MRPS6"</span>    <span class="string">"TRNP1"</span></span><br></pre></td></tr></table></figure>
+<p>有了这个基因列表，后续可以进行富集分析或者GSEA分析。</p>
+
+      
+    </div>
+
+<div>
+
+
+<ul class="post-copyright">
+<li class="post-copyright-author">
+<strong>本文作者：</strong>括囊无誉
+</li>
+<li class="post-copyright-link">
+<strong>本文链接：</strong>
+<a href="/TCGA/TCGA13Survival/" title="TCGA学习笔记13-对所有差异表达基因进行生存分析">TCGA/TCGA13Survival/</a>
+</li>
+<li class="post-copyright-license">
+<strong>版权声明： </strong>
+本博客所有文章均为原创作品，转载请注明出处！
+</li>
+</ul>
+
+</div>
+
+    
+    
+    
+
+
+<div>
+
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创文章分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="括囊无誉 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TCGA/" rel="tag"># TCGA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/TCGA/TCGA12Enrich/" rel="next" title="TCGA学习笔记12-富集分析">
+                <i class="fa fa-chevron-left"></i> TCGA学习笔记12-富集分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="括囊无誉">
+          <p class="site-author-name" itemprop="name">括囊无誉</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">184</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">211</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/75d3f95b058e" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-http://www.jianshu.com/u/75d3f95b058e"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">括囊无誉</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://uteric-1.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://uteric.github.io/TCGA/TCGA13Survival/';
+          this.page.identifier = 'TCGA/TCGA13Survival/';
+          this.page.title = 'TCGA学习笔记13-对所有差异表达基因进行生存分析';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://uteric-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
