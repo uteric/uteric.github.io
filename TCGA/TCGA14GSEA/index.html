@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="TCGA,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="诸子百家" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="GSEA（Gene Set Enrichment Analysis），是基因集富集分析，也是软件的名称，顾名思议，GSEA用于分析给定分组中差异表达的基因是否在给定的基因集中有富集。 下载GSEA软件：根据操作系统下载相应的版本并安装 软件主界面如下图：  这个软件操作十分容易，简单明了，唯一的难度在于输入数据的准备，简单来说，有两个数据是必须提前准备好的，即表达数据与表型注释 表达数据格式：可以">
+<meta name="keywords" content="TCGA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCGA学习笔记14-基因集富集分析GSEA">
+<meta property="og:url" content="http://uteric.github.io/TCGA/TCGA14GSEA/index.html">
+<meta property="og:site_name" content="诸子百家">
+<meta property="og:description" content="GSEA（Gene Set Enrichment Analysis），是基因集富集分析，也是软件的名称，顾名思议，GSEA用于分析给定分组中差异表达的基因是否在给定的基因集中有富集。 下载GSEA软件：根据操作系统下载相应的版本并安装 软件主界面如下图：  这个软件操作十分容易，简单明了，唯一的难度在于输入数据的准备，简单来说，有两个数据是必须提前准备好的，即表达数据与表型注释 表达数据格式：可以">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://uteric.github.io/images/TCGA/TCGA22.png">
+<meta property="og:image" content="http://uteric.github.io/images/TCGA23.png">
+<meta property="og:image" content="http://uteric.github.io/images/TCGA24.png">
+<meta property="og:image" content="http://uteric.github.io/images/TCGA25.png">
+<meta property="og:updated_time" content="2020-07-19T03:36:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TCGA学习笔记14-基因集富集分析GSEA">
+<meta name="twitter:description" content="GSEA（Gene Set Enrichment Analysis），是基因集富集分析，也是软件的名称，顾名思议，GSEA用于分析给定分组中差异表达的基因是否在给定的基因集中有富集。 下载GSEA软件：根据操作系统下载相应的版本并安装 软件主界面如下图：  这个软件操作十分容易，简单明了，唯一的难度在于输入数据的准备，简单来说，有两个数据是必须提前准备好的，即表达数据与表型注释 表达数据格式：可以">
+<meta name="twitter:image" content="http://uteric.github.io/images/TCGA/TCGA22.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '9e233f3fa2f200ca831529de7ba10253',
+      indexName: 'uteric',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://uteric.github.io/TCGA/TCGA14GSEA/">
+
+
+
+
+
+  <title>TCGA学习笔记14-基因集富集分析GSEA | 诸子百家</title>
+  
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104081724-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <meta name="baidu-site-verification" content="bfQpbnNmEL">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诸子百家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+<div class="local-search-header clearfix">
+<span class="search-icon">
+<i class="fa fa-search"></i>
+</span>
+<span class="popup-btn-close">
+<i class="fa fa-times-circle"></i>
+</span>
+<div class="local-search-input-wrapper">
+<input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+</div>
+</div>
+<div id="local-search-result"></div>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/TCGA/TCGA14GSEA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="括囊无誉">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸子百家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TCGA学习笔记14-基因集富集分析GSEA</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-18T22:36:48-05:00">
+                2020-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/生物信息/" itemprop="url" rel="index">
+                    <span itemprop="name">生物信息</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/TCGA/TCGA14GSEA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="TCGA/TCGA14GSEA/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>°C
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>GSEA（Gene Set Enrichment Analysis），是基因集富集分析，也是软件的名称，顾名思议，GSEA用于分析给定分组中差异表达的基因是否在给定的基因集中有富集。</p>
+<p>下载<a href="https://www.gsea-msigdb.org/gsea/downloads.jsp" target="_blank" rel="noopener">GSEA</a>软件：根据操作系统下载相应的版本并安装</p>
+<p>软件主界面如下图：</p>
+<p><img src="/images/TCGA/TCGA22.png" alt></p>
+<p>这个软件操作十分容易，简单明了，唯一的难度在于输入数据的准备，简单来说，有两个数据是必须提前准备好的，即表达数据与表型注释</p>
+<p>表达数据格式：可以有多种输入格式，这里以TXT为例，我们先在R中将我们需要的数据提取并保存为CSV格式，处理完成后再保存为TXT即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 回顾一下前面的数据，差异表达筛选之后有4913个基因（result_select），注释后剩下4863个（result_select_annot）</span></span><br><span class="line">&gt; x1 &lt;- result_select_annot<span class="variable">$hgnc_symbol</span></span><br><span class="line">&gt; length(x1)</span><br><span class="line">[1] 4863</span><br><span class="line">&gt; tail(x1)</span><br><span class="line">[1] <span class="string">""</span>           <span class="string">"SLFNL1-AS1"</span> <span class="string">"HELLPAR"</span>    <span class="string">"SNHG4"</span>      <span class="string">"LINC01176"</span> </span><br><span class="line">[6] <span class="string">"CICP14"</span>    </span><br><span class="line">&gt; x1[x1==<span class="string">""</span>]=NA <span class="comment">#把""转换为NA，方便逻辑判断</span></span><br><span class="line">&gt; tail(x1)</span><br><span class="line">[1] NA           <span class="string">"SLFNL1-AS1"</span> <span class="string">"HELLPAR"</span>    <span class="string">"SNHG4"</span>      <span class="string">"LINC01176"</span> </span><br><span class="line">[6] <span class="string">"CICP14"</span> </span><br><span class="line">&gt; table(is.na(x1))</span><br><span class="line">FALSE  TRUE </span><br><span class="line"> 4259   604 <span class="comment">#4863个注释后的基因，居然只有4259个有名字，下面就取出这些基因的表达数据来做富集分析</span></span><br><span class="line"></span><br><span class="line">&gt; write.csv(result_select_annot,<span class="string">"result_select_annot.csv"</span>) <span class="comment"># 这是差异分析并注释过后的4863个基因</span></span><br><span class="line">&gt; <span class="comment"># Remove BLANKs in EXCEL, rename as "unique_annot.csv"</span></span><br><span class="line">&gt; unique_annot &lt;- read.csv(<span class="string">"unique_annot.csv"</span>)</span><br><span class="line">&gt; dim(unique_annot)</span><br><span class="line">[1] 4259    9 <span class="comment"># 把没有名字的在EXCEL中去掉，剩下4259个</span></span><br><span class="line">&gt; head(unique_annot)</span><br><span class="line">  ï.. ensembl_gene_id   baseMean log2FoldChange      lfcSE       <span class="built_in">stat</span></span><br><span class="line">1   1 ENSG00000000938  1056.5419       1.507987 0.09991137  15.093251</span><br><span class="line">2   2 ENSG00000001617  6403.7959       1.138046 0.08970727  12.686216</span><br><span class="line">3   3 ENSG00000001630   218.0296      -1.154463 0.12005336  -9.616248</span><br><span class="line">4   4 ENSG00000002586  9712.0493       1.265136 0.08533961  14.824725</span><br><span class="line">5   5 ENSG00000002746   240.4362      -3.725467 0.22413035 -16.621875</span><br><span class="line">6   6 ENSG00000002933 29346.9573       1.273440 0.12591051  10.113849</span><br><span class="line">    pvalue     padj hgnc_symbol</span><br><span class="line">1 1.79e-51 2.15e-50         FGR</span><br><span class="line">2 7.05e-37 4.97e-36      SEMA3F</span><br><span class="line">3 6.83e-22 2.56e-21     CYP51A1</span><br><span class="line">4 1.01e-49 1.14e-48        CD99</span><br><span class="line">5 4.84e-62 8.09e-61       HECW1</span><br><span class="line">6 4.80e-24 1.98e-23    TMEM176A</span><br><span class="line">&gt; data_annot &lt;- data_select[match(unique_annot<span class="variable">$ensembl_gene_id</span>,rownames(data_select)),] <span class="comment"># 提取表达数据</span></span><br><span class="line">&gt; dim(data_annot)</span><br><span class="line">[1] 4259  611</span><br><span class="line">&gt; head(data_annot)[,1:3]</span><br><span class="line">                TCGA-CZ-5465-01A-01R-1503 TCGA-BP-4355-01A-01R-1289</span><br><span class="line">ENSG00000000938                       899                      1211</span><br><span class="line">ENSG00000001617                     16862                     10888</span><br><span class="line">ENSG00000001630                       310                        77</span><br><span class="line">ENSG00000002586                     10729                      8611</span><br><span class="line">ENSG00000002746                         7                        37</span><br><span class="line">ENSG00000002933                     60355                     29448</span><br><span class="line">                TCGA-CZ-5451-01A-01R-1503</span><br><span class="line">ENSG00000000938                      1100</span><br><span class="line">ENSG00000001617                      9299</span><br><span class="line">ENSG00000001630                       305</span><br><span class="line">ENSG00000002586                      7618</span><br><span class="line">ENSG00000002746                         7</span><br><span class="line">ENSG00000002933                     47857</span><br><span class="line">&gt; data_annot<span class="variable">$symbol</span> &lt;- unique_annot<span class="variable">$hgnc_symbol</span> <span class="comment"># 加入基因名称</span></span><br><span class="line">&gt; dim(data_annot)</span><br><span class="line">[1] 4259  612</span><br><span class="line">&gt; head(data_annot)[,1:3]</span><br><span class="line">                TCGA-CZ-5465-01A-01R-1503 TCGA-BP-4355-01A-01R-1289</span><br><span class="line">ENSG00000000938                       899                      1211</span><br><span class="line">ENSG00000001617                     16862                     10888</span><br><span class="line">ENSG00000001630                       310                        77</span><br><span class="line">ENSG00000002586                     10729                      8611</span><br><span class="line">ENSG00000002746                         7                        37</span><br><span class="line">ENSG00000002933                     60355                     29448</span><br><span class="line">                TCGA-CZ-5451-01A-01R-1503</span><br><span class="line">ENSG00000000938                      1100</span><br><span class="line">ENSG00000001617                      9299</span><br><span class="line">ENSG00000001630                       305</span><br><span class="line">ENSG00000002586                      7618</span><br><span class="line">ENSG00000002746                         7</span><br><span class="line">ENSG00000002933                     47857</span><br><span class="line">&gt; data_annot2 &lt;- data_annot[,c(612,1:611)] <span class="comment"># 把基因名称放到第一列</span></span><br><span class="line">&gt; dim(data_annot2)</span><br><span class="line">[1] 4259  612</span><br><span class="line">&gt; head(data_annot2)[,1:3]</span><br><span class="line">                  symbol TCGA-CZ-5465-01A-01R-1503</span><br><span class="line">ENSG00000000938      FGR                       899</span><br><span class="line">ENSG00000001617   SEMA3F                     16862</span><br><span class="line">ENSG00000001630  CYP51A1                       310</span><br><span class="line">ENSG00000002586     CD99                     10729</span><br><span class="line">ENSG00000002746    HECW1                         7</span><br><span class="line">ENSG00000002933 TMEM176A                     60355</span><br><span class="line">                TCGA-BP-4355-01A-01R-1289</span><br><span class="line">ENSG00000000938                      1211</span><br><span class="line">ENSG00000001617                     10888</span><br><span class="line">ENSG00000001630                        77</span><br><span class="line">ENSG00000002586                      8611</span><br><span class="line">ENSG00000002746                        37</span><br><span class="line">ENSG00000002933                     29448</span><br><span class="line">&gt; write.csv(data_annot2,<span class="string">"data_annot2.csv"</span>) <span class="comment"># 这个文件就是GSEA的表达文件，但是在输入GSEA前需要处理，第一列改为基因名称，新加第二列DESCRIPTION，内容为na即可；</span></span><br><span class="line">&gt; data_annot2<span class="variable">$symbol</span>[duplicated(data_annot2<span class="variable">$symbol</span>)] <span class="comment"># 检查一下基因名称是否有重复</span></span><br><span class="line">factor(0)</span><br><span class="line">4259 Levels: A4GNT AACSP1 AATBC AATK ABAT ABCA1 ABCA12 ... ZYG11A</span><br></pre></td></tr></table></figure>
+<p><img src="/images/TCGA23.png" alt></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下面准备表型文件</span></span><br><span class="line">&gt; phetype &lt;- data.frame(colnames(data_annot2)[2:612],group)</span><br><span class="line">&gt; dim(phetype)</span><br><span class="line">[1] 611   2</span><br><span class="line">&gt; head(phetype)</span><br><span class="line">  colnames.data_annot2..2.612.  group</span><br><span class="line">1    TCGA-CZ-5465-01A-01R-1503 cancer</span><br><span class="line">2    TCGA-BP-4355-01A-01R-1289 cancer</span><br><span class="line">3    TCGA-CZ-5451-01A-01R-1503 cancer</span><br><span class="line">4    TCGA-B0-5081-01A-01R-1334 cancer</span><br><span class="line">5    TCGA-CZ-5454-11A-01R-1503 normal</span><br><span class="line">6    TCGA-B0-5697-01A-11R-1541 cancer</span><br><span class="line">&gt; phetypeOrder &lt;- phetype[order(phetype<span class="variable">$group</span>),]</span><br><span class="line">&gt; head(phetypeOrder)</span><br><span class="line">   colnames.data_annot2..2.612.  group</span><br><span class="line">5     TCGA-CZ-5454-11A-01R-1503 normal</span><br><span class="line">10    TCGA-B0-5691-11A-01R-1541 normal</span><br><span class="line">21    TCGA-B0-5701-11A-01R-1541 normal</span><br><span class="line">41    TCGA-B2-5636-11A-01R-1541 normal</span><br><span class="line">44    TCGA-B0-5703-11A-01R-1541 normal</span><br><span class="line">45    TCGA-CZ-4864-11A-01R-1503 normal</span><br><span class="line">&gt; tail(phetypeOrder)</span><br><span class="line">    colnames.data_annot2..2.612.  group</span><br><span class="line">606    TCGA-BP-5200-01A-01R-1426 cancer</span><br><span class="line">607    TCGA-BP-4999-01A-01R-1334 cancer</span><br><span class="line">608    TCGA-GK-A6C7-01A-11R-A33J cancer</span><br><span class="line">609    TCGA-B0-5113-01A-01R-1420 cancer</span><br><span class="line">610    TCGA-CJ-4893-01A-01R-1305 cancer</span><br><span class="line">611    TCGA-CZ-4856-01A-02R-1426 cancer</span><br><span class="line">&gt; write.csv(phetypeOrder,<span class="string">"phetypeOrder.csv"</span>) <span class="comment"># 表型文件，排序是为方便在GSEA软件中输入</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/TCGA24.png" alt></p>
+<p>如上图，输入表达文件和表型文件，并且将下载好的基因集文件导入，就可以运行了，如果跑所有的基因集，需要耗费几分钟时间，运行完成后，生成一个网页，里面是对结果的描述。</p>
+<p><img src="/images/TCGA25.png" alt></p>
+<p>程序共运行了12388个基因集，使用了4259个基因。那么，富集结果怎么读呢？一般认为，|NES|&gt;1，NOM p-val&lt;0.05，FDR q-val&lt;0.25的通路是显著富集的。</p>
+<p>根据这个标准，富集结果并不理想，不论肿瘤或是正常组织中，都不存在符合以上标准的基因集。</p>
+<p>当然，以上富集分析有一个硬伤，即只选取了差异表达的基因，并且由于注释的缘故，一部分基因被滤掉了，这可能导致富集结果出现偏差。我们也可以尝试使用所有的基因来做个分析。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">&gt; dim(data_select)</span><br><span class="line">[1] 18129   611 <span class="comment"># 原始数据经筛选后留下18129个基因</span></span><br><span class="line">&gt; library(biomaRt)</span><br><span class="line">&gt; geneName_select2 &lt;- rownames(data_select)</span><br><span class="line">&gt; length(geneName_select2)</span><br><span class="line">[1] 18129</span><br><span class="line">ensemb &lt;- useDataset(<span class="string">"hsapiens_gene_ensembl"</span>,mart=useMart(<span class="string">"ensembl"</span>))</span><br><span class="line">ensemb</span><br><span class="line">annot2 &lt;- getBM(attributes = c(<span class="string">"ensembl_gene_id"</span>,<span class="string">"hgnc_symbol"</span>),</span><br><span class="line">               filters = <span class="string">"ensembl_gene_id"</span>,values = geneName_select2, mart=ensemb)</span><br><span class="line">class(annot2)</span><br><span class="line">&gt; dim(annot2)</span><br><span class="line">[1] 17972     2 <span class="comment"># 注释后剩下17192个基因</span></span><br><span class="line">&gt; head(annot2)</span><br><span class="line">  ensembl_gene_id hgnc_symbol</span><br><span class="line">1 ENSG00000000419        DPM1</span><br><span class="line">2 ENSG00000000457       SCYL3</span><br><span class="line">3 ENSG00000000460    C1orf112</span><br><span class="line">4 ENSG00000000938         FGR</span><br><span class="line">5 ENSG00000000971         CFH</span><br><span class="line">6 ENSG00000001036       FUCA2</span><br><span class="line">&gt; annot2<span class="variable">$hgnc_symbol</span>[duplicated(annot2<span class="variable">$hgnc_symbol</span>)]</span><br><span class="line">   [1] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line">  [22] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line">  [43] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line">  [64] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line">  [85] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [106] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [127] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [148] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [169] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [190] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [211] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [232] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [253] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [274] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [295] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [316] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [337] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [358] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [379] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [400] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [421] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [442] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [463] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [484] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [505] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [526] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [547] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [568] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [589] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [610] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [631] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [652] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [673] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [694] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [715] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [736] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [757] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [778] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [799] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [820] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [841] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [862] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [883] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [904] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [925] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [946] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [967] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [988] <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></span><br><span class="line"> [ reached getOption(<span class="string">"max.print"</span>) -- omitted 589 entries ] <span class="comment"># 查重，居然有1589个是""，这些需要去掉</span></span><br><span class="line">annot2_unique &lt;- annot2[match(unique(annot2<span class="variable">$hgnc_symbol</span>),annot2<span class="variable">$hgnc_symbol</span>),]</span><br><span class="line">&gt; dim(annot2_unique)</span><br><span class="line">[1] 16383     2 <span class="comment"># 去掉重复后剩下16383个基因，其实还有一行""剩下，需要去掉</span></span><br><span class="line">&gt; head(annot2_unique)</span><br><span class="line">  ensembl_gene_id hgnc_symbol</span><br><span class="line">1 ENSG00000000419        DPM1</span><br><span class="line">2 ENSG00000000457       SCYL3</span><br><span class="line">3 ENSG00000000460    C1orf112</span><br><span class="line">4 ENSG00000000938         FGR</span><br><span class="line">5 ENSG00000000971         CFH</span><br><span class="line">6 ENSG00000001036       FUCA2</span><br><span class="line">data_select_annot &lt;- data_select[match(annot2_unique<span class="variable">$ensembl_gene_id</span>,rownames(data_select)),]</span><br><span class="line">&gt; dim(data_select_annot)</span><br><span class="line">[1] 16383   611 <span class="comment"># 其实应当是16382行，有一行是""，没有去掉</span></span><br><span class="line">head(data_select_annot)[,1:3]</span><br><span class="line">Descriptions &lt;- rep(<span class="string">"NA"</span>,16383) <span class="comment"># 加一列</span></span><br><span class="line">data_select_annot2 &lt;- cbind(symbol=annot2_unique<span class="variable">$hgnc_symbol</span>,Descriptions,data_select_annot)</span><br><span class="line">dim(data_select_annot2)</span><br><span class="line">head(data_select_annot2)[,1:3]</span><br><span class="line">write.csv(data_select_annot2,<span class="string">"data_select_annot2.csv"</span>)</span><br><span class="line"><span class="comment"># 在EXCEL中去掉""这一列，并保存为TXT文件</span></span><br><span class="line">&gt; data_select_annot2<span class="variable">$symbol</span>[duplicated(data_select_annot2<span class="variable">$symbol</span>)] <span class="comment"># 这回没有重复</span></span><br><span class="line">factor(0)</span><br><span class="line">16383 Levels:  A1BG-AS1 A1CF A2M A2M-AS1 A4GALT A4GNT AAAS ... ZZEF1</span><br><span class="line"><span class="comment"># 上面这个TXT文件即为表达文件</span></span><br><span class="line">phetype &lt;- data.frame(colnames(data_select_annot2)[3:613],group)</span><br><span class="line">dim(phetype)</span><br><span class="line">head(phetype)</span><br><span class="line">phetypeOrder &lt;- phetype[order(phetype<span class="variable">$group</span>),]</span><br><span class="line">head(phetypeOrder)</span><br><span class="line">tail(phetypeOrder)</span><br><span class="line">write.csv(phetypeOrder,<span class="string">"phetypeOrder.csv"</span>) <span class="comment"># 表型文件</span></span><br></pre></td></tr></table></figure>
+<p>运行之后，结果是一致的，即没有显著富集的基因集。</p>
+
+      
+    </div>
+
+<div>
+
+
+<ul class="post-copyright">
+<li class="post-copyright-author">
+<strong>本文作者：</strong>括囊无誉
+</li>
+<li class="post-copyright-link">
+<strong>本文链接：</strong>
+<a href="/TCGA/TCGA14GSEA/" title="TCGA学习笔记14-基因集富集分析GSEA">TCGA/TCGA14GSEA/</a>
+</li>
+<li class="post-copyright-license">
+<strong>版权声明： </strong>
+本博客所有文章均为原创作品，转载请注明出处！
+</li>
+</ul>
+
+</div>
+
+    
+    
+    
+
+
+<div>
+
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创文章分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="括囊无誉 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TCGA/" rel="tag"># TCGA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/TCGA/TCGA13Survival/" rel="next" title="TCGA学习笔记13-对所有差异表达基因进行生存分析">
+                <i class="fa fa-chevron-left"></i> TCGA学习笔记13-对所有差异表达基因进行生存分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="括囊无誉">
+          <p class="site-author-name" itemprop="name">括囊无誉</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">185</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">211</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/75d3f95b058e" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-http://www.jianshu.com/u/75d3f95b058e"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">括囊无誉</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://uteric-1.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://uteric.github.io/TCGA/TCGA14GSEA/';
+          this.page.identifier = 'TCGA/TCGA14GSEA/';
+          this.page.title = 'TCGA学习笔记14-基因集富集分析GSEA';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://uteric-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
