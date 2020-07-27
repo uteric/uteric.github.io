@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="GEO,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="诸子百家" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="本文是学习过程，参考教程是《来完成你的生信作业，这是最有诚意的GEO数据库教程》，本文分析GSE32575，共36个配对样本，18个处理前，18个处理后。 123456789101112131415161718192021222324&amp;gt; setwd(&quot;D:/GEO&quot;)&amp;gt; library(GEOquery)&amp;gt; gset &amp;lt;- getGEO(&apos;GSE32575&apos;,destdir">
+<meta name="keywords" content="GEO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GEO学习笔记1">
+<meta property="og:url" content="http://uteric.github.io/GEO/GEO01/index.html">
+<meta property="og:site_name" content="诸子百家">
+<meta property="og:description" content="本文是学习过程，参考教程是《来完成你的生信作业，这是最有诚意的GEO数据库教程》，本文分析GSE32575，共36个配对样本，18个处理前，18个处理后。 123456789101112131415161718192021222324&amp;gt; setwd(&quot;D:/GEO&quot;)&amp;gt; library(GEOquery)&amp;gt; gset &amp;lt;- getGEO(&apos;GSE32575&apos;,destdir">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://uteric.github.io/images/GEO/GEO01.png">
+<meta property="og:image" content="http://uteric.github.io/images/GEO/GEO02.png">
+<meta property="og:image" content="http://uteric.github.io/images/GEO/GEO03.png">
+<meta property="og:image" content="http://uteric.github.io/images/GEO/GEO04.png">
+<meta property="og:image" content="http://uteric.github.io/images/GEO/GEO05.png">
+<meta property="og:image" content="http://uteric.github.io/images/GEO/GEO06.png">
+<meta property="og:image" content="http://uteric.github.io/images/GEO/GEO07.png">
+<meta property="og:image" content="http://uteric.github.io/images/GEO/GEO08.png">
+<meta property="og:updated_time" content="2020-07-25T21:14:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GEO学习笔记1">
+<meta name="twitter:description" content="本文是学习过程，参考教程是《来完成你的生信作业，这是最有诚意的GEO数据库教程》，本文分析GSE32575，共36个配对样本，18个处理前，18个处理后。 123456789101112131415161718192021222324&amp;gt; setwd(&quot;D:/GEO&quot;)&amp;gt; library(GEOquery)&amp;gt; gset &amp;lt;- getGEO(&apos;GSE32575&apos;,destdir">
+<meta name="twitter:image" content="http://uteric.github.io/images/GEO/GEO01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '9e233f3fa2f200ca831529de7ba10253',
+      indexName: 'uteric',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://uteric.github.io/GEO/GEO01/">
+
+
+
+
+
+  <title>GEO学习笔记1 | 诸子百家</title>
+  
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104081724-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <meta name="baidu-site-verification" content="bfQpbnNmEL">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诸子百家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+<div class="local-search-header clearfix">
+<span class="search-icon">
+<i class="fa fa-search"></i>
+</span>
+<span class="popup-btn-close">
+<i class="fa fa-times-circle"></i>
+</span>
+<div class="local-search-input-wrapper">
+<input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+</div>
+</div>
+<div id="local-search-result"></div>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/GEO/GEO01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="括囊无誉">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸子百家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GEO学习笔记1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-25T16:14:01-05:00">
+                2020-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/生物信息/" itemprop="url" rel="index">
+                    <span itemprop="name">生物信息</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/GEO/GEO01/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="GEO/GEO01/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>°C
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文是学习过程，参考教程是《来完成你的生信作业，这是最有诚意的GEO数据库教程》，本文分析GSE32575，共36个配对样本，18个处理前，18个处理后。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&gt; setwd(<span class="string">"D:/GEO"</span>)</span><br><span class="line">&gt; library(GEOquery)</span><br><span class="line">&gt; gset &lt;- getGEO(<span class="string">'GSE32575'</span>,destdir=<span class="string">"."</span>,getGPL=F) <span class="comment"># 下载数据</span></span><br><span class="line">&gt; gset &lt;- gset[[1]] <span class="comment"># 获取表达矩阵与分组信息</span></span><br><span class="line">&gt; pdata &lt;- pData(gset) <span class="comment"># 分组信息</span></span><br><span class="line">&gt; dim(pdata)</span><br><span class="line">[1] 48 37 <span class="comment"># 48个样品，下面要删除前12个，仅用后36个</span></span><br><span class="line">&gt; group_list &lt;- c(rep(<span class="string">'before'</span>,18),rep(<span class="string">'after'</span>,18))</span><br><span class="line">&gt; group_list &lt;-factor(group_list) <span class="comment"># 设定level</span></span><br><span class="line">&gt; group_list</span><br><span class="line"> [1] before before before before before before before before before</span><br><span class="line">[10] before before before before before before before before before</span><br><span class="line">[19] after  after  after  after  after  after  after  after  after </span><br><span class="line">[28] after  after  after  after  after  after  after  after  after </span><br><span class="line">Levels: after before</span><br><span class="line">&gt; group_list &lt;- relevel(group_list, ref=<span class="string">'before'</span>) <span class="comment"># 限定level</span></span><br><span class="line">&gt; group_list</span><br><span class="line"> [1] before before before before before before before before before</span><br><span class="line">[10] before before before before before before before before before</span><br><span class="line">[19] after  after  after  after  after  after  after  after  after </span><br><span class="line">[28] after  after  after  after  after  after  after  after  after </span><br><span class="line">Levels: before after</span><br><span class="line">&gt; exprSet &lt;- exprs(gset) <span class="comment"># 获取表达矩阵</span></span><br><span class="line">&gt; boxplot(exprSet[,-c(1:12)],outline=FALSE,notch=T,col=group_list,las=2)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/GEO/GEO01.png" alt></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">library(limma) <span class="comment"># 使用limma进行Normalization</span></span><br><span class="line">exprSet &lt;- normalizeBetweenArrays(exprSet)</span><br><span class="line">boxplot(exprSet[,-c(1:12)],outline=FALSE,notch=T,col=group_list,las=2)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/GEO/GEO02.png" alt></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对数据进行LOG转换，否则数据太过分散</span></span><br><span class="line"><span class="comment"># LOG2 TRANSFORM ----</span></span><br><span class="line">ex &lt;- exprSet</span><br><span class="line">qx &lt;- as.numeric(quantile(ex, c(0., 0.25, 0.5, 0.75, 0.99, 1.0), na.rm=T))</span><br><span class="line">LogC &lt;- (qx[5] &gt; 100) ||</span><br><span class="line">  (qx[6]-qx[1] &gt; 50 &amp;&amp; qx[2] &gt; 0) ||</span><br><span class="line">  (qx[2] &gt; 0 &amp;&amp; qx[2] &lt; 1 &amp;&amp; qx[4] &gt; 1 &amp;&amp; qx[4] &lt; 2)</span><br><span class="line"><span class="keyword">if</span> (LogC) &#123; ex[<span class="built_in">which</span>(ex &lt;= 0)] &lt;- NaN</span><br><span class="line">exprSet &lt;- log2(ex)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">'log2 transform finished'</span>)&#125;<span class="keyword">else</span>&#123;<span class="built_in">print</span>(<span class="string">'log2 transform not needed'</span>)&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/GEO/GEO03.png" alt></p>
+<p>转换之后，行名是探针名称，需要先转换为基因名称</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&gt; index &lt;- gset@annotation</span><br><span class="line">&gt; index</span><br><span class="line">[1] <span class="string">"GPL6102"</span> <span class="comment"># 探针平台名称</span></span><br><span class="line">&gt; platformMap &lt;- data.table::fread(<span class="string">"platformMap.txt"</span>) <span class="comment"># 这个文件可在网上下载，对应着平台与R包之间的关系</span></span><br><span class="line">&gt; platformDB = paste0(platformMap<span class="variable">$bioc_package</span>[grep(index,platformMap<span class="variable">$gpl</span>)],<span class="string">'.db'</span>)</span><br><span class="line">&gt; platformDB</span><br><span class="line">[1] <span class="string">"illuminaHumanv2.db"</span> <span class="comment"># 我们需要这个R包的名称，或者直接在TXT文件中查找</span></span><br><span class="line">&gt; BiocManager::install(<span class="string">"illuminaHumanv2.db"</span>)</span><br><span class="line">&gt; library(illuminaHumanv2.db)</span><br><span class="line">&gt; probeset &lt;- rownames(exprSet)</span><br><span class="line">&gt; SYMBOL &lt;-  annotate::lookUp(probeset,<span class="string">'illuminaHumanv2.db'</span>, <span class="string">'SYMBOL'</span>)</span><br><span class="line">&gt; symbol &lt;- as.vector(unlist(SYMBOL))</span><br><span class="line">&gt; probe2symbol &lt;- data.frame(probeset,symbol,stringsAsFactors = F)</span><br><span class="line">&gt; dim(probe2symbol)</span><br><span class="line">[1] 48701     2</span><br><span class="line">&gt; head(probe2symbol)</span><br><span class="line">      probeset symbol</span><br><span class="line">1 ILMN_1343289   RPS9</span><br><span class="line">2 ILMN_1343290    UBC</span><br><span class="line">3 ILMN_1343291 EEF1A1</span><br><span class="line">4 ILMN_1343292 TUBB2A</span><br><span class="line">5 ILMN_1343293    TXN</span><br><span class="line">6 ILMN_1343294   ACTB</span><br></pre></td></tr></table></figure>
+<p>其实，注释的过程中有些基因是没有名称的，会被标记为NA，另外也可能有重复的，即多个探针可能对应同一基因，因此，需要去掉重复与NA。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; exprSet &lt;- exprSet %&gt;% </span><br><span class="line">  rownames_to_column(var=<span class="string">'probeset'</span>) %&gt;%  <span class="comment"># 把行名转化为第一列，原因是行名不可以有重复，不方便操作</span></span><br><span class="line">  inner_join(probe2symbol,by=<span class="string">'probeset'</span>) %&gt;%  <span class="comment"># 合并probe2symbol，即把symbol加到最后一列</span></span><br><span class="line">  select(-probeset) %&gt;% <span class="comment"># 去掉第一列，这是个过渡，用完就可以去掉</span></span><br><span class="line">  select(symbol,everything()) %&gt;% <span class="comment"># 重新排序，把symbol放在第一列</span></span><br><span class="line">  mutate(rowMean =rowMeans(.[grep(<span class="string">'GSM'</span>, names(.))])) %&gt;% <span class="comment"># 计算每行除symbol外的平均值</span></span><br><span class="line">  filter(symbol != <span class="string">'NA'</span>) %&gt;% <span class="comment"># 留下symbol不是NA的行，开始是48701行，筛选后剩下24459行</span></span><br><span class="line">  arrange(desc(rowMean)) %&gt;% <span class="comment"># 按行的平均值重新排列</span></span><br><span class="line">  distinct(symbol,.keep_all = T) %&gt;% <span class="comment"># 若symbol有重复，留下第一个，即rowMean最大的一个，筛选后剩下18954行；</span></span><br><span class="line">  select(-rowMean) %&gt;% <span class="comment"># 去掉rowMean列</span></span><br><span class="line">  column_to_rownames(var = <span class="string">'symbol'</span>) <span class="comment"># 把第一列转化为行名，操作结束</span></span><br><span class="line">&gt; dim(exprSet)</span><br><span class="line">[1] 18954    36</span><br></pre></td></tr></table></figure>
+<p><img src="/images/GEO/GEO04.png" alt></p>
+<p>到此，数据就准备好了，下面进行差异分析</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&gt; pairinfo &lt;- factor(rep(1:18,2))</span><br><span class="line">&gt; pairinfo</span><br><span class="line"> [1] 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 1  2  3  4 </span><br><span class="line">[23] 5  6  7  8  9  10 11 12 13 14 15 16 17 18</span><br><span class="line">Levels: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18</span><br><span class="line">&gt; design &lt;- model.matrix(~ pairinfo+group_list)</span><br><span class="line">&gt; fit &lt;- lmFit(exprSet,design)</span><br><span class="line">&gt; fit &lt;- eBayes(fit) </span><br><span class="line">&gt; allDiff_pair &lt;- topTable(fit,adjust=<span class="string">'BH'</span>,coef=<span class="string">'group_listafter'</span>,number=Inf,p.value=0.05) <span class="comment"># group_listafter是design中的一列</span></span><br><span class="line">&gt; dim(allDiff_pair)</span><br><span class="line">[1] 7649    6 <span class="comment"># 得到7649个差异基因</span></span><br><span class="line">&gt; head(allDiff_pair)</span><br><span class="line">            logFC   AveExpr         t      P.Value    adj.P.Val</span><br><span class="line">R3HCC1 -0.5120536  9.488934 -21.00187 2.017132e-15 3.823273e-11</span><br><span class="line">CHD9    0.9151318  9.456901  20.10559 4.773134e-15 4.523499e-11</span><br><span class="line">PIK3CG  0.7508626  8.864623  18.75847 1.864086e-14 9.249356e-11</span><br><span class="line">SCAND1 -0.6169805 10.540154 -18.69975 1.982044e-14 9.249356e-11</span><br><span class="line">ASAH1  -0.7523775  9.364233 -18.50207 2.439948e-14 9.249356e-11</span><br><span class="line">FAM76B  0.8384345  8.265115  17.90582 4.623183e-14 1.413263e-10</span><br><span class="line">              B</span><br><span class="line">R3HCC1 25.17464</span><br><span class="line">CHD9   24.38000</span><br><span class="line">PIK3CG 23.10821</span><br><span class="line">SCAND1 23.05052</span><br><span class="line">ASAH1  22.85487</span><br><span class="line">FAM76B 22.25094</span><br></pre></td></tr></table></figure>
+<p>作图验证一下，作图之前需要对数据格式进行调整，以适应ggplot2对输入数据的要求，即行是样品，列是基因</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">data_plot &lt;- as.data.frame(t(exprSet))</span><br><span class="line">data_plot &lt;- data.frame(pairinfo=rep(1:18,2),</span><br><span class="line">                       group=group_list,</span><br><span class="line">                       data_plot,stringsAsFactors = F)</span><br><span class="line">library(ggplot2)</span><br><span class="line">ggplot(data_plot, aes(group,R3HCC1,fill=group)) +</span><br><span class="line">  geom_boxplot() +</span><br><span class="line">  geom_point(size=2, alpha=0.5) +</span><br><span class="line">  geom_line(aes(group=pairinfo), colour=<span class="string">'black'</span>, linetype=<span class="string">'11'</span>) +</span><br><span class="line">  xlab(<span class="string">''</span>) +</span><br><span class="line">  ylab(paste(<span class="string">'Expression of '</span>,<span class="string">'R3HCC1'</span>))+</span><br><span class="line">  theme_classic()+</span><br><span class="line">  theme(legend.position = <span class="string">'none'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/GEO/GEO05.png" alt></p>
+<p>批量作图，挑差异最大的10个基因</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&gt; library(dplyr)</span><br><span class="line">&gt; library(tibble)</span><br><span class="line">&gt; allDiff_arrange &lt;- allDiff_pair %&gt;% </span><br><span class="line">  rownames_to_column(var=<span class="string">'genesymbol'</span>) %&gt;% <span class="comment"># 行名转化为第一列</span></span><br><span class="line">  arrange(desc(abs(logFC))) <span class="comment"># 对logFC的绝对值进行降序排列</span></span><br><span class="line">&gt; genes &lt;- allDiff_arrange<span class="variable">$genesymbol</span>[1:10] <span class="comment"># 排名前10的基因</span></span><br><span class="line">&gt; genes</span><br><span class="line"> [1] <span class="string">"CH25H"</span>  <span class="string">"HOXA5"</span>  <span class="string">"ID1"</span>    <span class="string">"ZBTB16"</span> <span class="string">"IL1R2"</span>  <span class="string">"CA4"</span>    <span class="string">"SLC7A5"</span></span><br><span class="line"> [8] <span class="string">"DDIT4"</span>  <span class="string">"KLF9"</span>   <span class="string">"ACKR3"</span></span><br><span class="line">&gt; plotlist &lt;- lapply(genes, <span class="keyword">function</span>(x)&#123;</span><br><span class="line">  data =data.frame(data_plot[,c(<span class="string">'pairinfo'</span>,<span class="string">'group'</span>)],gene=data_plot[,x])</span><br><span class="line">  ggplot(data, aes(group,gene,fill=group)) +</span><br><span class="line">    geom_boxplot() +</span><br><span class="line">    geom_point(size=2, alpha=0.5) +</span><br><span class="line">    geom_line(aes(group=pairinfo), colour=<span class="string">'black'</span>, linetype=<span class="string">'11'</span>) +</span><br><span class="line">    xlab(<span class="string">''</span>) +</span><br><span class="line">    ylab(paste(<span class="string">'Expression of '</span>,x))+</span><br><span class="line">    theme_classic()+</span><br><span class="line">    theme(legend.position = <span class="string">'none'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">&gt; library(cowplot)</span><br><span class="line">&gt; plot_grid(plotlist=plotlist, ncol=5,labels = LETTERS[1:10]) <span class="comment"># 这个作图方法真是高明，感叹！</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/GEO/GEO06.png" alt></p>
+<p>画热图</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">library(pheatmap)</span><br><span class="line">allDiff_pair2 &lt;- topTable(fit,adjust=<span class="string">'BH'</span>,coef=<span class="string">'group_listafter'</span>,number=Inf,p.value=0.05,lfc = 1) <span class="comment"># lfc=1，代表logFC绝对值大于1</span></span><br><span class="line">heatdata &lt;- exprSet[rownames(allDiff_pair2),]</span><br><span class="line">annotation_col&lt;- data.frame(group_list)</span><br><span class="line">rownames(annotation_col) &lt;- colnames(heatdata)</span><br><span class="line">pheatmap(heatdata, </span><br><span class="line">         cluster_rows = TRUE,</span><br><span class="line">         cluster_cols = TRUE,</span><br><span class="line">         annotation_col =annotation_col, </span><br><span class="line">         annotation_legend=TRUE, </span><br><span class="line">         show_rownames = T,</span><br><span class="line">         show_colnames = T,</span><br><span class="line">         scale = <span class="string">'row'</span>, <span class="comment"># scale一定选行，即在基因内标准化</span></span><br><span class="line">         color =colorRampPalette(c(<span class="string">'blue'</span>, <span class="string">'white'</span>,<span class="string">'red'</span>))(100))</span><br></pre></td></tr></table></figure>
+<p><img src="/images/GEO/GEO07.png" alt></p>
+<p>绘制火山图</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&gt; library(ggplot2)</span><br><span class="line">&gt; library(ggrepel)</span><br><span class="line">&gt; library(dplyr)</span><br><span class="line">&gt; data &lt;- topTable(fit,adjust=<span class="string">'BH'</span>,coef=<span class="string">'group_listafter'</span>,number=Inf) </span><br><span class="line">&gt; data<span class="variable">$significant</span> &lt;- as.factor(data<span class="variable">$adj</span>.P.Val&lt;0.05 &amp; abs(data<span class="variable">$logFC</span>) &gt; 0.6) <span class="comment">#以logFC=1.5为界</span></span><br><span class="line">&gt; data<span class="variable">$gene</span> &lt;- rownames(data)</span><br><span class="line">&gt; ggplot(data=data, aes(x=logFC, y =-log10(adj.P.Val),color=significant)) +</span><br><span class="line">+   geom_point(alpha=0.8, size=1.2,col=<span class="string">'black'</span>)+</span><br><span class="line">+   geom_point(data=subset(data, logFC &gt; 0.6),alpha=0.8, size=1.2,col=<span class="string">'red'</span>)+</span><br><span class="line">+   geom_point(data=subset(data, logFC &lt; -0.6),alpha=0.6, size=1.2,col=<span class="string">'blue'</span>)+</span><br><span class="line">+   labs(x=<span class="string">'log2 (fold change)'</span>,y=<span class="string">'-log10 (adj.P.Val)'</span>)+</span><br><span class="line">+   theme(plot.title = element_text(hjust = 0.4))+</span><br><span class="line">+   geom_hline(yintercept = -log10(0.05),lty=4,lwd=0.6,alpha=0.8)+</span><br><span class="line">+   geom_vline(xintercept = c(0.6,-0.6),lty=4,lwd=0.6,alpha=0.8)+</span><br><span class="line">+   theme_bw()+</span><br><span class="line">+   theme(panel.border = element_blank(),</span><br><span class="line">+         panel.grid.major = element_blank(), </span><br><span class="line">+         panel.grid.minor = element_blank(),   </span><br><span class="line">+         axis.line = element_line(colour = <span class="string">'black'</span>)) +</span><br><span class="line">+   geom_point(data=subset(data, abs(logFC) &gt; 1),alpha=0.8, size=3,col=<span class="string">'green'</span>)+</span><br><span class="line">+   geom_text_repel(data=subset(data, abs(logFC) &gt; 1), </span><br><span class="line">+                   aes(label=gene),col=<span class="string">'black'</span>,alpha = 0.8)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/GEO/GEO08.png" alt></p>
+
+      
+    </div>
+
+<div>
+
+
+<ul class="post-copyright">
+<li class="post-copyright-author">
+<strong>本文作者：</strong>括囊无誉
+</li>
+<li class="post-copyright-link">
+<strong>本文链接：</strong>
+<a href="/GEO/GEO01/" title="GEO学习笔记1">GEO/GEO01/</a>
+</li>
+<li class="post-copyright-license">
+<strong>版权声明： </strong>
+本博客所有文章均为原创作品，转载请注明出处！
+</li>
+</ul>
+
+</div>
+
+    
+    
+    
+
+
+<div>
+
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创文章分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="括囊无誉 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GEO/" rel="tag"># GEO</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/TCGA/TCGA14GSEA/" rel="next" title="TCGA学习笔记14-基因集富集分析GSEA">
+                <i class="fa fa-chevron-left"></i> TCGA学习笔记14-基因集富集分析GSEA
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="括囊无誉">
+          <p class="site-author-name" itemprop="name">括囊无誉</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">186</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">211</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/75d3f95b058e" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-http://www.jianshu.com/u/75d3f95b058e"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">括囊无誉</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://uteric-1.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://uteric.github.io/GEO/GEO01/';
+          this.page.identifier = 'GEO/GEO01/';
+          this.page.title = 'GEO学习笔记1';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://uteric-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
