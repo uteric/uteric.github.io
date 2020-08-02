@@ -98,7 +98,7 @@
 <meta name="keywords" content="诸子,百家,诸子百家">
 <meta property="og:type" content="website">
 <meta property="og:title" content="诸子百家">
-<meta property="og:url" content="http://uteric.github.io/tags/LINUX/index.html">
+<meta property="og:url" content="http://uteric.github.io/tags/Linux/index.html">
 <meta property="og:site_name" content="诸子百家">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
@@ -131,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://uteric.github.io/tags/LINUX/">
+  <link rel="canonical" href="http://uteric.github.io/tags/Linux/">
 
 
 
 
 
-  <title>标签: LINUX | 诸子百家</title>
+  <title>标签: Linux | 诸子百家</title>
   
 
 
@@ -317,7 +317,7 @@ ga('send', 'pageview');
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>LINUX<small>标签</small>
+        <h1>Linux<small>标签</small>
         </h1>
       </div>
 
@@ -329,69 +329,17 @@ ga('send', 'pageview');
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/Linux/linux_chmod/" itemprop="url">
+            <a class="post-title-link" href="/Linux/linux_module/" itemprop="url">
               
-                <span itemprop="name">linux更改文件权限</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-05-15T14:50:51-05:00" content="2020-05-15">
-          05-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/Linux/RTL8821CE安装驱动/" itemprop="url">
-              
-                <span itemprop="name">Ubuntu 18.04上为无线网卡RTL8821CE安装驱动</span>
+                <span itemprop="name">解决Linux报错 module command not found</span>
               
             </a>
         
       </h2>
 
       <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-12-25T11:21:15-06:00" content="2019-12-25">
-          12-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/Linux/package dependency/" itemprop="url">
-              
-                <span itemprop="name">如何解决LINUX安装包相互依赖</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-12-25T11:14:54-06:00" content="2019-12-25">
-          12-25
+        <time class="post-time" itemprop="dateCreated" datetime="2020-05-19T11:43:45-05:00" content="2020-05-19">
+          05-19
         </time>
       </div>
 
@@ -449,7 +397,7 @@ ga('send', 'pageview');
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">192</span>
+                <span class="site-state-item-count">193</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -980,6 +928,71 @@ ga('send', 'pageview');
           }
 
           // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+emove loading animation
           $(".local-search-pop-overlay").remove();
           $('body').css('overflow', '');
 
