@@ -127,8 +127,6 @@
 <meta property="og:image" content="http://uteric.github.io/images/R/kirc22.png">
 <meta property="og:image" content="http://uteric.github.io/images/R/kirc23.png">
 <meta property="og:image" content="http://uteric.github.io/images/R/kirc24.png">
-<meta property="og:image" content="http://uteric.github.io/images/R/kirc25.png">
-<meta property="og:image" content="http://uteric.github.io/images/R/kirc26.png">
 <meta property="og:updated_time" content="2020-10-27T18:57:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用MAFTOOLS分析肿瘤变异数据">
@@ -540,7 +538,6 @@ ga('send', 'pageview');
 <p>上面，对5个barcode进行了整体分析，下面，可以指定某一个Barcode来具体看一下，比如指定”TCGA-B8-4143”</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; barcode1 &lt;- inferHeterogeneity(maf=kirc, tsb=<span class="string">"TCGA-B8-4143"</span>)</span><br><span class="line">t_vaf field is missing, but found t_ref_count &amp; t_alt_count columns. Estimating vaf..</span><br><span class="line">Processing TCGA-B8-4143..</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以通过$clusterMeans来查看聚类情况与VAF均值，或通过$clusterData来查看基因的详细信息</span></span><br><span class="line">&gt; barcode1<span class="variable">$clusterMeans</span></span><br><span class="line">   Tumor_Sample_Barcode cluster    meanVaf</span><br><span class="line">1:         TCGA-B8-4143       1 0.05095599</span><br><span class="line">2:         TCGA-B8-4143       2 0.11837474</span><br><span class="line">3:         TCGA-B8-4143       3 0.30865454</span><br><span class="line">4:         TCGA-B8-4143 outlier 0.60606061</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用plotClusters来作图</span></span><br><span class="line">&gt; plotClusters(clusters=barcode1)</span><br><span class="line"><span class="comment"># 这个肿瘤异质性聚类结果是比较差的，一方面主峰的频率只有5%，另一方面MATH scores太高，分数越高结果越差</span></span><br></pre></td></tr></table></figure>
 <p><img src="/images/R/kirc24.png" alt></p>
-<p><img src="/images/R/kirc25.png" alt><br><img src="/images/R/kirc26.png" alt></p>
 
       
     </div>
@@ -716,7 +713,7 @@ ga('send', 'pageview');
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">202</span>
+                <span class="site-state-item-count">203</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -738,7 +735,7 @@ ga('send', 'pageview');
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">215</span>
+                <span class="site-state-item-count">216</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
