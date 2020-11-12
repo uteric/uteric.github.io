@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="GATK,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="诸子百家" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="安装步骤参考官方安装指南 一、卸载旧版本12345678$ sudo apt-get remove docker docker-engine docker.io containerd runc# 为确保安装顺利，先卸载旧版本，如果未曾安装，则会提示：# Package &apos;docker-engine&apos; is not installed, so not removed# Package &apos;docker">
+<meta name="keywords" content="GATK">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在UBUNTU上安装GATK官方Docker Engine">
+<meta property="og:url" content="http://uteric.github.io/WES/docker-engine-install/index.html">
+<meta property="og:site_name" content="诸子百家">
+<meta property="og:description" content="安装步骤参考官方安装指南 一、卸载旧版本12345678$ sudo apt-get remove docker docker-engine docker.io containerd runc# 为确保安装顺利，先卸载旧版本，如果未曾安装，则会提示：# Package &apos;docker-engine&apos; is not installed, so not removed# Package &apos;docker">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-10T19:58:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在UBUNTU上安装GATK官方Docker Engine">
+<meta name="twitter:description" content="安装步骤参考官方安装指南 一、卸载旧版本12345678$ sudo apt-get remove docker docker-engine docker.io containerd runc# 为确保安装顺利，先卸载旧版本，如果未曾安装，则会提示：# Package &apos;docker-engine&apos; is not installed, so not removed# Package &apos;docker">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '9e233f3fa2f200ca831529de7ba10253',
+      indexName: 'uteric',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://uteric.github.io/WES/docker-engine-install/">
+
+
+
+
+
+  <title>在UBUNTU上安装GATK官方Docker Engine | 诸子百家</title>
+  
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104081724-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <meta name="baidu-site-verification" content="bfQpbnNmEL">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诸子百家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+<div class="local-search-header clearfix">
+<span class="search-icon">
+<i class="fa fa-search"></i>
+</span>
+<span class="popup-btn-close">
+<i class="fa fa-times-circle"></i>
+</span>
+<div class="local-search-input-wrapper">
+<input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+</div>
+</div>
+<div id="local-search-result"></div>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/WES/docker-engine-install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="括囊无誉">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸子百家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在UBUNTU上安装GATK官方Docker Engine</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-10T13:58:34-06:00">
+                2020-11-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程语言/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/WES/docker-engine-install/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="WES/docker-engine-install/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>°C
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>安装步骤参考官方<a href="https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository" target="_blank" rel="noopener">安装指南</a></p>
+<h2 id="一、卸载旧版本"><a href="#一、卸载旧版本" class="headerlink" title="一、卸载旧版本"></a>一、卸载旧版本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get remove docker docker-engine docker.io containerd runc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为确保安装顺利，先卸载旧版本，如果未曾安装，则会提示：</span></span><br><span class="line"><span class="comment"># Package 'docker-engine' is not installed, so not removed</span></span><br><span class="line"><span class="comment"># Package 'docker' is not installed, so not removed</span></span><br><span class="line"><span class="comment"># Package 'containerd' is not installed, so not removed</span></span><br><span class="line"><span class="comment"># Package 'docker.io' is not installed, so not removed</span></span><br><span class="line"><span class="comment"># Package 'runc' is not installed, so not removed</span></span><br></pre></td></tr></table></figure>
+<h2 id="二、设置REPOSITORY"><a href="#二、设置REPOSITORY" class="headerlink" title="二、设置REPOSITORY"></a>二、设置REPOSITORY</h2><h3 id="2-1-更新安装包索引并安装必要软件包以允许通过HTTPS使用存储库"><a href="#2-1-更新安装包索引并安装必要软件包以允许通过HTTPS使用存储库" class="headerlink" title="2.1 更新安装包索引并安装必要软件包以允许通过HTTPS使用存储库"></a>2.1 更新安装包索引并安装必要软件包以允许通过HTTPS使用存储库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line"></span><br><span class="line">$ sudo apt-get install \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    gnupg-agent \</span><br><span class="line">    software-properties-common</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-添加官方GPG密钥"><a href="#2-2-添加官方GPG密钥" class="headerlink" title="2.2 添加官方GPG密钥"></a>2.2 添加官方GPG密钥</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line"><span class="comment"># 提示OK</span></span><br><span class="line"><span class="comment"># 通过搜索指纹最后8个字符确保密钥是正确的</span></span><br><span class="line">$ sudo apt-key fingerprint 0EBFCD88</span><br><span class="line"></span><br><span class="line">pub   rsa4096 2017-02-22 [SCEA]</span><br><span class="line">      9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88</span><br><span class="line">uid           [ unknown] Docker Release (CE deb) &lt;docker@docker.com&gt;</span><br><span class="line">sub   rsa4096 2017-02-22 [S]</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-设置stable-repository"><a href="#2-3-设置stable-repository" class="headerlink" title="2.3 设置stable repository"></a>2.3 设置stable repository</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo add-apt-repository \</span><br><span class="line">   <span class="string">"deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span></span><br><span class="line"><span class="string">   <span class="variable">$(lsb_release -cs)</span> \</span></span><br><span class="line"><span class="string">   stable"</span></span><br></pre></td></tr></table></figure>
+<h2 id="三、安装DOCKER-ENGINE"><a href="#三、安装DOCKER-ENGINE" class="headerlink" title="三、安装DOCKER ENGINE"></a>三、安装DOCKER ENGINE</h2><h3 id="3-1-更新安装包索引并安装最新DOCKER-ENGINE"><a href="#3-1-更新安装包索引并安装最新DOCKER-ENGINE" class="headerlink" title="3.1 更新安装包索引并安装最新DOCKER ENGINE"></a>3.1 更新安装包索引并安装最新DOCKER ENGINE</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-检查DOCKER-ENGINE是否正确安装"><a href="#3-2-检查DOCKER-ENGINE是否正确安装" class="headerlink" title="3.2 检查DOCKER ENGINE是否正确安装"></a>3.2 检查DOCKER ENGINE是否正确安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run hello-world</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者直接调用，检查版本</span></span><br><span class="line">$ docker --version</span><br><span class="line">Docker version 19.03.13, build 4484c46d9d</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-检查运行状态"><a href="#3-3-检查运行状态" class="headerlink" title="3.3 检查运行状态"></a>3.3 检查运行状态</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service docker status</span><br><span class="line">* Docker is Running</span><br></pre></td></tr></table></figure>
+<h2 id="四、DOCKER中安装GATK"><a href="#四、DOCKER中安装GATK" class="headerlink" title="四、DOCKER中安装GATK"></a>四、DOCKER中安装GATK</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull broadinstitute/gatk:4.1.3.0 <span class="comment"># 后面是版本号，可以根据需要更换</span></span><br></pre></td></tr></table></figure>
+<h2 id="五、启动GATK容器"><a href="#五、启动GATK容器" class="headerlink" title="五、启动GATK容器"></a>五、启动GATK容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it broadinstitute/gatk:4.1.3.0</span><br><span class="line">(gatk)root@ea3a5218f494:/gatk<span class="comment"># # 成功启动后会有这个前缀</span></span><br></pre></td></tr></table></figure>
+<h2 id="六、运行GATK命令"><a href="#六、运行GATK命令" class="headerlink" title="六、运行GATK命令"></a>六、运行GATK命令</h2><h3 id="6-1-查看GATK命令"><a href="#6-1-查看GATK命令" class="headerlink" title="6.1 查看GATK命令"></a>6.1 查看GATK命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br></pre></td><td class="code"><pre><span class="line">./gatk --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 罗列所有GATK命令</span></span><br><span class="line">Running:</span><br><span class="line">    java -Dsamjdk.use_async_io_read_samtools=<span class="literal">false</span> -Dsamjdk.use_async_io_write_samtools=<span class="literal">true</span> -Dsamjdk.use_async_io_write_tribble=<span class="literal">false</span> -Dsamjdk.compression_level=2 -jar /home/eric/miniconda3/share/gatk4-4.1.9.0-0/gatk-package-4.1.9.0-local.jar --<span class="built_in">help</span></span><br><span class="line">USAGE:  &lt;program name&gt; [-h]</span><br><span class="line"></span><br><span class="line">Available Programs:</span><br><span class="line">--------------------------------------------------------------------------------------</span><br><span class="line">Base Calling:                                    Tools that process sequencing machine data, e.g. Illumina base calls, and detect sequencing level attributes, e.g. adapters</span><br><span class="line">    CheckIlluminaDirectory (Picard)              Asserts the validity <span class="keyword">for</span> specified Illumina basecalling data.</span><br><span class="line">    CollectIlluminaBasecallingMetrics (Picard)   Collects Illumina Basecalling metrics <span class="keyword">for</span> a sequencing run.</span><br><span class="line">    CollectIlluminaLaneMetrics (Picard)          Collects Illumina lane metrics <span class="keyword">for</span> the given BaseCalling analysis directory.</span><br><span class="line">    ExtractIlluminaBarcodes (Picard)             Tool determines the barcode <span class="keyword">for</span> each <span class="built_in">read</span> <span class="keyword">in</span> an Illumina lane.</span><br><span class="line">    IlluminaBasecallsToFastq (Picard)            Generate FASTQ file(s) from Illumina basecall <span class="built_in">read</span> data.</span><br><span class="line">    IlluminaBasecallsToSam (Picard)              Transforms raw Illumina sequencing data into an unmapped SAM or BAM file.</span><br><span class="line">    MarkIlluminaAdapters (Picard)                Reads a SAM or BAM file and rewrites it with new adapter-trimming tags.</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------</span><br><span class="line">Copy Number Variant Discovery:                   Tools that analyze <span class="built_in">read</span> coverage to detect copy number variants.</span><br><span class="line">    AnnotateIntervals                            Annotates intervals with GC content, mappability, and segmental-duplication content</span><br><span class="line">    CallCopyRatioSegments                        Calls copy-ratio segments as amplified, deleted, or copy-number neutral</span><br><span class="line">    CombineSegmentBreakpoints                    (EXPERIMENTAL Tool) Combine the breakpoints of two segment files and annotate the resulting intervals with chosen columns from each file.</span><br><span class="line">    CreateReadCountPanelOfNormals                Creates a panel of normals <span class="keyword">for</span> <span class="built_in">read</span>-count denoising</span><br><span class="line">    DenoiseReadCounts                            Denoises <span class="built_in">read</span> counts to produce denoised copy ratios</span><br><span class="line">    DetermineGermlineContigPloidy                Determines the baseline contig ploidy <span class="keyword">for</span> germline samples given counts data</span><br><span class="line">    FilterIntervals                              Filters intervals based on annotations and/or count statistics</span><br><span class="line">    GermlineCNVCaller                            Calls copy-number variants <span class="keyword">in</span> germline samples given their counts and the output of DetermineGermlineContigPloidy</span><br><span class="line">    MergeAnnotatedRegions                        (EXPERIMENTAL Tool) Merge annotated genomic regions based entirely on touching/overlapping intervals.</span><br><span class="line">    MergeAnnotatedRegionsByAnnotation            (EXPERIMENTAL Tool) Merge annotated genomic regions within specified distance <span class="keyword">if</span> annotation value(s) are exactly the same.</span><br><span class="line">    ModelSegments                                Models segmented copy ratios from denoised <span class="built_in">read</span> counts and segmented minor-allele fractions from allelic counts</span><br><span class="line">    PlotDenoisedCopyRatios                       Creates plots of denoised copy ratios</span><br><span class="line">    PlotModeledSegments                          Creates plots of denoised and segmented copy-ratio and minor-allele-fraction estimates</span><br><span class="line">    PostprocessGermlineCNVCalls                  Postprocesses the output of GermlineCNVCaller and generates VCFs and denoised copy ratios</span><br><span class="line">    TagGermlineEvents                            (EXPERIMENTAL Tool) Do a simplistic tagging of germline events <span class="keyword">in</span> a tumor segment file.</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------</span><br><span class="line">Coverage Analysis:                               Tools that count coverage, e.g. depth per allele</span><br><span class="line">    ASEReadCounter                               Generates table of filtered base counts at het sites <span class="keyword">for</span> allele specific expression</span><br><span class="line">    AnalyzeSaturationMutagenesis                 (BETA Tool) (EXPERIMENTAL) Processes reads from a MITESeq or other saturation mutagenesis experiment.</span><br><span class="line">    CollectAllelicCounts                         Collects reference and alternate allele counts at specified sites</span><br><span class="line">    CollectAllelicCountsSpark                    Collects reference and alternate allele counts at specified sites</span><br><span class="line">    CollectF1R2Counts                            Collect F1R2 <span class="built_in">read</span> counts <span class="keyword">for</span> the Mutect2 orientation bias mixture model filter</span><br><span class="line">    CollectReadCounts                            Collects <span class="built_in">read</span> counts at specified intervals</span><br><span class="line">    CountBases                                   Count bases <span class="keyword">in</span> a SAM/BAM/CRAM file</span><br><span class="line">    CountBasesSpark                              Counts bases <span class="keyword">in</span> the input SAM/BAM</span><br><span class="line">    CountReads                                   Count reads <span class="keyword">in</span> a SAM/BAM/CRAM file</span><br><span class="line">    CountReadsSpark                              Counts reads <span class="keyword">in</span> the input SAM/BAM</span><br><span class="line">    DepthOfCoverage                              (BETA Tool) Generate coverage summary information <span class="keyword">for</span> reads data</span><br><span class="line">    GeneExpressionEvaluation                     (BETA Tool) Evaluate gene expression from RNA-seq reads aligned to genome.</span><br><span class="line">    GetPileupSummaries                           Tabulates pileup metrics <span class="keyword">for</span> inferring contamination</span><br><span class="line">    Pileup                                       Prints <span class="built_in">read</span> alignments <span class="keyword">in</span> samtools pileup format</span><br><span class="line">    PileupSpark                                  (BETA Tool) Prints <span class="built_in">read</span> alignments <span class="keyword">in</span> samtools pileup format</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------</span><br><span class="line">Diagnostics and Quality Control:                 Tools that collect sequencing quality related and comparative metrics</span><br><span class="line">    AccumulateVariantCallingMetrics (Picard)     Combines multiple Variant Calling Metrics files into a single file</span><br><span class="line">    AnalyzeCovariates                            Evaluate and compare base quality score recalibration (BQSR) tables</span><br><span class="line">    BamIndexStats (Picard)                       Generate index statistics from a BAM file</span><br><span class="line">    CalcMetadataSpark                            (BETA Tool) (Internal) Collects <span class="built_in">read</span> metrics relevant to structural variant discovery</span><br><span class="line">    CalculateContamination                       Calculate the fraction of reads coming from cross-sample contamination</span><br><span class="line">    CalculateFingerprintMetrics (Picard)         Calculate statistics on fingerprints, checking their viability</span><br><span class="line">    CalculateReadGroupChecksum (Picard)          Creates a <span class="built_in">hash</span> code based on the <span class="built_in">read</span> groups (RG).</span><br><span class="line">    CheckDuplicateMarking (Picard)               Checks the consistency of duplicate markings.</span><br><span class="line">    CheckFingerprint (Picard)                    Computes a fingerprint from the supplied input (SAM/BAM or VCF) file and compares it to the provided genotypes</span><br><span class="line">    CheckPileup                                  Compare GATK<span class="string">'s internal pileup to a reference Samtools mpileup</span></span><br><span class="line"><span class="string">    CheckTerminatorBlock (Picard)                Asserts the provided gzip file'</span>s (e.g., BAM) last block is well-formed; RC 100 otherwise</span><br><span class="line">    ClusterCrosscheckMetrics (Picard)            Clusters the results of a CrosscheckFingerprints run by LOD score</span><br><span class="line">    CollectAlignmentSummaryMetrics (Picard)      &lt;b&gt;Produces a summary of alignment metrics from a SAM or BAM file.&lt;/b&gt;</span><br><span class="line">    CollectArraysVariantCallingMetrics (Picard)  Collects summary and per-sample from the provided arrays VCF file</span><br><span class="line">    CollectBaseDistributionByCycle (Picard)      Chart the nucleotide distribution per cycle <span class="keyword">in</span> a SAM or BAM file</span><br><span class="line">    CollectBaseDistributionByCycleSpark          (BETA Tool) Collects base distribution per cycle <span class="keyword">in</span> SAM/BAM/CRAM file(s).</span><br><span class="line">    CollectGcBiasMetrics (Picard)                Collect metrics regarding GC bias.</span><br><span class="line">    CollectHiSeqXPfFailMetrics (Picard)          Classify PF-Failing reads <span class="keyword">in</span> a HiSeqX Illumina Basecalling directory into various categories.</span><br><span class="line">    CollectHsMetrics (Picard)                    Collects hybrid-selection (HS) metrics <span class="keyword">for</span> a SAM or BAM file.</span><br><span class="line">    CollectIndependentReplicateMetrics (Picard)  (EXPERIMENTAL Tool) Estimates the rate of independent replication rate of reads within a bam.</span><br><span class="line"></span><br><span class="line">    CollectInsertSizeMetrics (Picard)            Collect metrics about the insert size distribution of a paired-end library.</span><br><span class="line">    CollectInsertSizeMetricsSpark                (BETA Tool) Collects insert size distribution information on alignment data</span><br><span class="line">    CollectJumpingLibraryMetrics (Picard)        Collect jumping library metrics.</span><br><span class="line">    CollectMultipleMetrics (Picard)              Collect multiple classes of metrics.</span><br><span class="line">    CollectMultipleMetricsSpark                  (BETA Tool) Runs multiple metrics collection modules <span class="keyword">for</span> a given alignment file</span><br><span class="line">    CollectOxoGMetrics (Picard)                  Collect metrics to assess oxidative artifacts.</span><br><span class="line">    CollectQualityYieldMetrics (Picard)          Collect metrics about reads that pass quality thresholds and Illumina-specific filters.</span><br><span class="line">    CollectQualityYieldMetricsSpark              (BETA Tool) Collects quality yield metrics from SAM/BAM/CRAM file(s).</span><br><span class="line">    CollectRawWgsMetrics (Picard)                Collect whole genome sequencing-related metrics.</span><br><span class="line">    CollectRnaSeqMetrics (Picard)                Produces RNA alignment metrics <span class="keyword">for</span> a SAM or BAM file.</span><br><span class="line">    CollectRrbsMetrics (Picard)                  &lt;b&gt;Collects metrics from reduced representation bisulfite sequencing (Rrbs) data.&lt;/b&gt;</span><br><span class="line">    CollectSamErrorMetrics (Picard)              Program to collect error metrics on bases stratified <span class="keyword">in</span> various ways.</span><br><span class="line">    CollectSequencingArtifactMetrics (Picard)    Collect metrics to quantify single-base sequencing artifacts.</span><br><span class="line">    CollectTargetedPcrMetrics (Picard)           Calculate PCR-related metrics from targeted sequencing data.</span><br><span class="line">    CollectVariantCallingMetrics (Picard)        Collects per-sample and aggregate (spanning all samples) metrics from the provided VCF file</span><br><span class="line">    CollectWgsMetrics (Picard)                   Collect metrics about coverage and performance of whole genome sequencing (WGS) experiments.</span><br><span class="line">    CollectWgsMetricsWithNonZeroCoverage (Picard)(EXPERIMENTAL Tool) Collect metrics about coverage and performance of whole genome sequencing (WGS) experiments.</span><br><span class="line">    CompareBaseQualities                         Compares the base qualities of two SAM/BAM/CRAM files</span><br><span class="line">    CompareDuplicatesSpark                       (BETA Tool) Determine <span class="keyword">if</span> two potentially identical BAMs have the same duplicate reads</span><br><span class="line">    CompareMetrics (Picard)                      Compare two metrics files.</span><br><span class="line">    CompareSAMs (Picard)                         Compare two input <span class="string">".sam"</span> or <span class="string">".bam"</span> files.</span><br><span class="line">    ConvertSequencingArtifactToOxoG (Picard)     Extract OxoG metrics from generalized artifacts metrics.</span><br><span class="line">    CrosscheckFingerprints (Picard)              Checks that all data <span class="keyword">in</span> the input files appear to have come from the same individual</span><br><span class="line">    CrosscheckReadGroupFingerprints (Picard)     DEPRECATED: USE CrosscheckFingerprints.</span><br><span class="line">    EstimateLibraryComplexity (Picard)           Estimates the numbers of unique molecules <span class="keyword">in</span> a sequencing library.</span><br><span class="line">    ExtractFingerprint (Picard)                  Computes a fingerprint from the supplied SAM/BAM file.</span><br><span class="line">    FlagStat                                     Accumulate flag statistics given a BAM file</span><br><span class="line">    FlagStatSpark                                Spark tool to accumulate flag statistics</span><br><span class="line">    GatherPileupSummaries                        Combine output files from GetPileupSummary <span class="keyword">in</span> the order defined by a sequence dictionary</span><br><span class="line">    GetSampleName                                Emit a single sample name</span><br><span class="line">    IdentifyContaminant (Picard)                 Computes a fingerprint from the supplied SAM/BAM file, given a contamination estimate.</span><br><span class="line">    LiftOverHaplotypeMap (Picard)                Lifts over a haplotype database from one reference to another</span><br><span class="line">    MeanQualityByCycle (Picard)                  Collect mean quality by cycle.</span><br><span class="line">    MeanQualityByCycleSpark                      (BETA Tool) MeanQualityByCycle on Spark</span><br><span class="line">    QualityScoreDistribution (Picard)            Chart the distribution of quality scores.</span><br><span class="line">    QualityScoreDistributionSpark                (BETA Tool) QualityScoreDistribution on Spark</span><br><span class="line">    ValidateSamFile (Picard)                     Validates a SAM or BAM file.</span><br><span class="line">    ViewSam (Picard)                             Prints a SAM or BAM file to the screen</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------</span><br><span class="line">Example Tools:                                   Example tools that show developers how to implement new tools</span><br><span class="line">    HtsgetReader                                 (EXPERIMENTAL Tool) Download a file using htsget</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------</span><br><span class="line">Genotyping Arrays Manipulation:                  Tools that manipulate data generated by Genotyping arrays</span><br><span class="line">    BpmToNormalizationManifestCsv (Picard)       Program to convert an Illumina bpm file into a bpm.csv file.</span><br><span class="line">    CombineGenotypingArrayVcfs (Picard)          Program to combine multiple genotyping array VCF files into one VCF.</span><br><span class="line">    CompareGtcFiles (Picard)                     Compares two GTC files.</span><br><span class="line">    CreateVerifyIDIntensityContaminationMetricsFile (Picard)    Program to generate a picard metrics file from the output of the VerifyIDIntensity tool.</span><br><span class="line">    GtcToVcf (Picard)                            Program to convert an Illumina GTC file to a VCF</span><br><span class="line">    MergePedIntoVcf (Picard)                     Program to merge a single-sample ped file from zCall into a single-sample VCF.</span><br><span class="line">    VcfToAdpc (Picard)                           Program to convert an Arrays VCF to an ADPC file.</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------</span><br><span class="line">Intervals Manipulation:                          Tools that process genomic intervals <span class="keyword">in</span> various formats</span><br><span class="line">    BedToIntervalList (Picard)                   Converts a BED file to a Picard Interval List.</span><br><span class="line">    CompareIntervalLists                         Compare two interval lists <span class="keyword">for</span> equality</span><br><span class="line">    IntervalListToBed (Picard)                   Converts an Picard IntervalList file to a BED file.</span><br><span class="line">    IntervalListTools (Picard)                   A tool <span class="keyword">for</span> performing various IntervalList manipulations</span><br><span class="line">    LiftOverIntervalList (Picard)                Lifts over an interval list from one reference build to another.</span><br><span class="line">    PreprocessIntervals                          Prepares bins <span class="keyword">for</span> coverage collection</span><br><span class="line">    SplitIntervals                               Split intervals into sub-interval files.</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------</span><br><span class="line">Metagenomics:                                    Tools that perform metagenomic analysis, e.g. microbial community composition and pathogen detection</span><br><span class="line">    PathSeqBuildKmers                            Builds <span class="built_in">set</span> of host reference k-mers</span><br><span class="line">    PathSeqBuildReferenceTaxonomy                Builds a taxonomy datafile of the microbe reference</span><br><span class="line">    PathSeqBwaSpark                              Step 2: Aligns reads to the microbe reference</span><br><span class="line">    PathSeqFilterSpark                           Step 1: Filters low quality, low complexity, duplicate, and host reads</span><br><span class="line">    PathSeqPipelineSpark                         Combined tool that performs all steps: <span class="built_in">read</span> filtering, microbe reference alignment, and abundance scoring</span><br><span class="line">    PathSeqScoreSpark                            Step 3: Classifies pathogen-aligned reads and generates abundance scores</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------</span><br><span class="line">Methylation-Specific Tools:                      Tools that perform methylation calling, processing bisulfite sequenced, methylation-aware aligned BAM</span><br><span class="line">    MethylationTypeCaller                        (EXPERIMENTAL Tool) Identify methylated bases from bisulfite sequenced, methylation-aware BAMs</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------</span><br><span class="line">Other:                                           Miscellaneous tools, e.g. those that aid <span class="keyword">in</span> data streaming</span><br><span class="line">    CreateHadoopBamSplittingIndex                (BETA Tool) Create a Hadoop BAM splitting index</span><br><span class="line">    FifoBuffer (Picard)                          Provides a large, FIFO buffer that can be used to buffer input and output streams between programs.</span><br><span class="line">    GatherBQSRReports                            Gathers scattered BQSR recalibration reports into a single file</span><br><span class="line">    GatherTranches                               (BETA Tool) Gathers scattered VQSLOD tranches into a single file</span><br><span class="line">    IndexFeatureFile                             Creates an index <span class="keyword">for</span> a feature file, e.g. VCF or BED file.</span><br><span class="line">    ParallelCopyGCSDirectoryIntoHDFSSpark        (BETA Tool) Parallel copy a file or directory from Google Cloud Storage into the HDFS file system used by Spark</span><br><span class="line">    PrintBGZFBlockInformation                    (EXPERIMENTAL Tool) Print information about the compressed blocks <span class="keyword">in</span> a BGZF format file</span><br><span class="line">    ReadAnonymizer                               (EXPERIMENTAL Tool) Replace bases <span class="keyword">in</span> reads with reference bases.</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------</span><br><span class="line">Read Data Manipulation:                          Tools that manipulate <span class="built_in">read</span> data <span class="keyword">in</span> SAM, BAM or CRAM format</span><br><span class="line">    AddCommentsToBam (Picard)                    Adds comments to the header of a BAM file.</span><br><span class="line">    AddOATag (Picard)                            Record current alignment information to OA tag.</span><br><span class="line">    AddOrReplaceReadGroups (Picard)              Assigns all the reads <span class="keyword">in</span> a file to a single new <span class="built_in">read</span>-group.</span><br><span class="line">    AddOriginalAlignmentTags                     (EXPERIMENTAL Tool) Adds Original Alignment tag and original mate contig tag</span><br><span class="line">    ApplyBQSR                                    Apply base quality score recalibration</span><br><span class="line">    ApplyBQSRSpark                               (BETA Tool) Apply base quality score recalibration on Spark</span><br><span class="line">    BQSRPipelineSpark                            (BETA Tool) Both steps of BQSR (BaseRecalibrator and ApplyBQSR) on Spark</span><br><span class="line">    BamToBfq (Picard)                            Converts a BAM file into a BFQ (binary fastq formatted) file</span><br><span class="line">    BaseRecalibrator                             Generates recalibration table <span class="keyword">for</span> Base Quality Score Recalibration (BQSR)</span><br><span class="line">    BaseRecalibratorSpark                        (BETA Tool) Generate recalibration table <span class="keyword">for</span> Base Quality Score Recalibration (BQSR) on Spark</span><br><span class="line">    BuildBamIndex (Picard)                       Generates a BAM index <span class="string">".bai"</span> file.</span><br><span class="line">    BwaAndMarkDuplicatesPipelineSpark            (BETA Tool) Takes name-sorted file and runs BWA and MarkDuplicates.</span><br><span class="line">    BwaSpark                                     (BETA Tool) Align reads to a given reference using BWA on Spark</span><br><span class="line">    CleanSam (Picard)                            Cleans the provided SAM/BAM, soft-clipping beyond-end-of-reference alignments and setting MAPQ to 0 <span class="keyword">for</span> unmapped reads</span><br><span class="line">    ClipReads                                    Clip reads <span class="keyword">in</span> a SAM/BAM/CRAM file</span><br><span class="line">    CollectDuplicateMetrics (Picard)             Collect Duplicate metrics from marked file.</span><br><span class="line">    ConvertHeaderlessHadoopBamShardToBam         (BETA Tool) Convert a headerless BAM shard into a readable BAM</span><br><span class="line">    DownsampleByDuplicateSet                     (BETA Tool) Discard a <span class="built_in">set</span> fraction of duplicate sets from a UMI-grouped bam</span><br><span class="line">    DownsampleSam (Picard)                       Downsample a SAM or BAM file.</span><br><span class="line">    ExtractOriginalAlignmentRecordsByNameSpark   (BETA Tool) Subsets reads by name</span><br><span class="line">    FastqToSam (Picard)                          Converts a FASTQ file to an unaligned BAM or SAM file</span><br><span class="line">    FilterSamReads (Picard)                      Subsets reads from a SAM or BAM file by applying one of several filters.</span><br><span class="line">    FixMateInformation (Picard)                  Verify mate-pair information between mates and fix <span class="keyword">if</span> needed.</span><br><span class="line">    FixMisencodedBaseQualityReads                Fix Illumina base quality scores <span class="keyword">in</span> a SAM/BAM/CRAM file</span><br><span class="line">    GatherBamFiles (Picard)                      Concatenate efficiently BAM files that resulted from a scattered parallel analysis</span><br><span class="line">    LeftAlignIndels                              Left-aligns indels from reads <span class="keyword">in</span> a SAM/BAM/CRAM file</span><br><span class="line">    MarkDuplicates (Picard)                      Identifies duplicate reads.</span><br><span class="line">    MarkDuplicatesSpark                          MarkDuplicates on Spark</span><br><span class="line">    MarkDuplicatesWithMateCigar (Picard)         Identifies duplicate reads, accounting <span class="keyword">for</span> mate CIGAR.</span><br><span class="line">    MergeBamAlignment (Picard)                   Merge alignment data from a SAM or BAM with data <span class="keyword">in</span> an unmapped BAM file.</span><br><span class="line">    MergeSamFiles (Picard)                       Merges multiple SAM and/or BAM files into a single file.</span><br><span class="line">    PositionBasedDownsampleSam (Picard)          Downsample a SAM or BAM file to retain a subset of the reads based on the reads location <span class="keyword">in</span> each tile <span class="keyword">in</span> the flowcell.</span><br><span class="line">    PrintReads                                   Print reads <span class="keyword">in</span> the SAM/BAM/CRAM file</span><br><span class="line">    PrintReadsHeader                             Print the header from a SAM/BAM/CRAM file</span><br><span class="line">    PrintReadsSpark                              PrintReads on Spark</span><br><span class="line">    ReorderSam (Picard)                          Reorders reads <span class="keyword">in</span> a SAM or BAM file to match ordering <span class="keyword">in</span> a second reference file.</span><br><span class="line">    ReplaceSamHeader (Picard)                    Replaces the SAMFileHeader <span class="keyword">in</span> a SAM or BAM file.</span><br><span class="line">    RevertBaseQualityScores                      Revert Quality Scores <span class="keyword">in</span> a SAM/BAM/CRAM file</span><br><span class="line">    RevertOriginalBaseQualitiesAndAddMateCigar (Picard)Reverts the original base qualities and adds the mate cigar tag to <span class="built_in">read</span>-group BAMs</span><br><span class="line">    RevertSam (Picard)                           Reverts SAM or BAM files to a previous state.</span><br><span class="line">    RevertSamSpark                               (BETA Tool) Reverts SAM, BAM or CRAM files to a previous state.</span><br><span class="line">    SamFormatConverter (Picard)                  Convert a BAM file to a SAM file, or a SAM to a BAM</span><br><span class="line">    SamToFastq (Picard)                          Converts a SAM or BAM file to FASTQ.</span><br><span class="line">    SamToFastqWithTags (Picard)                  Converts a SAM or BAM file to FASTQ alongside FASTQs created from tags.</span><br><span class="line">    SetNmAndUqTags (Picard)                      DEPRECATED: Use SetNmMdAndUqTags instead.</span><br><span class="line">    SetNmMdAndUqTags (Picard)                    Fixes the NM, MD, and UQ tags <span class="keyword">in</span> a SAM file</span><br><span class="line">    SimpleMarkDuplicatesWithMateCigar (Picard)   (EXPERIMENTAL Tool) Examines aligned records <span class="keyword">in</span> the supplied SAM or BAM file to locate duplicate molecules.</span><br><span class="line">    SortSam (Picard)                             Sorts a SAM or BAM file</span><br><span class="line">    SortSamSpark                                 (BETA Tool) SortSam on Spark (works on SAM/BAM/CRAM)</span><br><span class="line">    SplitNCigarReads                             Split Reads with N <span class="keyword">in</span> Cigar</span><br><span class="line">    SplitReads                                   Outputs reads from a SAM/BAM/CRAM by <span class="built_in">read</span> group, sample and library name</span><br><span class="line">    SplitSamByLibrary (Picard)                   Splits a SAM or BAM file into individual files by library</span><br><span class="line">    SplitSamByNumberOfReads (Picard)             Splits a SAM or BAM file to multiple BAMs.</span><br><span class="line">    UmiAwareMarkDuplicatesWithMateCigar (Picard) (EXPERIMENTAL Tool) Identifies duplicate reads using information from <span class="built_in">read</span> positions and UMIs.</span><br><span class="line">    UnmarkDuplicates                             Clears the 0x400 duplicate SAM flag</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------</span><br><span class="line">Reference:                                       Tools that analyze and manipulate FASTA format references</span><br><span class="line">    BaitDesigner (Picard)                        Designs oligonucleotide baits <span class="keyword">for</span> hybrid selection reactions.</span><br><span class="line">    BwaMemIndexImageCreator                      Create a BWA-MEM index image file <span class="keyword">for</span> use with GATK BWA tools</span><br><span class="line">    CountBasesInReference                        Count the numbers of each base <span class="keyword">in</span> a reference file</span><br><span class="line">    CreateSequenceDictionary (Picard)            Creates a sequence dictionary <span class="keyword">for</span> a reference sequence.</span><br><span class="line">    ExtractSequences (Picard)                    Subsets intervals from a reference sequence to a new FASTA file.</span><br><span class="line">    FastaAlternateReferenceMaker                 Create an alternative reference by combining a fasta with a vcf.</span><br><span class="line">    FastaReferenceMaker                          Create snippets of a fasta file</span><br><span class="line">    FindBadGenomicKmersSpark                     (BETA Tool) Identifies sequences that occur at high frequency <span class="keyword">in</span> a reference</span><br><span class="line">    NonNFastaSize (Picard)                       Counts the number of non-N bases <span class="keyword">in</span> a fasta file.</span><br><span class="line">    NormalizeFasta (Picard)                      Normalizes lines of sequence <span class="keyword">in</span> a FASTA file to be of the same length.</span><br><span class="line">    ScatterIntervalsByNs (Picard)                Writes an interval list created by splitting a reference at Ns.</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------</span><br><span class="line">Short Variant Discovery:                         Tools that perform variant calling and genotyping <span class="keyword">for</span> short variants (SNPs, SNVs and Indels)</span><br><span class="line">    CombineGVCFs                                 Merges one or more HaplotypeCaller GVCF files into a single GVCF with appropriate annotations</span><br><span class="line">    GenomicsDBImport                             Import VCFs to GenomicsDB</span><br><span class="line">    GenotypeGVCFs                                Perform joint genotyping on one or more samples pre-called with HaplotypeCaller</span><br><span class="line">    GnarlyGenotyper                              (BETA Tool) Perform <span class="string">"quick and dirty"</span> joint genotyping on one or more samples pre-called with HaplotypeCaller</span><br><span class="line">    HaplotypeCaller                              Call germline SNPs and indels via <span class="built_in">local</span> re-assembly of haplotypes</span><br><span class="line">    HaplotypeCallerSpark                         (BETA Tool) HaplotypeCaller on Spark</span><br><span class="line">    LearnReadOrientationModel                    Get the maximum likelihood estimates of artifact prior probabilities <span class="keyword">in</span> the orientation bias mixture model filter</span><br><span class="line">    MergeMutectStats                             Merge the stats output by scatters of a single Mutect2 job</span><br><span class="line">    Mutect2                                      Call somatic SNVs and indels via <span class="built_in">local</span> assembly of haplotypes</span><br><span class="line">    ReadsPipelineSpark                           (BETA Tool) Runs BWA (<span class="keyword">if</span> specified), MarkDuplicates, BQSR, and HaplotypeCaller on unaligned or aligned reads to generate a VCF.</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------</span><br><span class="line">Structural Variant Discovery:                    Tools that detect structural variants</span><br><span class="line">    CpxVariantReInterpreterSpark                 (BETA Tool) (Internal) Tries to extract simple variants from a provided GATK-SV CPX.vcf</span><br><span class="line">    DiscoverVariantsFromContigAlignmentsSAMSpark (BETA Tool) (Internal) Examines aligned contigs from <span class="built_in">local</span> assemblies and calls structural variants</span><br><span class="line">    ExtractSVEvidenceSpark                       (BETA Tool) (Internal) Extracts evidence of structural variations from reads</span><br><span class="line">    FindBreakpointEvidenceSpark                  (BETA Tool) (Internal) Produces <span class="built_in">local</span> assemblies of genomic regions that may harbor structural variants</span><br><span class="line">    PairedEndAndSplitReadEvidenceCollection      (BETA Tool) Gathers paired-end and split <span class="built_in">read</span> evidence files <span class="keyword">for</span> use <span class="keyword">in</span> the GATK-SV pipeline.</span><br><span class="line">    StructuralVariantDiscoverer                  (BETA Tool) (Internal) Examines aligned contigs from <span class="built_in">local</span> assemblies and calls structural variants or their breakpoints</span><br><span class="line">    StructuralVariationDiscoveryPipelineSpark    (BETA Tool) Runs the structural variation discovery workflow on a single sample</span><br><span class="line">    SvDiscoverFromLocalAssemblyContigAlignmentsSpark    (BETA Tool) (Internal) Examines aligned contigs from <span class="built_in">local</span> assemblies and calls structural variants or their breakpoints</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------</span><br><span class="line">Variant Evaluation and Refinement:               Tools that evaluate and refine variant calls, e.g. with annotations not offered by the engine</span><br><span class="line">    AlleleFrequencyQC                            (BETA Tool) General-purpose tool <span class="keyword">for</span> variant evaluation (% <span class="keyword">in</span> dbSNP, genotype concordance, Ti/Tv ratios, and a lot more)</span><br><span class="line">    AnnotateVcfWithBamDepth                      (Internal) Annotate a vcf with a bam<span class="string">'s read depth at each variant locus</span></span><br><span class="line"><span class="string">    AnnotateVcfWithExpectedAlleleFraction        (Internal) Annotate a vcf with expected allele fractions in pooled sequencing</span></span><br><span class="line"><span class="string">    CalculateGenotypePosteriors                  Calculate genotype posterior probabilities given family and/or known population genotypes</span></span><br><span class="line"><span class="string">    CalculateMixingFractions                     (Internal) Calculate proportions of different samples in a pooled bam</span></span><br><span class="line"><span class="string">    Concordance                                  Evaluate concordance of an input VCF against a validated truth VCF</span></span><br><span class="line"><span class="string">    CountFalsePositives                          (BETA Tool) Count PASS variants</span></span><br><span class="line"><span class="string">    CountVariants                                Counts variant records in a VCF file, regardless of filter status.</span></span><br><span class="line"><span class="string">    CountVariantsSpark                           CountVariants on Spark</span></span><br><span class="line"><span class="string">    EvaluateInfoFieldConcordance                 (BETA Tool) Evaluate concordance of info fields in an input VCF against a validated truth VCF</span></span><br><span class="line"><span class="string">    FilterFuncotations                           (EXPERIMENTAL Tool) Filter variants based on clinically-significant Funcotations.</span></span><br><span class="line"><span class="string">    FindMendelianViolations (Picard)             Finds mendelian violations of all types within a VCF</span></span><br><span class="line"><span class="string">    FuncotateSegments                            (BETA Tool) Functional annotation for segment files.  The output formats are not well-defined and subject to change.</span></span><br><span class="line"><span class="string">    Funcotator                                   Functional Annotator</span></span><br><span class="line"><span class="string">    FuncotatorDataSourceDownloader               Data source downloader for Funcotator.</span></span><br><span class="line"><span class="string">    GenotypeConcordance (Picard)                 Calculates the concordance between genotype data of one sample in each of two VCFs - truth (or reference) vs. calls.</span></span><br><span class="line"><span class="string">    MergeMutect2CallsWithMC3                     (EXPERIMENTAL Tool) UNSUPPORTED.  FOR EVALUATION ONLY. Merge M2 calls with MC</span></span><br><span class="line"><span class="string">    ReferenceBlockConcordance                    Evaluate GVCF reference block concordance of an input GVCF against a truth GVCF</span></span><br><span class="line"><span class="string">    ValidateBasicSomaticShortMutations           (EXPERIMENTAL Tool) Check variants against tumor-normal bams representing the same samples, though not the ones from the actual calls.</span></span><br><span class="line"><span class="string">    ValidateVariants                             Validate VCF</span></span><br><span class="line"><span class="string">    VariantEval                                  (BETA Tool) General-purpose tool for variant evaluation (% in dbSNP, genotype concordance, Ti/Tv ratios, and a lot more)</span></span><br><span class="line"><span class="string">    VariantsToTable                              Extract fields from a VCF file to a tab-delimited table</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">--------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="string">Variant Filtering:                               Tools that filter variants by annotating the FILTER column</span></span><br><span class="line"><span class="string">    ApplyVQSR                                     Apply a score cutoff to filter variants based on a recalibration table</span></span><br><span class="line"><span class="string">    CNNScoreVariants                             Apply a Convolutional Neural Net to filter annotated variants</span></span><br><span class="line"><span class="string">    CNNVariantTrain                              (EXPERIMENTAL Tool) Train a CNN model for filtering variants</span></span><br><span class="line"><span class="string">    CNNVariantWriteTensors                       (EXPERIMENTAL Tool) Write variant tensors for training a CNN to filter variants</span></span><br><span class="line"><span class="string">    CreateSomaticPanelOfNormals                  (BETA Tool) Make a panel of normals for use with Mutect2</span></span><br><span class="line"><span class="string">    FilterAlignmentArtifacts                     (EXPERIMENTAL Tool) Filter alignment artifacts from a vcf callset.</span></span><br><span class="line"><span class="string">    FilterMutectCalls                            Filter somatic SNVs and indels called by Mutect2</span></span><br><span class="line"><span class="string">    FilterVariantTranches                        Apply tranche filtering</span></span><br><span class="line"><span class="string">    FilterVcf (Picard)                           Hard filters a VCF.</span></span><br><span class="line"><span class="string">    MTLowHeteroplasmyFilterTool                  If too many low het sites, filter all low het sites</span></span><br><span class="line"><span class="string">    NuMTFilterTool                               Uses the median autosomal coverage and the allele depth to determine whether the allele might be a NuMT</span></span><br><span class="line"><span class="string">    VariantFiltration                            Filter variant calls based on INFO and/or FORMAT annotations</span></span><br><span class="line"><span class="string">    VariantRecalibrator                          Build a recalibration model to score variant quality for filtering purposes</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">--------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="string">Variant Manipulation:                            Tools that manipulate variant call format (VCF) data</span></span><br><span class="line"><span class="string">    FixVcfHeader (Picard)                        Replaces or fixes a VCF header.</span></span><br><span class="line"><span class="string">    GatherVcfs (Picard)                          Gathers multiple VCF files from a scatter operation into a single VCF file</span></span><br><span class="line"><span class="string">    GatherVcfsCloud                              (BETA Tool) Gathers multiple VCF files from a scatter operation into a single VCF file</span></span><br><span class="line"><span class="string">    LeftAlignAndTrimVariants                     Left align and trim vairants</span></span><br><span class="line"><span class="string">    LiftoverVcf (Picard)                         Lifts over a VCF file from one reference build to another.</span></span><br><span class="line"><span class="string">    MakeSitesOnlyVcf (Picard)                    Creates a VCF that contains all the site-level information for all records in the input VCF but no genotype information.</span></span><br><span class="line"><span class="string">    MakeVcfSampleNameMap (Picard)                Creates a TSV from sample name to VCF/GVCF path, with one line per input.</span></span><br><span class="line"><span class="string">    MergeVcfs (Picard)                           Combines multiple variant files into a single variant file</span></span><br><span class="line"><span class="string">    PrintVariantsSpark                           Prints out variants from the input VCF.</span></span><br><span class="line"><span class="string">    RemoveNearbyIndels                           (Internal) Remove indels from the VCF file that are close to each other.</span></span><br><span class="line"><span class="string">    RenameSampleInVcf (Picard)                   Renames a sample within a VCF or BCF.</span></span><br><span class="line"><span class="string">    SelectVariants                               Select a subset of variants from a VCF file</span></span><br><span class="line"><span class="string">    SortVcf (Picard)                             Sorts one or more VCF files.</span></span><br><span class="line"><span class="string">    SplitVcfs (Picard)                           Splits SNPs and INDELs into separate files.</span></span><br><span class="line"><span class="string">    UpdateVCFSequenceDictionary                  Updates the sequence dictionary in a variant file.</span></span><br><span class="line"><span class="string">    UpdateVcfSequenceDictionary (Picard)         Takes a VCF and a second file that contains a sequence dictionary and updates the VCF with the new sequence dictionary.</span></span><br><span class="line"><span class="string">    VariantAnnotator                             Tool for adding annotations to VCF files</span></span><br><span class="line"><span class="string">    VcfFormatConverter (Picard)                  Converts VCF to BCF or BCF to VCF.</span></span><br><span class="line"><span class="string">    VcfToIntervalList (Picard)                   Converts a VCF or BCF file to a Picard Interval List</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">--------------------------------------------------------------------------------------</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-2-挂载容器外的资源"><a href="#6-2-挂载容器外的资源" class="headerlink" title="6.2 挂载容器外的资源"></a>6.2 挂载容器外的资源</h3><p>DOCKER就好比一个独立的操作系统，容器外部的资源是无法直接调用的，需要将外部资源挂载在DOCKER中，作为一个盘符来调用，使用-V参数可以实现挂载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -v /mnt/d:/gatk/my_data -it broadinstitute/gatk:4.1.3.0</span><br><span class="line"><span class="comment"># 这个命令是将D盘挂载在DOCKER中，并命名为my_data，路径是/gatk/my_data</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-3-退出容器"><a href="#6-3-退出容器" class="headerlink" title="6.3 退出容器"></a>6.3 退出容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<p>参考资料：</p>
+<p>[1] <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035889991--How-to-Run-GATK-in-a-Docker-container" target="_blank" rel="noopener">Run GATK in a Docker container</a><br>[2] <a href="https://docs.docker.com/engine/install/" target="_blank" rel="noopener">Install Docker Engine</a><br>[3] <a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank" rel="noopener">Install Docker Engine on Ubuntu</a></p>
+
+      
+    </div>
+
+<div>
+
+
+<ul class="post-copyright">
+<li class="post-copyright-author">
+<strong>本文作者：</strong>括囊无誉
+</li>
+<li class="post-copyright-link">
+<strong>本文链接：</strong>
+<a href="/WES/docker-engine-install/" title="在UBUNTU上安装GATK官方Docker Engine">WES/docker-engine-install/</a>
+</li>
+<li class="post-copyright-license">
+<strong>版权声明： </strong>
+本博客所有文章均为原创作品，转载请注明出处！
+</li>
+</ul>
+
+</div>
+
+    
+    
+    
+
+
+<div>
+
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创文章分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="括囊无誉 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GATK/" rel="tag"># GATK</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Linux/condaEnvs/" rel="next" title="使用CONDA构建环境">
+                <i class="fa fa-chevron-left"></i> 使用CONDA构建环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="括囊无誉">
+          <p class="site-author-name" itemprop="name">括囊无誉</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">206</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">218</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/75d3f95b058e" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-http://www.jianshu.com/u/75d3f95b058e"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、卸载旧版本"><span class="nav-number">1.</span> <span class="nav-text">一、卸载旧版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、设置REPOSITORY"><span class="nav-number">2.</span> <span class="nav-text">二、设置REPOSITORY</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-更新安装包索引并安装必要软件包以允许通过HTTPS使用存储库"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 更新安装包索引并安装必要软件包以允许通过HTTPS使用存储库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-添加官方GPG密钥"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 添加官方GPG密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-设置stable-repository"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 设置stable repository</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、安装DOCKER-ENGINE"><span class="nav-number">3.</span> <span class="nav-text">三、安装DOCKER ENGINE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-更新安装包索引并安装最新DOCKER-ENGINE"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 更新安装包索引并安装最新DOCKER ENGINE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-检查DOCKER-ENGINE是否正确安装"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 检查DOCKER ENGINE是否正确安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-检查运行状态"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 检查运行状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、DOCKER中安装GATK"><span class="nav-number">4.</span> <span class="nav-text">四、DOCKER中安装GATK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、启动GATK容器"><span class="nav-number">5.</span> <span class="nav-text">五、启动GATK容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、运行GATK命令"><span class="nav-number">6.</span> <span class="nav-text">六、运行GATK命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-查看GATK命令"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 查看GATK命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-挂载容器外的资源"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 挂载容器外的资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-退出容器"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 退出容器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">括囊无誉</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://uteric-1.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://uteric.github.io/WES/docker-engine-install/';
+          this.page.identifier = 'WES/docker-engine-install/';
+          this.page.title = '在UBUNTU上安装GATK官方Docker Engine';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://uteric-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
