@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="VCF,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="诸子百家" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="VCF（Variant Call Format），是存储变异信息的文件格式，包括SNP（单核苷酸多态性，指单碱基变异）、INDEL（插入或缺失，指短片段变异）、SV（结构变异，指长片段变异）、CNV（拷贝数变异）。 一、VCF文件内容VCF文件包含两个部分，注释与主体。注释部分以##开头，如下： 123456789101112131415161718192021222324252627282930">
+<meta name="keywords" content="VCF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解VCF文件">
+<meta property="og:url" content="http://uteric.github.io/WES/vcf_file/index.html">
+<meta property="og:site_name" content="诸子百家">
+<meta property="og:description" content="VCF（Variant Call Format），是存储变异信息的文件格式，包括SNP（单核苷酸多态性，指单碱基变异）、INDEL（插入或缺失，指短片段变异）、SV（结构变异，指长片段变异）、CNV（拷贝数变异）。 一、VCF文件内容VCF文件包含两个部分，注释与主体。注释部分以##开头，如下： 123456789101112131415161718192021222324252627282930">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-18T21:04:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="理解VCF文件">
+<meta name="twitter:description" content="VCF（Variant Call Format），是存储变异信息的文件格式，包括SNP（单核苷酸多态性，指单碱基变异）、INDEL（插入或缺失，指短片段变异）、SV（结构变异，指长片段变异）、CNV（拷贝数变异）。 一、VCF文件内容VCF文件包含两个部分，注释与主体。注释部分以##开头，如下： 123456789101112131415161718192021222324252627282930">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '9e233f3fa2f200ca831529de7ba10253',
+      indexName: 'uteric',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://uteric.github.io/WES/vcf_file/">
+
+
+
+
+
+  <title>理解VCF文件 | 诸子百家</title>
+  
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104081724-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <meta name="baidu-site-verification" content="bfQpbnNmEL">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诸子百家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+<div class="local-search-header clearfix">
+<span class="search-icon">
+<i class="fa fa-search"></i>
+</span>
+<span class="popup-btn-close">
+<i class="fa fa-times-circle"></i>
+</span>
+<div class="local-search-input-wrapper">
+<input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+</div>
+</div>
+<div id="local-search-result"></div>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/WES/vcf_file/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="括囊无誉">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸子百家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">理解VCF文件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-18T15:04:56-06:00">
+                2020-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程语言/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/WES/vcf_file/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="WES/vcf_file/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>°C
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>VCF（Variant Call Format），是存储变异信息的文件格式，包括SNP（单核苷酸多态性，指单碱基变异）、INDEL（插入或缺失，指短片段变异）、SV（结构变异，指长片段变异）、CNV（拷贝数变异）。</p>
+<h2 id="一、VCF文件内容"><a href="#一、VCF文件内容" class="headerlink" title="一、VCF文件内容"></a>一、VCF文件内容</h2><p>VCF文件包含两个部分，注释与主体。注释部分以##开头，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##fileformat=VCFv4.2</span></span><br><span class="line"><span class="comment"># VCF版本号</span></span><br><span class="line"><span class="comment">##ALT=&lt;ID=NON_REF,Description="Represents any possible alternative allele not already represented at this location by REF and ALT"&gt;</span></span><br><span class="line"><span class="comment">##FILTER=&lt;ID=LowQual,Description="Low quality"&gt;</span></span><br><span class="line"><span class="comment">##FORMAT=&lt;ID=AD,Number=R,Type=Integer,Description="Allelic depths for the ref and alt alleles in the order listed"&gt;</span></span><br><span class="line"><span class="comment">##FORMAT=&lt;ID=DP,Number=1,Type=Integer,Description="Approximate read depth (reads with MQ=255 or with bad mates are filtered)"&gt;</span></span><br><span class="line"><span class="comment">##FORMAT=&lt;ID=GQ,Number=1,Type=Integer,Description="Genotype Quality"&gt;</span></span><br><span class="line"><span class="comment">##FORMAT=&lt;ID=GT,Number=1,Type=String,Description="Genotype"&gt;</span></span><br><span class="line"><span class="comment">##FORMAT=&lt;ID=MIN_DP,Number=1,Type=Integer,Description="Minimum DP observed within the GVCF block"&gt;</span></span><br><span class="line"><span class="comment">##FORMAT=&lt;ID=PGT,Number=1,Type=String,Description="Physical phasing haplotype information, describing how the alternate alleles are phased in relation to one another; will always be heterozygous and is not intended to describe called alleles"&gt;</span></span><br><span class="line"><span class="comment">##FORMAT=&lt;ID=PID,Number=1,Type=String,Description="Physical phasing ID information, where each unique ID within a given sample (but not across samples) connects records within a phasing group"&gt;</span></span><br><span class="line"><span class="comment">##FORMAT=&lt;ID=PL,Number=G,Type=Integer,Description="Normalized, Phred-scaled likelihoods for genotypes as defined in the VCF specification"&gt;</span></span><br><span class="line"><span class="comment">##FORMAT=&lt;ID=PS,Number=1,Type=Integer,Description="Phasing set (typically the position of the first variant in the set)"&gt;</span></span><br><span class="line"><span class="comment">##FORMAT=&lt;ID=RGQ,Number=1,Type=Integer,Description="Unconditional reference genotype confidence, encoded as a phred quality -10*log10 p(genotype call is wrong)"&gt;</span></span><br><span class="line"><span class="comment">##FORMAT=&lt;ID=SB,Number=4,Type=Integer,Description="Per-sample component statistics which comprise the Fisher's Exact Test to detect strand bias."&gt;</span></span><br><span class="line"><span class="comment"># 上面这些信息都是对主体内容的解释，主体内容中的任何缩写在注释信息中都找得到，比如，ALT表示NON_REF，“Represents any possible alternative allele not already represented at this location by REF and ALT”；下面是FORMAT信息，包括AD，DP，GQ，GT，MIN_DP，PGT，PID等，比如，AD表示“Allelic depths for the ref and alt alleles in the order listed”，即参考序列与实际序列的位点深度。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##GATKCommandLine=&lt;ID=CNNScoreVariants,CommandLine="CNNScoreVariants  --output /gatk/my_data/wes/sample/annotate/annotated.vcf --disable-avx-check true --variant /gatk/my_data/wes/sample/caller/output.vcf.gz --reference /gatk/my_data/ncbi/hg38/chroms/hg38.fa  --tensor-type reference --window-size 128 --read-limit 128 --filter-symbolic-and-sv false --info-annotation-keys MQ --info-annotation-keys DP --info-annotation-keys SOR --info-annotation-keys FS --info-annotation-keys QD --info-annotation-keys MQRankSum --info-annotation-keys ReadPosRankSum --inference-batch-size 256 --transfer-batch-size 512 --inter-op-threads 0 --intra-op-threads 0 --output-tensor-dir  --enable-journal false --keep-temp-file false --interval-set-rule UNION --interval-padding 0 --interval-exclusion-padding 0 --interval-merging-rule ALL --read-validation-stringency SILENT --seconds-between-progress-updates 10.0 --disable-sequence-dictionary-validation false --create-output-bam-index true --create-output-bam-md5 false --create-output-variant-index true --create-output-variant-md5 false --lenient false --add-output-sam-program-record true --add-output-vcf-command-line true --cloud-prefetch-buffer 40 --cloud-index-prefetch-buffer -1 --disable-bam-index-caching false --sites-only-vcf-output false --help false --version false --showHidden false --verbosity INFO --QUIET false --use-jdk-deflater false --use-jdk-inflater false --gcs-max-retries 20 --gcs-project-for-requester-pays  --disable-tool-default-read-filters false --read-group-black-list ID:ArtificialHaplotypeRG --read-group-black-list ID:ArtificialHaplotype",Version="4.1.3.0",Date="November 12, 2020 1:29:06 AM UTC"&gt;</span></span><br><span class="line"><span class="comment"># 接着，是使用过的程序及命令甚至时间，非常详细</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##INFO=&lt;ID=AC,Number=A,Type=Integer,Description="Allele count in genotypes, for each ALT allele, in the same order as listed"&gt;</span></span><br><span class="line"><span class="comment">##INFO=&lt;ID=AF,Number=A,Type=Float,Description="Allele Frequency, for each ALT allele, in the same order as listed"&gt;</span></span><br><span class="line"><span class="comment">##INFO=&lt;ID=AN,Number=1,Type=Integer,Description="Total number of alleles in called genotypes"&gt;</span></span><br><span class="line"><span class="comment">##INFO=&lt;ID=BaseQRankSum,Number=1,Type=Float,Description="Z-score from Wilcoxon rank sum test of Alt Vs. Ref base qualities"&gt;</span></span><br><span class="line"><span class="comment">##INFO=&lt;ID=CNN_1D,Number=1,Type=Float,Description="Log odds of being a true variant versus being false under the trained 1D Convolutional Neural Network"&gt;</span></span><br><span class="line"><span class="comment">##INFO=&lt;ID=DP,Number=1,Type=Integer,Description="Approximate read depth; some reads may have been filtered"&gt;</span></span><br><span class="line"><span class="comment">##INFO=&lt;ID=END,Number=1,Type=Integer,Description="Stop position of the interval"&gt;</span></span><br><span class="line"><span class="comment">##INFO=&lt;ID=ExcessHet,Number=1,Type=Float,Description="Phred-scaled p-value for exact test of excess heterozygosity"&gt;</span></span><br><span class="line"><span class="comment">##INFO=&lt;ID=FS,Number=1,Type=Float,Description="Phred-scaled p-value using Fisher's exact test to detect strand bias"&gt;</span></span><br><span class="line"><span class="comment">##INFO=&lt;ID=InbreedingCoeff,Number=1,Type=Float,Description="Inbreeding coefficient as estimated from the genotype likelihoods per-sample when compared against the Hardy-Weinberg expectation"&gt;</span></span><br><span class="line"><span class="comment">##INFO=&lt;ID=MLEAC,Number=A,Type=Integer,Description="Maximum likelihood expectation (MLE) for the allele counts (not necessarily the same as the AC), for each ALT allele, in the same order as listed"&gt;</span></span><br><span class="line"><span class="comment"># 后面是INFO，包括AC，AF，AN，DP，FS等标签</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##contig=&lt;ID=chrX,length=156040895&gt;</span></span><br><span class="line"><span class="comment">##contig=&lt;ID=chrX_KI270880v1_alt,length=284869&gt;</span></span><br><span class="line"><span class="comment">##contig=&lt;ID=chrX_KI270881v1_alt,length=144206&gt;</span></span><br><span class="line"><span class="comment">##contig=&lt;ID=chrX_KI270913v1_alt,length=274009&gt;</span></span><br><span class="line"><span class="comment">##contig=&lt;ID=chrY,length=57227415&gt;</span></span><br><span class="line"><span class="comment">##contig=&lt;ID=chrY_KI270740v1_random,length=37240&gt;</span></span><br><span class="line"><span class="comment"># 接着，是长长的contig，记录每条染色体以及长度，以及source信息</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##source=CNNScoreVariants</span></span><br><span class="line"><span class="comment">##source=GenotypeGVCFs</span></span><br><span class="line"><span class="comment">##source=HaplotypeCaller</span></span><br></pre></td></tr></table></figure>
+<p>主体部分没有#号，共10列：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  sample1</span></span><br><span class="line">chr1    15903   .       G       GC      59.28   .       AC=2;AF=1.00;AN=2;CNN_1D=-0.800;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=30.13;QD=29.64;SOR=2.303  GT:AD:DP:GQ:PL  1/1:0,2:2:6:71,6,0</span><br><span class="line">chr1    16495   .       G       C       36.65   .       AC=1;AF=0.500;AN=2;BaseQRankSum=-9.670e-01;CNN_1D=-4.292;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=22.00;MQRankSum=0.00;QD=12.22;ReadPosRankSum=0.967;SOR=1.179     GT:AD:DP:GQ:PL  0/1:1,2:3:18:44,0,18</span><br><span class="line">chr1    16734   .       TG      T       31.60   .       AC=1;AF=0.500;AN=2;BaseQRankSum=-6.740e-01;CNN_1D=-6.239;DP=10;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=32.17;MQRankSum=-1.400e-01;QD=3.51;ReadPosRankSum=-9.210e-01;SOR=0.132  GT:AD:DP:GQ:PL  0/1:7,2:9:39:39,0,197</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里列举三行</span></span><br><span class="line"><span class="comment"># CHROM，染色体</span></span><br><span class="line"><span class="comment"># POS，位置，“with the 1st base having position 1”</span></span><br><span class="line"><span class="comment"># ID，对应dbSNP数据库中的ID，默认未设置，为"."</span></span><br><span class="line"><span class="comment"># REF，参考序列，A,C,G,T,N</span></span><br><span class="line"><span class="comment"># ALT，实际序列，A,C,G,T,N,*</span></span><br><span class="line"><span class="comment"># QUAL，质量分数，这个数值有必要解释一下，根据VCF说明文件，“Phred-scaled quality score for the assertion made in ALT. i.e. −10log10 prob(call in ALT is wrong). If ALT is ‘.’ (no variant) then this is −10log10 prob(variant), and if ALT is not ‘.’ this is −10log10 prob(no variant). If unknown, the missing value should be specified. (Numeric)”，即 QUAL= −10log10 prob，此处的prob是错误概率，比如prob = 0.01，则QUAL= −10log10x0.01 = 20，即当QUAL=20时，ALT可能出错的概率是0.01，即可能正确的概率是0.99。质量分数是我们在判断一个位点的突变是否为真突变的主要参考，在后面的过滤中还会用到。</span></span><br><span class="line"><span class="comment"># FILTER，是否满足过滤条件，说明：“ PASS if this position has passed all filters, i.e., a call is made at this position. Otherwise, if the site has not passed all filters, a semicolon-separated list of codes for filters that fail. e.g. “q10;s50” might indicate that at this site the quality is below 10 and the number of samples with data is below 50% of the total number of samples. ‘0’ is reserved and should not be used as a filter String. If filters have not been applied, then this field should be set to the missing value. (String, no white-space or semi-colons permitted)，若满足所有过滤条件，则显示PASS，若某个过滤条件不满足，则显示不满足过滤条件，多个过滤条件之间用分号分隔；在这个例子中，FILTER这一项是"."，代表未被过滤。</span></span><br><span class="line"><span class="comment"># INFO，额外信息，包括多个字段，用分号分隔，如本例中的“AC=2;AF=1.00;AN=2”。</span></span><br><span class="line"><span class="comment"># 关于INFO字段，详细信息如下：</span></span><br><span class="line">• AA : ancestral allele</span><br><span class="line">• AC : allele count <span class="keyword">in</span> genotypes, <span class="keyword">for</span> each ALT allele, <span class="keyword">in</span> the same order as listed</span><br><span class="line">• AF : allele frequency <span class="keyword">for</span> each ALT allele <span class="keyword">in</span> the same order as listed: use this when estimated from primary data, not called genotypes</span><br><span class="line">• AN : total number of alleles <span class="keyword">in</span> called genotypes</span><br><span class="line"><span class="comment"># AC=2;AF=1.00;AN=2，代表二倍体，该位点有2个等位基因，2个发生变异，突变等位基因为100%，即纯合突变。</span></span><br><span class="line">• BQ : RMS base quality at this position</span><br><span class="line">• CIGAR : cigar string describing how to align an alternate allele to the reference allele</span><br><span class="line">• DB : dbSNP membership</span><br><span class="line">• DP : combined depth across samples, e.g. DP=154</span><br><span class="line">• END : end position of the variant described <span class="keyword">in</span> this record (<span class="keyword">for</span> use with symbolic alleles)</span><br><span class="line">• H2 : membership <span class="keyword">in</span> hapmap2</span><br><span class="line">• H3 : membership <span class="keyword">in</span> hapmap3</span><br><span class="line">• MQ : RMS mapping quality, e.g. MQ=52</span><br><span class="line">• MQ0 : Number of MAPQ == 0 reads covering this record</span><br><span class="line">• NS : Number of samples with data</span><br><span class="line">• SB : strand bias at this position</span><br><span class="line">• SOMATIC : indicates that the record is a somatic mutation, <span class="keyword">for</span> cancer genomics</span><br><span class="line">• VALIDATED : validated by follow-up experiment</span><br><span class="line">• 1000G : membership <span class="keyword">in</span> 1000 Genomes</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+<div>
+
+
+<ul class="post-copyright">
+<li class="post-copyright-author">
+<strong>本文作者：</strong>括囊无誉
+</li>
+<li class="post-copyright-link">
+<strong>本文链接：</strong>
+<a href="/WES/vcf_file/" title="理解VCF文件">WES/vcf_file/</a>
+</li>
+<li class="post-copyright-license">
+<strong>版权声明： </strong>
+本博客所有文章均为原创作品，转载请注明出处！
+</li>
+</ul>
+
+</div>
+
+    
+    
+    
+
+
+<div>
+
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创文章分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="括囊无誉 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/VCF/" rel="tag"># VCF</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/R/duplicate/" rel="next" title="R中去除某列中重复的值">
+                <i class="fa fa-chevron-left"></i> R中去除某列中重复的值
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/WES/bcftools_view/" rel="prev" title="BCFTOOLS VIEW 命令查看VCF文件">
+                BCFTOOLS VIEW 命令查看VCF文件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="括囊无誉">
+          <p class="site-author-name" itemprop="name">括囊无誉</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">215</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">220</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/75d3f95b058e" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-http://www.jianshu.com/u/75d3f95b058e"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、VCF文件内容"><span class="nav-number">1.</span> <span class="nav-text">一、VCF文件内容</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">括囊无誉</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://uteric-1.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://uteric.github.io/WES/vcf_file/';
+          this.page.identifier = 'WES/vcf_file/';
+          this.page.title = '理解VCF文件';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://uteric-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

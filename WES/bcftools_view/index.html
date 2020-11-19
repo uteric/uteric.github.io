@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="VCF,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="诸子百家" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="BCFTOOLS VIEW 可以用于查看VCF或BCF文件，VCF/BCF互相转换，提取子集，或进行过滤，用法如下： 123456bcftools view [options] &amp;lt;in.vcf.gz&amp;gt; [region1 [...]]# 只针对压缩的VCF文件，即vcf.gz，若不是压缩格式，先转换成压缩格式，比如现在有一个文件，xxx.vcf，使用bgzip进行压缩，&amp;gt; bgzi">
+<meta name="keywords" content="VCF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BCFTOOLS VIEW 命令查看VCF文件">
+<meta property="og:url" content="http://uteric.github.io/WES/bcftools_view/index.html">
+<meta property="og:site_name" content="诸子百家">
+<meta property="og:description" content="BCFTOOLS VIEW 可以用于查看VCF或BCF文件，VCF/BCF互相转换，提取子集，或进行过滤，用法如下： 123456bcftools view [options] &amp;lt;in.vcf.gz&amp;gt; [region1 [...]]# 只针对压缩的VCF文件，即vcf.gz，若不是压缩格式，先转换成压缩格式，比如现在有一个文件，xxx.vcf，使用bgzip进行压缩，&amp;gt; bgzi">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-19T03:27:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BCFTOOLS VIEW 命令查看VCF文件">
+<meta name="twitter:description" content="BCFTOOLS VIEW 可以用于查看VCF或BCF文件，VCF/BCF互相转换，提取子集，或进行过滤，用法如下： 123456bcftools view [options] &amp;lt;in.vcf.gz&amp;gt; [region1 [...]]# 只针对压缩的VCF文件，即vcf.gz，若不是压缩格式，先转换成压缩格式，比如现在有一个文件，xxx.vcf，使用bgzip进行压缩，&amp;gt; bgzi">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '9e233f3fa2f200ca831529de7ba10253',
+      indexName: 'uteric',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://uteric.github.io/WES/bcftools_view/">
+
+
+
+
+
+  <title>BCFTOOLS VIEW 命令查看VCF文件 | 诸子百家</title>
+  
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104081724-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <meta name="baidu-site-verification" content="bfQpbnNmEL">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诸子百家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+<div class="local-search-header clearfix">
+<span class="search-icon">
+<i class="fa fa-search"></i>
+</span>
+<span class="popup-btn-close">
+<i class="fa fa-times-circle"></i>
+</span>
+<div class="local-search-input-wrapper">
+<input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+</div>
+</div>
+<div id="local-search-result"></div>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/WES/bcftools_view/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="括囊无誉">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸子百家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BCFTOOLS VIEW 命令查看VCF文件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-18T21:27:15-06:00">
+                2020-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程语言/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/WES/bcftools_view/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="WES/bcftools_view/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>°C
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>BCFTOOLS VIEW 可以用于查看VCF或BCF文件，VCF/BCF互相转换，提取子集，或进行过滤，用法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bcftools view [options] &lt;in.vcf.gz&gt; [region1 [...]]</span><br><span class="line"><span class="comment"># 只针对压缩的VCF文件，即vcf.gz，若不是压缩格式，先转换成压缩格式，比如现在有一个文件，xxx.vcf，使用bgzip进行压缩，</span></span><br><span class="line">&gt; bgzip xxx.vcf</span><br><span class="line"><span class="comment"># 得到xxx.vcf.gz，生成索引</span></span><br><span class="line">&gt; bcftools index -t xxx.vcf.gz</span><br><span class="line"><span class="comment"># 得到xxx.vcf.gz.tbi，即可开始使用BCFTOOLS VIEW进行操作</span></span><br></pre></td></tr></table></figure>
+<p>参数如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">About:   VCF/BCF conversion, view, subset and filter VCF/BCF files.</span><br><span class="line">Usage:   bcftools view [options] &lt;in.vcf.gz&gt; [region1 [...]]</span><br><span class="line"></span><br><span class="line">Output options:</span><br><span class="line">    -G,   --drop-genotypes              drop individual genotype information (after subsetting <span class="keyword">if</span> -s option <span class="built_in">set</span>)</span><br><span class="line">    -h/H, --header-only/--no-header     <span class="built_in">print</span> the header only/suppress the header <span class="keyword">in</span> VCF output</span><br><span class="line">    -l,   --compression-level [0-9]     compression level: 0 uncompressed, 1 best speed, 9 best compression [-1]</span><br><span class="line">          --no-version                  <span class="keyword">do</span> not append version and <span class="built_in">command</span> line to the header</span><br><span class="line">    -o,   --output-file &lt;file&gt;          output file name [stdout]</span><br><span class="line">    -O,   --output-type &lt;b|u|z|v&gt;       b: compressed BCF, u: uncompressed BCF, z: compressed VCF, v: uncompressed VCF [v]</span><br><span class="line">    -r, --regions &lt;region&gt;              restrict to comma-separated list of regions</span><br><span class="line">    -R, --regions-file &lt;file&gt;           restrict to regions listed <span class="keyword">in</span> a file</span><br><span class="line">    -t, --targets [^]&lt;region&gt;           similar to -r but streams rather than index-jumps. Exclude regions with <span class="string">"^"</span> prefix</span><br><span class="line">    -T, --targets-file [^]&lt;file&gt;        similar to -R but streams rather than index-jumps. Exclude regions with <span class="string">"^"</span> prefix</span><br><span class="line">        --threads &lt;int&gt;                 number of extra (de)compression threads [0]</span><br><span class="line"></span><br><span class="line">Subset options:</span><br><span class="line">    -a, --trim-alt-alleles        trim alternate alleles not seen <span class="keyword">in</span> the subset</span><br><span class="line">    -I, --no-update               <span class="keyword">do</span> not (re)calculate INFO fields <span class="keyword">for</span> the subset (currently INFO/AC and INFO/AN)</span><br><span class="line">    -s, --samples [^]&lt;list&gt;       comma separated list of samples to include (or exclude with <span class="string">"^"</span> prefix)</span><br><span class="line">    -S, --samples-file [^]&lt;file&gt;  file of samples to include (or exclude with <span class="string">"^"</span> prefix)</span><br><span class="line">        --force-samples           only warn about unknown subset samples</span><br><span class="line"></span><br><span class="line">Filter options:</span><br><span class="line">    -c/C, --min-ac/--max-ac &lt;int&gt;[:&lt;<span class="built_in">type</span>&gt;]      minimum/maximum count <span class="keyword">for</span> non-reference (nref), 1st alternate (alt1), least frequent</span><br><span class="line">                                                   (minor), most frequent (major) or sum of all but most frequent (nonmajor) alleles [nref]</span><br><span class="line">    -f,   --apply-filters &lt;list&gt;                require at least one of the listed FILTER strings (e.g. <span class="string">"PASS,."</span>)</span><br><span class="line">    -g,   --genotype [^]&lt;hom|het|miss&gt;          require one or more hom/het/missing genotype or, <span class="keyword">if</span> prefixed with <span class="string">"^"</span>, exclude sites with hom/het/missing genotypes</span><br><span class="line">    -i/e, --include/--exclude &lt;expr&gt;            select/exclude sites <span class="keyword">for</span> <span class="built_in">which</span> the expression is <span class="literal">true</span> (see man page <span class="keyword">for</span> details)</span><br><span class="line">    -k/n, --known/--novel                       select known/novel sites only (ID is not/is <span class="string">'.'</span>)</span><br><span class="line">    -m/M, --min-alleles/--max-alleles &lt;int&gt;     minimum/maximum number of alleles listed <span class="keyword">in</span> REF and ALT (e.g. -m2 -M2 <span class="keyword">for</span> biallelic sites)</span><br><span class="line">    -p/P, --phased/--exclude-phased             select/exclude sites <span class="built_in">where</span> all samples are phased</span><br><span class="line">    -q/Q, --min-af/--max-af &lt;<span class="built_in">float</span>&gt;[:&lt;<span class="built_in">type</span>&gt;]    minimum/maximum frequency <span class="keyword">for</span> non-reference (nref), 1st alternate (alt1), least frequent</span><br><span class="line">                                                   (minor), most frequent (major) or sum of all but most frequent (nonmajor) alleles [nref]</span><br><span class="line">    -u/U, --uncalled/--exclude-uncalled         select/exclude sites without a called genotype</span><br><span class="line">    -v/V, --types/--exclude-types &lt;list&gt;        select/exclude comma-separated list of variant types: snps,indels,mnps,ref,bnd,other [null]</span><br><span class="line">    -x/X, --private/--exclude-private           select/exclude sites <span class="built_in">where</span> the non-reference alleles are exclusive (private) to the subset samples</span><br></pre></td></tr></table></figure>
+<h2 id="一、查找条目"><a href="#一、查找条目" class="headerlink" title="一、查找条目"></a>一、查找条目</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&gt; bcftools view -e <span class="string">'GT="1|1"'</span> xxx.vcf.gz | wc -l <span class="comment"># 查找不符合 GT="1|1" 的条目，并输出数量</span></span><br><span class="line">&gt; bcftools view -i <span class="string">'GT="1|1"'</span> xxx.vcf.gz | wc -l <span class="comment"># 查找符合 GT="1|1" 的条目，并输出数量</span></span><br><span class="line"><span class="comment"># -i/e，前者是包含，后者是排除</span></span><br><span class="line">&gt; bcftools view -i <span class="string">'AF=0.500'</span> xxx.vcf.gz | wc -l <span class="comment"># 查找符合 AF=0.500 的条目，并输出数量</span></span><br><span class="line">&gt; bcftools view -e <span class="string">'AF=0.500'</span> xxx.vcf.gz | wc -l <span class="comment"># 查找不符合 AF=0.500 的条目，并输出数量</span></span><br><span class="line"><span class="comment"># 上面是针对VCF文件第8列，即INFO列，也可针对其他列，如QUAL或REF等</span></span><br><span class="line">&gt; bcftools view -i <span class="string">'QUAL=59.28'</span> xxx.vcf.gz | wc -l <span class="comment"># 查找符合 QUAL=59.28 的条目，并输出数量</span></span><br><span class="line">&gt; bcftools view -e <span class="string">'QUAL=59.28'</span> xxx.vcf.gz | wc -l <span class="comment"># 查找不符合 QUAL=59.28 的条目，并输出数量</span></span><br><span class="line"><span class="comment"># 特别注意，等号之后的字符串要加""，如REF="G"</span></span><br><span class="line">&gt; bcftools view -i <span class="string">'REF="G"'</span> xxx.vcf.gz | wc -l <span class="comment"># 查找符合 QUAL=59.28 的条目，并输出数量</span></span><br><span class="line">&gt; bcftools view -e <span class="string">'REF="G"'</span> xxx.vcf.gz | wc -l <span class="comment"># 查找不符合 QUAL=59.28 的条目，并输出数量</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 若需展示条目，可传递给less/more，</span></span><br><span class="line">&gt; bcftools view -i -H <span class="string">'GT="1|1"'</span> xxx.vcf.gz | less</span><br><span class="line"></span><br><span class="line"><span class="comment">#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  sample1</span></span><br><span class="line">chr1    187485  .       G       A       2007.06 .       AC=2;AF=1;AN=2;CNN_1D=-0.124;DP=76;ExcessHet=3.0103;FS=0;MLEAC=2;MLEAF=1;MQ=39.48;QD=27.12;SOR=0.992    GT:AD:DP:GQ:PGT:PID:PL:PS       1|1:0,74:74:99:1|1:187485_G_A:2021,221,0:187485</span><br><span class="line">chr1    827209  .       G       C       255.97  .       AC=2;AF=1;AN=2;CNN_1D=1.611;DP=6;ExcessHet=3.0103;FS=0;MLEAC=2;MLEAF=1;MQ=49.2;QD=27.24;SOR=0.693       GT:AD:DP:GQ:PGT:PID:PL:PS       1|1:0,6:6:18:1|1:827209_G_C:270,18,0:827209</span><br><span class="line">chr1    827212  .       C       G       255.97  .       AC=2;AF=1;AN=2;CNN_1D=2.44;DP=6;ExcessHet=3.0103;FS=0;MLEAC=2;MLEAF=1;MQ=49.2;QD=28.2;SOR=0.693 GT:AD:DP:GQ:PGT:PID:PL:PS       1|1:0,6:6:18:1|1:827209_G_C:270,18,0:827209</span><br><span class="line">chr1    827221  .       T       C       255.97  .       AC=2;AF=1;AN=2;CNN_1D=1.913;DP=6;ExcessHet=3.0103;FS=0;MLEAC=2;MLEAF=1;MQ=49.2;QD=25;SOR=0.693  GT:AD:DP:GQ:PGT:PID:PL:PS       1|1:0,6:6:18:1|1:827209_G_C:270,18,0:827209</span><br></pre></td></tr></table></figure>
+<h2 id="二、提取INDEL-SNP"><a href="#二、提取INDEL-SNP" class="headerlink" title="二、提取INDEL/SNP"></a>二、提取INDEL/SNP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">&gt; bcftools view -v indels xxx.vcf.gz | wc -l</span><br><span class="line"><span class="comment"># 11993</span></span><br><span class="line">&gt; bcftools view -v indels xxx.vcf.gz | less</span><br><span class="line"><span class="comment">#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  sample1</span></span><br><span class="line">chr1    15903   .       G       GC      59.28   .       AC=2;AF=1;AN=2;CNN_1D=-0.8;DP=3;ExcessHet=3.0103;FS=0;MLEAC=1;MLEAF=0.5;MQ=30.13;QD=29.64;SOR=2.303     GT:AD:DP:GQ:PL  1/1:0,2:2:6:71,6,0</span><br><span class="line">chr1    16734   .       TG      T       31.6    .       AC=1;AF=0.5;AN=2;BaseQRankSum=-0.674;CNN_1D=-6.239;DP=10;ExcessHet=3.0103;FS=0;MLEAC=1;MLEAF=0.5;MQ=32.17;MQRankSum=-0.14;QD=3.51;ReadPosRankSum=-0.921;SOR=0.132       GT:AD:DP:GQ:PL  0/1:7,2:9:39:39,0,197</span><br><span class="line">chr1    19190   .       GC      G       32.6    .       AC=1;AF=0.5;AN=2;BaseQRankSum=-0.669;CNN_1D=-7.533;DP=13;ExcessHet=3.0103;FS=0;MLEAC=1;MLEAF=0.5;MQ=31.81;MQRankSum=-2.12;QD=2.51;ReadPosRankSum=0.099;SOR=0.33 GT:AD:DP:GQ:PL  0/1:11,2:13:40:40,0,330</span><br><span class="line">chr1    63735   .       CCTA    C       367.61  .       AC=1;AF=0.5;AN=2;BaseQRankSum=0.385;CNN_1D=0.827;DP=12;ExcessHet=3.0103;FS=0;MLEAC=1;MLEAF=0.5;MQ=46.67;MQRankSum=0.385;QD=25.36;ReadPosRankSum=0.674;SOR=0.307 GT:AD:DP:GQ:PL  0/1:1,9:10:15:375,0,15</span><br><span class="line">chr1    189392  .       ACC     A       2306.03 .       AC=2;AF=1;AN=2;BaseQRankSum=-1.809;CNN_1D=0.211;DP=57;ExcessHet=3.0103;FS=0;MLEAC=2;MLEAF=1;MQ=35.61;MQRankSum=1.12;QD=28.73;ReadPosRankSum=1.48;SOR=0.504      GT:AD:DP:GQ:PL  1/1:1,53:54:99:2320,118,0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以直接输出文件，</span></span><br><span class="line">&gt; bcftools view -v indels xxx.vcf.gz &gt; indel.vcf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 同理，提取SNP,</span></span><br><span class="line">&gt; bcftools view -v snps xxx.vcf.gz | wc -l</span><br><span class="line"><span class="comment"># 58314</span></span><br><span class="line">&gt; bcftools view -v snps xxx.vcf.gz | less</span><br><span class="line"><span class="comment">#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  sample1</span></span><br><span class="line">chr1    16495   .       G       C       36.65   .       AC=1;AF=0.5;AN=2;BaseQRankSum=-0.967;CNN_1D=-4.292;DP=3;ExcessHet=3.0103;FS=0;MLEAC=1;MLEAF=0.5;MQ=22;MQRankSum=0;QD=12.22;ReadPosRankSum=0.967;SOR=1.179       GT:AD:DP:GQ:PL  0/1:1,2:3:18:44,0,18</span><br><span class="line">chr1    17614   .       G       A       54.64   .       AC=1;AF=0.5;AN=2;BaseQRankSum=0;CNN_1D=-0.693;DP=5;ExcessHet=3.0103;FS=0;MLEAC=1;MLEAF=0.5;MQ=47.88;MQRankSum=-1.645;QD=10.93;ReadPosRankSum=1.04;SOR=1.179     GT:AD:DP:GQ:PL  0/1:2,3:5:35:62,0,35</span><br><span class="line">chr1    19322   .       C       T       44.64   .       AC=1;AF=0.5;AN=2;BaseQRankSum=0.703;CNN_1D=-3.724;DP=8;ExcessHet=3.0103;FS=0;MLEAC=1;MLEAF=0.5;MQ=38.66;MQRankSum=-0.956;QD=5.58;ReadPosRankSum=0.414;SOR=0.818 GT:AD:DP:GQ:PGT:PID:PL:PS       0|1:5,3:8:52:0|1:19322_C_T:52,0,140:19322</span><br><span class="line">chr1    19342   .       G       A       58.64   .       AC=1;AF=0.5;AN=2;BaseQRankSum=1.65;CNN_1D=-3.127;DP=5;ExcessHet=3.0103;FS=0;MLEAC=1;MLEAF=0.5;MQ=41.16;MQRankSum=-0.524;QD=11.73;ReadPosRankSum=-1.036;SOR=1.609        GT:AD:DP:GQ:PGT:PID:PL:PS       0|1:3,2:5:66:1|0:19322_C_T:66,0,116:19322</span><br><span class="line">chr1    29443   .       A       G       41.32   .       AC=2;AF=1;AN=2;CNN_1D=-3.532;DP=3;ExcessHet=3.0103;FS=0;MLEAC=1;MLEAF=0.5;MQ=22;QD=20.66;SOR=2.303      GT:AD:DP:GQ:PL  1/1:0,2:2:6:53,6,0</span><br><span class="line"><span class="comment"># 直接输出文件</span></span><br><span class="line">&gt; bcftools view -v snps xxx.vcf.gz &gt; snp.vcf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个VCF总条目数为70294，INDEL=11993，SNP=58314，合计70307，是否有既是SNP又是INDEL的条目？</span></span><br><span class="line">&gt; bcftools view -v indels xxx.vcf.gz | bcftools view -v snps | wc -l</span><br><span class="line"><span class="comment"># 511</span></span><br><span class="line">&gt; bcftools view -v indels xxx.vcf.gz | bcftools view -v snps | less</span><br><span class="line"></span><br><span class="line"><span class="comment">#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  sample1</span></span><br><span class="line">chr1    78005376        .       T       C,TTC   268.06  .       AC=1,1;AF=0.5,0.5;AN=2;CNN_1D=0.499;DP=9;ExcessHet=3.0103;FS=0;MLEAC=1,1;MLEAF=0.5,0.5;MQ=60;QD=29.78;SOR=1.402 GT:AD:DP:GQ:PL  1/2:0,6,3:9:84:285,101,84,175,0,196</span><br><span class="line">chr10   58717368        .       A       C,AC    329.06  .       AC=1,1;AF=0.5,0.5;AN=2;BaseQRankSum=2.17;CNN_1D=0.755;DP=13;ExcessHet=3.0103;FS=3.358;MLEAC=1,1;MLEAF=0.5,0.5;MQ=58.98;MQRankSum=0;QD=25.31;ReadPosRankSum=1.61;SOR=0.707       GT:AD:DP:GQ:PL  1/2:1,7,5:13:99:346,129,102,168,0,202</span><br><span class="line">chr13   35044829        .       TAG     T,GAG   110.06  .       AC=1,1;AF=0.5,0.5;AN=2;CNN_1D=0.437;DP=4;ExcessHet=3.0103;FS=0;MLEAC=1,1;MLEAF=0.5,0.5;MQ=60;QD=27.51;SOR=0.693 GT:AD:DP:GQ:PL  1/2:0,2,2:4:49:127,49,78,84,0,78</span><br><span class="line">chr13   40558927        .       G       T,GT    150.06  .       AC=1,1;AF=0.5,0.5;AN=2;CNN_1D=-0.053;DP=5;ExcessHet=3.0103;FS=0;MLEAC=1,1;MLEAF=0.5,0.5;MQ=60;QD=27.85;SOR=0.693        GT:AD:DP:GQ:PL  1/2:0,2,2:4:62:167,72,62,74,0,64</span><br><span class="line">chr17   67072015        .       A       AC,C    395.06  .       AC=1,1;AF=0.5,0.5;AN=2;CNN_1D=0.428;DP=10;ExcessHet=3.0103;FS=0;MLEAC=1,1;MLEAF=0.5,0.5;MQ=60;QD=28.72;SOR=1.863        GT:AD:DP:GQ:PL  1/2:0,4,4:8:89:412,119,89,119,0,89</span><br><span class="line">chr17   76292181        .       T       C,TGCTGAACTGCACCAGGTTGGACCAAACCAC       425.06  .       AC=1,1;AF=0.5,0.5;AN=2;CNN_1D=3.964;DP=19;ExcessHet=3.0103;FS=0;MLEAC=1,1;MLEAF=0.5,0.5;MQ=60;QD=26.76;SOR=1.27 GT:AD:DP:GQ:PL  1/2:0,7,4:11:99:442,150,230,184,0,200</span><br><span class="line">chr2    97151827        .       C       CT,T    441.06  .       AC=1,1;AF=0.5,0.5;AN=2;CNN_1D=0.512;DP=12;ExcessHet=3.0103;FS=0;MLEAC=1,1;MLEAF=0.5,0.5;MQ=29.84;QD=31.8;SOR=1.022      GT:AD:DP:GQ:PL  1/2:0,6,6:12:99:458,217,193,220,0,234</span><br><span class="line">chr2    197008003       .       T       TTCTC,C 235.06  .       AC=1,1;AF=0.5,0.5;AN=2;CNN_1D=3.73;DP=6;ExcessHet=3.0103;FS=0;MLEAC=1,1;MLEAF=0.5,0.5;MQ=60;QD=31.03;SOR=0.693  GT:AD:DP:GQ:PL  1/2:0,4,2:6:31:252,49,31,99,0,81</span><br><span class="line">chr22   24755923        .       CA      C,AA    209.06  .       AC=1,1;AF=0.5,0.5;AN=2;CNN_1D=1.317;DP=8;ExcessHet=3.0103;FS=0;MLEAC=1,1;MLEAF=0.5,0.5;MQ=60;QD=29.87;SOR=0.941 GT:AD:DP:GQ:PL  1/2:0,4,3:7:62:226,82,62,103,0,119</span><br><span class="line">chr3    149515881       .       T       G,TTG   280.06  .       AC=1,1;AF=0.5,0.5;AN=2;CNN_1D=1.794;DP=9;ExcessHet=3.0103;FS=0;MLEAC=1,1;MLEAF=0.5,0.5;MQ=60;QD=31.12;SOR=0.892 GT:AD:DP:GQ:PL  1/2:0,4,5:9:96:297,208,194,96,0,132</span><br><span class="line">chr6    125929252       .       T       TAAAA,A 193.06  .       AC=1,1;AF=0.5,0.5;AN=2;CNN_1D=1.255;DP=5;ExcessHet=3.0103;FS=0;MLEAC=1,1;MLEAF=0.5,0.5;MQ=60;QD=28.92;SOR=1.022 GT:AD:DP:GQ:PL  1/2:0,2,3:5:69:210,97,88,80,0,69</span><br><span class="line">chr7    98315625        .       A       ATAAT,T 371.06  .       AC=1,1;AF=0.5,0.5;AN=2;CNN_1D=1.314;DP=10;ExcessHet=3.0103;FS=0;MLEAC=1,1;MLEAF=0.5,0.5;MQ=60;QD=33.02;SOR=0.941        GT:AD:DP:GQ:PL  1/2:0,5,2:7:28:388,58,28,148,0,120</span><br><span class="line">chr8    19404624        .       T       A,TATA  295.06  .       AC=1,1;AF=0.5,0.5;AN=2;CNN_1D=1.322;DP=11;ExcessHet=3.0103;FS=0;MLEAC=1,1;MLEAF=0.5,0.5;MQ=60;QD=31.75;SOR=1.179        GT:AD:DP:GQ:PL  1/2:0,2,4:8:59:312,193,178,59,0,67</span><br><span class="line">(END)</span><br><span class="line"><span class="comment"># 果如预料，在13个条目中，二倍体中的两个等位基因皆发生突变，而且突变后的ALT不同，因此，会同时被认定是INDEL或SNP</span></span><br><span class="line"><span class="comment"># 注意，上面提到INDEL+SNP=70307，而文件的总条目是70294，多出13条，代表有13条记录既是INDEL又是SNP，我们确实看到13条相应的条目，但为何使用“wc -l”命令查看时却有511条记录呢？这是因为VCF文件头部有注释行，正确的查看方式是使用"grep -v "^#""命令，略过注释行</span></span><br><span class="line"></span><br><span class="line">&gt; bcftools view -v indels xxx.vcf.gz | bcftools view -v snps | grep -v <span class="string">"^#"</span> | wc -l</span><br><span class="line"><span class="comment"># 13</span></span><br><span class="line"></span><br><span class="line">相应地，我们看一下真实的INDEL与SNP的条目数，</span><br><span class="line">&gt; bcftools view -v snps xxx.vcf.gz | grep -v <span class="string">"^#"</span> | wc -l</span><br><span class="line"><span class="comment"># 57817，相比58314，少497行，即有497行注释</span></span><br><span class="line">bcftools view -v indels xxx.vcf.gz | grep -v <span class="string">"^#"</span> | wc -l</span><br><span class="line"><span class="comment"># 11496，相比11993，少少497行，即有497行注释</span></span><br><span class="line"><span class="comment"># 另外，同时是INDEL和SNP的行有13行，如果加上注释为511行，注释497行，还有一行是标题行</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+<div>
+
+
+<ul class="post-copyright">
+<li class="post-copyright-author">
+<strong>本文作者：</strong>括囊无誉
+</li>
+<li class="post-copyright-link">
+<strong>本文链接：</strong>
+<a href="/WES/bcftools_view/" title="BCFTOOLS VIEW 命令查看VCF文件">WES/bcftools_view/</a>
+</li>
+<li class="post-copyright-license">
+<strong>版权声明： </strong>
+本博客所有文章均为原创作品，转载请注明出处！
+</li>
+</ul>
+
+</div>
+
+    
+    
+    
+
+
+<div>
+
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创文章分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="括囊无誉 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/VCF/" rel="tag"># VCF</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/WES/vcf_file/" rel="next" title="理解VCF文件">
+                <i class="fa fa-chevron-left"></i> 理解VCF文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="括囊无誉">
+          <p class="site-author-name" itemprop="name">括囊无誉</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">215</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">220</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/75d3f95b058e" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-http://www.jianshu.com/u/75d3f95b058e"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、查找条目"><span class="nav-number">1.</span> <span class="nav-text">一、查找条目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、提取INDEL-SNP"><span class="nav-number">2.</span> <span class="nav-text">二、提取INDEL/SNP</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">括囊无誉</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://uteric-1.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://uteric.github.io/WES/bcftools_view/';
+          this.page.identifier = 'WES/bcftools_view/';
+          this.page.title = 'BCFTOOLS VIEW 命令查看VCF文件';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://uteric-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
