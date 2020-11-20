@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2020-11-19T18:07:55.000Z</updated>
+  <updated>2020-11-20T04:03:28.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -17,9 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>去除数据框中多余的LEVEL</title>
+    <link href="http://uteric.github.io/R/remove_level/"/>
+    <id>http://uteric.github.io/R/remove_level/</id>
+    <published>2020-11-20T04:03:28.000Z</published>
+    <updated>2020-11-20T04:03:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在操作数据框时，当取子集时，不论使用subset()或者对行名进行筛选，得到的结果中都会包含无值但存在的LEVEL，需要去除多余的LEVEL，否则在进行某些操作时会出错。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Y &lt;- droplevels(X)</span><br><span class="line"><span class="comment"># 此命令会去掉数据框中多余的LEVEL，只保留有值的LEVEL</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在操作数据框时，当取子集时，不论使用subset()或者对行名进行筛选，得到的结果中都会包含无值但存在的LEVEL，需要去除多余的LEVEL，否则在进行某些操作时会出错。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td c
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="R" scheme="http://uteric.github.io/tags/R/"/>
+    
+  </entry>
+  
+  <entry>
     <title>使用CIRCLIZE对VCF文件作图</title>
-    <link href="http://uteric.github.io/circlize_vcf/"/>
-    <id>http://uteric.github.io/circlize_vcf/</id>
+    <link href="http://uteric.github.io/WES/circlize_vcf/"/>
+    <id>http://uteric.github.io/WES/circlize_vcf/</id>
     <published>2020-11-19T18:07:55.000Z</published>
     <updated>2020-11-19T18:07:55.000Z</updated>
     
@@ -503,34 +529,6 @@
     
     
       <category term="R" scheme="http://uteric.github.io/tags/R/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LINUX下解压命令</title>
-    <link href="http://uteric.github.io/Linux/unzip/"/>
-    <id>http://uteric.github.io/Linux/unzip/</id>
-    <published>2020-10-09T19:00:41.000Z</published>
-    <updated>2020-10-09T19:00:41.000Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li>tar.gz</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf file.tar.gz</span><br></pre></td></tr></table></figure><p>参数的意义如下：</p><p>-z : 使用gzip命令解压<br>-x : 提取文件<br>-v : 显示操作过程</p><ol start="2"><li>.tgz</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf file.tgz</span><br></pre></td></tr></table></figure><ol start="3"><li>.gz</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gzip -d file.gz</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;tar.gz&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td c
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="解压" scheme="http://uteric.github.io/tags/%E8%A7%A3%E5%8E%8B/"/>
     
   </entry>
   
