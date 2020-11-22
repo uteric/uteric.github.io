@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="cancer,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="诸子百家" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="本教程主要目的是下载测序数据，并将其比对至基因组上，参考教程：Read Alignment。 主要流程见下图  一、下载数据本次分析使用的数据来自SRA数据库，患有ccRCC的病人，分析其中的两个样本，SRR5478491 (matched primary ccRCC)与 SRR5478492 (matched normal)，双端测序，WXS，平台是ILLUMINA，Library Name是P">
+<meta name="keywords" content="cancer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="肿瘤基因组分析教程：三、比对至基因组">
+<meta property="og:url" content="http://uteric.github.io/cancer_seq3/index.html">
+<meta property="og:site_name" content="诸子百家">
+<meta property="og:description" content="本教程主要目的是下载测序数据，并将其比对至基因组上，参考教程：Read Alignment。 主要流程见下图  一、下载数据本次分析使用的数据来自SRA数据库，患有ccRCC的病人，分析其中的两个样本，SRR5478491 (matched primary ccRCC)与 SRR5478492 (matched normal)，双端测序，WXS，平台是ILLUMINA，Library Name是P">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://uteric.github.io/images/WES/cancer12.png">
+<meta property="og:image" content="http://uteric.github.io/images/WES/cancer13.png">
+<meta property="og:image" content="http://uteric.github.io/images/WES/cancer14.png">
+<meta property="og:image" content="http://uteric.github.io/images/WES/cancer15.png">
+<meta property="og:updated_time" content="2020-11-20T21:07:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="肿瘤基因组分析教程：三、比对至基因组">
+<meta name="twitter:description" content="本教程主要目的是下载测序数据，并将其比对至基因组上，参考教程：Read Alignment。 主要流程见下图  一、下载数据本次分析使用的数据来自SRA数据库，患有ccRCC的病人，分析其中的两个样本，SRR5478491 (matched primary ccRCC)与 SRR5478492 (matched normal)，双端测序，WXS，平台是ILLUMINA，Library Name是P">
+<meta name="twitter:image" content="http://uteric.github.io/images/WES/cancer12.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '9e233f3fa2f200ca831529de7ba10253',
+      indexName: 'uteric',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://uteric.github.io/cancer_seq3/">
+
+
+
+
+
+  <title>肿瘤基因组分析教程：三、比对至基因组 | 诸子百家</title>
+  
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104081724-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <meta name="baidu-site-verification" content="bfQpbnNmEL">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诸子百家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+<div class="local-search-header clearfix">
+<span class="search-icon">
+<i class="fa fa-search"></i>
+</span>
+<span class="popup-btn-close">
+<i class="fa fa-times-circle"></i>
+</span>
+<div class="local-search-input-wrapper">
+<input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+</div>
+</div>
+<div id="local-search-result"></div>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/cancer_seq3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="括囊无誉">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸子百家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">肿瘤基因组分析教程：三、比对至基因组</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-20T15:07:31-06:00">
+                2020-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程语言/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/cancer_seq3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="cancer_seq3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>°C
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本教程主要目的是下载测序数据，并将其比对至基因组上，参考教程：<a href="https://bpa-csiro-workshops.github.io/cancer-manuals/modules/cancer-module-alignment/alignment/" target="_blank" rel="noopener">Read Alignment</a>。</p>
+<p>主要流程见下图</p>
+<p><img src="/images/WES/cancer12.png" alt></p>
+<h2 id="一、下载数据"><a href="#一、下载数据" class="headerlink" title="一、下载数据"></a>一、下载数据</h2><p>本次分析使用的数据来自SRA数据库，患有ccRCC的病人，分析其中的两个样本，SRR5478491 (matched primary ccRCC)与 SRR5478492 (matched normal)，双端测序，WXS，平台是ILLUMINA，Library Name是P1T与P1N，参考基因组为GRCh37。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载数据</span></span><br><span class="line">$ prefetch SRR5478491</span><br><span class="line">$ prefetch SRR5478491</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载完成后提取FASTQ文件</span></span><br><span class="line">$ fastq-dump --split-3 --gzip SRR5478491.sra</span><br><span class="line"><span class="comment"># Rejected 14481 READS because of filtering out non-biological READS</span></span><br><span class="line"><span class="comment"># Read 18433992 spots for SRR5478491.sra</span></span><br><span class="line"><span class="comment"># Written 18433992 spots for SRR5478491.sra</span></span><br><span class="line"></span><br><span class="line">$ fastq-dump --split-3 --gzip SRR5478492.sra</span><br><span class="line"><span class="comment"># Rejected 6955 READS because of filtering out non-biological READS</span></span><br><span class="line"><span class="comment"># Read 17390617 spots for SRR5478492.sra</span></span><br><span class="line"><span class="comment"># Written 17390617 spots for SRR5478492.sra</span></span><br></pre></td></tr></table></figure>
+<h2 id="二、FASTQ质控"><a href="#二、FASTQ质控" class="headerlink" title="二、FASTQ质控"></a>二、FASTQ质控</h2><p>获得FASTQ文件之后，按老规矩做个质控</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ fastqc -f fastq SRR5478491_1.fastq.gz</span><br><span class="line">$ fastqc -f fastq SRR5478492_1.fastq.gz</span><br></pre></td></tr></table></figure>
+<p>记录一下文件大小，后面对比一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ ls -lh</span><br><span class="line">total 3.8G</span><br><span class="line">-rwxrwxrwx 1 eric eric 995M Nov 21 18:51 SRR5478491_1.fastq.gz</span><br><span class="line">-rwxrwxrwx 1 eric eric 216K Nov 21 19:06 SRR5478491_1_fastqc.html</span><br><span class="line">-rwxrwxrwx 1 eric eric 225K Nov 21 19:06 SRR5478491_1_fastqc.zip</span><br><span class="line">-rwxrwxrwx 1 eric eric 992M Nov 21 18:51 SRR5478491_2.fastq.gz</span><br><span class="line">-rwxrwxrwx 1 eric eric 937M Nov 21 18:50 SRR5478492_1.fastq.gz</span><br><span class="line">-rwxrwxrwx 1 eric eric 212K Nov 21 19:06 SRR5478492_1_fastqc.html</span><br><span class="line">-rwxrwxrwx 1 eric eric 220K Nov 21 19:06 SRR5478492_1_fastqc.zip</span><br><span class="line">-rwxrwxrwx 1 eric eric 930M Nov 21 18:50 SRR5478492_2.fastq.gz</span><br></pre></td></tr></table></figure>
+<p>来看一下FASTQ文件的质量，</p>
+<p><img src="/images/WES/cancer13.png" alt></p>
+<p><img src="/images/WES/cancer14.png" alt></p>
+<p><img src="/images/WES/cancer15.png" alt></p>
+<p>根据统计结果，测序数据质量还是不错的，长度在36-101之间，质量也很不错，而且没有接头，可见已经做过质控，这里作为演示，我们使用fastp做个质控。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">$ fastp -z 4 -i ./SRR5478491_1.fastq.gz -I ./SRR5478491_2.fastq.gz -o ./qc/SRR5478491C_1.fastq.gz -O ./qc/SRR5478491C_2.fastq.gz</span><br><span class="line"></span><br><span class="line">Read1 before filtering:</span><br><span class="line">total reads: 18419511</span><br><span class="line">total bases: 1839620558</span><br><span class="line">Q20 bases: 1827378397(99.3345%)</span><br><span class="line">Q30 bases: 1763281066(95.8503%)</span><br><span class="line"></span><br><span class="line">Read2 before filtering:</span><br><span class="line">total reads: 18419511</span><br><span class="line">total bases: 1829856220</span><br><span class="line">Q20 bases: 1814586330(99.1655%)</span><br><span class="line">Q30 bases: 1746573463(95.4487%)</span><br><span class="line"></span><br><span class="line">Read1 after filtering:</span><br><span class="line">total reads: 18418466</span><br><span class="line">total bases: 1831827347</span><br><span class="line">Q20 bases: 1819758154(99.3411%)</span><br><span class="line">Q30 bases: 1756297954(95.8768%)</span><br><span class="line"></span><br><span class="line">Read2 aftering filtering:</span><br><span class="line">total reads: 18418466</span><br><span class="line">total bases: 1820984863</span><br><span class="line">Q20 bases: 1805979814(99.176%)</span><br><span class="line">Q30 bases: 1738919113(95.4933%)</span><br><span class="line"></span><br><span class="line">Filtering result:</span><br><span class="line">reads passed filter: 36836932</span><br><span class="line">reads failed due to low quality: 2070</span><br><span class="line">reads failed due to too many N: 20</span><br><span class="line">reads failed due to too short: 0</span><br><span class="line">reads with adapter trimmed: 3515078</span><br><span class="line">bases trimmed due to adapters: 16455158</span><br><span class="line"></span><br><span class="line">Duplication rate: 0.00384464%</span><br><span class="line"></span><br><span class="line">Insert size peak (evaluated by paired-end reads): 114</span><br><span class="line"></span><br><span class="line">JSON report: fastp.json</span><br><span class="line">HTML report: fastp.html</span><br><span class="line"></span><br><span class="line">fastp -z 4 -i ./SRR5478491_1.fastq.gz -I ./SRR5478491_2.fastq.gz -o ./qc/SRR5478491C_1.fastq.gz -O ./qc/SRR5478491C_2.fastq.gz</span><br><span class="line">fastp v0.20.1, time used: 1030 seconds</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只过滤除掉一点点，这个质控是为演示，样品二也是如此</span></span><br><span class="line"></span><br><span class="line">$ fastp -z 4 -i ./SRR5478492_1.fastq.gz -I ./SRR5478492_2.fastq.gz -o ./qc/SRR5478492C_1.fastq.gz -O ./qc/SRR5478492C_2.fastq.gz</span><br><span class="line"></span><br><span class="line">Read1 before filtering:</span><br><span class="line">total reads: 17383662</span><br><span class="line">total bases: 1739308879</span><br><span class="line">Q20 bases: 1729287310(99.4238%)</span><br><span class="line">Q30 bases: 1675903679(96.3546%)</span><br><span class="line"></span><br><span class="line">Read2 before filtering:</span><br><span class="line">total reads: 17383662</span><br><span class="line">total bases: 1731815560</span><br><span class="line">Q20 bases: 1719451643(99.2861%)</span><br><span class="line">Q30 bases: 1663768392(96.0708%)</span><br><span class="line"></span><br><span class="line">Read1 after filtering:</span><br><span class="line">total reads: 17383562</span><br><span class="line">total bases: 1734964983</span><br><span class="line">Q20 bases: 1725008250(99.4261%)</span><br><span class="line">Q30 bases: 1671980399(96.3697%)</span><br><span class="line"></span><br><span class="line">Read2 aftering filtering:</span><br><span class="line">total reads: 17383562</span><br><span class="line">total bases: 1726945775</span><br><span class="line">Q20 bases: 1714689404(99.2903%)</span><br><span class="line">Q30 bases: 1659508087(96.095%)</span><br><span class="line"></span><br><span class="line">Filtering result:</span><br><span class="line">reads passed filter: 34767124</span><br><span class="line">reads failed due to low quality: 186</span><br><span class="line">reads failed due to too many N: 14</span><br><span class="line">reads failed due to too short: 0</span><br><span class="line">reads with adapter trimmed: 2069808</span><br><span class="line">bases trimmed due to adapters: 9193707</span><br><span class="line"></span><br><span class="line">Duplication rate: 0.00294159%</span><br><span class="line"></span><br><span class="line">Insert size peak (evaluated by paired-end reads): 129</span><br><span class="line"></span><br><span class="line">JSON report: fastp.json</span><br><span class="line">HTML report: fastp.html</span><br><span class="line"></span><br><span class="line">fastp -z 4 -i ./SRR5478492_1.fastq.gz -I ./SRR5478492_2.fastq.gz -o ./qc/SRR5478492C_1.fastq.gz -O ./qc/SRR5478492C_2.fastq.gz</span><br><span class="line">fastp v0.20.1, time used: 981 seconds</span><br></pre></td></tr></table></figure>
+<p>质控后文件变大一点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-rwxrwxrwx 1 eric eric 1.1G Nov 21 20:25 SRR5478491C_1.fastq.gz</span><br><span class="line">-rwxrwxrwx 1 eric eric 1.1G Nov 21 20:25 SRR5478491C_2.fastq.gz</span><br><span class="line">-rwxrwxrwx 1 eric eric 983M Nov 21 20:25 SRR5478492C_1.fastq.gz</span><br><span class="line">-rwxrwxrwx 1 eric eric 981M Nov 21 20:25 SRR5478492C_2.fastq.gz</span><br></pre></td></tr></table></figure>
+<h2 id="二、使用BWA比对至基因组"><a href="#二、使用BWA比对至基因组" class="headerlink" title="二、使用BWA比对至基因组"></a>二、使用BWA比对至基因组</h2><p>BWA适合将低差异度的序列比对到大型基因组上，有三种算法： BWA-backtrack, BWA-SW 和 BWA-MEM。第一种算法用于比对100bp以内的ILLUMINA序列，后两种算法可以比对更长的序列（70bp-1Mbp），后两者相比，BWA-MEM更新、更快、更准确。而且，即使对于70bp-100bp的序列，BWA-MEM相比BWA-backtrack也有更好的表现。</p>
+<p>BWA使用索引基因组来进行比对，以占用更小的内存，对于特定的基因组版本，如需产生索引，可以使用如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ bwa index hg19.fa</span><br><span class="line"><span class="comment"># 运行完成后会生成6个文件</span></span><br><span class="line">-rwxrwxrwx 1 eric eric 8.4K Nov 21 22:12 hg19.fa.amb</span><br><span class="line">-rwxrwxrwx 1 eric eric 4.0K Nov 21 22:12 hg19.fa.ann</span><br><span class="line">-rwxrwxrwx 1 eric eric 3.0G Nov 21 22:09 hg19.fa.bwt</span><br><span class="line">-rwxrwxrwx 1 eric eric 3.5K Sep 27 20:34 hg19.fa.fai</span><br><span class="line">-rwxrwxrwx 1 eric eric 748M Nov 21 22:12 hg19.fa.pac</span><br><span class="line">-rwxrwxrwx 1 eric eric 1.5G Nov 21 22:41 hg19.fa.sa</span><br></pre></td></tr></table></figure>
+<p>生成索引文件之后，我们开始使用BWA进行比对</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir bam <span class="comment"># 创建存放BAM文件的目录</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面正式使用BWA进行比对，关于bwa mem的用法，之前的教程中多次有介绍，这是一个组合用法，方便快捷且不输出中间文件，节省空间</span></span><br><span class="line">$ bwa mem -M -t 4 -R <span class="string">'@RG\tSM:ccRCC\tID:SRR5478491\tLB:P1T\tPL:ILLUMINA'</span> /mnt/d/ncbi/hg19/BWAIndex/hg19.fa /mnt/d/cancer/qc/SRR5478491C_1.fastq.gz /mnt/d/cancer/qc/SRR5478491C_2.fastq.gz | samtools view -q4 -bS -o - - | samtools sort -@2 -o /mnt/d/cancer/bam/SRR5478491C.bam -</span><br><span class="line">$ bwa mem -M -t 4 -R <span class="string">'@RG\tSM:normal\tID:SRR5478492\tLB:P1N\tPL:ILLUMINA'</span> /mnt/d/ncbi/hg19/BWAIndex/hg19.fa /mnt/d/cancer/qc/SRR5478492C_1.fastq.gz /mnt/d/cancer/qc/SRR5478492C_2.fastq.gz | samtools view -q4 -bS -o - - | samtools sort -@2 -o /mnt/d/cancer/bam/SRR5478492C.bam -</span><br><span class="line"></span><br><span class="line"><span class="comment"># 比对部分参数如下，以下如不特殊说明，皆针对样本SRR5478491：</span></span><br><span class="line">mem: fast mode of high quality input such the Illumina <span class="comment"># 使用BWA-MEM算法，最快最准确</span></span><br><span class="line">-M: flags extra hits as secondary. This is needed <span class="keyword">for</span> compatibility with other tools downstream. <span class="comment"># 为了兼容下游的程序如picard</span></span><br><span class="line">-t: Number of threads. <span class="comment"># 线程数，根据电脑性能设置</span></span><br><span class="line">-R: Complete <span class="built_in">read</span> group header line. <span class="comment"># Read Group信息后面需要用到，如果不加-R参数，后面还需要重新生成Read Group，增加麻烦</span></span><br><span class="line"><span class="comment"># 比对完成后，实际上生成的是SAM文件，SAM指Sequence Alignment/Map，顾名思义，是存储大量比对数据的标准格式。SAM文件以TAB分隔，包括header section与alignment section两个部分，header section是可选的，以@开头，比如，</span></span><br><span class="line">@SQ SN:GL000192.1   LN:547496</span><br><span class="line">@RG SM:Blood    ID:ERR059356    LB:lb   PL:ILLUMINA</span><br><span class="line">@PG ID:bwa  PN:bwa  VN:0.7.15-r1140 CL:bwa mem -M -t 4 -R <span class="string">'@RG\tSM:Blood\tID:ERR059356\tLB:lb\tPL:ILLUMINA'</span> /mnt/d/ncbi/hg19/BWAIndex/hg19.fa /mnt/d/cancer/qc/SRR5478491C_1.fastq.gz /mnt/d/cancer/qc/SRR5478491C_2.fastq.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 各个字段的含义如下：</span></span><br><span class="line">@HD: Header line; VN: Format version; SO: the sort order of alignments.</span><br><span class="line">@SQ: Reference sequence information; SN: reference sequence name; LN: reference sequence length.</span><br><span class="line">@PG: Program; ID: Program record identifier; VN: Program version; CL: the <span class="built_in">command</span> line that produces the alignment.</span><br><span class="line"></span><br><span class="line"><span class="comment"># alignment section内容如下：</span></span><br><span class="line">HWI-ST478_0133:3:1101:1374:2056<span class="comment">#0   147 11</span></span><br><span class="line">HWI-ST478_0133:3:1101:1352:2070<span class="comment">#0   163 14</span></span><br></pre></td></tr></table></figure>
+<h1 id="比对生成SAM文件，但是SAM文件非常大，太耗空间，因此，将其转化为等价的二进制BAM文件，使用命令samtools-view实现"><a href="#比对生成SAM文件，但是SAM文件非常大，太耗空间，因此，将其转化为等价的二进制BAM文件，使用命令samtools-view实现" class="headerlink" title="比对生成SAM文件，但是SAM文件非常大，太耗空间，因此，将其转化为等价的二进制BAM文件，使用命令samtools view实现"></a>比对生成SAM文件，但是SAM文件非常大，太耗空间，因此，将其转化为等价的二进制BAM文件，使用命令samtools view实现</h1><h1 id="q，线程数"><a href="#q，线程数" class="headerlink" title="-q，线程数"></a>-q，线程数</h1><h1 id="S，the-input-is-in-SAM-format"><a href="#S，the-input-is-in-SAM-format" class="headerlink" title="-S，the input is in SAM format"></a>-S，the input is in SAM format</h1><h1 id="b，the-output-is-in-BAM-format"><a href="#b，the-output-is-in-BAM-format" class="headerlink" title="-b，the output is in BAM format"></a>-b，the output is in BAM format</h1><h1 id="o，输出文件"><a href="#o，输出文件" class="headerlink" title="-o，输出文件"></a>-o，输出文件</h1><p>此步最耗时间，运行记录如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">$ bwa mem -M -t 4 -R <span class="string">'@RG\tSM:ccRCC\tID:SRR5478491\tLB:P1T\tPL:ILLUMINA'</span> /mnt/d/ncbi/hg19/BWAIndex/hg19.fa /mnt/d/cancer/qc/SRR5478491C_1.fastq.gz /mnt/d/cancer/qc/SRR5478491C_2.fastq.gz | samtools view -q4 -bS -o - - | samtools sort -@2 -o /mnt/d/cancer/bam/SRR5478491C.bam -</span><br><span class="line">[M::bwa_idx_load_from_disk] <span class="built_in">read</span> 0 ALT contigs</span><br><span class="line">[M::process] <span class="built_in">read</span> 404750 sequences (40000081 bp)...</span><br><span class="line">[M::process] <span class="built_in">read</span> 403546 sequences (40000135 bp)...</span><br><span class="line">[M::mem_pestat] <span class="comment"># candidate unique pairs for (FF, FR, RF, RR): (0, 193935, 1, 0)</span></span><br><span class="line">[M::mem_pestat] skip orientation FF as there are not enough pairs</span><br><span class="line">[M::mem_pestat] analyzing insert size distribution <span class="keyword">for</span> orientation FR...</span><br><span class="line">[M::mem_pestat] (25, 50, 75) percentile: (108, 122, 139)</span><br><span class="line">[M::mem_pestat] low and high boundaries <span class="keyword">for</span> computing mean and std.dev: (46, 201)</span><br><span class="line">[M::mem_pestat] mean and std.dev: (124.92, 21.87)</span><br><span class="line">[M::mem_pestat] low and high boundaries <span class="keyword">for</span> proper pairs: (15, 232)</span><br><span class="line">[M::mem_pestat] skip orientation RF as there are not enough pairs</span><br><span class="line">[M::mem_pestat] skip orientation RR as there are not enough pairs</span><br><span class="line">[M::mem_process_seqs] Processed 404750 reads <span class="keyword">in</span> 194.728 CPU sec, 99.446 real sec</span><br><span class="line">.....</span><br><span class="line">[main] Version: 0.7.17-r1188</span><br><span class="line">[main] CMD: bwa mem -M -t 4 -R @RG\tSM:ccRCC\tID:SRR5478491\tLB:P1T\tPL:ILLUMINA /mnt/d/ncbi/hg19/BWAIndex/hg19.fa /mnt/d/cancer/qc/SRR5478491C_1.fastq.gz /mnt/d/cancer/qc/SRR5478491C_2.fastq.gz</span><br><span class="line">[main] Real time: 12756.180 sec; CPU: 15585.349 sec</span><br><span class="line">[bam_sort_core] merging from 12 files and 2 <span class="keyword">in</span>-memory blocks...</span><br><span class="line"></span><br><span class="line">$ bwa mem -M -t 4 -R <span class="string">'@RG\tSM:normal\tID:SRR5478492\tLB:P1N\tPL:ILLUMINA'</span> /mnt/d/ncbi/hg19/BWAIndex/hg19.fa /mnt/d/cancer/qc/SRR5478492C_1.fastq.gz /mnt/d/cancer/qc/SRR5478492C_2.fastq.gz | samtools view -q4 -bS -o - - | samtools sort -@2 -o /mnt/d/cancer/bam/SRR5478492C.bam -</span><br><span class="line">[M::bwa_idx_load_from_disk] <span class="built_in">read</span> 0 ALT contigs</span><br><span class="line">[M::process] <span class="built_in">read</span> 403032 sequences (40000144 bp)...</span><br><span class="line">[M::process] <span class="built_in">read</span> 402398 sequences (40000087 bp)...</span><br><span class="line">[M::mem_pestat] <span class="comment"># candidate unique pairs for (FF, FR, RF, RR): (0, 192948, 0, 0)</span></span><br><span class="line">[M::mem_pestat] skip orientation FF as there are not enough pairs</span><br><span class="line">[M::mem_pestat] analyzing insert size distribution <span class="keyword">for</span> orientation FR...</span><br><span class="line">[M::mem_pestat] (25, 50, 75) percentile: (116, 133, 151)</span><br><span class="line">[M::mem_pestat] low and high boundaries <span class="keyword">for</span> computing mean and std.dev: (46, 221)</span><br><span class="line">[M::mem_pestat] mean and std.dev: (134.36, 24.18)</span><br><span class="line">[M::mem_pestat] low and high boundaries <span class="keyword">for</span> proper pairs: (11, 256)</span><br><span class="line">[M::mem_pestat] skip orientation RF as there are not enough pairs</span><br><span class="line">[M::mem_pestat] skip orientation RR as there are not enough pairs</span><br><span class="line">[M::mem_process_seqs] Processed 403032 reads <span class="keyword">in</span> 242.385 CPU sec, 126.808 real sec</span><br><span class="line">......</span><br><span class="line">[main] Version: 0.7.17-r1188</span><br><span class="line">[main] CMD: bwa mem -M -t 4 -R @RG\tSM:normal\tID:SRR5478492\tLB:P1N\tPL:ILLUMINA /mnt/d/ncbi/hg19/BWAIndex/hg19.fa /mnt/d/cancer/qc/SRR5478492C_1.fastq.gz /mnt/d/cancer/qc/SRR5478492C_2.fastq.gz</span><br><span class="line">[main] Real time: 12491.684 sec; CPU: 15071.044 sec</span><br><span class="line">[bam_sort_core] merging from 12 files and 2 <span class="keyword">in</span>-memory blocks...</span><br></pre></td></tr></table></figure>
+<p>生成的BAM文件需要索引，而建立索引则需要对BAM文件按染色体进行排序，可以使用samtools view -h来查看BAM文件头部，确定是否已经排序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">$ samtools view -h SRR5478491C.bam | less</span><br><span class="line"></span><br><span class="line">@HD     VN:1.6  SO:coordinate</span><br><span class="line">@SQ     SN:chr1 LN:249250621</span><br><span class="line">@SQ     SN:chr10        LN:135534747</span><br><span class="line">@SQ     SN:chr11        LN:135006516</span><br><span class="line">@SQ     SN:chr11_gl000202_random        LN:40103</span><br><span class="line">@SQ     SN:chr12        LN:133851895</span><br><span class="line">@SQ     SN:chr13        LN:115169878</span><br><span class="line">@SQ     SN:chr14        LN:107349540</span><br><span class="line">@SQ     SN:chr15        LN:102531392</span><br><span class="line">@SQ     SN:chr16        LN:90354753</span><br><span class="line">@SQ     SN:chr17        LN:81195210</span><br><span class="line">@SQ     SN:chr17_ctg5_hap1      LN:1680828</span><br><span class="line">@SQ     SN:chr17_gl000203_random        LN:37498</span><br><span class="line">@SQ     SN:chr17_gl000204_random        LN:81310</span><br><span class="line">@SQ     SN:chr17_gl000205_random        LN:174588</span><br><span class="line">@SQ     SN:chr17_gl000206_random        LN:41001</span><br><span class="line">@SQ     SN:chr18        LN:78077248</span><br><span class="line">@SQ     SN:chr18_gl000207_random        LN:4262</span><br><span class="line">@SQ     SN:chr19        LN:59128983</span><br><span class="line">@SQ     SN:chr19_gl000208_random        LN:92689</span><br><span class="line">@SQ     SN:chr19_gl000209_random        LN:159169</span><br><span class="line">@SQ     SN:chr1_gl000191_random LN:106433</span><br><span class="line">@SQ     SN:chr1_gl000192_random LN:547496</span><br><span class="line">@SQ     SN:chr2 LN:243199373</span><br><span class="line">@SQ     SN:chr20        LN:63025520</span><br><span class="line">@SQ     SN:chr21        LN:48129895</span><br><span class="line">@SQ     SN:chr21_gl000210_random        LN:27682</span><br><span class="line">@SQ     SN:chr22        LN:51304566</span><br><span class="line">@SQ     SN:chr3 LN:198022430</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以看出，染色体已经排序，可以生成索引文件</span></span><br><span class="line"></span><br><span class="line">$ samtools index SRR5478491C.bam</span><br><span class="line">$ samtools index SRR5478492C.bam</span><br></pre></td></tr></table></figure>
+<p>看一下文件大小</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">total 4.1G</span><br><span class="line">-rwxrwxrwx 1 eric eric 2.2G Nov 22 02:57 SRR5478491C.bam</span><br><span class="line">-rwxrwxrwx 1 eric eric 4.0M Nov 22 08:00 SRR5478491C.bam.bai</span><br><span class="line">-rwxrwxrwx 1 eric eric 2.0G Nov 22 07:08 SRR5478492C.bam</span><br><span class="line">-rwxrwxrwx 1 eric eric 3.9M Nov 22 08:03 SRR5478492C.bam.bai</span><br></pre></td></tr></table></figure>
+<p>使用samtools flagstat来对Flag values做个统计，每一项统计数据都由两部分组成，即QC-passed与QC-failed，每一项都有详细说明，不重复列举</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">$ samtools flagstat SRR5478491C.bam</span><br><span class="line">36533039 + 0 <span class="keyword">in</span> total (QC-passed reads + QC-failed reads)</span><br><span class="line">127381 + 0 secondary</span><br><span class="line">0 + 0 supplementary</span><br><span class="line">0 + 0 duplicates</span><br><span class="line">36533039 + 0 mapped (100.00% : N/A)</span><br><span class="line">36405658 + 0 paired <span class="keyword">in</span> sequencing</span><br><span class="line">18202897 + 0 read1</span><br><span class="line">18202761 + 0 read2</span><br><span class="line">36400546 + 0 properly paired (99.99% : N/A)</span><br><span class="line">36405653 + 0 with itself and mate mapped</span><br><span class="line">5 + 0 singletons (0.00% : N/A)</span><br><span class="line">4611 + 0 with mate mapped to a different chr</span><br><span class="line">4590 + 0 with mate mapped to a different chr (mapQ&gt;=5)</span><br><span class="line"></span><br><span class="line">$ samtools flagstat SRR5478492C.bam</span><br><span class="line">34403886 + 0 <span class="keyword">in</span> total (QC-passed reads + QC-failed reads)</span><br><span class="line">6054 + 0 secondary</span><br><span class="line">0 + 0 supplementary</span><br><span class="line">0 + 0 duplicates</span><br><span class="line">34403886 + 0 mapped (100.00% : N/A)</span><br><span class="line">34397832 + 0 paired <span class="keyword">in</span> sequencing</span><br><span class="line">17198921 + 0 read1</span><br><span class="line">17198911 + 0 read2</span><br><span class="line">34397521 + 0 properly paired (100.00% : N/A)</span><br><span class="line">34397829 + 0 with itself and mate mapped</span><br><span class="line">3 + 0 singletons (0.00% : N/A)</span><br><span class="line">224 + 0 with mate mapped to a different chr</span><br><span class="line">222 + 0 with mate mapped to a different chr (mapQ&gt;=5)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+<div>
+
+
+<ul class="post-copyright">
+<li class="post-copyright-author">
+<strong>本文作者：</strong>括囊无誉
+</li>
+<li class="post-copyright-link">
+<strong>本文链接：</strong>
+<a href="/cancer_seq3/" title="肿瘤基因组分析教程：三、比对至基因组">cancer_seq3/</a>
+</li>
+<li class="post-copyright-license">
+<strong>版权声明： </strong>
+本博客所有文章均为原创作品，转载请注明出处！
+</li>
+</ul>
+
+</div>
+
+    
+    
+    
+
+
+<div>
+
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创文章分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="括囊无誉 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cancer/" rel="tag"># cancer</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/cancer_seq2/" rel="next" title="肿瘤基因组分析教程：二、数据质控">
+                <i class="fa fa-chevron-left"></i> 肿瘤基因组分析教程：二、数据质控
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Linux/diskuse/" rel="prev" title="LINUX查看磁盘使用情况">
+                LINUX查看磁盘使用情况 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="括囊无誉">
+          <p class="site-author-name" itemprop="name">括囊无誉</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">222</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/75d3f95b058e" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-http://www.jianshu.com/u/75d3f95b058e"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、下载数据"><span class="nav-number">1.</span> <span class="nav-text">一、下载数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、FASTQ质控"><span class="nav-number">2.</span> <span class="nav-text">二、FASTQ质控</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、使用BWA比对至基因组"><span class="nav-number">3.</span> <span class="nav-text">二、使用BWA比对至基因组</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#比对生成SAM文件，但是SAM文件非常大，太耗空间，因此，将其转化为等价的二进制BAM文件，使用命令samtools-view实现"><span class="nav-number"></span> <span class="nav-text">比对生成SAM文件，但是SAM文件非常大，太耗空间，因此，将其转化为等价的二进制BAM文件，使用命令samtools view实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#q，线程数"><span class="nav-number"></span> <span class="nav-text">-q，线程数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#S，the-input-is-in-SAM-format"><span class="nav-number"></span> <span class="nav-text">-S，the input is in SAM format</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#b，the-output-is-in-BAM-format"><span class="nav-number"></span> <span class="nav-text">-b，the output is in BAM format</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#o，输出文件"><span class="nav-number"></span> <span class="nav-text">-o，输出文件</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">括囊无誉</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://uteric-1.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://uteric.github.io/cancer_seq3/';
+          this.page.identifier = 'cancer_seq3/';
+          this.page.title = '肿瘤基因组分析教程：三、比对至基因组';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://uteric-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

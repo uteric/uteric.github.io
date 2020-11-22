@@ -397,7 +397,7 @@ ga('send', 'pageview');
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">219</span>
+                <span class="site-state-item-count">222</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -992,7 +992,18 @@ ga('send', 'pageview');
 
 </body>
 </html>
-esult-list\">';
+ult"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
               resultItems.forEach(function (result) {
                 searchResultList += result.item;
               })
