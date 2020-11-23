@@ -345,7 +345,7 @@ ga('send', 'pageview');
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/cancer_seq4/" itemprop="url">肿瘤基因组分析教程：四、比对至基因组</a></h1>
+                <a class="post-title-link" href="/cancer_seq4/" itemprop="url">肿瘤基因组分析教程：四、BAM文件预处理</a></h1>
         
 
         <div class="post-meta">
@@ -408,9 +408,10 @@ ga('send', 'pageview');
       
         
           
-          本教程目的是对上一步生成的BAM文件进行质控，并检测变异，以及对变异进行注释，参考教程：Single Nucleotide Variant Calling and Annotation
-
-          
+          本教程目的是对上一步生成的BAM文件进行质控，并检测变异，以及对变异进行注释，参考教程：Single Nucleotide Variant Calling and Annotation，Data pre-processing for variant discovery，以及Somatic short variant discovery (SNVs + Indels)
+一、查看BAM信息我们先来具体看一下BAM文件，下面是BAM文件主体内容的前4行
+12345678$ samtools view 
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/cancer_seq4/#more" rel="contents">
