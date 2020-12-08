@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://uteric.github.io/R/deleteRows/</loc>
+    
+    <lastmod>2020-12-08T19:23:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://uteric.github.io/CHIPSEQ/mergeBed/</loc>
     
     <lastmod>2020-12-03T04:39:56.000Z</lastmod>
@@ -695,14 +702,14 @@
   </url>
   
   <url>
-    <loc>http://uteric.github.io/categories/index.html</loc>
+    <loc>http://uteric.github.io/about/index.html</loc>
     
     <lastmod>2020-04-30T14:43:15.389Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://uteric.github.io/about/index.html</loc>
+    <loc>http://uteric.github.io/categories/index.html</loc>
     
     <lastmod>2020-04-30T14:43:15.389Z</lastmod>
     
@@ -1458,14 +1465,14 @@
   </url>
   
   <url>
-    <loc>http://uteric.github.io/Articles/%E5%85%B3%E4%BA%8E%E6%85%A7%E6%98%9F%E7%9A%84%E6%B0%91%E9%97%B4%E4%BC%A0%E8%AF%B4/</loc>
+    <loc>http://uteric.github.io/Articles/%E5%84%92%E5%AE%B6%E5%85%AD%E8%89%BA%E4%B8%8E%E5%91%A8%E7%A4%BC%E5%85%AD%E8%89%BA%E6%9C%89%E4%BD%95%E5%8C%BA%E5%88%AB/</loc>
     
     <lastmod>2017-08-06T20:34:29.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://uteric.github.io/Articles/%E5%84%92%E5%AE%B6%E5%85%AD%E8%89%BA%E4%B8%8E%E5%91%A8%E7%A4%BC%E5%85%AD%E8%89%BA%E6%9C%89%E4%BD%95%E5%8C%BA%E5%88%AB/</loc>
+    <loc>http://uteric.github.io/Articles/%E5%85%B3%E4%BA%8E%E6%85%A7%E6%98%9F%E7%9A%84%E6%B0%91%E9%97%B4%E4%BC%A0%E8%AF%B4/</loc>
     
     <lastmod>2017-08-06T20:34:29.000Z</lastmod>
     
@@ -1480,6 +1487,13 @@
   
   <url>
     <loc>http://uteric.github.io/Articles/%E5%93%88%E9%9B%B7%E6%85%A7%E6%98%9F%E5%9C%A8%E5%8F%B2%E7%B1%8D%E4%B8%AD%E6%9C%80%E6%97%A9%E7%9A%84%E8%AE%B0%E8%BD%BD%E5%8F%8A%E5%85%B6%E9%A2%84%E5%85%86/</loc>
+    
+    <lastmod>2017-08-06T20:34:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://uteric.github.io/Articles/%E5%A7%93%E4%B8%8E%E6%B0%8F%E7%9A%84%E5%AD%A6%E9%97%AE/</loc>
     
     <lastmod>2017-08-06T20:34:29.000Z</lastmod>
     
@@ -1528,7 +1542,7 @@
   </url>
   
   <url>
-    <loc>http://uteric.github.io/Articles/%E5%A7%93%E4%B8%8E%E6%B0%8F%E7%9A%84%E5%AD%A6%E9%97%AE/</loc>
+    <loc>http://uteric.github.io/Articles/%E7%9B%90%E6%9E%AD%E4%B8%80%E8%AF%8D%E7%9A%84%E6%9D%A5%E5%8E%86/</loc>
     
     <lastmod>2017-08-06T20:34:29.000Z</lastmod>
     
@@ -1549,13 +1563,6 @@
   </url>
   
   <url>
-    <loc>http://uteric.github.io/Articles/%E7%9B%90%E6%9E%AD%E4%B8%80%E8%AF%8D%E7%9A%84%E6%9D%A5%E5%8E%86/</loc>
-    
-    <lastmod>2017-08-06T20:34:29.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://uteric.github.io/Articles/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A5%B3%E5%A2%99/</loc>
     
     <lastmod>2017-08-06T20:23:42.000Z</lastmod>
@@ -1563,14 +1570,14 @@
   </url>
   
   <url>
-    <loc>http://uteric.github.io/Articles/%E5%88%98%E5%A4%87%E5%A4%9A%E6%99%BA/</loc>
+    <loc>http://uteric.github.io/Articles/%E5%88%98%E5%A4%87%E6%98%AF%E4%B8%8D%E6%98%AF%E5%B1%8C%E4%B8%9D%E9%80%86%E8%A2%AD/</loc>
     
     <lastmod>2016-08-06T20:34:29.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://uteric.github.io/Articles/%E5%88%98%E5%A4%87%E6%98%AF%E4%B8%8D%E6%98%AF%E5%B1%8C%E4%B8%9D%E9%80%86%E8%A2%AD/</loc>
+    <loc>http://uteric.github.io/Articles/%E5%88%98%E5%A4%87%E5%A4%9A%E6%99%BA/</loc>
     
     <lastmod>2016-08-06T20:34:29.000Z</lastmod>
     
