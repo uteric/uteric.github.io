@@ -23,7 +23,7 @@
     <published>2021-02-18T20:19:29.000Z</published>
     <updated>2021-02-18T20:19:29.000Z</updated>
     
-    <content type="html"><![CDATA[<p>在LINUX中，查看硬盘使用情况有多个命令，最常用的是df，但阅读起来并不友好，而duf则是一个高颜值的易于阅读的命令。</p><p>首先，根据系统的型号在duf的官网上下载安装包，切换到下载目录，执行安装，</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo gdebi duf_0.6.0_linux_amd64.deb</span><br></pre></td></tr></table></figure><p>安装完成后，如要查看硬盘使用情况，输入duf，如下：</p><p><img src="&quot;/images/LINUX/duf.png&quot;" alt></p>]]></content>
+    <content type="html"><![CDATA[<p>在LINUX中，查看硬盘使用情况有多个命令，最常用的是df，但阅读起来并不友好，而duf则是一个高颜值的易于阅读的命令。</p><p>首先，根据系统的型号在duf的官网上下载安装包，切换到下载目录，执行安装，</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo gdebi duf_0.6.0_linux_amd64.deb</span><br></pre></td></tr></table></figure><p>安装完成后，如要查看硬盘使用情况，输入duf，如下：</p><p><img src="/images/LINUX/duf.png" alt></p>]]></content>
     
     <summary type="html">
     
