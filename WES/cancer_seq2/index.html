@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="cancer,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="诸子百家" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="本教程目的是对数据质控有初步理解，并熟悉以下工具的使用：FastQC，Skewer，FASTX-Toolkit。参考教程：Quality Control 在高通量测序过程中，很难避免引入测序错误，如碱基读取错误（base calling errors）、插入或缺失（small insertions/deletions），低质量碱基（poor quality reads）、引物与接头污染（prime">
+<meta name="keywords" content="cancer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="肿瘤基因组分析教程：二、数据质控">
+<meta property="og:url" content="http://uteric.github.io/WES/cancer_seq2/index.html">
+<meta property="og:site_name" content="诸子百家">
+<meta property="og:description" content="本教程目的是对数据质控有初步理解，并熟悉以下工具的使用：FastQC，Skewer，FASTX-Toolkit。参考教程：Quality Control 在高通量测序过程中，很难避免引入测序错误，如碱基读取错误（base calling errors）、插入或缺失（small insertions/deletions），低质量碱基（poor quality reads）、引物与接头污染（prime">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://uteric.github.io/images/WES/cancer00.png">
+<meta property="og:image" content="http://uteric.github.io/images/WES/cancer01.png">
+<meta property="og:image" content="http://uteric.github.io/images/WES/cancer02.png">
+<meta property="og:image" content="http://uteric.github.io/images/WES/cancer03.png">
+<meta property="og:image" content="http://uteric.github.io/images/WES/cancer04.png">
+<meta property="og:image" content="http://uteric.github.io/images/WES/cancer05.png">
+<meta property="og:image" content="http://uteric.github.io/images/WES/cancer06.png">
+<meta property="og:image" content="http://uteric.github.io/images/WES/cancer07.png">
+<meta property="og:image" content="http://uteric.github.io/images/WES/cancer08.png">
+<meta property="og:image" content="http://uteric.github.io/images/WES/cancer09.png">
+<meta property="og:image" content="http://uteric.github.io/images/WES/cancer10.png">
+<meta property="og:image" content="http://uteric.github.io/images/WES/cancer11.png">
+<meta property="og:updated_time" content="2020-11-20T18:09:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="肿瘤基因组分析教程：二、数据质控">
+<meta name="twitter:description" content="本教程目的是对数据质控有初步理解，并熟悉以下工具的使用：FastQC，Skewer，FASTX-Toolkit。参考教程：Quality Control 在高通量测序过程中，很难避免引入测序错误，如碱基读取错误（base calling errors）、插入或缺失（small insertions/deletions），低质量碱基（poor quality reads）、引物与接头污染（prime">
+<meta name="twitter:image" content="http://uteric.github.io/images/WES/cancer00.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '9e233f3fa2f200ca831529de7ba10253',
+      indexName: 'uteric',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://uteric.github.io/WES/cancer_seq2/">
+
+
+
+
+
+  <title>肿瘤基因组分析教程：二、数据质控 | 诸子百家</title>
+  
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104081724-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <meta name="baidu-site-verification" content="bfQpbnNmEL">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诸子百家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+<div class="local-search-header clearfix">
+<span class="search-icon">
+<i class="fa fa-search"></i>
+</span>
+<span class="popup-btn-close">
+<i class="fa fa-times-circle"></i>
+</span>
+<div class="local-search-input-wrapper">
+<input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+</div>
+</div>
+<div id="local-search-result"></div>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/WES/cancer_seq2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="括囊无誉">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸子百家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">肿瘤基因组分析教程：二、数据质控</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-20T12:09:11-06:00">
+                2020-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程语言/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/WES/cancer_seq2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="WES/cancer_seq2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>°C
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本教程目的是对数据质控有初步理解，并熟悉以下工具的使用：FastQC，Skewer，FASTX-Toolkit。参考教程：<a href="https://bpa-csiro-workshops.github.io/cancer-manuals/modules/cancer-module-qc/ngs-qc/" target="_blank" rel="noopener">Quality Control</a></p>
+<p>在高通量测序过程中，很难避免引入测序错误，如碱基读取错误（base calling errors）、插入或缺失（small insertions/deletions），低质量碱基（poor quality reads）、引物与接头污染（primer/adapter contamination），以及最常见的碱基替换（substitution），错误发生频率约 0.5-2.0%，且多发生于3’区域。</p>
+<p>因此，在数据分析之前，有必要对原始数据进行质量控制，如去除低质量碱基（trimming off low quality bases）、去除接头（cleaning up any sequencing adapters）、去除PCR重复（removing PCR duplicates），另外，在深度测序（&gt; 15X）时，部分测序错误可以通过算法被修正。</p>
+<h2 id="一、质量值编码方案（Quality-Value-Encoding-Schema）"><a href="#一、质量值编码方案（Quality-Value-Encoding-Schema）" class="headerlink" title="一、质量值编码方案（Quality Value Encoding Schema）"></a>一、质量值编码方案（Quality Value Encoding Schema）</h2><p>质量值是测序中非常重要的参考标准，使用Phred编码方案，质量编码体现在FASTQ格式的第四行，如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@HWI-EAS209_0006_FC706VJ:5:58:5894:21141<span class="comment">#ATCACG/1</span></span><br><span class="line">TTAATTGGTAAATAAATCTCCTAATAGCTTAGATNTTACCTTNNNNNNNNNNTAGTTTCTTGAGATTTGTTGGGGGAGACATTTTTGTGATTGCCTTGAT</span><br><span class="line">+HWI-EAS209_0006_FC706VJ:5:58:5894:21141<span class="comment">#ATCACG/1</span></span><br><span class="line">efcfffffcfeefffcffffffddf`feed]`]_Ba_^__[YBBBBBBBBBBRTT\]][]dddd`ddd^dddadd^BBBBBBBBBBBBBBBBBBBBBBBB</span><br></pre></td></tr></table></figure>
+<p>碱基质量可以通过查表得出对应的Q-score，Q(A)=−10log10(P(A))，A表示错误概率，如下表所示:</p>
+<p><img src="/images/WES/cancer00.png" alt></p>
+<h2 id="二、FASTQ"><a href="#二、FASTQ" class="headerlink" title="二、FASTQ"></a>二、FASTQ</h2><p>现在我们的目录下有两个fastq文件，sam01_1.fastq &amp; sam01_2.fastq，其实是来自同一个样本，双端测序生成的两个文件，我们只对其中一个检查质量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$ fastqc -f fastq sam01_1.fastq</span><br><span class="line">Started analysis of sam01_1.fastq</span><br><span class="line">Approx 5% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 10% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 15% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 20% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 25% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 30% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 35% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 40% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 45% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 50% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 55% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 60% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 65% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 70% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 75% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 80% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 85% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 90% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 95% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Analysis complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行完成，会生成两个文件：</span></span><br><span class="line">sam01_1_fastqc.html <span class="comment"># 在浏览器中查看</span></span><br><span class="line">sam01_1_fastqc.zip <span class="comment"># 存放结果的压缩文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在浏览器中查看HTML文件，第一个表格是基本信息，可以看到平台、测序总长、读长，GC含量等信息</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/WES/cancer01.png" alt></p>
+<p>每个碱基的平均质量Q-score，也即前面提到的Phred值，这个测序结果质量相当好，平均质量在34以上，只有尾部稍差，也有30以上。</p>
+<p><img src="/images/WES/cancer02.png" alt></p>
+<p>序列对应的质量分数，可以看到，绝大多数序列的Q值都很高，平均值约36</p>
+<p><img src="/images/WES/cancer03.png" alt></p>
+<p>如果测序质量不好，则可以通过Read Trimming来去除低质量的读段。下面这张图显示的是读长，基本上是151 bp</p>
+<p><img src="/images/WES/cancer04.png" alt></p>
+<p>可以看到有重复，后面会去掉</p>
+<p><img src="/images/WES/cancer05.png" alt></p>
+<p>3’端有ILLUMINA的通用接头，红色的线</p>
+<p><img src="/images/WES/cancer06.png" alt></p>
+<h2 id="三、Read-Trimming"><a href="#三、Read-Trimming" class="headerlink" title="三、Read Trimming"></a>三、Read Trimming</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">$ conda install -c bioconda skewer <span class="comment"># 安装skewer</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 得益于测序技术的进步，现在的测序数据大都很好，这一步可根据需要确定是否运行</span></span><br><span class="line"></span><br><span class="line">$ skewer -t 4 -l 100 -q 30 -Q 30 -m pe -o trim sam01_1.fastq sam01_2.fastq</span><br><span class="line">.--. .-.</span><br><span class="line">: .--<span class="string">': :.-.</span></span><br><span class="line"><span class="string">`. `. : `'</span>.<span class="string">' .--. .-..-..-. .--. .--.</span></span><br><span class="line"><span class="string">_`, :: . `.'</span> <span class="string">'_.'</span>: `; `; :<span class="string">' '</span>_.<span class="string">': ..'</span></span><br><span class="line">`.__.<span class="string">':_;:_;`.__.'</span>`.__.__.<span class="string">'`.__.'</span>:_;</span><br><span class="line">skewer v0.2.2 [April 4, 2016] <span class="comment"># 程序版本，上面这个图别出心裁，不过不仔细看还真看不出来</span></span><br><span class="line">Parameters used: <span class="comment"># 参数</span></span><br><span class="line">-- 3<span class="string">' end adapter sequence (-x):        AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC # 接头序列</span></span><br><span class="line"><span class="string">-- paired 3'</span> end adapter sequence (-y): AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA</span><br><span class="line">-- maximum error ratio allowed (-r):    0.100</span><br><span class="line">-- maximum indel error ratio allowed (-d):      0.030</span><br><span class="line">-- mean quality threshold (-Q):         30 <span class="comment"># 平均质量</span></span><br><span class="line">-- end quality threshold (-q):          30 <span class="comment"># 末端质量</span></span><br><span class="line">-- minimum <span class="built_in">read</span> length allowed after trimming (-l):     100 <span class="comment"># triming后允许最小长度</span></span><br><span class="line">-- file format (-f):            Sanger/Illumina 1.8+ FASTQ (auto detected) <span class="comment"># 文件格式</span></span><br><span class="line">-- number of concurrent threads (-t):   4 <span class="comment"># 线程数</span></span><br><span class="line">Fri Nov 20 13:45:41 2020 &gt;&gt; started</span><br><span class="line">|=================================================&gt;| (100.00%)</span><br><span class="line">Fri Nov 20 13:52:20 2020 &gt;&gt; <span class="keyword">done</span> (399.163s) <span class="comment"># 很快，7分钟</span></span><br><span class="line">1582559 <span class="built_in">read</span> pairs processed; of these: <span class="comment"># 总配对reads</span></span><br><span class="line">  16586 ( 1.05%) <span class="built_in">read</span> pairs filtered out by quality control <span class="comment"># 低质量的被过滤，只占1.05%</span></span><br><span class="line">   2410 ( 0.15%) short <span class="built_in">read</span> pairs filtered out after trimming by size control <span class="comment"># 0.15%短读长，即不足100的reads被过滤</span></span><br><span class="line">      0 ( 0.00%) empty <span class="built_in">read</span> pairs filtered out after trimming by size control</span><br><span class="line">1563563 (98.80%) <span class="built_in">read</span> pairs available; of these: <span class="comment"># 98.8%被保留</span></span><br><span class="line"> 449107 (28.72%) trimmed <span class="built_in">read</span> pairs available after processing</span><br><span class="line">1114456 (71.28%) untrimmed <span class="built_in">read</span> pairs available after processing</span><br><span class="line"><span class="built_in">log</span> has been saved to <span class="string">"trim-trimmed.log"</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment"># -t: number of threads to use</span></span><br><span class="line"><span class="comment"># -l: min length to keep after trimming</span></span><br><span class="line"><span class="comment"># -q: Quality threshold used for trimming at 3’ end</span></span><br><span class="line"><span class="comment"># -Q: mean quality threshold for a read</span></span><br><span class="line"><span class="comment"># -m: pair-end mode</span></span><br><span class="line"><span class="comment"># -o: Base name of output file # 输出文件</span></span><br></pre></td></tr></table></figure>
+<p>来看一下发生哪些变化，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-rwxrwxrwx 1 eric eric 525M Nov  3 11:53 sam01_1.fastq</span><br><span class="line">-rwxrwxrwx 1 eric eric 525M Nov  3 11:53 sam01_2.fastq</span><br><span class="line">-rwxrwxrwx 1 eric eric 514M Nov 20 13:52 trim-trimmed-pair1.fastq</span><br><span class="line">-rwxrwxrwx 1 eric eric 513M Nov 20 13:52 trim-trimmed-pair2.fastq</span><br><span class="line">-rwxrwxrwx 1 eric eric 2.3K Nov 20 13:52 trim-trimmed.log</span><br><span class="line"><span class="comment"># Trim之后，文件从525M/525M减小到514M/513M，生成一个日志文件</span></span><br></pre></td></tr></table></figure>
+<p>对TRIM后的文件查看质量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ fastqc -f fastq trim-trimmed-pair1.fastq</span><br></pre></td></tr></table></figure>
+<p>观察一下，发生什么变化？首先，统计信息改变，总长度变为1563563（98.8%），跟skewer的日志中提供的信息一致，序列长度由151变为100-151，GC含量不变。</p>
+<p><img src="/images/WES/cancer07.png" alt></p>
+<p>3’端的低质量碱基被过滤除掉</p>
+<p><img src="/images/WES/cancer08.png" alt></p>
+<p>读长变为100-151</p>
+<p><img src="/images/WES/cancer09.png" alt></p>
+<p>重复还在，可见不是这步被除掉的</p>
+<p><img src="/images/WES/cancer10.png" alt></p>
+<p>接头序列被过滤除掉</p>
+<p><img src="/images/WES/cancer11.png" alt></p>
+<p>假如，在建库过程中使用了特定的adaptor，你知道序列，但是没有被程序自动过滤除掉，则可以使用skewer来去掉接头，如接头序列是TGGAATTCTCGGGTGCCAAGGT,</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">skewer -x TGGAATTCTCGGGTGCCAAGGT -t 20 -l 10 -L 35 -q 30 adaptorQC.fastq.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># -x: adaptor sequence used</span></span><br><span class="line"><span class="comment"># -t: number of threads to use</span></span><br><span class="line"><span class="comment"># -l: min length to keep after trimming</span></span><br><span class="line"><span class="comment"># -L: Max length to keep after trimming, in this experiment we were expecting only small RNA fragments</span></span><br><span class="line"><span class="comment"># -Q: Quality threshold used for trimming at 3’ end. Use -m option to control the end you want to trim</span></span><br></pre></td></tr></table></figure>
+<p>另外，也可以锁定长度区间来FASTQ文件进行TRIM，这里不作介绍。</p>
+
+      
+    </div>
+
+<div>
+
+
+<ul class="post-copyright">
+<li class="post-copyright-author">
+<strong>本文作者：</strong>括囊无誉
+</li>
+<li class="post-copyright-link">
+<strong>本文链接：</strong>
+<a href="/WES/cancer_seq2/" title="肿瘤基因组分析教程：二、数据质控">WES/cancer_seq2/</a>
+</li>
+<li class="post-copyright-license">
+<strong>版权声明： </strong>
+本博客所有文章均为原创作品，转载请注明出处！
+</li>
+</ul>
+
+</div>
+
+    
+    
+    
+
+
+<div>
+
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创文章分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="括囊无誉 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cancer/" rel="tag"># cancer</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/WES/cancer_seq01/" rel="next" title="肿瘤基因组分析教程：一、基础命令行操作">
+                <i class="fa fa-chevron-left"></i> 肿瘤基因组分析教程：一、基础命令行操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/WES/cancer_seq3/" rel="prev" title="肿瘤基因组分析教程：三、比对至基因组">
+                肿瘤基因组分析教程：三、比对至基因组 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="括囊无誉">
+          <p class="site-author-name" itemprop="name">括囊无誉</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">233</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">226</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/75d3f95b058e" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-http://www.jianshu.com/u/75d3f95b058e"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、质量值编码方案（Quality-Value-Encoding-Schema）"><span class="nav-number">1.</span> <span class="nav-text">一、质量值编码方案（Quality Value Encoding Schema）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、FASTQ"><span class="nav-number">2.</span> <span class="nav-text">二、FASTQ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、Read-Trimming"><span class="nav-number">3.</span> <span class="nav-text">三、Read Trimming</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">括囊无誉</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://uteric-1.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://uteric.github.io/WES/cancer_seq2/';
+          this.page.identifier = 'WES/cancer_seq2/';
+          this.page.title = '肿瘤基因组分析教程：二、数据质控';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://uteric-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

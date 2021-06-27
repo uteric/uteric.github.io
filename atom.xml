@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://uteric.github.io/"/>
-  <updated>2021-02-18T20:19:29.000Z</updated>
+  <updated>2021-06-27T01:55:14.000Z</updated>
   <id>http://uteric.github.io/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在环境中进行RNASEQ分析</title>
+    <link href="http://uteric.github.io/RNASEQ/condaEnv/"/>
+    <id>http://uteric.github.io/RNASEQ/condaEnv/</id>
+    <published>2021-06-27T01:55:14.000Z</published>
+    <updated>2021-06-27T01:55:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>比如：在进行RNASEQ分析时，需要使用fastp进行质控，这个程序安装在rnaseq这个环境当中，提交SBATCH任务之前需要激活这个环境，否则会找不到fastp这个命令。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; conda info --envs <span class="comment">#查看环境列表</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">source</span> activate rnaseq <span class="comment">#激活环境</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;比如：在进行RNASEQ分析时，需要使用fastp进行质控，这个程序安装在rnaseq这个环境当中，提交SBATCH任务之前需要激活这个环境，否则会找不到fastp这个命令。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="RNASEQ" scheme="http://uteric.github.io/tags/RNASEQ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>批量任务提交命令SLURM</title>
+    <link href="http://uteric.github.io/Linux/slurm/"/>
+    <id>http://uteric.github.io/Linux/slurm/</id>
+    <published>2021-03-11T17:17:08.000Z</published>
+    <updated>2021-03-11T17:17:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>SLURM，代表Simple Linux Utility for Resource Management，它的主要任务是在集群中为每一个提交的任务进行资源分配，当任务多于资源时，创建队列并对所有任务进行统一的资源调配。</p><p>基本命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看nodes与partitions的信息：</span></span><br><span class="line">$ sinfo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交任务</span></span><br><span class="line">$ sbatch ***.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看任务状态</span></span><br><span class="line">$ squeue -j job_name</span><br><span class="line">$ squeue -u user_name</span><br><span class="line">$ squeue -p partition_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看详细信息</span></span><br><span class="line">$ scontrol show job job_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 任务报告</span></span><br><span class="line">$ sacct -j job_name</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;SLURM，代表Simple Linux Utility for Resource Management，它的主要任务是在集群中为每一个提交的任务进行资源分配，当任务多于资源时，创建队列并对所有任务进行统一的资源调配。&lt;/p&gt;
+&lt;p&gt;基本命令：&lt;/p&gt;
+&lt;figure cl
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="SLURM" scheme="http://uteric.github.io/tags/SLURM/"/>
+    
+  </entry>
   
   <entry>
     <title>LINUX硬盘容量查看命令duf</title>
@@ -226,8 +279,8 @@
   
   <entry>
     <title>肿瘤基因组分析教程：五、检测变异</title>
-    <link href="http://uteric.github.io/cancer_seq5/"/>
-    <id>http://uteric.github.io/cancer_seq5/</id>
+    <link href="http://uteric.github.io/WES/cancer_seq5/"/>
+    <id>http://uteric.github.io/WES/cancer_seq5/</id>
     <published>2020-11-23T20:25:14.000Z</published>
     <updated>2020-11-23T20:25:14.000Z</updated>
     
@@ -252,8 +305,8 @@
   
   <entry>
     <title>肿瘤基因组分析教程：四、BAM文件预处理</title>
-    <link href="http://uteric.github.io/cancer_seq4/"/>
-    <id>http://uteric.github.io/cancer_seq4/</id>
+    <link href="http://uteric.github.io/WES/cancer_seq4/"/>
+    <id>http://uteric.github.io/WES/cancer_seq4/</id>
     <published>2020-11-22T19:08:22.000Z</published>
     <updated>2020-11-22T19:08:22.000Z</updated>
     
@@ -298,8 +351,8 @@
   
   <entry>
     <title>肿瘤基因组分析教程：三、比对至基因组</title>
-    <link href="http://uteric.github.io/cancer_seq3/"/>
-    <id>http://uteric.github.io/cancer_seq3/</id>
+    <link href="http://uteric.github.io/WES/cancer_seq3/"/>
+    <id>http://uteric.github.io/WES/cancer_seq3/</id>
     <published>2020-11-20T21:07:31.000Z</published>
     <updated>2020-11-20T21:07:31.000Z</updated>
     
@@ -323,8 +376,8 @@
   
   <entry>
     <title>肿瘤基因组分析教程：二、数据质控</title>
-    <link href="http://uteric.github.io/cancer_seq2/"/>
-    <id>http://uteric.github.io/cancer_seq2/</id>
+    <link href="http://uteric.github.io/WES/cancer_seq2/"/>
+    <id>http://uteric.github.io/WES/cancer_seq2/</id>
     <published>2020-11-20T18:09:11.000Z</published>
     <updated>2020-11-20T18:09:11.000Z</updated>
     
@@ -471,57 +524,6 @@
     
     
       <category term="VCF" scheme="http://uteric.github.io/tags/VCF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>R中去除某列中重复的值</title>
-    <link href="http://uteric.github.io/R/duplicate/"/>
-    <id>http://uteric.github.io/R/duplicate/</id>
-    <published>2020-11-17T20:12:52.000Z</published>
-    <updated>2020-11-17T20:12:52.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在R中，如果要将data.frame的某一列转化为行名，则不能有重复，否则会报错，简单的办法就是对要操作的列进行去重，比如</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 现在，data是data.frame，35976行</span></span><br><span class="line">&gt; dim(data)</span><br><span class="line">[1] 35976    39</span><br><span class="line">&gt; head(data<span class="variable">$X</span>)</span><br><span class="line">[1] Adora1 Sntg1  Adgrb3 Prim2  Cflar  Obsl1 </span><br><span class="line">35974 Levels: 0610005C13Rik 0610006L08Rik 0610007P14Rik ... Zzz3 </span><br><span class="line"><span class="comment"># 要操作的列有35976行，但是Levels=35974，说明有两行有重复，看一下重复的两行</span></span><br><span class="line">&gt; x &lt;- duplicated(data<span class="variable">$X</span>)</span><br><span class="line">&gt; data[x,]<span class="variable">$X</span></span><br><span class="line">[1] 43891 43892</span><br><span class="line">35974 Levels: 0610005C13Rik 0610006L08Rik 0610007P14Rik ... Zzz3</span><br><span class="line"><span class="comment"># data$X这一列中，重复的值是43891和43892，下面去掉重复的值</span></span><br><span class="line">&gt; data2 &lt;- data[!duplicated(data<span class="variable">$X</span>),]</span><br><span class="line"><span class="comment"># 去掉重复的行后，剩下35974行</span></span><br><span class="line">&gt; head(data2<span class="variable">$X</span>)</span><br><span class="line">[1] Adora1 Sntg1  Adgrb3 Prim2  Cflar  Obsl1 </span><br><span class="line">35974 Levels: 0610005C13Rik 0610006L08Rik 0610007P14Rik ... Zzz3</span><br><span class="line">&gt; dim(data2)</span><br><span class="line">[1] 35974    39</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;在R中，如果要将data.frame的某一列转化为行名，则不能有重复，否则会报错，简单的办法就是对要操作的列进行去重，比如&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="R" scheme="http://uteric.github.io/tags/R/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>clusterProfiler富集分析将ID转换为SYMBOL</title>
-    <link href="http://uteric.github.io/RNASEQ/KEGG_ID_symbol/"/>
-    <id>http://uteric.github.io/RNASEQ/KEGG_ID_symbol/</id>
-    <published>2020-11-17T18:31:36.000Z</published>
-    <updated>2020-11-17T18:31:36.000Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">library(clusterProfiler)</span><br><span class="line">library(org.Mm.eg.db)</span><br><span class="line"></span><br><span class="line">&gt; X &lt;- bitr(gene, fromType=<span class="string">'SYMBOL'</span>, toType=<span class="string">'ENTREZID'</span>, OrgDb=<span class="string">'org.Mm.eg.db'</span>)</span><br><span class="line">&gt; EGG &lt;- enrichKEGG(gene= X<span class="variable">$ENTREZID</span>,</span><br><span class="line">                  organism     = <span class="string">'mmu'</span>,</span><br><span class="line">                  pvalueCutoff = 0.05)</span><br><span class="line"><span class="comment"># 默认情况下，如果将EGG转为data.frame，ID这一行显示“ENTREZID”</span></span><br><span class="line">&gt; <span class="built_in">test</span> &lt;- data.frame(EGG)</span><br><span class="line">IDDescriptionGeneRatioBgRatiopvaluep.adjustqvaluegeneIDCount</span><br><span class="line">mmu04066mmu04066HIF-1 signaling pathway11/171114/89101.10E-050.0023158450.002137347228026/18127/14254/16828/11674/18641/11676/15251/112407/56421/2233911</span><br><span class="line">mmu00010mmu00010Glycolysis / Gluconeogenesis8/17167/89103.89E-050.003193740.00294757814751/14447/16828/11674/18746/18641/11676/564218</span><br><span class="line">mmu05230mmu05230Central carbon metabolism <span class="keyword">in</span> cancer8/17169/89104.82E-050.003193740.002947578228026/16828/18746/18641/80879/15251/56421/185968</span><br><span class="line">mmu04015mmu04015Rap1 signaling pathway14/171214/89106.05E-050.003193740.00294757814810/13636/14254/16542/244668/23880/29857/16415/240168/22339/18596/106952/20469/1939514</span><br><span class="line">mmu00030mmu00030Pentose phosphate pathway5/17133/89100.0003770440.0159112750.01468488914751/11674/18641/11676/564215</span><br><span class="line">mmu04330mmu04330Notch signaling pathway6/17154/89100.0005511440.0193818980.01788800818128/433586/15214/16450/18131/181326</span><br><span class="line"></span><br><span class="line"><span class="comment"># 若需显示SYMBOL，使用如下命令：</span></span><br><span class="line">&gt; <span class="built_in">test</span> &lt;- setReadable(EGG, OrgDb = org.Mm.eg.db, keyType=<span class="string">"ENTREZID"</span>)</span><br><span class="line"></span><br><span class="line">IDDescriptionGeneRatioBgRatiopvaluep.adjustqvaluegeneIDCount</span><br><span class="line">mmu04066HIF-1 signaling pathway11/171114/89101.10E-050.0023158450.002137347Pdk1/Nos3/Flt1/Ldha/Aldoa/Pfkl/Aldoc/Hif1a/Egln3/Pfkp/Vegfa11</span><br><span class="line">mmu00010Glycolysis / Gluconeogenesis8/17167/89103.89E-050.003193740.002947578Gpi1/Gapdhs/Ldha/Aldoa/Pkm/Pfkl/Aldoc/Pfkp8</span><br><span class="line">mmu05230Central carbon metabolism <span class="keyword">in</span> cancer8/17169/89104.82E-050.003193740.002947578Pdk1/Ldha/Pkm/Pfkl/Slc16a3/Hif1a/Pfkp/Pdgfrb8</span><br><span class="line">mmu04015Rap1 signaling pathway14/171214/89106.05E-050.003193740.002947578Grin1/Efna1/Flt1/Kdr/Sipa1l2/Fyb/Mapk12/Itgb2l/Rasgrp3/Vegfa/Pdgfrb/Arap3/Sipa1/Rasgrp214</span><br><span class="line">mmu00030Pentose phosphate pathway5/17133/89100.0003770440.0159112750.014684889Gpi1/Aldoa/Pfkl/Aldoc/Pfkp5</span><br><span class="line">mmu04330Notch signaling pathway6/17154/89100.0005511440.0193818980.017888008Notch1/Maml3/Hey2/Jag2/Notch3/Notch46</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=
-      
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http://uteric.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="KEGG" scheme="http://uteric.github.io/tags/KEGG/"/>
     
   </entry>
   

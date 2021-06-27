@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="cancer,">
+  <meta name="keywords" content="LINUX,">
 
 
 
@@ -95,31 +95,18 @@
 
 
 
-<meta name="description" content="本教程目的是对数据质控有初步理解，并熟悉以下工具的使用：FastQC，Skewer，FASTX-Toolkit。参考教程：Quality Control 在高通量测序过程中，很难避免引入测序错误，如碱基读取错误（base calling errors）、插入或缺失（small insertions/deletions），低质量碱基（poor quality reads）、引物与接头污染（prime">
-<meta name="keywords" content="cancer">
+<meta name="description" content="今年黑色星期五在网上买了一台联想IdeaPad S145，买回来后，打算安装Ubuntu 18.04，万万没想到的是，安装系统后发现找不到无线网卡，使用命令sudo lshw -C network杳看网络信息，发现这台电脑的网卡是RTL8821CE，然而，目前LINUX还没有相应的官方驱动，因此我这个小白花了大把时间来安装网卡驱动，过程可以说是非常艰苦，花了一个星期时间，记录下来或许能帮到后来人。">
+<meta name="keywords" content="LINUX">
 <meta property="og:type" content="article">
-<meta property="og:title" content="肿瘤基因组分析教程：二、数据质控">
-<meta property="og:url" content="http://uteric.github.io/cancer_seq2/index.html">
+<meta property="og:title" content="Ubuntu 18.04上为无线网卡RTL8821CE安装驱动">
+<meta property="og:url" content="http://uteric.github.io/Linux/RTL8821CE_driver/index.html">
 <meta property="og:site_name" content="诸子百家">
-<meta property="og:description" content="本教程目的是对数据质控有初步理解，并熟悉以下工具的使用：FastQC，Skewer，FASTX-Toolkit。参考教程：Quality Control 在高通量测序过程中，很难避免引入测序错误，如碱基读取错误（base calling errors）、插入或缺失（small insertions/deletions），低质量碱基（poor quality reads）、引物与接头污染（prime">
+<meta property="og:description" content="今年黑色星期五在网上买了一台联想IdeaPad S145，买回来后，打算安装Ubuntu 18.04，万万没想到的是，安装系统后发现找不到无线网卡，使用命令sudo lshw -C network杳看网络信息，发现这台电脑的网卡是RTL8821CE，然而，目前LINUX还没有相应的官方驱动，因此我这个小白花了大把时间来安装网卡驱动，过程可以说是非常艰苦，花了一个星期时间，记录下来或许能帮到后来人。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://uteric.github.io/images/WES/cancer00.png">
-<meta property="og:image" content="http://uteric.github.io/images/WES/cancer01.png">
-<meta property="og:image" content="http://uteric.github.io/images/WES/cancer02.png">
-<meta property="og:image" content="http://uteric.github.io/images/WES/cancer03.png">
-<meta property="og:image" content="http://uteric.github.io/images/WES/cancer04.png">
-<meta property="og:image" content="http://uteric.github.io/images/WES/cancer05.png">
-<meta property="og:image" content="http://uteric.github.io/images/WES/cancer06.png">
-<meta property="og:image" content="http://uteric.github.io/images/WES/cancer07.png">
-<meta property="og:image" content="http://uteric.github.io/images/WES/cancer08.png">
-<meta property="og:image" content="http://uteric.github.io/images/WES/cancer09.png">
-<meta property="og:image" content="http://uteric.github.io/images/WES/cancer10.png">
-<meta property="og:image" content="http://uteric.github.io/images/WES/cancer11.png">
-<meta property="og:updated_time" content="2020-11-20T18:09:11.000Z">
+<meta property="og:updated_time" content="2019-12-25T17:21:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="肿瘤基因组分析教程：二、数据质控">
-<meta name="twitter:description" content="本教程目的是对数据质控有初步理解，并熟悉以下工具的使用：FastQC，Skewer，FASTX-Toolkit。参考教程：Quality Control 在高通量测序过程中，很难避免引入测序错误，如碱基读取错误（base calling errors）、插入或缺失（small insertions/deletions），低质量碱基（poor quality reads）、引物与接头污染（prime">
-<meta name="twitter:image" content="http://uteric.github.io/images/WES/cancer00.png">
+<meta name="twitter:title" content="Ubuntu 18.04上为无线网卡RTL8821CE安装驱动">
+<meta name="twitter:description" content="今年黑色星期五在网上买了一台联想IdeaPad S145，买回来后，打算安装Ubuntu 18.04，万万没想到的是，安装系统后发现找不到无线网卡，使用命令sudo lshw -C network杳看网络信息，发现这台电脑的网卡是RTL8821CE，然而，目前LINUX还没有相应的官方驱动，因此我这个小白花了大把时间来安装网卡驱动，过程可以说是非常艰苦，花了一个星期时间，记录下来或许能帮到后来人。">
 
 
 
@@ -148,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://uteric.github.io/cancer_seq2/">
+  <link rel="canonical" href="http://uteric.github.io/Linux/RTL8821CE_driver/">
 
 
 
 
 
-  <title>肿瘤基因组分析教程：二、数据质控 | 诸子百家</title>
+  <title>Ubuntu 18.04上为无线网卡RTL8821CE安装驱动 | 诸子百家</title>
   
 
 
@@ -341,7 +328,7 @@ ga('send', 'pageview');
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/cancer_seq2/">
+    <link itemprop="mainEntityOfPage" href="http://uteric.github.io/Linux/RTL8821CE_driver/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="括囊无誉">
@@ -358,7 +345,7 @@ ga('send', 'pageview');
 
         
         
-          <h1 class="post-title" itemprop="name headline">肿瘤基因组分析教程：二、数据质控</h1>
+          <h1 class="post-title" itemprop="name headline">Ubuntu 18.04上为无线网卡RTL8821CE安装驱动</h1>
         
 
         <div class="post-meta">
@@ -370,8 +357,8 @@ ga('send', 'pageview');
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-20T12:09:11-06:00">
-                2020-11-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-25T11:21:15-06:00">
+                2019-12-25
               </time>
             
 
@@ -412,8 +399,8 @@ ga('send', 'pageview');
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/cancer_seq2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="cancer_seq2/" itemprop="commentCount"></span>
+                <a href="/Linux/RTL8821CE_driver/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Linux/RTL8821CE_driver/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -446,44 +433,27 @@ ga('send', 'pageview');
       
 
       
-        <p>本教程目的是对数据质控有初步理解，并熟悉以下工具的使用：FastQC，Skewer，FASTX-Toolkit。参考教程：<a href="https://bpa-csiro-workshops.github.io/cancer-manuals/modules/cancer-module-qc/ngs-qc/" target="_blank" rel="noopener">Quality Control</a></p>
-<p>在高通量测序过程中，很难避免引入测序错误，如碱基读取错误（base calling errors）、插入或缺失（small insertions/deletions），低质量碱基（poor quality reads）、引物与接头污染（primer/adapter contamination），以及最常见的碱基替换（substitution），错误发生频率约 0.5-2.0%，且多发生于3’区域。</p>
-<p>因此，在数据分析之前，有必要对原始数据进行质量控制，如去除低质量碱基（trimming off low quality bases）、去除接头（cleaning up any sequencing adapters）、去除PCR重复（removing PCR duplicates），另外，在深度测序（&gt; 15X）时，部分测序错误可以通过算法被修正。</p>
-<h2 id="一、质量值编码方案（Quality-Value-Encoding-Schema）"><a href="#一、质量值编码方案（Quality-Value-Encoding-Schema）" class="headerlink" title="一、质量值编码方案（Quality Value Encoding Schema）"></a>一、质量值编码方案（Quality Value Encoding Schema）</h2><p>质量值是测序中非常重要的参考标准，使用Phred编码方案，质量编码体现在FASTQ格式的第四行，如</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@HWI-EAS209_0006_FC706VJ:5:58:5894:21141<span class="comment">#ATCACG/1</span></span><br><span class="line">TTAATTGGTAAATAAATCTCCTAATAGCTTAGATNTTACCTTNNNNNNNNNNTAGTTTCTTGAGATTTGTTGGGGGAGACATTTTTGTGATTGCCTTGAT</span><br><span class="line">+HWI-EAS209_0006_FC706VJ:5:58:5894:21141<span class="comment">#ATCACG/1</span></span><br><span class="line">efcfffffcfeefffcffffffddf`feed]`]_Ba_^__[YBBBBBBBBBBRTT\]][]dddd`ddd^dddadd^BBBBBBBBBBBBBBBBBBBBBBBB</span><br></pre></td></tr></table></figure>
-<p>碱基质量可以通过查表得出对应的Q-score，Q(A)=−10log10(P(A))，A表示错误概率，如下表所示:</p>
-<p><img src="/images/WES/cancer00.png" alt></p>
-<h2 id="二、FASTQ"><a href="#二、FASTQ" class="headerlink" title="二、FASTQ"></a>二、FASTQ</h2><p>现在我们的目录下有两个fastq文件，sam01_1.fastq &amp; sam01_2.fastq，其实是来自同一个样本，双端测序生成的两个文件，我们只对其中一个检查质量</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$ fastqc -f fastq sam01_1.fastq</span><br><span class="line">Started analysis of sam01_1.fastq</span><br><span class="line">Approx 5% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 10% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 15% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 20% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 25% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 30% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 35% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 40% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 45% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 50% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 55% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 60% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 65% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 70% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 75% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 80% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 85% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 90% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Approx 95% complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line">Analysis complete <span class="keyword">for</span> sam01_1.fastq</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行完成，会生成两个文件：</span></span><br><span class="line">sam01_1_fastqc.html <span class="comment"># 在浏览器中查看</span></span><br><span class="line">sam01_1_fastqc.zip <span class="comment"># 存放结果的压缩文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在浏览器中查看HTML文件，第一个表格是基本信息，可以看到平台、测序总长、读长，GC含量等信息</span></span><br></pre></td></tr></table></figure>
-<p><img src="/images/WES/cancer01.png" alt></p>
-<p>每个碱基的平均质量Q-score，也即前面提到的Phred值，这个测序结果质量相当好，平均质量在34以上，只有尾部稍差，也有30以上。</p>
-<p><img src="/images/WES/cancer02.png" alt></p>
-<p>序列对应的质量分数，可以看到，绝大多数序列的Q值都很高，平均值约36</p>
-<p><img src="/images/WES/cancer03.png" alt></p>
-<p>如果测序质量不好，则可以通过Read Trimming来去除低质量的读段。下面这张图显示的是读长，基本上是151 bp</p>
-<p><img src="/images/WES/cancer04.png" alt></p>
-<p>可以看到有重复，后面会去掉</p>
-<p><img src="/images/WES/cancer05.png" alt></p>
-<p>3’端有ILLUMINA的通用接头，红色的线</p>
-<p><img src="/images/WES/cancer06.png" alt></p>
-<h2 id="三、Read-Trimming"><a href="#三、Read-Trimming" class="headerlink" title="三、Read Trimming"></a>三、Read Trimming</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">$ conda install -c bioconda skewer <span class="comment"># 安装skewer</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 得益于测序技术的进步，现在的测序数据大都很好，这一步可根据需要确定是否运行</span></span><br><span class="line"></span><br><span class="line">$ skewer -t 4 -l 100 -q 30 -Q 30 -m pe -o trim sam01_1.fastq sam01_2.fastq</span><br><span class="line">.--. .-.</span><br><span class="line">: .--<span class="string">': :.-.</span></span><br><span class="line"><span class="string">`. `. : `'</span>.<span class="string">' .--. .-..-..-. .--. .--.</span></span><br><span class="line"><span class="string">_`, :: . `.'</span> <span class="string">'_.'</span>: `; `; :<span class="string">' '</span>_.<span class="string">': ..'</span></span><br><span class="line">`.__.<span class="string">':_;:_;`.__.'</span>`.__.__.<span class="string">'`.__.'</span>:_;</span><br><span class="line">skewer v0.2.2 [April 4, 2016] <span class="comment"># 程序版本，上面这个图别出心裁，不过不仔细看还真看不出来</span></span><br><span class="line">Parameters used: <span class="comment"># 参数</span></span><br><span class="line">-- 3<span class="string">' end adapter sequence (-x):        AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC # 接头序列</span></span><br><span class="line"><span class="string">-- paired 3'</span> end adapter sequence (-y): AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA</span><br><span class="line">-- maximum error ratio allowed (-r):    0.100</span><br><span class="line">-- maximum indel error ratio allowed (-d):      0.030</span><br><span class="line">-- mean quality threshold (-Q):         30 <span class="comment"># 平均质量</span></span><br><span class="line">-- end quality threshold (-q):          30 <span class="comment"># 末端质量</span></span><br><span class="line">-- minimum <span class="built_in">read</span> length allowed after trimming (-l):     100 <span class="comment"># triming后允许最小长度</span></span><br><span class="line">-- file format (-f):            Sanger/Illumina 1.8+ FASTQ (auto detected) <span class="comment"># 文件格式</span></span><br><span class="line">-- number of concurrent threads (-t):   4 <span class="comment"># 线程数</span></span><br><span class="line">Fri Nov 20 13:45:41 2020 &gt;&gt; started</span><br><span class="line">|=================================================&gt;| (100.00%)</span><br><span class="line">Fri Nov 20 13:52:20 2020 &gt;&gt; <span class="keyword">done</span> (399.163s) <span class="comment"># 很快，7分钟</span></span><br><span class="line">1582559 <span class="built_in">read</span> pairs processed; of these: <span class="comment"># 总配对reads</span></span><br><span class="line">  16586 ( 1.05%) <span class="built_in">read</span> pairs filtered out by quality control <span class="comment"># 低质量的被过滤，只占1.05%</span></span><br><span class="line">   2410 ( 0.15%) short <span class="built_in">read</span> pairs filtered out after trimming by size control <span class="comment"># 0.15%短读长，即不足100的reads被过滤</span></span><br><span class="line">      0 ( 0.00%) empty <span class="built_in">read</span> pairs filtered out after trimming by size control</span><br><span class="line">1563563 (98.80%) <span class="built_in">read</span> pairs available; of these: <span class="comment"># 98.8%被保留</span></span><br><span class="line"> 449107 (28.72%) trimmed <span class="built_in">read</span> pairs available after processing</span><br><span class="line">1114456 (71.28%) untrimmed <span class="built_in">read</span> pairs available after processing</span><br><span class="line"><span class="built_in">log</span> has been saved to <span class="string">"trim-trimmed.log"</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment"># -t: number of threads to use</span></span><br><span class="line"><span class="comment"># -l: min length to keep after trimming</span></span><br><span class="line"><span class="comment"># -q: Quality threshold used for trimming at 3’ end</span></span><br><span class="line"><span class="comment"># -Q: mean quality threshold for a read</span></span><br><span class="line"><span class="comment"># -m: pair-end mode</span></span><br><span class="line"><span class="comment"># -o: Base name of output file # 输出文件</span></span><br></pre></td></tr></table></figure>
-<p>来看一下发生哪些变化，</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-rwxrwxrwx 1 eric eric 525M Nov  3 11:53 sam01_1.fastq</span><br><span class="line">-rwxrwxrwx 1 eric eric 525M Nov  3 11:53 sam01_2.fastq</span><br><span class="line">-rwxrwxrwx 1 eric eric 514M Nov 20 13:52 trim-trimmed-pair1.fastq</span><br><span class="line">-rwxrwxrwx 1 eric eric 513M Nov 20 13:52 trim-trimmed-pair2.fastq</span><br><span class="line">-rwxrwxrwx 1 eric eric 2.3K Nov 20 13:52 trim-trimmed.log</span><br><span class="line"><span class="comment"># Trim之后，文件从525M/525M减小到514M/513M，生成一个日志文件</span></span><br></pre></td></tr></table></figure>
-<p>对TRIM后的文件查看质量</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ fastqc -f fastq trim-trimmed-pair1.fastq</span><br></pre></td></tr></table></figure>
-<p>观察一下，发生什么变化？首先，统计信息改变，总长度变为1563563（98.8%），跟skewer的日志中提供的信息一致，序列长度由151变为100-151，GC含量不变。</p>
-<p><img src="/images/WES/cancer07.png" alt></p>
-<p>3’端的低质量碱基被过滤除掉</p>
-<p><img src="/images/WES/cancer08.png" alt></p>
-<p>读长变为100-151</p>
-<p><img src="/images/WES/cancer09.png" alt></p>
-<p>重复还在，可见不是这步被除掉的</p>
-<p><img src="/images/WES/cancer10.png" alt></p>
-<p>接头序列被过滤除掉</p>
-<p><img src="/images/WES/cancer11.png" alt></p>
-<p>假如，在建库过程中使用了特定的adaptor，你知道序列，但是没有被程序自动过滤除掉，则可以使用skewer来去掉接头，如接头序列是TGGAATTCTCGGGTGCCAAGGT,</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">skewer -x TGGAATTCTCGGGTGCCAAGGT -t 20 -l 10 -L 35 -q 30 adaptorQC.fastq.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># -x: adaptor sequence used</span></span><br><span class="line"><span class="comment"># -t: number of threads to use</span></span><br><span class="line"><span class="comment"># -l: min length to keep after trimming</span></span><br><span class="line"><span class="comment"># -L: Max length to keep after trimming, in this experiment we were expecting only small RNA fragments</span></span><br><span class="line"><span class="comment"># -Q: Quality threshold used for trimming at 3’ end. Use -m option to control the end you want to trim</span></span><br></pre></td></tr></table></figure>
-<p>另外，也可以锁定长度区间来FASTQ文件进行TRIM，这里不作介绍。</p>
+        <p>今年黑色星期五在网上买了一台联想IdeaPad S145，买回来后，打算安装<strong>Ubuntu 18.04</strong>，万万没想到的是，安装系统后发现找不到无线网卡，使用命令<em>sudo lshw -C network</em>杳看网络信息，发现这台电脑的网卡是RTL8821CE，然而，目前LINUX还没有相应的官方驱动，因此我这个小白花了大把时间来安装网卡驱动，过程可以说是非常艰苦，花了一个星期时间，记录下来或许能帮到后来人。</p>
+<p>但是，如果你的电脑能够联网，整个过程将会非常简单，首先，需要在GITHUB下载并安装<a href="https://github.com/tomaspinho/rtl8821ce" target="_blank" rel="noopener">RTL8821CE</a>驱动。</p>
+<p>安装驱动需要用到<em>dkms</em>和<em>git</em>，在联网的情况下，命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install -y dkms git</span><br></pre></td></tr></table></figure>
+<p><em>dkms</em>和<em>git</em>成功安装后，下载并安装驱动程序即可，命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/tomaspinho/rtl8821ce</span><br><span class="line">cd rtl8821ce</span><br><span class="line">sudo ./dkms-install.sh</span><br></pre></td></tr></table></figure>
+<p>然而，事情远没那么简单，成功运行前面代码的前提是联网，但我的电脑不能联网。最神奇的是，这台便宜的电脑居然连网线接口都没有，想接有线网都不可能，在这种情况下，安装<em>dkms</em>就难得异乎寻常，因为<em>dkms</em>本身有一堆Dependencies，而每个Dependency又有一堆Dependencies，甚至不同的包之间还彼此互相依赖。</p>
+<p>在这种情况下，我不得不采用迂回的方式来安装<em>dkms</em>。首先，在WINDOWS下安装虚拟机VM，运行Unbuntu 18.04，通过以下命令来获取安装<em>dkms</em>所需的包以及驱动程序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y git apt-rdepends</span><br><span class="line">git clone https://github.com/tomaspinho/rtl8821ce</span><br><span class="line">mkdir debs</span><br><span class="line">cd debs</span><br><span class="line">apt-get download $(apt-rdepends dkms | grep -v &quot;^ &quot;)</span><br></pre></td></tr></table></figure>
+<p>在运行apt-rdepends过程中，如果lib-dev无法下载，将命令改成如下将其忽略：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get download $(apt-rdepends dkms | grep -v &quot;^ &quot; | grep -v &quot;^lib-dev&quot;)</span><br></pre></td></tr></table></figure>
+<p>将下载到的RTL8821CE和debs文件夹通过U盘拷贝到Unbuntu系统中，下面就可以真正开始安装网卡驱动了，命令如下：</p>
+<p>1）Disable Machine Owner Key，执行代码后需要重启，会出现蓝屏，按照引导操作即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mokutil --disable-validation</span><br></pre></td></tr></table></figure>
+<p>2）切换到安装包所在目录，安装dkms及其依赖包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd debs</span><br><span class="line">sudo dpkg -i *</span><br></pre></td></tr></table></figure>
+<p>3）进入驱动目录，安装驱动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line">sudo ./dkms-install.sh</span><br></pre></td></tr></table></figure>
+<p>安装完成后，重启即可看到网卡驱动。在此，特别向参考文献中的两位大神致敬。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] <a href="https://xianwen.me/2019/09/04/install-realtek-rtl8821ce-wifi-driver-on-ubuntu-18-04/" target="_blank" rel="noopener">Install Realtek RTL8821CE Wifi Driver on Ubuntu 18.04</a></p>
+<p>[2] <a href="https://askubuntu.com/questions/1071299/how-to-install-wi-fi-driver-for-realtek-rtl8821ce-on-ubuntu-18-04" target="_blank" rel="noopener">How to install Wi-Fi driver for Realtek RTL8821CE on Ubuntu 18.04? </a></p>
 
       
     </div>
@@ -497,7 +467,7 @@ ga('send', 'pageview');
 </li>
 <li class="post-copyright-link">
 <strong>本文链接：</strong>
-<a href="/cancer_seq2/" title="肿瘤基因组分析教程：二、数据质控">cancer_seq2/</a>
+<a href="/Linux/RTL8821CE_driver/" title="Ubuntu 18.04上为无线网卡RTL8821CE安装驱动">Linux/RTL8821CE_driver/</a>
 </li>
 <li class="post-copyright-license">
 <strong>版权声明： </strong>
@@ -552,7 +522,7 @@ ga('send', 'pageview');
       
         <div class="post-tags">
           
-            <a href="/tags/cancer/" rel="tag"># cancer</a>
+            <a href="/tags/LINUX/" rel="tag"># LINUX</a>
           
         </div>
       
@@ -565,8 +535,8 @@ ga('send', 'pageview');
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/WES/cancer_seq01/" rel="next" title="肿瘤基因组分析教程：一、基础命令行操作">
-                <i class="fa fa-chevron-left"></i> 肿瘤基因组分析教程：一、基础命令行操作
+              <a href="/Linux/package dependency/" rel="next" title="如何解决LINUX安装包相互依赖">
+                <i class="fa fa-chevron-left"></i> 如何解决LINUX安装包相互依赖
               </a>
             
           </div>
@@ -575,8 +545,8 @@ ga('send', 'pageview');
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/cancer_seq3/" rel="prev" title="肿瘤基因组分析教程：三、比对至基因组">
-                肿瘤基因组分析教程：三、比对至基因组 <i class="fa fa-chevron-right"></i>
+              <a href="/Linux/Source List/" rel="prev" title="编辑sources.list">
+                编辑sources.list <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -659,7 +629,7 @@ ga('send', 'pageview');
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">231</span>
+                <span class="site-state-item-count">233</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -681,7 +651,7 @@ ga('send', 'pageview');
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">225</span>
+                <span class="site-state-item-count">226</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -736,7 +706,7 @@ ga('send', 'pageview');
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、质量值编码方案（Quality-Value-Encoding-Schema）"><span class="nav-number">1.</span> <span class="nav-text">一、质量值编码方案（Quality Value Encoding Schema）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、FASTQ"><span class="nav-number">2.</span> <span class="nav-text">二、FASTQ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、Read-Trimming"><span class="nav-number">3.</span> <span class="nav-text">三、Read Trimming</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">1.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
@@ -899,9 +869,9 @@ ga('send', 'pageview');
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://uteric.github.io/cancer_seq2/';
-          this.page.identifier = 'cancer_seq2/';
-          this.page.title = '肿瘤基因组分析教程：二、数据质控';
+          this.page.url = 'http://uteric.github.io/Linux/RTL8821CE_driver/';
+          this.page.identifier = 'Linux/RTL8821CE_driver/';
+          this.page.title = 'Ubuntu 18.04上为无线网卡RTL8821CE安装驱动';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://uteric-1.disqus.com/embed.js';
